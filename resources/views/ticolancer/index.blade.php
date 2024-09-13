@@ -144,6 +144,67 @@
     </div>
     {{-- Services end --}}
 
+    {{-- Popular services --}}
+        <div class="flex flex-col justify-center items-center bg-bg py-[40px] gap-[40px] m-auto max-sm:w-[90vw]">
+            <h2 class="text-blue text-[36px] max-sm:text-[24px] font-light">Servicios <span class="text-green font-secondary">populares</span></h2>
+            <div class="grid grid-cols-6 gap-[20px] max-sm:grid-cols-2">
+                {{-- Desarrollo web --}}
+                <a href="">
+                    <div class="flex flex-col justify-center items-start bg-[#00732E] gap-[20px] max-sm:gap-[10px] p-[10px] rounded-[16px] hover:bg-opacity-85 transition-all duration-500 ease-out">
+                        <h5 class="h-[60px] text-white font-semibold text-[20px] max-sm:text-[16px] p-[5px]">Desarrollo Web</h5>
+                        <img class="rounded-[16px]" src="{{ asset('storage/desarrollo_web.jpg') }}" alt="">
+                    </div>
+                </a>
+                {{-- Desarrollo web end --}}
+
+                {{-- Diseño de logo--}}
+                <a href="">
+                    <div class="flex flex-col justify-center items-start bg-[#F97B4D] gap-[20px] max-sm:gap-[10px] p-[10px] rounded-[16px] hover:bg-opacity-85 transition-all duration-500 ease-out">
+                        <h5 class="h-[60px] text-white font-semibold text-[20px] max-sm:text-[16px] p-[5px]">Diseño de logo</h5>
+                        <img class="rounded-[16px]" src="{{ asset('storage/diseno_logo.jpg') }}" alt="">
+                    </div>
+                </a>
+                {{-- Diseño de logo end --}}
+
+                {{-- Marketing --}}
+                <a href="">
+                    <div class="flex flex-col justify-center items-start bg-[#687200] gap-[20px] max-sm:gap-[10px] p-[10px] rounded-[16px] hover:bg-opacity-85 transition-all duration-500 ease-out">
+                        <h5 class="h-[60px] text-white font-semibold text-[20px] max-sm:text-[16px] p-[5px]">Marketing</h5>
+                        <img class="rounded-[16px]" src="{{ asset('storage/marketing.jpg') }}" alt="">
+                    </div>
+                </a>
+                {{-- Marketing end --}}
+
+                {{-- arquitectura y diseño --}}
+                <a href="">
+                    <div class="flex flex-col justify-center items-start bg-[#4D1727] gap-[20px] max-sm:gap-[10px] p-[10px] rounded-[16px] hover:bg-opacity-85 transition-all duration-500 ease-out">
+                        <h5 class="w-[180px] h-[60px]  text-white font-semibold text-[20px] max-sm:text-[16px] p-[5px]">Arquitectura y Diseño Interior</h5>
+                        <img class="rounded-[16px]" src="{{ asset('storage/arquitectura.jpg') }}" alt="">
+                    </div>
+                </a>
+                {{-- arquitectura y diseño end --}}
+
+                {{-- desarrollo de software --}}
+                <a href="">
+                    <div class="flex flex-col justify-center items-start bg-[#254200] gap-[20px] max-sm:gap-[10px] p-[10px] rounded-[16px] hover:bg-opacity-85 transition-all duration-500 ease-out">
+                        <h5 class="w-[180px] h-[60px]  text-white font-semibold text-[20px] max-sm:text-[16px] p-[5px]">Desarrollo de Software</h5>
+                        <img class="rounded-[16px]" src="{{ asset('storage/dev.jpg') }}" alt="">
+                    </div>
+                </a>
+                {{-- desarrollo de software end --}}
+
+                {{-- video --}}
+                <a href="">
+                    <div class="flex flex-col justify-center items-start bg-[#C66783] gap-[20px] max-sm:gap-[10px] p-[10px] rounded-[16px] hover:bg-opacity-85 transition-all duration-500 ease-out">
+                        <h5 class="w-[180px] h-[60px] text-white font-semibold text-[20px] max-sm:text-[16px] p-[5px]">Edición de Video</h5>
+                        <img class="rounded-[16px]" src="{{ asset('storage/video.jpg') }}" alt="">
+                    </div>
+                </a>
+                {{-- video end --}}
+            </div>
+        </div>
+    {{-- Popular services end --}}
+
     {{-- Quienes somos --}}
     <div class="flex w-full bg-blue py-[40px]">
         <div class="flex flex-col justify-center items-center m-auto w-[90vw] gap-[40px]">
@@ -229,7 +290,7 @@
         <div class="flex justify-center items-start max-sm:items-center flex-col gap-[20px] ">
             <h2 class="text-blue text-[36px] max-sm:text-[24px] font-light">¿Serás el <span class="text-green font-secondary">próximo?</span></h2>
             <p class="text-[18px] max-sm:text-center font-light text-black">Tu puedes ser el próximo freelancer tico en nuestra web!</p>
-            <a class="px-[20px] py-[10px] rounded-[10px] text-blue font-semibold border-solid border-[1px] border-blue hover:translate-y-[-5px] transition-all duration-500 ease-out hover:bg-blue hover:text-white " href="#">Registrarse</a>
+            <a class="px-[20px] py-[10px] rounded-[10px] text-blue font-semibold border-solid border-[1px] border-blue hover:translate-y-[-5px] transition-all duration-500 ease-out hover:bg-blue hover:text-white " href="{{ route('signup') }}">Registrarse</a>
         </div>
         <div class="flex justify-center items-start">
             <img src="https://i.postimg.cc/pX0jkmrF/illustration.png" alt="">
