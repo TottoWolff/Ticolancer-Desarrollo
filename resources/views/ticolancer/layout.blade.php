@@ -9,13 +9,16 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
 
-    <title>El Faro Startups</title>
+    <title>Ticolancer</title>
     @vite('resources/css/app.css')
 </head>
 
 <body class="bg-bg font-main">
-<header>
-            <div id="navbar" class="z-[999] flex fixed top-0 w-full left-[50%] -translate-x-1/2 m-auto py-[20px] max-sm:py-[10px] px-[120px] max-sm:px-[20px] items-center justify-between font-main font-semibold text-[18px] text-white transition-all duration-500 ease-out">
+    <header>
+        <div id="navbar" class="flex-col gap-[20px] z-[999] flex fixed top-0 w-full left-[50%] -translate-x-1/2 m-auto py-[20px] max-sm:py-[10px] px-[120px] max-sm:px-[20px] items-center justify-between font-main font-semibold text-[18px] text-white transition-all duration-500 ease-out">
+
+            {{-- Desktop navbar --}}
+            <div id="navbar" class=" w-full flex flex-row justify-between items-center bg-transparent>
                     <a href="{{ route('inicio') }}">
                     <svg class="max-sm:w-[20px]" width="30" height="79" viewBox="0 0 30 79" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M30 11.1222V0L4.19744 10.1989L3.51562 21.2784L30 11.1222Z" fill="white"/>
@@ -41,12 +44,13 @@
 
 
                     <ul class="flex flex-row gap-[10px] max-sm:hidden">
-                        <li class="p-[10px] hover:text-blue rounded-[10px] hover:bg-white transition-all duration-500 translate-y-[-5px] ease-out"><a href="#">Inicio</a></li>
-                        <li class="p-[10px] hover:text-blue rounded-[10px] hover:bg-white transition-all duration-500 translate-y-[-5px] ease-out"><a href="#">Empresas</a></li>
-                        <li class="p-[10px] hover:text-blue rounded-[10px] hover:bg-white transition-all duration-500 translate-y-[-5px] ease-out"><a href="#">Nosotros</a></li>
-                        <li class="p-[10px] hover:text-blue rounded-[10px] hover:bg-white transition-all duration-500 translate-y-[-5px] ease-out"><a href="#">Contacto</a></li>
+                        <li class="p-[10px] hover:text-blue rounded-[10px] hover:bg-white transition-all duration-500 hover:translate-y-[-5px] ease-out"><a href="#">Inicio</a></li>
+                        <li class="p-[10px] hover:text-blue rounded-[10px] hover:bg-white transition-all duration-500 hover:translate-y-[-5px] ease-out"><a href="#">Servicios</a></li>
+                        <li class="p-[10px] hover:text-blue rounded-[10px] hover:bg-white transition-all duration-500 hover:translate-y-[-5px] ease-out"><a href="#">Nosotros</a></li>
+                        <li class="p-[10px] hover:text-blue rounded-[10px] hover:bg-white transition-all duration-500 hover:translate-y-[-5px] ease-out"><a href="#">Contacto</a></li>
                     </ul>
-
+                    
+                    {{-- Mobile Menu --}}
                     <div id="menu" class=" hidden absolute justify-center items-center text-center top-0 right-0 h-screen w-[80vw] bg-bg">
                         <button onclick="closeMenu()">
                             <svg class="absolute top-10 left-10" width="24" height="24" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -63,13 +67,28 @@
 
                         <ul class="flex flex-col gap-[20px]">
                             <li class="p-[10px] text-primary hover:bg-primary hover:text-white transition-all duration-500 translate-y-[-5px] ease-out"><a href="#">Inicio</a></li>
-                            <li class="p-[10px] text-primary hover:bg-primary hover:text-white transition-all duration-500 translate-y-[-5px] ease-out"><a href="#">Empresas</a></li>
+                            <li class="p-[10px] text-primary hover:bg-primary hover:text-white transition-all duration-500 translate-y-[-5px] ease-out"><a href="#">Servicios</a></li>
                             <li class="p-[10px] text-primary hover:bg-primary hover:text-white transition-all duration-500 translate-y-[-5px] ease-out"><a href="#">Nosotros</a></li>
                             <li class="p-[10px] text-primary hover:bg-primary hover:text-white transition-all duration-500 translate-y-[-5px] ease-out"><a href="#">Contacto</a></li>
                         </ul>
                     </div>
-                </div>
-        </header>
+                    {{-- Mobile Menu end --}}
+            </div>
+            {{-- Desktop navbar end --}}
+            
+            {{-- Services bar --}}
+            <ul id="services-bar" class="font-light text-[14px] flex-row justify-between items-center w-full hidden max-sm:hidden transition-all duration-500 ease-out border-green border-opacity-20 border-t-[0.5px] border-b-[0.5px] py-[10px]">
+                <li class="hover:text-green transition-all duration-500 ease-out"><a href="">Programación y tecnología</a></li>
+                <li class="hover:text-green transition-all duration-500 ease-out"><a href="">Diseño gráfico</a></li>
+                <li class="hover:text-green transition-all duration-500 ease-out"><a href="">Marketing Digital</a></li>
+                <li class="hover:text-green transition-all duration-500 ease-out"><a href="">Traducción y escritura</a></li>
+                <li class="hover:text-green transition-all duration-500 ease-out"><a href="">Servicios de IA</a></li>
+                <li class="hover:text-green transition-all duration-500 ease-out"><a href="">Video y animación</a></li>
+                <li class="hover:text-green transition-all duration-500 ease-out"><a href="">Música y audio</a></li>
+            </ul>
+            {{-- Services bar end --}}
+
+    </header>
     @yield('content')
         <footer>
             <div class="flex flex-col py-[40px] w-[90vw] gap-[40px] m-auto">
@@ -104,8 +123,8 @@
 
                 <div class="grid grid-cols-2 max-sm:grid-cols-1 max-sm:gap-[20px]">
                     <div class="flex justify-start flex-col gap-[20px]">
-                        <p class="text-black font-light text-[16px]">En El Faro Startups nos dedicamos a que los Puntarenenses puedan <br> cumplir sus sueños y a la misma vez contribuimos al desarrollo de <br> nuestra porvincia costera.</p>
-                        <a class="px-[20px] py-[10px] w-fit text-primary font-semibold border-solid border-[1px] border-primary hover:translate-y-[-5px] transition-all duration-500 ease-out hover:bg-primary hover:text-white" href="#">Registrarse</a>
+                        <p class="text-black font-light text-[16px]">En Ticolancer damos oportunidades a todos aquellos <br> freelacers ticos que desde su hogar u oficina quieren <br> vender su talento!</p>
+                        <a class="w-fit px-[20px] py-[10px] rounded-[10px] text-blue font-semibold border-solid border-[1px] border-blue hover:translate-y-[-5px] transition-all duration-500 ease-out hover:bg-blue hover:text-white " href="#">Registrarse</a>
                     </div>
                     
                     <div class="grid grid-cols-3 max-sm:grid-cols-1 max-sm:gap-[20px]">
@@ -113,7 +132,7 @@
                             <h2 class="text-primary font-semibold text-[18px]">ENLACES</h2>
                             <div class="flex flex-col">
                                 <a class="text-[16px] font-light text-black" href="#">Inicio</a>
-                                <a class="text-[16px] font-light text-black" href="#">Empresas</a>
+                                <a class="text-[16px] font-light text-black" href="#">Servicios</a>
                                 <a class="text-[16px] font-light text-black" href="#">Nosotros</a>
                                 <a class="text-[16px] font-light text-black" href="#">Contacto</a>
                             </div>
@@ -203,6 +222,7 @@
     <script>
        menu = document.getElementById('menu');
        navbar =  document.getElementById('navbar');
+       servicesBar = document.getElementById('services-bar');
 
     function openMenu() {
         menu.classList.remove('hidden');
@@ -216,8 +236,11 @@
        window.onscroll = function() {
         if (window.scrollY > 50) {
             navbar.classList.add('bg-blue');
+            servicesBar.classList.remove('hidden');
+            servicesBar.classList.add('flex');
         } else {
             navbar.classList.remove('bg-blue');
+            servicesBar.classList.add('hidden');
         }
        }
     </script>
