@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/x-icon" href="https://i.postimg.cc/7YKTFXk6/icon.png">
+    <link rel="icon" type="image/x-icon" href="{{ asset('storage/images/favicon.png') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
@@ -20,7 +20,7 @@
             {{-- Desktop navbar --}}
             <div id="navbar" class=" w-full flex flex-row justify-between items-center bg-transparent">
                     <a href="{{ route ('inicio') }}">
-                    <svg width="40" height="77" viewBox="0 0 40 77" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg width="30" height="77" viewBox="0 0 40 77" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g clip-path="url(#clip0_100_387)">
                         <path d="M40 50.836C34.9329 49.1838 30.6184 46.7168 26.7229 43.5343C20.2865 48.1192 12.2883 45.3462 7.37026 39.9794C3.2015 35.43 1.17781 29.9311 0.319532 23.9256C-0.435948 18.6364 0.108988 13.5082 2.37625 8.63602C3.7485 5.68717 5.77426 3.33857 8.98237 2.22806C8.79948 2.37503 8.61866 2.52406 8.4333 2.66814C8.24381 2.81593 8.04359 2.95051 7.85947 3.10491C4.93044 5.55465 3.51071 8.82262 3.02935 12.4939C2.7961 14.2736 2.68877 16.157 3.01243 17.9032C3.62052 21.1848 6.71923 23.2705 10.0153 22.9703C13.2841 22.6723 15.8164 20.0244 16.0191 16.6961C16.031 16.5013 16.0628 16.3077 16.1033 15.9555C22.9988 19.0616 28.5365 23.6222 32.7981 29.7135C37.1874 35.9873 39.5909 42.9538 40 50.8356V50.836Z" fill="white"/>
                         <path d="M15.9501 48.4473C19.6838 49.2334 23.0995 48.8779 26.4286 47.2018C26.5801 47.4792 26.7357 47.7315 26.8604 47.9986C28.4143 51.3227 29.9785 54.6423 31.5114 57.9763C34.6183 64.7343 31.9428 72.2181 25.2673 75.4799C24.5643 75.8234 23.8496 76.1433 22.9121 76.5805C24.5696 72.3218 22.1248 69.1558 20.6597 65.78C19.699 66.2668 18.8321 66.8542 17.8752 67.1477C16.9545 67.4301 15.941 67.4078 14.866 67.4058C16.0905 65.9939 15.9592 64.3669 15.9547 62.7569C15.9419 58.3957 15.9501 54.0346 15.9501 49.673C15.9501 49.3015 15.9501 48.9303 15.9501 48.4473Z" fill="white"/>
