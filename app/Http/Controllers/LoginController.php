@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\UsersTicolancer as Users;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Mail;
 
 class LoginController extends Controller
 {
@@ -25,11 +27,17 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials)) {
             // Autenticación exitosa
-            return redirect()->intended('/'); // O la ruta deseada después del inicio de sesión
+            return redirect()->intended('dashboard'); // O la ruta deseada después del inicio de sesión
+        } 
+        else if ($request->email == "" || $request->password == "")
+        {
+            return redirect()->route('login')->with('warning', 'Debes rellenar todos los campos'); 
+        } 
+        else  
+        {
+            // Autenticación fallida
+            return redirect()->route('login')->with('error', 'El correo o la contraseña son incorrectos');
         }
-
-        // Autenticación fallida
-        return redirect()->route('login')->with('error', 'El correo o la contraseña son incorrectos');
     }
     
 
@@ -37,8 +45,34 @@ class LoginController extends Controller
     {
         Auth::logout(); // Cierra la sesión
 
-        return redirect()->route('login')->with('status', 'Has cerrado sesión exitosamente.');
+        return redirect()->route('login')->with('success', 'Has cerrado sesión exitosamente.');
     }
+
+    public function recover(Request $request)
+{
+    $request->validate([
+        'email' => 'required|email',
+    ]);
+
+    $user = Users::where('email', $request->email)->first();
+
+    if (!$user) {
+        return redirect()->back()->with('error', 'No pudimos encontrar un usuario con ese correo.');
+    }
+
+    // Genera una nueva contraseña
+    $newPassword = Str::random(10); // Usa Str::random()
+
+    $user->password = bcrypt($newPassword); 
+    $user->save();
+
+    Mail::send('emails.password_reset', ['password' => $newPassword], function ($message) use ($user) {
+        $message->to($user->email)
+                ->subject('Tu nueva contraseña');
+    });
+
+    return redirect()->back()->with('success', 'Te hemos enviado una nueva contraseña a tu correo.');
+}
 
     public function create()
     {

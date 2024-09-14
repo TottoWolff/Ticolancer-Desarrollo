@@ -6,16 +6,7 @@
         <div class="absolute inset-0 bg-blue opacity-50"></div>
         <div class="absolute inset-0 bg-black opacity-50"></div>
                 <div class=" flex flex-col w-[90vw] gap-[20px] rad z-10">
-                @if (Auth::check())
-                    <h1 class="w-fit text-[72px] max-sm:text-[48px] font-light font-main text-white">Bienvenido, <span class="font-secondary text-white    ">{{ Auth::user()->name }}</span></h1>
-                    
-                @else
                     <h1 class="w-fit text-[72px] max-sm:text-[48px] font-light font-main text-white">Bienvenido a, <span class="font-secondary text-white">Ticolancer</span></h1>
-                    @endif
-                    <form action="{{ route('login.logout') }}" method="POST">
-                        @csrf
-                        <button type="submit">Cerrar sesión</button>
-                    </form>
                     <p class="text-[18px] max-sm:text-[14px] font-light text-white w-[800px] max-sm:w-[90vw] ">Conecta con los mejores freelancers de Costa Rica en Ticolancer. Encuentra talento local para llevar tu proyecto al siguiente nivel o ofrece tus servicios y destaca en la comunidad. ¡Es momento de crecer juntos!</p>
                     <div class="flex flex-row gap-[20px]">
                         <a class="rounded-[10px] text-blue px-[20px] py-[10px] bg-white font-semibold hover:translate-y-[-5px] transition-all duration-500 ease-out hover:text-green" href="#">Ver servicios</a>

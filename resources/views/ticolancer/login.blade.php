@@ -4,17 +4,36 @@
     <div class="grid grid-cols-2 bg-blue h-screen w-full max-sm:grid-cols-1">
         <div class="flex flex-col justify-center items-center px-[120px] gap-[20px] max-sm:w-[90vw] max-sm:px-0 max-sm:m-auto ">
             <h1 class=" px-[20px] py-[10px] w-fit  text-[28px]  font-bold text-white">Inicia sesión</h1>
+            
             @if ($message = Session::get('success'))
                     <div class="bg-[#DCFCE7] border-[1px] border-[#4ADE80] text-[#15763D] px-4 py-3 rounded-[10px] text-center w-full" role="alert">
                         <p>{{ $message }}</p>
                     </div>
             @endif
 
-            @if ($message = Session::get('error'))
-                    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-[10px]  text-center w-full" role="alert">
+            @if ($message = Session::get('warning'))
+                    <div class="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded-[10px]  text-center w-full" role="alert">
                         <p>{{ $message }}</p>
                     </div>
-                @endif
+            @endif
+
+            @if ($message = Session::get('error'))
+                    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-[10px]  text-center w-full" role="alert">
+                        <p>{{ $message }}, <a class="underline font-medium" href="#">recuperar contraseña</a></p>
+                    </div>
+            @endif
+
+            <div class="fixed flex flex-col gap-[20px] right-[50%] left-[50%] top-[50%] -translate-x-[50%] -translate-y-[50%] rounded-[16px] w-[40vw] max-sm:w-[90vw] h-[400px] bg-white p-[40px]">
+                <div>
+                    <h5 class="text-[36px] text-blue font-medium">Recuperación de contraseña</h5>
+                    <p class="text-[16px] text-slate-400 font-light">Ingresa tu correo y te enviaremos un enlace para recuperar tu contraseña</p>
+                </div>
+                <form class="w-full flex flex-col gap-[20px]" action="{{ route('login.recover') }}" method="POST">
+                    @csrf
+                    <input type="text" id="email" name="email" placeholder="Email" class="placeholder:text-slate-400 flex max-sm:w-[100%] w-[50%] border-b-[1px] border-solid border-blue bg-transparent border-opacity-50 px-[20px] py-[10px] text-blue text-[16px] font-regular  outline-none">
+                    <button class="rounded-[10px] transition-all duration-500 ease-out hover:translate-y-[-5px] hover:bg-green cursor-pointer w-fit bg-blue px-[20px] py-[10px] text-white text-[16px] font-semibold  outline-none" type="submit">Enviar</button>
+                </form>
+            </div>
             
             <form class="w-full flex flex-col gap-[20px]" action="{{ route('login.login') }}" method="POST">
                 @csrf

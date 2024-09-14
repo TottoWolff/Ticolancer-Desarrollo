@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomepageController as Homepage;
 use App\Http\Controllers\SignupController as Signup;
 use App\Http\Controllers\LoginController as Login;
+use App\Http\Controllers\BuyerDashboardController as BuyerDashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,4 +26,8 @@ Route::get('/login', [Login::class, 'index'])->name('login');
 Route::post('/login', [Login::class, 'login'])->name('login.login');
 
 Route::post('/logout', [Login::class, 'logout'])->name('login.logout');
+
+Route::post('/recover', [Login::class, 'recover'])->name('login.recover');
+
+Route::get('/dashboard', [BuyerDashboard::class, 'index'])->name('buyerDashboard');
 
