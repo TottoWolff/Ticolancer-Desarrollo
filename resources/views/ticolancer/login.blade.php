@@ -4,10 +4,23 @@
     <div class="grid grid-cols-2 bg-blue h-screen w-full max-sm:grid-cols-1">
         <div class="flex flex-col justify-center items-center px-[120px] gap-[20px] max-sm:w-[90vw] max-sm:px-0 max-sm:m-auto ">
             <h1 class=" px-[20px] py-[10px] w-fit  text-[28px]  font-bold text-white">Inicia sesión</h1>
-            <form class="w-full flex flex-col gap-[20px]" action="">
-                <input type="text" placeholder="Email" class="placeholder:text-slate-400 flex w-full border-b-[1px] border-solid border-white bg-transparent border-opacity-50 px-[20px] py-[10px] text-white text-[16px] font-regular  outline-none">
-                <input type="password" placeholder="Contraseña" class="placeholder:text-slate-400 flex w-full border-b-[1px] border-solid border-white bg-transparent border-opacity-50 px-[20px] py-[10px] text-white text-[16px] font-regular  outline-none">
-                <input type="submit" value="Entrar" class="rounded-[10px] transition-all duration-500 ease-out hover:translate-y-[-5px] hover:bg-green cursor-pointer w-full bg-white px-[20px] py-[10px] text-primary text-[16px] font-semibold  outline-none">
+            @if ($message = Session::get('success'))
+                    <div class="bg-[#DCFCE7] border-[1px] border-[#4ADE80] text-[#15763D] px-4 py-3 rounded-[10px] text-center w-full" role="alert">
+                        <p>{{ $message }}</p>
+                    </div>
+            @endif
+
+            @if ($message = Session::get('error'))
+                    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-[10px]  text-center w-full" role="alert">
+                        <p>{{ $message }}</p>
+                    </div>
+                @endif
+            
+            <form class="w-full flex flex-col gap-[20px]" action="{{ route('login.login') }}" method="POST">
+                @csrf
+                <input id="email" name="email" type="text" placeholder="Email" class="placeholder:text-slate-400 flex w-full border-b-[1px] border-solid border-white bg-transparent border-opacity-50 px-[20px] py-[10px] text-white text-[16px] font-regular  outline-none">
+                <input id="password" name="password" type="password" placeholder="Contraseña" class="placeholder:text-slate-400 flex w-full border-b-[1px] border-solid border-white bg-transparent border-opacity-50 px-[20px] py-[10px] text-white text-[16px] font-regular  outline-none">
+                <input type="submit" value="Iniciar sesión" class="rounded-[10px] transition-all duration-500 ease-out hover:translate-y-[-5px] hover:bg-green cursor-pointer w-full bg-white px-[20px] py-[10px] text-primary text-[16px] font-semibold  outline-none">
                 <p class="text-center text-[14px] text-white">¿No tienes cuenta? <a href="{{ route('signup') }}" class="text-white underline">Regístrate</a></p>
             </form>
         </div>

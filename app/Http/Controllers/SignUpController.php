@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\UsersTicolancer as Users;
 
 class SignUpController extends Controller
 {
@@ -21,6 +22,7 @@ class SignUpController extends Controller
     public function create()
     {
         //
+        return view('ticolancer.signup');
     }
 
     /**
@@ -29,6 +31,25 @@ class SignUpController extends Controller
     public function store(Request $request)
     {
         //
+    
+        try {
+            Users::create([
+                'name' => $request->name,
+                'lastname' => $request->lastname,
+                'email' => $request->email,
+                'password' => bcrypt($request->password),
+            ]);
+
+            return redirect()->route('login')->with('success', 'Registro exitoso');
+        } catch (QueryException $e) {
+            if ($e->errorInfo[1] == 1062) {
+                return redirect()->route('signup')->with('error', 'Ya existe un usuario con este correo');
+            }
+
+            return redirect()->route('signup')->with('error', 'Error al registrar');
+        }
+
+        
     }
 
     /**
