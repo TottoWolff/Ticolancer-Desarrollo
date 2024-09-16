@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\UsersTicolancer as Users;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Hash;
+use App\Mail\RecoverPasswordMail; 
 
 class LoginController extends Controller
 {
@@ -27,7 +29,7 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials)) {
             // Autenticación exitosa
-            return redirect()->intended('dashboard'); // O la ruta deseada después del inicio de sesión
+            return redirect()->intended('dashboard'); 
         } 
         else if ($request->email == "" || $request->password == "")
         {
@@ -49,30 +51,28 @@ class LoginController extends Controller
     }
 
     public function recover(Request $request)
-{
-    $request->validate([
-        'email' => 'required|email',
-    ]);
+    {
+        $user = Users::where('email', $request->email)->first();
 
-    $user = Users::where('email', $request->email)->first();
+        if (!$user) {
+            return redirect()->back()->with('error', 'No pudimos encontrar un usuario con ese correo.');
+        }
 
-    if (!$user) {
-        return redirect()->back()->with('error', 'No pudimos encontrar un usuario con ese correo.');
+        // Genera una nueva contraseña
+        $newPassword = Str::random(10); // Usa Str::random()
+
+        $user->password = bcrypt($newPassword); 
+        $user->save();
+
+        mail ($to = $user->email, $subject = 'Tu nueva contraseña', $message = 'Tu nueva contraseña es: ' . $newPassword);
+
+        //Mail::send('emails.password_reset', ['password' => $newPassword], function ($message) use ($user) {
+            //$message->to($user->email)
+                    //->subject('Tu nueva contraseña');
+        //});
+
+        return redirect()->back()->with('success', 'Te hemos enviado una nueva contraseña a tu correo');
     }
-
-    // Genera una nueva contraseña
-    $newPassword = Str::random(10); // Usa Str::random()
-
-    $user->password = bcrypt($newPassword); 
-    $user->save();
-
-    Mail::send('emails.password_reset', ['password' => $newPassword], function ($message) use ($user) {
-        $message->to($user->email)
-                ->subject('Tu nueva contraseña');
-    });
-
-    return redirect()->back()->with('success', 'Te hemos enviado una nueva contraseña a tu correo.');
-}
 
     public function create()
     {

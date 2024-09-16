@@ -30,9 +30,26 @@ class SignUpController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    
+        
+        // Verificar si ya existe un usuario con el correo ingresado
+        $existingUser = Users::where('email', $request->email)->first();
+
+        if ($existingUser) {
+            return redirect()->route('signup')->with('error', 'Ya existe un usuario con este correo');
+        }
+
+        // Validar los datos del formulario
+        if ($request->name == "" || $request->lastname == "" || $request->email == "" || $request->password == "") {
+            return redirect()->route('signup')->with('warning', 'Todos los campos son obligatorios');
+        }
+
+        //Validar formato de correo
+        if (!filter_var($request->email, FILTER_VALIDATE_EMAIL)) {
+            return redirect()->route('signup')->with('warning', 'Formato de correo incorrecto');
+        }
+
         try {
+            // Crear el nuevo usuario
             Users::create([
                 'name' => $request->name,
                 'lastname' => $request->lastname,
@@ -40,17 +57,15 @@ class SignUpController extends Controller
                 'password' => bcrypt($request->password),
             ]);
 
-            return redirect()->route('login')->with('success', 'Registro exitoso');
-        } catch (QueryException $e) {
-            if ($e->errorInfo[1] == 1062) {
-                return redirect()->route('signup')->with('error', 'Ya existe un usuario con este correo');
-            }
+            //Enviar un correo de bienvenida
+            mail ($to = $request->email, $subject = 'Bienvenido a Ticolancer', $request->name . ', ' . 'gracias por registrarte en Ticolancer. Te damos la bienvenida');
 
-            return redirect()->route('signup')->with('error', 'Error al registrar');
+            return redirect()->route('login')->with('success', 'Registro exitoso, inicia sesión');
+        } catch (\Exception $e) {
+            return redirect()->route('signup')->with('error', 'Error al registrar: ' . $e->getMessage());
         }
-
-        
     }
+
 
     /**
      * Display the specified resource.
