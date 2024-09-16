@@ -152,7 +152,7 @@
             <a href="">
                     <div class="flex flex-col justify-center items-start bg-[#00732E] gap-[20px] max-sm:gap-[10px] p-[10px] rounded-[16px] hover:bg-opacity-85 transition-all duration-500 ease-out">
                         <h5 class="h-[60px] text-white font-semibold text-[20px] max-sm:text-[16px] p-[5px]">Desarrollo Web</h5>
-                        <img class="rounded-[16px]" src="{{ asset('storage/images/desarrollo_web.jpg') }}" alt="">
+                        <img class="rounded-[16px]" src="{{ asset('images/dev.jpg') }}" alt="">
                     </div>
             </a>
             {{-- Desarrollo web end --}}
@@ -161,7 +161,7 @@
             <a href="">
                     <div class="flex flex-col justify-center items-start bg-[#F97B4D] gap-[20px] max-sm:gap-[10px] p-[10px] rounded-[16px] hover:bg-opacity-85 transition-all duration-500 ease-out">
                         <h5 class="h-[60px] text-white font-semibold text-[20px] max-sm:text-[16px] p-[5px]">Diseño de logo</h5>
-                        <img class="rounded-[16px]" src="{{ asset('storage/images/diseno_logo.jpg') }}" alt="">
+                        <img class="rounded-[16px]" src="{{ asset('images/diseno_logo.jpg') }}" alt="">
                     </div>
             </a>
             {{-- Diseño de logo end --}}
@@ -170,7 +170,7 @@
             <a href="">
                     <div class="flex flex-col justify-center items-start bg-[#687200] gap-[20px] max-sm:gap-[10px] p-[10px] rounded-[16px] hover:bg-opacity-85 transition-all duration-500 ease-out">
                         <h5 class="h-[60px] text-white font-semibold text-[20px] max-sm:text-[16px] p-[5px]">Marketing</h5>
-                        <img class="rounded-[16px]" src="{{ asset('storage/images/marketing.jpg') }}" alt="">
+                        <img class="rounded-[16px]" src="{{ asset('images/marketing.jpg') }}" alt="">
                     </div>
             </a>
             {{-- Marketing end --}}
@@ -179,7 +179,7 @@
             <a href="">
                     <div class="flex flex-col justify-center items-start bg-[#4D1727] gap-[20px] max-sm:gap-[10px] p-[10px] rounded-[16px] hover:bg-opacity-85 transition-all duration-500 ease-out">
                         <h5 class="w-[180px] h-[60px]  text-white font-semibold text-[20px] max-sm:text-[16px] p-[5px]">Arquitectura y Diseño Interior</h5>
-                        <img class="rounded-[16px]" src="{{ asset('storage/images/arquitectura.jpg') }}" alt="">
+                        <img class="rounded-[16px]" src="{{ asset('images/arquitectura.jpg') }}" alt="">
                     </div>
             </a>
             {{-- arquitectura y diseño end --}}
@@ -188,7 +188,7 @@
             <a href="">
                     <div class="flex flex-col justify-center items-start bg-[#254200] gap-[20px] max-sm:gap-[10px] p-[10px] rounded-[16px] hover:bg-opacity-85 transition-all duration-500 ease-out">
                         <h5 class="w-[180px] h-[60px]  text-white font-semibold text-[20px] max-sm:text-[16px] p-[5px]">Desarrollo de Software</h5>
-                        <img class="rounded-[16px]" src="{{ asset('storage/images/dev.jpg') }}" alt="">
+                        <img class="rounded-[16px]" src="{{ asset('images/dev.jpg') }}" alt="">
                     </div>
             </a>
             {{-- desarrollo de software end --}}
@@ -197,7 +197,7 @@
             <a href="">
                     <div class="flex flex-col justify-center items-start bg-[#C66783] gap-[20px] max-sm:gap-[10px] p-[10px] rounded-[16px] hover:bg-opacity-85 transition-all duration-500 ease-out">
                         <h5 class="w-[180px] h-[60px] text-white font-semibold text-[20px] max-sm:text-[16px] p-[5px]">Edición de Video</h5>
-                        <img class="rounded-[16px]" src="{{ asset('storage/images/video.jpg') }}" alt="">
+                        <img class="rounded-[16px]" src="{{ asset('images/video.jpg') }}" alt="">
                     </div>
             </a>
             {{-- video end --}}
