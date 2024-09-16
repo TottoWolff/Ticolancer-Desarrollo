@@ -58,18 +58,51 @@ class LoginController extends Controller
             return redirect()->back()->with('error', 'No pudimos encontrar un usuario con ese correo.');
         }
 
-        // Genera una nueva contraseña
+        // Generar una nueva contraseña
         $newPassword = Str::random(10); // Usa Str::random()
 
         $user->password = bcrypt($newPassword); 
         $user->save();
 
-        mail ($to = $user->email, $subject = 'Tu nueva contraseña', $message = 'Tu nueva contraseña es: ' . $newPassword);
+        $to = $request->email;
+        $subject = 'Tu nueva contraseña';
+        $message = '
+           <html>
+                <head>
+                    <style>
+                        
+                        h2 {
+                            color: #ffffff;
+                            padding: 10px;
+                            background-color: #132D46;
+                            border-bottom: 4px solid #00C48E;
+                        }
+                        
+                        .container {
+                            padding: 10px;
+                            background-color: #F5F5F5;
+                        }
+                        
+                    </style>
 
-        //Mail::send('emails.password_reset', ['password' => $newPassword], function ($message) use ($user) {
-            //$message->to($user->email)
-                    //->subject('Tu nueva contraseña');
-        //});
+                </head>
+                <body>
+                    <h2> Hola ' . $user->name . ', tu nueva contraseña es: <strong>' . $newPassword . '</strong> </h2>
+                    <div class="container">
+                        <p>Te recomendamos que cambies esta contraseña en tu perfil.</p>
+                        <p>Saludos, el equipo de Ticolancer!</p>
+                    </div>
+                </body>
+            </html> 
+        ';
+        
+        $headers = 'MIME-Version: 1.0' . "\r\n";
+        $headers = 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+    
+        
+
+        // Envia un correo con la nueva contraseña
+        mail ($to, $subject, $message, $headers);
 
         return redirect()->back()->with('success', 'Te hemos enviado una nueva contraseña a tu correo');
     }

@@ -57,8 +57,45 @@ class SignUpController extends Controller
                 'password' => bcrypt($request->password),
             ]);
 
-            //Enviar un correo de bienvenida
-            mail ($to = $request->email, $subject = 'Bienvenido a Ticolancer', $request->name . ', ' . 'gracias por registrarte en Ticolancer. Te damos la bienvenida');
+        $to = $request->email;
+        $subject = 'Bienvenido a Ticolancer';
+        $message = '
+           <html>
+                <head>
+                    <style>
+                        
+                        h2 {
+                            color: #ffffff;
+                            padding: 10px;
+                            background-color: #132D46;
+                            border-bottom: 4px solid #00C48E;
+                        }
+                        
+                        .container {
+                            padding: 10px;
+                            background-color: #F5F5F5;
+                        }
+                        
+                    </style>
+
+                </head>
+                <body>
+                    <h2> Hola ' . $request->name . ', gracias por registrarte!</h2>
+                    <div class="container">
+                        <p>Es un placer que te unas a la familia de Ticolancer.</p>
+                    </div>
+                </body>
+            </html> 
+        ';
+        
+        $headers = 'MIME-Version: 1.0' . "\r\n";
+        $headers = 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+    
+        
+
+        // Envia un correo de bienvenida
+        mail ($to, $subject, $message, $headers);
+            
 
             return redirect()->route('login')->with('success', 'Registro exitoso, inicia sesión');
         } catch (\Exception $e) {

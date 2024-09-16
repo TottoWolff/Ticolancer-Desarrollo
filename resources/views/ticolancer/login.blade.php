@@ -39,13 +39,13 @@
     </div>
 
     <div id="modal" class="w-[100vw] h-[100vh] fixed hidden z-10 top-0 right-0 bg-blue bg-opacity-50 backdrop-blur-sm">
-                <div class="fixed flex flex-col gap-[20px] right-[50%] left-[50%] top-[50%] -translate-x-[50%] -translate-y-[50%] rounded-[16px] w-[40vw] max-sm:w-[90vw] h-[400px] bg-white p-[40px]">
+                <div id="modal-content" class="fixed flex flex-col gap-[20px] right-[50%] left-[50%] top-[50%] -translate-x-[50%] -translate-y-[50%] rounded-[16px] w-[40vw] max-sm:w-[90vw] max-sm:h-[70vh] h-[500px] bg-white p-[40px]">
                     
                     <button class="absolute p-[14px] rounded-bl-[10px] bg-blue right-0 top-0" onclick="closeModal()"><img src="{{ asset('icons/close.svg') }}"></button>    
 
                     <div>
                         <h5 class="text-[36px] text-blue font-medium">Recuperación de contraseña</h5>
-                        <p class="text-[16px] text-slate-400 font-light">Ingresa tu correo y te enviaremos un enlace para recuperar tu contraseña</p>
+                        <p class="text-[16px] text-slate-400 font-light">Ingresa tu correo y recibira tu nueva contraseña</p>
                     </div>
 
                     @if ($message = Session::get('error'))
@@ -70,13 +70,18 @@
 
     <script>
         modal = document.getElementById('modal');
+        modalContent = document.getElementById('modal-content');
 
         function closeModal() {
             modal.style.display = 'none';
+
         }
 
         function openModal() {
             modal.style.display = 'flex';
+            modalContent.classList.add('translate-y-[-50%]');
+            modalContent.classList.add('translate-x-[-50%]');
+
         }
     </script>
 @endsection
