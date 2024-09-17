@@ -101,7 +101,7 @@
         <div class="flex w-full bg-blue py-[40px] flex-col">
             <div class="flex flex-col justify-center items-center m-auto w-[90vw] gap-[40px]">
                 <h2 class="text-white w-fit text-[36px] max-sm:text-[28px] font-light">Habla con <span class="text-green font-secondary">nosotros</span></h2>
-                <form class="w-[50vw] flex flex-col gap-[20px]" action="">
+                <form class="w-[50vw] max-sm:w-[90vw] flex flex-col gap-[20px]" action="">
                     <input id="name" name="name" type="text" placeholder="Nombre" class="placeholder:text-slate-400 flex border-b-[1px] border-solid border-white bg-transparent border-opacity-50 px-[20px] py-[10px] text-white text-[16px] font-regular outline-none">
                     <input id="email" name="email" type="text" placeholder="Email" class="placeholder:text-slate-400 flex w-full border-b-[1px] border-solid border-white bg-transparent border-opacity-50 px-[20px] py-[10px] text-white text-[16px] font-regular outline-none">
                     <textarea placeholder="Escribe tu mensaje" name="message" id="message" class="placeholder:text-slate-400 flex w-full border-b-[1px] border-solid border-white bg-transparent border-opacity-50 px-[20px] py-[10px] text-white text-[16px] font-regular outline-none"></textarea>
