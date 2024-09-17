@@ -21,6 +21,12 @@ class HomepageController extends Controller
         return view('ticolancer.nosotros');
     }
 
+    public function contacto()
+    {
+        //
+        return view('ticolancer.contacto');
+    }
+
     /**
      * Show the form for creating a new resource.
      */
