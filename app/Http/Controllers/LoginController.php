@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\UsersTicolancer as Users;
+use App\Models\BuyersUsersTicolancer as BuyersUsers;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Hash;
@@ -52,7 +52,7 @@ class LoginController extends Controller
 
     public function recover(Request $request)
     {
-        $user = Users::where('email', $request->email)->first();
+        $user = BuyersUsers::where('email', $request->email)->first();
 
         if (!$user) {
             return redirect()->back()->with('error', 'No pudimos encontrar un usuario con ese correo.');

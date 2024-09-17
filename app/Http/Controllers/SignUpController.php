@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CitiesTicolancer;
 use Illuminate\Http\Request;
-use App\Models\UsersTicolancer as Users;
+use App\Models\BuyersUsersTicolancer as BuyersUsers;
+
 
 class SignUpController extends Controller
 {
@@ -32,14 +34,14 @@ class SignUpController extends Controller
     {
         
         // Verificar si ya existe un usuario con el correo ingresado
-        $existingUser = Users::where('email', $request->email)->first();
-
-        if ($existingUser) {
-            return redirect()->route('signup')->with('error', 'Ya existe un usuario con este correo');
+        $existingUser = BuyersUsers::where('email', $request->email)->first();
+        $existingUsername = BuyersUsers::where('username', $request->name)->first();
+        if ($existingUser || $existingUsername) {
+            return redirect()->route('signup')->with('error', 'Ya existe un usuario con este correo o nombre de usuario');
         }
 
         // Validar los datos del formulario
-        if ($request->name == "" || $request->lastname == "" || $request->email == "" || $request->password == "") {
+        if ($request->name == "" || $request->lastname == "" || $request->email == "" || $request->password == "" || $request->username == "") {
             return redirect()->route('signup')->with('warning', 'Todos los campos son obligatorios');
         }
 
@@ -50,9 +52,10 @@ class SignUpController extends Controller
 
         try {
             // Crear el nuevo usuario
-            Users::create([
+            BuyersUsers::create([
                 'name' => $request->name,
                 'lastname' => $request->lastname,
+                'username' => $request->username,
                 'email' => $request->email,
                 'password' => bcrypt($request->password),
             ]);
