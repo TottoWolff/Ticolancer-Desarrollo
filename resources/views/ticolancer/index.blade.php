@@ -146,13 +146,13 @@
 
     {{-- Popular services --}}
     <div class="flex flex-col justify-center items-center bg-bg py-[40px] gap-[40px] m-auto max-sm:w-[90vw]">
-        <h2 class="text-blue text-[36px] max-sm:text-[24px] font-light">Servicios <span class="text-green font-secondary">populares</span></h2>
+        <h2 class="text-blue text-[36px] max-sm:text-[28px] font-light">Servicios <span class="text-green font-secondary">populares</span></h2>
         <div class="grid grid-cols-6 gap-[20px] max-sm:grid-cols-2">
             {{-- Desarrollo web --}}
             <a href="">
                     <div class="flex flex-col justify-center items-start bg-[#00732E] gap-[20px] max-sm:gap-[10px] p-[10px] rounded-[16px] hover:bg-opacity-85 transition-all duration-500 ease-out">
                         <h5 class="h-[60px] text-white font-semibold text-[20px] max-sm:text-[16px] p-[5px]">Desarrollo Web</h5>
-                        <img class="rounded-[16px]" src="{{ asset('images/dev.jpg') }}" alt="">
+                        <img class="rounded-[16px]" src="{{ asset('images/homepage/dev.jpg') }}" alt="">
                     </div>
             </a>
             {{-- Desarrollo web end --}}
@@ -161,7 +161,7 @@
             <a href="">
                     <div class="flex flex-col justify-center items-start bg-[#F97B4D] gap-[20px] max-sm:gap-[10px] p-[10px] rounded-[16px] hover:bg-opacity-85 transition-all duration-500 ease-out">
                         <h5 class="h-[60px] text-white font-semibold text-[20px] max-sm:text-[16px] p-[5px]">Diseño de logo</h5>
-                        <img class="rounded-[16px]" src="{{ asset('images/diseno_logo.jpg') }}" alt="">
+                        <img class="rounded-[16px]" src="{{ asset('images/homepage/diseno_logo.jpg') }}" alt="">
                     </div>
             </a>
             {{-- Diseño de logo end --}}
@@ -170,7 +170,7 @@
             <a href="">
                     <div class="flex flex-col justify-center items-start bg-[#687200] gap-[20px] max-sm:gap-[10px] p-[10px] rounded-[16px] hover:bg-opacity-85 transition-all duration-500 ease-out">
                         <h5 class="h-[60px] text-white font-semibold text-[20px] max-sm:text-[16px] p-[5px]">Marketing</h5>
-                        <img class="rounded-[16px]" src="{{ asset('images/marketing.jpg') }}" alt="">
+                        <img class="rounded-[16px]" src="{{ asset('images/homepage/marketing.jpg') }}" alt="">
                     </div>
             </a>
             {{-- Marketing end --}}
@@ -179,7 +179,7 @@
             <a href="">
                     <div class="flex flex-col justify-center items-start bg-[#4D1727] gap-[20px] max-sm:gap-[10px] p-[10px] rounded-[16px] hover:bg-opacity-85 transition-all duration-500 ease-out">
                         <h5 class="w-[180px] h-[60px]  text-white font-semibold text-[20px] max-sm:text-[16px] p-[5px]">Arquitectura y Diseño Interior</h5>
-                        <img class="rounded-[16px]" src="{{ asset('images/arquitectura.jpg') }}" alt="">
+                        <img class="rounded-[16px]" src="{{ asset('images/homepage/arquitectura.jpg') }}" alt="">
                     </div>
             </a>
             {{-- arquitectura y diseño end --}}
@@ -188,7 +188,7 @@
             <a href="">
                     <div class="flex flex-col justify-center items-start bg-[#254200] gap-[20px] max-sm:gap-[10px] p-[10px] rounded-[16px] hover:bg-opacity-85 transition-all duration-500 ease-out">
                         <h5 class="w-[180px] h-[60px]  text-white font-semibold text-[20px] max-sm:text-[16px] p-[5px]">Desarrollo de Software</h5>
-                        <img class="rounded-[16px]" src="{{ asset('images/dev.jpg') }}" alt="">
+                        <img class="rounded-[16px]" src="{{ asset('images/homepage/dev.jpg') }}" alt="">
                     </div>
             </a>
             {{-- desarrollo de software end --}}
@@ -197,7 +197,7 @@
             <a href="">
                     <div class="flex flex-col justify-center items-start bg-[#C66783] gap-[20px] max-sm:gap-[10px] p-[10px] rounded-[16px] hover:bg-opacity-85 transition-all duration-500 ease-out">
                         <h5 class="w-[180px] h-[60px] text-white font-semibold text-[20px] max-sm:text-[16px] p-[5px]">Edición de Video</h5>
-                        <img class="rounded-[16px]" src="{{ asset('images/video.jpg') }}" alt="">
+                        <img class="rounded-[16px]" src="{{ asset('images/homepage/video.jpg') }}" alt="">
                     </div>
             </a>
             {{-- video end --}}
@@ -208,43 +208,20 @@
     {{-- Quienes somos --}}
     <div class="flex w-full bg-blue py-[40px]">
         <div class="flex flex-col justify-center items-center m-auto w-[90vw] gap-[40px]">
-            <h1 class="text-white w-fit text-[36px] max-sm:text-[24px] font-light">¿Quiénes <span class="text-green font-secondary">somos?</span></h1>
+            <h2 class="text-white w-fit text-[36px] max-sm:text-[28px] font-light">¿Quiénes <span class="text-green font-secondary">somos?</span></h2>
             <div class="grid grid-cols-3 max-sm:grid-cols-1 max-sm:gap-[40px] w-full">
                 <div class="flex flex-col justify-between items-center h-[200px] gap-[20px]">
-                <svg width="92" height="80" viewBox="0 0 92 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <g clip-path="url(#clip0_116_237)">
-                    <path d="M51.0975 79.9882C38.7733 79.9882 26.4491 79.9868 14.1249 79.9882C6.56942 79.9882 0.224861 73.8978 0.200259 66.3068C0.129187 45.1956 0.172924 24.0816 0.183858 2.96909C0.185225 0.969498 1.08866 0.0127568 2.84497 -0.000910901C4.74068 -0.0159454 5.55801 0.871091 5.55801 3.00599C5.56211 23.2848 5.54024 43.5623 5.59491 63.8411C5.59901 65.6247 5.82727 67.5013 6.41361 69.1715C7.5863 72.5187 10.8338 74.5019 14.6266 74.506C26.9015 74.5197 39.1765 74.5115 51.4515 74.5115C63.8249 74.5115 76.1983 74.5074 88.5704 74.5142C91.1782 74.5156 92.6037 76.6396 91.416 78.713C90.8338 79.7271 89.9235 80.0032 88.8068 79.9991C82.3748 79.9772 75.9428 79.9882 69.5107 79.9882C63.3739 79.9882 57.2357 79.9882 51.0989 79.9882H51.0975Z" fill="#00C48E"/>
-                    <path d="M76.4422 22.6885C75.5278 22.6229 75.018 22.5559 74.5082 22.5545C69.8434 22.5463 65.1786 22.5737 60.5124 22.5408C58.2969 22.5258 57.0818 20.693 57.8882 18.707C58.3092 17.671 59.1033 17.1954 60.1858 17.1954C67.9449 17.1886 75.7028 17.1681 83.4619 17.2091C85.2483 17.2186 86.0192 18.2041 86.0287 20.2638C86.0492 25.0762 86.0369 29.8886 86.0369 34.701C86.0369 37.3526 86.0725 40.0055 86.0178 42.6557C85.9795 44.5582 85.0529 45.4698 83.3526 45.4562C81.5689 45.4425 80.6819 44.5664 80.6737 42.6994C80.6532 38.133 80.6723 33.5652 80.6628 28.9989C80.6628 28.4357 80.5849 27.8713 80.5165 26.9432C79.8126 27.5104 79.3493 27.8221 78.9598 28.2075C72.6767 34.4167 66.4019 40.6356 60.127 46.853C58.055 48.9059 56.9178 48.8964 54.8116 46.8079C50.3833 42.4192 45.9235 38.0633 41.5443 33.6268C40.5247 32.5935 39.9179 32.6714 38.9379 33.6609C33.5487 39.102 28.1185 44.5022 22.635 49.849C21.9612 50.5064 20.8978 51.0818 20.0053 51.0955C19.2714 51.1064 18.1725 50.3807 17.8759 49.7027C17.5492 48.9538 17.8622 47.8644 18.0796 46.9678C18.1793 46.5537 18.7055 46.2366 19.0513 45.8894C25.2633 39.672 31.4767 33.4559 37.6928 27.2412C39.7197 25.2156 40.8227 25.2266 42.8933 27.2822C47.3545 31.7078 51.8361 36.1129 56.2563 40.5795C57.1912 41.524 57.7406 41.5704 58.7179 40.5754C64.1849 35.0072 69.7313 29.5182 75.2476 23.9978C75.551 23.6944 75.8271 23.3636 76.4408 22.6885H76.4422Z" fill="#00C48E"/>
-                    </g>
-                    <defs>
-                    <clipPath id="clip0_116_237">
-                    <rect width="91.6777" height="80" fill="white" transform="translate(0.161133)"/>
-                    </clipPath>
-                    </defs>
-                    </svg>
-
-
+                    <img class="w-[80px] max-sm:w-[60px]" src="{{ asset('icons/grow.svg') }}" alt="Grow">
                     <div class="flex flex-col items-center gap-[10px]">
-                    <h3 class="text-[24px] font-semibold text-white">Crece como freelancer</h3>
-                    <p class="text-[16px] text-center font-light text-white">Ticolancer está diseñado para conectar a
-                    profesionales independientes en Costa Rica 
-                    con quienes buscan sus servicios.</p>
+                        <h3 class="text-[24px] font-semibold text-white">Crece como freelancer</h3>
+                        <p class="text-[16px] text-center font-light text-white">Ticolancer está diseñado para conectar a
+                        profesionales independientes en Costa Rica 
+                        con quienes buscan sus servicios.</p>
                     </div>
-
                 </div>
-                <div class="flex flex-col justify-between items-center h-[200px] gap-[20px]">
-                        <svg width="81" height="80" viewBox="0 0 81 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <g clip-path="url(#clip0_116_241)">
-                            <path d="M35.4553 61.294C34.0508 61.8649 32.906 62.3264 31.7642 62.7959C29.7511 63.6234 27.9389 63.1917 26.4429 61.7267C23.7515 59.0889 21.1207 56.3875 18.5128 53.6672C17.0278 52.1185 16.804 50.2705 17.5828 48.3041C18.0015 47.2469 18.4869 46.2164 19.028 44.9781C18.2551 44.9264 17.719 44.8597 17.1819 44.8588C12.5947 44.8508 8.00748 44.8518 3.42124 44.8558C0.716847 44.8578 -0.229045 43.4026 0.959537 40.9528C2.62156 37.5253 4.34327 34.1267 6.03215 30.7131C6.84874 29.063 7.61758 27.3881 8.46501 25.7539C10.3727 22.0738 13.3924 20.1691 17.5698 20.1691C21.7284 20.1691 25.8869 20.1492 30.0445 20.184C31.1097 20.1929 31.8119 19.9264 32.4614 18.9447C37.6643 11.0802 44.4288 5.1462 53.5366 2.14242C59.4447 0.191952 65.4781 -0.396868 71.6478 0.254614C72.9239 0.388889 74.208 0.496308 75.4692 0.726068C78.1079 1.20647 79.4278 2.44081 79.8346 5.07459C80.6621 10.4376 80.8889 15.8484 79.8615 21.1916C78.1815 29.9284 74.2975 37.5253 67.4793 43.4235C65.6711 44.988 63.7455 46.4263 61.795 47.8118C60.8402 48.4901 60.3309 49.1565 60.3598 50.4118C60.4493 54.3097 60.3558 58.2126 60.4016 62.1126C60.4573 66.8768 58.4551 70.3024 54.1036 72.3801C49.3532 74.6479 44.6506 77.0141 39.9261 79.3346C39.6576 79.4669 39.3781 79.5783 39.1016 79.6946C37.1262 80.5331 35.6253 79.6081 35.6144 77.4826C35.5885 72.6825 35.6094 67.8814 35.5985 63.0813C35.5975 62.5423 35.5149 62.0032 35.4553 61.296V61.294ZM75.7417 12.5572C75.6243 11.2085 75.3986 8.99541 75.2563 6.77739C75.1877 5.70916 74.6974 5.25262 73.657 5.21682C70.7954 5.11835 67.9339 4.87964 65.0733 4.89257C58.9215 4.92141 53.2671 6.82016 48.0612 9.97612C42.5897 13.2932 38.6132 18.1032 35.3031 23.4921C30.1817 31.8301 26.3266 40.8017 22.3172 49.6917C22.161 50.0378 22.4067 50.7708 22.7111 51.0871C24.8485 53.3101 27.0666 55.4565 29.2219 57.6626C29.763 58.2156 30.2295 58.2843 30.9168 57.9491C32.1451 57.3493 33.4193 56.845 34.6735 56.298C42.718 52.7879 50.697 49.1446 58.1437 44.45C69.5511 37.2578 75.6353 27.0499 75.7427 12.5572H75.7417ZM40.511 73.7338C44.9032 71.5178 49.0459 69.4848 53.1288 67.3364C54.5601 66.5834 55.4443 65.2357 55.496 63.5846C55.6104 59.9075 55.6154 56.2264 55.6532 52.5462C55.6552 52.3523 55.5448 52.1573 55.4622 51.8798C55.1211 51.9922 54.8366 52.0519 54.584 52.1752C50.126 54.3505 45.6592 56.5098 41.2351 58.7497C40.7974 58.9715 40.3648 59.6966 40.3558 60.1959C40.2842 64.2192 40.311 68.2455 40.322 72.2697C40.323 72.6745 40.4234 73.0784 40.512 73.7338H40.511ZM6.94621 39.9125C7.23465 40.0099 7.38882 40.1084 7.54299 40.1084C11.8666 40.1193 16.1913 40.1422 20.5149 40.0865C20.8869 40.0815 21.4041 39.624 21.5961 39.2451C22.9945 36.5019 24.3114 33.7179 25.684 30.9618C26.6319 29.0601 27.6285 27.1822 28.6868 25.1323C28.0035 25.0537 27.5092 24.9493 27.0138 24.9463C23.9743 24.9314 20.9337 24.9771 17.8951 24.9274C15.4274 24.8876 13.7664 26.0046 12.6932 28.1758C10.9536 31.6988 9.17318 35.2009 7.41866 38.7169C7.23664 39.0819 7.1153 39.4778 6.94621 39.9115V39.9125Z" fill="#00C48E"/>
-                            <path d="M66.6438 22.4696C66.6389 27.2081 62.716 31.1309 57.9926 31.1189C53.1467 31.107 49.386 27.2598 49.399 22.3254C49.4109 17.7173 53.4252 13.7826 58.0791 13.8174C62.6832 13.8522 66.6488 17.8576 66.6438 22.4696ZM54.1861 22.412C54.1781 24.6757 55.7894 26.3129 58.0294 26.3179C60.1459 26.3228 61.8915 24.5832 61.8656 22.4935C61.8398 20.36 60.1579 18.6463 58.0562 18.6115C55.9884 18.5767 54.1931 20.3392 54.1861 22.412Z" fill="#00C48E"/>
-                            </g>
-                            <defs>
-                            <clipPath id="clip0_116_241">
-                            <rect width="80.0915" height="80" fill="white" transform="translate(0.454224)"/>
-                            </clipPath>
-                            </defs>
-                        </svg>
 
+                <div class="flex flex-col justify-between items-center h-[200px] gap-[20px]">
+                        <img class="w-[80px] max-sm:w-[60px]" src="{{ asset('icons/rocket.svg') }}" alt="Rocket">
                         <div class="flex flex-col items-center gap-[10px]">
                             <h3 class="text-[24px] font-semibold text-white">Impulsa tu talento</h3>
                             <p class="text-[16px] text-center font-light text-white">En Ticolancer, brindamos una plataforma dedicada 
@@ -252,25 +229,15 @@
                             tus servicios a clientes locales y globales.</p>
                         </div>
                 </div>
-                <div class="flex flex-col justify-between items-center h-[200px] gap-[20px]">
-                    <svg width="101" height="80" viewBox="0 0 101 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <g clip-path="url(#clip0_116_245)">
-                        <path d="M25.6928 9.89125C25.3977 5.33503 29.0383 0.271474 35.2598 0.00865666C38.9425 -0.146449 42.6165 1.75036 44.5133 5.9716C46.0138 9.31068 45.4149 13.8443 42.9009 16.4175C42.134 17.2028 42.0467 17.8253 42.4797 18.7646C44.1622 22.4171 45.7983 26.0922 47.4323 29.7674C47.7533 30.4901 48.1088 30.768 48.9996 30.5752C54.998 29.2784 60.3406 30.6022 64.9894 34.6823C65.305 34.9591 66.1807 35.0248 66.5157 34.79C71.2755 31.4391 75.9793 28.0095 80.7154 24.6241C81.4414 24.105 81.3304 23.5072 81.1452 22.8103C80.0616 18.7355 81.0989 15.2327 84.2441 12.4785C87.1577 9.9268 90.5937 9.35054 94.1924 10.7346C97.5842 12.0401 99.648 14.5875 100.342 18.2088C101.358 23.5125 97.6984 29.2051 91.1969 29.8546C89.1956 30.055 87.2719 29.5423 85.5668 28.4468C84.8171 27.9654 84.2591 27.9309 83.503 28.4813C78.9338 31.8042 74.3399 35.0948 69.7212 38.3499C68.7723 39.0188 68.503 39.5423 69.0394 40.7389C70.8662 44.8137 70.9599 49.0296 69.4433 53.2325C69.1514 54.0425 69.2225 54.4421 69.9754 54.8837C74.146 57.3331 78.2983 59.8126 82.4323 62.3223C83.2423 62.8146 83.8207 62.8146 84.607 62.2049C87.7878 59.7405 92.3203 59.5692 95.836 61.6836C99.2753 63.7517 101 67.7219 100.313 71.9852C99.7201 75.6539 96.52 78.91 92.6553 79.776C85.9179 81.284 79.5467 74.9882 80.9965 68.2228C81.1613 67.4516 80.9427 67.0175 80.3093 66.6405C76.0429 64.0996 71.7742 61.5608 67.5314 58.9811C66.7064 58.4792 66.2906 58.924 65.7951 59.4389C62.1771 63.1916 57.7059 64.916 52.5433 64.9128C44.913 64.9085 37.6456 59.0026 36.0999 51.5048C35.8533 50.307 35.3987 49.8966 34.16 49.9182C29.9614 49.9947 25.7596 49.985 21.5609 49.9225C20.4472 49.9063 19.9183 50.2467 19.5004 51.3109C17.6962 55.9048 12.8772 58.2853 7.97305 57.1198C3.51162 56.0589 0.183309 51.4735 0.513985 46.8473C0.853278 42.0994 4.35823 38.4845 9.41424 37.6713C13.4481 37.0218 17.8276 39.5498 19.4638 43.6687C19.9571 44.9117 20.598 45.2036 21.8302 45.1821C26.0289 45.1088 30.2307 45.1293 34.4293 45.1735C35.3675 45.1832 35.836 44.9009 36.0181 43.9552C36.8453 39.6424 39.1019 36.1935 42.5734 33.5578C43.3791 32.946 43.5041 32.4753 43.0635 31.5554C41.3283 27.9287 39.6738 24.2622 38.0172 20.5978C37.7027 19.902 37.302 19.7265 36.5211 19.7825C30.3729 20.2295 25.3847 15.3663 25.6906 9.89125H25.6928ZM65.6045 47.5356C65.6099 40.5623 60.0077 34.8579 53.1454 34.8525C46.2518 34.8471 40.3869 40.5569 40.361 47.2932C40.3363 53.5869 45.0874 60.0464 52.9634 60.2004C59.8914 60.3361 65.5991 54.5078 65.6045 47.5356ZM40.612 9.88587C40.6066 6.89685 38.3921 4.72537 35.3675 4.74476C32.5573 4.76307 30.3826 6.97764 30.3546 9.84709C30.3266 12.7672 32.5401 15.0528 35.3923 15.0517C38.4287 15.0496 40.6163 12.8846 40.612 9.88694V9.88587ZM95.6874 20.0054C95.6917 16.7913 93.8175 14.8902 90.6379 14.8826C87.5659 14.8751 85.5463 16.8484 85.5355 19.8686C85.5248 22.9266 87.6219 25.0625 90.6368 25.0625C93.6592 25.0625 95.6831 23.0364 95.6874 20.0054ZM95.6885 70.1896C95.7036 66.983 93.8175 65.0259 90.6874 65.0022C87.6488 64.9785 85.5614 66.9895 85.5377 69.9645C85.5129 73.0752 87.5325 75.1487 90.5905 75.1519C93.7098 75.1552 95.6734 73.2433 95.6885 70.1896ZM15.4407 47.5754C15.4472 44.5444 13.4017 42.3632 10.4989 42.3072C7.53359 42.2502 5.29748 44.4712 5.28779 47.4807C5.2781 50.4988 7.34725 52.5959 10.3373 52.6002C13.4351 52.6045 15.4332 50.6366 15.4407 47.5754Z" fill="#00C48E"/>
-                        </g>
-                        <defs>
-                        <clipPath id="clip0_116_245">
-                        <rect width="100.017" height="80" fill="white" transform="translate(0.491394)"/>
-                        </clipPath>
-                        </defs>
-                    </svg>
 
+                <div class="flex flex-col justify-between items-center h-[200px] gap-[20px]">
+                    <img class="w-[80px] max-sm:w-[60px]" src="{{ asset('icons/network.svg') }}" alt="Network">
                     <div class="flex flex-col items-center gap-[10px]">
                         <h3 class="text-[24px] font-semibold text-white">Conecta con oportunidades</h3>
                         <p class="text-[16px] text-center font-light text-white">Ticolancer es la plataforma ideal para freelancers 
                         ticos que buscan ampliar su red de clientes
                         y aumentar su visibilidad.</p>
                     </div>
-
                 </div>
             </div>
             <a class="px-[20px] py-[10px] text-blue bg-white rounded-[10px] font-semibold hover:text-green hover:translate-y-[-5px] transition-all duration-500 ease-out " href="#">Leer más</a>
@@ -281,7 +248,7 @@
     {{-- Seras el proximo --}}
     <div class="w-[90vw] m-auto grid grid-cols-2 max-sm:grid-cols-1 gap-[40px] py-[40px]">
         <div class="flex justify-center items-start max-sm:items-center flex-col gap-[20px] ">
-            <h2 class="text-blue text-[36px] max-sm:text-[24px] font-light">¿Serás el <span class="text-green font-secondary">próximo?</span></h2>
+            <h2 class="text-blue text-[36px] max-sm:text-[28px] font-light">¿Serás el <span class="text-green font-secondary">próximo?</span></h2>
             <p class="text-[18px] max-sm:text-center font-light text-black">Tu puedes ser el próximo freelancer tico en nuestra web!</p>
             <a class="px-[20px] py-[10px] rounded-[10px] text-blue font-semibold border-solid border-[1px] border-blue hover:translate-y-[-5px] transition-all duration-500 ease-out hover:bg-blue hover:text-white " href="{{ route('signup') }}">Registrarse</a>
         </div>
@@ -296,8 +263,8 @@
         <div class="flex flex-col justify-center items-center m-auto w-[90vw] gap-[40px]">
             <img src="https://i.postimg.cc/L5xn179L/illustration2.png" alt="">
             <div class="flex flex-col w-full gap-[20px] max-sm:items-center">
-                <h1 class="text-white w-fit text-[36px] max-sm:text-[24px] font-light">¿Deseas <span class="text-green font-secondary">contactarnos?</span></h1>
-                <h2 class="text-white font-light text-[22px]">¡Únete a la familia Ticolancer!</h2>
+                <h2 class="text-white w-fit text-[36px] max-sm:text-[28px] font-light">¿Deseas <span class="text-green font-secondary">contactarnos?</span></h2>
+                <h3 class="text-white font-light text-[22px]">¡Únete a la familia Ticolancer!</h3>
                 <form class="flex flex-row" action="">
                     <input type="text" placeholder="Email" class="rounded-l-[10px] w-[40%] max-sm:w-[100%] p-[10px] text-[16px] text-white bg-transparent border-[1px] border-white font-light outline-none">
                     <input type="submit" placeholder="Nombre" class="rounded-r-[10px] p-[10px] cursor-pointer text-[16px] text-primary font-semibold bg-white outline-none">

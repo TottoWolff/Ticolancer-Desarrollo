@@ -18,6 +18,7 @@ use App\Http\Controllers\BuyerDashboardController as BuyerDashboard;
 */
 
 Route::get('/', [Homepage::class, 'index'])->name('inicio');
+Route::get('/nosotros', [Homepage::class, 'nosotros'])->name('nosotros');
 
 Route::get('/signup', [Signup::class, 'index'])->name('signup');
 Route::post('/signup', [Signup::class, 'store'])->name('signup.store');
