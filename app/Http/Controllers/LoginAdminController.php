@@ -24,7 +24,7 @@ class LoginAdminController extends Controller
 
         if (Auth::attempt($credentials)) {
             // Autenticación exitosa
-            return redirect()->intended('dashboard'); 
+            return redirect()->route('admin.dashboard'); 
         } 
         else if ($request->password == "" || $request->username == "")
         {
@@ -35,6 +35,13 @@ class LoginAdminController extends Controller
             // Autenticación fallida
             return redirect()->route('admin.login')->with('error', 'El correo o la contraseña son incorrectos');
         }
+    }
+
+    public function logout()
+    {
+        Auth::logout(); // Cierra la sesión
+
+        return redirect()->route('admin.login')->with('success', 'Has cerrado sesión exitosamente.');
     }
 
     /**
