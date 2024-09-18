@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\BuyersUsersTicolancer as BuyersUsers;
 
 
+
 class SignUpController extends Controller
 {
     /**

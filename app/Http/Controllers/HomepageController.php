@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\ContactFormsTicolancer as ContactForms;
 
 class HomepageController extends Controller
 {
@@ -25,6 +26,16 @@ class HomepageController extends Controller
     {
         //
         return view('ticolancer.contacto');
+    }
+
+    public function store_contact_form (Request $request) {
+        
+        //Validar formato de correo
+        if (!filter_var($request->email, FILTER_VALIDATE_EMAIL)) {
+            return redirect()->route('signup')->with('warning', 'Formato de correo incorrecto');
+        }
+
+       
     }
 
     /**
