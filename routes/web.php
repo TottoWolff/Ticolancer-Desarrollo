@@ -5,6 +5,8 @@ use App\Http\Controllers\HomepageController as Homepage;
 use App\Http\Controllers\SignupController as Signup;
 use App\Http\Controllers\LoginController as Login;
 use App\Http\Controllers\BuyerDashboardController as BuyerDashboard;
+use App\Http\Controllers\SignUpAdminController as SignUpAdmin;
+use App\Http\Controllers\LoginAdminController as LoginAdmin;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,4 +36,15 @@ Route::post('/logout', [Login::class, 'logout'])->name('login.logout');
 Route::post('/recover', [Login::class, 'recover'])->name('login.recover');
 
 Route::get('/dashboard', [BuyerDashboard::class, 'index'])->name('buyerDashboard');
+
+
+//ADMIN
+Route::get('/admin/signup', [SignUpAdmin::class, 'index'])->name('admin.signup');
+Route::post('/admin/signup', [SignUpAdmin::class, 'store'])->name('admin.signup.store');
+
+
+Route::get('/admin/login', [LoginAdmin::class, 'index'])->name('admin.login');
+Route::post('/admin/login', [LoginAdmin::class, 'login'])->name('admin.login.login');
+
+
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\CitiesTicolancer;
 use Illuminate\Http\Request;
 use App\Models\BuyersUsersTicolancer as BuyersUsers;
+use App\Models\AdminUsersTicolancer as AdminUsers;
 
 
 
@@ -33,7 +34,6 @@ class SignUpController extends Controller
      */
     public function store(Request $request)
     {
-        
         // Verificar si ya existe un usuario con el correo ingresado
         $existingUser = BuyersUsers::where('email', $request->email)->first();
         $existingUsername = BuyersUsers::where('username', $request->name)->first();

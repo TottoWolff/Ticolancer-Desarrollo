@@ -63,7 +63,8 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\BuyersUsersTicolancer::class,
-        ],
+            'model' => App\Models\AdminUsersTicolancer::class,
+        ],  
 
         // 'users' => [
         //     'driver' => 'database',
