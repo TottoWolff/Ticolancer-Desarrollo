@@ -35,6 +35,26 @@ class HomepageController extends Controller
             return redirect()->route('signup')->with('warning', 'Formato de correo incorrecto');
         }
 
+        try {
+            ContactForms::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'message' => $request->message
+            ]);
+
+            $to = $request->email;
+            $subject = 'Gracias por contactarnos';
+            $message = 'Gracias por contactarnos, nos pondremos en contacto contigo';
+            $headers = 'From: Ticolancer' . "\r\n";
+
+            mail ($to, $subject, $message, $headers);
+
+            return redirect()->route('contacto')->with('success', 'Gracias por contactarnos, nos pondremos en contacto contigo');
+
+        } catch (\Throwable $th) {
+            return redirect()->route('contacto')->with('warning', 'Error al enviar el formulario');
+        }
+
        
     }
 
