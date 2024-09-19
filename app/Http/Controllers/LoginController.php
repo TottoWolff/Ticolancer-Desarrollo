@@ -27,7 +27,7 @@ class LoginController extends Controller
     {
         $credentials = $request->only('email', 'password');
 
-        if (Auth::attempt($credentials)) {
+        if (Auth::guard('buyers')->attempt($credentials)) {
             // Autenticación exitosa
             return redirect()->route('buyerDashboard'); 
         } 
@@ -45,7 +45,7 @@ class LoginController extends Controller
 
     public function logout()
     {
-        Auth::logout(); // Cierra la sesión
+        Auth::guard('buyers')->logout(); // Cierra la sesión
 
         return redirect()->route('login')->with('success', 'Has cerrado sesión exitosamente.');
     }

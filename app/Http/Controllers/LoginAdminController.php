@@ -22,7 +22,7 @@ class LoginAdminController extends Controller
     {
         $credentials = $request->only('username', 'password');
 
-        if (Auth::attempt($credentials)) {
+        if (Auth::guard('admin')->attempt($credentials)) {
             // Autenticación exitosa
             return redirect()->route('admin.dashboard'); 
         } 
@@ -39,7 +39,7 @@ class LoginAdminController extends Controller
 
     public function logout()
     {
-        Auth::logout(); // Cierra la sesión
+        Auth::guard('admin')->logout(); // Cierra la sesión
 
         return redirect()->route('admin.login')->with('success', 'Has cerrado sesión exitosamente.');
     }

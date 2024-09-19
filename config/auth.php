@@ -36,9 +36,13 @@ return [
     */
 
     'guards' => [
-        'web' => [
+        'buyers' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'buyers',
+        ],
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
         ],
     ],
 
@@ -60,15 +64,14 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'buyers' => [
             'driver' => 'eloquent',
             'model' => App\Models\BuyersUsersTicolancer::class,
-        ],  
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        ],
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\AdminUsersTicolancer::class,
+        ],
     ],
 
     /*
