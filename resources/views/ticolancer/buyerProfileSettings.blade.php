@@ -32,25 +32,25 @@
                             <!-- Campo de Nombre -->
                             <div class="flex items-center justify-between space-x-4">
                                 <label for="name" class="text-sm font-medium w-32 text-left">NAME</label>
-                                <input id="name" type="text" placeholder="Jonathan" class="w-52 border border-gray-300 rounded-lg px-3 py-2" />
+                                <input id="name" type="text" placeholder="Jonathan" class="w-full border border-gray-300 rounded-lg px-3 py-2" />
                             </div>
 
                             <!-- Campo de Apellido -->
                             <div class="flex items-center justify-between space-x-4">
                                 <label for="lastname" class="text-sm font-medium w-32 text-left">LASTNAME</label>
-                                <input id="lastname" type="text" placeholder="Corrales Ruiz" class="w-2/3 border border-gray-300 rounded-lg px-3 py-2" />
+                                <input id="lastname" type="text" placeholder="Corrales Ruiz" class="w-full border border-gray-300 rounded-lg px-3 py-2" />
                             </div>
 
                             <!-- Campo de Nombre de Usuario -->
                             <div class="flex items-center justify-between space-x-4">
                                 <label for="username" class="text-sm font-medium w-32 text-left">USERNAME</label>
-                                <input id="username" type="text" placeholder="corralesjonathan" class="w-2/3 border border-gray-300 rounded-lg px-3 py-2" />
+                                <input id="username" type="text" placeholder="corralesjonathan" class="w-full border border-gray-300 rounded-lg px-3 py-2" />
                             </div>
 
                             <!-- Campo de Correo Electrónico -->
                             <div class="flex items-center justify-between space-x-4">
                                 <label for="email" class="text-sm font-medium w-32 text-left">EMAIL</label>
-                                <input id="email" type="email" placeholder="corralesjonathan@gmail.com" class="w-2/3 border border-gray-300 rounded-lg px-3 py-2" />
+                                <input id="email" type="email" placeholder="corralesjonathan@gmail.com" class="w-full border border-gray-300 rounded-lg px-3 py-2" />
                             </div>
 
                             <!-- Botón de Guardar Cambios -->
