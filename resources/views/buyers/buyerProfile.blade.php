@@ -44,22 +44,16 @@
             </div>
 
             <!-- Settings -->
-            <div class="p-[10px] gap-[10px] hover:text-white hover:bg-blue transition-all duration-500 hover:translate-y-[-5px] ease-out w-full  border-blue border-opacity-50 rounded-[12px] border-[0.5px] text-blue flex items-center justify-center">
-                <img class="w-[16px]" src="{{ asset('icons/settings.svg') }}" alt="">
-                <a class="font-light text-blue text-[18px]" href="{{ route('buyerProfileSettings') }}">Configuraciones</a>
-            </div>
+            <a class="flex w-full items-center gap-[10px] justify-center border-[1px] border-blue border-opacity-50 rounded-[12px] p-[10px] text-blue hover:text-white hover:bg-blue hover:border-blue transition-all duration-500 " href=""><img src="{{ asset('icons/settings.svg') }}" alt="">Configuraciones</a>
             <!-- Settings end -->
 
             <!--Logout -->
-            <div class="p-[10px] gap-[10px] hover:text-white  hover:bg-red-600 hover:border-red-600 transition-all duration-500 hover:translate-y-[-5px] ease-out w-full  border-blue border-opacity-50 rounded-[12px] border-[0.5px] text-blue flex items-center justify-center">
-                <img class="w-[16px]" src="{{ asset('icons/leave.svg') }}" alt="">
-                <a class="font-light text-blue text-[18px]" href="">Cerrar Sesión</a>
-            </div>
+            <a class="flex w-full items-center gap-[10px] justify-center border-[1px] border-blue border-opacity-50 rounded-[12px] p-[10px] text-blue hover:text-white hover:bg-red-600 hover:border-red-600 transition-all duration-500 " href=""><img src="{{ asset('icons/leave.svg') }}" alt="">Cerrar sesión</a>
             <!--Logout end -->
 
             <!-- Note -->
             <p class="text-[16px] text-gray-500">
-                Actualmente estás en tu perfil de comprador. Para acceder a tu perfil de vendedor, <a href="#" class="underline hover:text-green"> cambiar a modo vendedor</a>
+                Actualmente estás en tu perfil de comprador. Para acceder a tu perfil de vendedor, <a href="#" class="underline hover:text-green"> cambia a modo vendedor</a>
             </p>
             <!-- Note end -->
 
@@ -118,29 +112,18 @@
                 <h3 class="font-semibold text-[22px] mb-4 text-blue">Servicios favoritos</h3>
                 <div class="space-y-4">
 
-                    <div class="flex items-start">
-                        <img src="https://th.bing.com/th/id/R.22f47d2257f9e193c2f67b211d9f6b0d?rik=cMgdWomquzVe0w&pid=ImgRaw&r=0" alt="Service" width="40" height="40" class="rounded mr-2">
-                        <div>
-                            <p class="text-sm font-light text-[#132D46]">@michael_vargas</p>
-                            <p class="text-xs text-gray-500 font-light">Crearé un logo de marca profesional para tu negocio</p>
-                        </div>
+                    <div class="flex items-start gap-[20px]">
+                        <img src="https://fiverr-res.cloudinary.com/t_gig_cards_web,q_auto,f_auto/gigs/312842484/original/3d1263366a69d9b04cd979b7697966eff112122f.jpg" alt="Service" class="w-[80px] h-[60px] rounded-[10px] border-[0.5px] border-blue border-opacity-50 bg-cover object-cover">
+                        <div class="flex flex-col gap-[5px]">   
+                            <div class="flex items-center gap-[5px]">
+                                <img class="w-[30px] h-[30px] rounded-full bg-cover object-fill" src="https://i0.wp.com/lamiradafotografia.es/wp-content/uploads/2014/07/foto-perfil-psicologo-180x180.jpg?resize=180%2C180" alt="">
+                                <p class="font-light text-blue text-[16px]">@michael_vargas</p>
+                            </div>
+                            <p class="text-[14px] text-gray-500 font-light">Crearé un logo de marca profesional para tu negocio</p>
+                        </div> 
                     </div>
 
-                    <div class="flex items-start">
-                        <img src="https://th.bing.com/th/id/R.22f47d2257f9e193c2f67b211d9f6b0d?rik=cMgdWomquzVe0w&pid=ImgRaw&r=0" alt="Service" width="40" height="40" class="rounded mr-2">
-                        <div>
-                            <p class="text-sm font-light text-[#132D46]">@michael_vargas</p>
-                            <p class="text-xs text-gray-500 font-light">Crearé un logo de marca profesional para tu negocio</p>
-                        </div>
-                    </div>
-
-                    <div class="flex items-start">
-                        <img src="https://th.bing.com/th/id/R.22f47d2257f9e193c2f67b211d9f6b0d?rik=cMgdWomquzVe0w&pid=ImgRaw&r=0" alt="Service" width="40" height="40" class="rounded mr-2">
-                        <div>
-                            <p class="text-sm font-light text-[#132D46]">@michael_vargas</p>
-                            <p class="text-xs text-gray-500 font-light">Crearé un logo de marca profesional para tu negocio</p>
-                        </div>
-                    </div>
+                    
 
 
 
@@ -152,7 +135,6 @@
 
             </div>
         </div>
-
 
     </div>
 </div>
