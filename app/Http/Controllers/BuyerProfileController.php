@@ -12,7 +12,7 @@ class BuyerProfileController extends Controller
     public function index()
     {
         //
-        return view('ticolancer.buyerProfile');
+        return view('buyers.buyerProfile');
     }
 
     public function settings()
