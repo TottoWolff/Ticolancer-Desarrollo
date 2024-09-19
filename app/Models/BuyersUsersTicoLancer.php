@@ -19,6 +19,9 @@ class BuyersUsersTicoLancer extends Authenticatable
         'lastname',
         'email',
         'password',
+        'phone',
+        'provinces_ticolancers_id',
+        'cities_ticolancers_id',
     ];
 
     protected $hidden = [

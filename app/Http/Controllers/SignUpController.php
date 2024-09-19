@@ -6,6 +6,8 @@ use App\Models\CitiesTicolancer;
 use Illuminate\Http\Request;
 use App\Models\BuyersUsersTicolancer as BuyersUsers;
 use App\Models\AdminUsersTicolancer as AdminUsers;
+use App\Models\ProvincesTicolancer as Provinces;
+use App\Models\CitiesTicolancer as Cities;
 
 
 
@@ -17,8 +19,13 @@ class SignUpController extends Controller
     public function index()
     {
         //
-        return view('ticolancer.signup');
+        $cities = Cities::with('province')->get();
+        $provinces = Provinces::all();
+
+        return view('ticolancer.signup', compact('provinces', 'cities'));
     }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -34,6 +41,8 @@ class SignUpController extends Controller
      */
     public function store(Request $request)
     {
+        // return response()->json($request->all());
+        
         // Verificar si ya existe un usuario con el correo ingresado
         $existingUser = BuyersUsers::where('email', $request->email)->first();
         $existingUsername = BuyersUsers::where('username', $request->name)->first();
@@ -59,6 +68,9 @@ class SignUpController extends Controller
                 'username' => $request->username,
                 'email' => $request->email,
                 'password' => bcrypt($request->password),
+                'phone' => $request->phone,
+                'cities_ticolancers_id' => $request->city,
+                'provinces_ticolancers_id' => $request->province
             ]);
 
         $to = $request->email;

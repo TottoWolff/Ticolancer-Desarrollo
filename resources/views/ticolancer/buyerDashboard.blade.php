@@ -4,7 +4,10 @@
     <h1 class="text-blue w-fit text-[36px] font-light">Dashboard del comprador</h1>
     
     @if (Auth::check())
-        <h2>Bienvenido (a), {{ Auth::user()->name }}</h2>        
+        <h2>Bienvenido (a), {{ Auth::user()->name }}</h2> 
+        <p>Cuenta: {{ Auth::user()->email }}</p>  
+        <p>Usuario: {{ Auth::user()->username }}</p> 
+        <p>Telefono: {{ Auth::user()->phone }}</p>    
     @endif
 
     <form action="{{ route('login.logout') }}" method="POST">
