@@ -14,7 +14,7 @@
 
                     <ul class="flex flex-row gap-[10px] max-sm:hidden">
                         <li class="p-[10px] hover:text-blue rounded-[10px] hover:bg-white transition-all duration-500 hover:translate-y-[-5px] ease-out"><a href="{{ route('inicio') }}">Inicio</a></li>
-                        <li class="p-[10px] hover:text-blue rounded-[10px] hover:bg-white transition-all duration-500 hover:translate-y-[-5px] ease-out"><a href="#">Servicios</a></li>
+                        <li class="p-[10px] hover:text-blue rounded-[10px] hover:bg-white transition-all duration-500 hover:translate-y-[-5px] ease-out"><a href="{{ route('buyerProfile') }}">Servicios</a></li>
                         <li class="p-[10px] hover:text-blue rounded-[10px] hover:bg-white transition-all duration-500 hover:translate-y-[-5px] ease-out"><a href="{{ route('nosotros') }}">Nosotros</a></li>
                         <li class="p-[10px] hover:text-blue rounded-[10px] hover:bg-white transition-all duration-500 hover:translate-y-[-5px] ease-out"><a href="#">Contacto</a></li>
                         <li class="py-[10px] px-[20px] border-[1px] border-white hover:text-blue rounded-[10px] hover:bg-white transition-all duration-500 hover:translate-y-[-5px] ease-out"><a href="{{ route('signup') }}">Únete</a></li>

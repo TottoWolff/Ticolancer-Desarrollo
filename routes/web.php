@@ -8,6 +8,7 @@ use App\Http\Controllers\BuyerDashboardController as BuyerDashboard;
 use App\Http\Controllers\SignUpAdminController as SignUpAdmin;
 use App\Http\Controllers\LoginAdminController as LoginAdmin;
 use App\Http\Controllers\DashboardAdminController as DashboardAdmin;
+use App\Http\Controllers\BuyerProfileController as BuyerProfile;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +38,10 @@ Route::post('/logout', [Login::class, 'logout'])->name('login.logout');
 Route::post('/recover', [Login::class, 'recover'])->name('login.recover');
 
 Route::get('/dashboard', [BuyerDashboard::class, 'index'])->name('buyerDashboard');
+
+Route::get('/buyerProfile', [BuyerProfile::class, 'index'])->name('buyerProfile');
+Route::get('/buyerProfileSettigns', [BuyerProfile::class, 'settings'])->name('buyerProfileSettings');
+
 
 
 //ADMIN
