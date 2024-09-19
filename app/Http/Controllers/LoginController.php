@@ -29,7 +29,7 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials)) {
             // Autenticación exitosa
-            return redirect()->intended('dashboard'); 
+            return redirect()->route('buyerDashboard'); 
         } 
         else if ($request->email == "" || $request->password == "")
         {
