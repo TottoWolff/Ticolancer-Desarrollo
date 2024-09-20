@@ -19,7 +19,7 @@ class BuyerProfileController extends Controller
         $city = $buyer->city;
         $province = $city->province;
         $joinDate =  $city->created_at = Carbon::parse($city->created_at)->format('j M, Y');
-        $languages = $buyer->languages;
+        //$languages = $buyer->languages;
         
 
         return view('buyers.buyerProfile', [
@@ -31,7 +31,7 @@ class BuyerProfileController extends Controller
             'joinDate' => $joinDate,
             'cityName' => $city ? $city->city : null,
             'provinceName' => $province ? $province->province : null, 
-            'languages' => $languages
+           // 'languages' => $languages
         ]);
     }
 
@@ -39,7 +39,7 @@ class BuyerProfileController extends Controller
     public function settings()
     {
     
-     return view('ticolancer.buyerProfileSettings');
+     return view('buyers.buyerProfileSettings');
     }
 
     /**

@@ -1,4 +1,4 @@
-@extends('ticolancer.buyerLayout')
+@extends('buyers.buyerLayout')
 
 @section('content')
 <div class="min-h-[90vh] min-w-[90vw] bg-white flex  justify-center p-4">

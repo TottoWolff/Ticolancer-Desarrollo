@@ -40,7 +40,7 @@ Route::post('/recover', [Login::class, 'recover'])->name('login.recover');
 Route::get('/dashboard', [BuyerDashboard::class, 'index'])->name('buyerDashboard');
 
 Route::get('/buyerProfile', [BuyerProfile::class, 'index'])->name('buyerProfile');
-Route::get('/buyerProfileSettigns', [BuyerProfile::class, 'settings'])->name('buyerProfileSettings');
+Route::get('/buyers/buyerProfileSettigns', [BuyerProfile::class, 'settings'])->name('buyerProfileSettings');
 
 
 
