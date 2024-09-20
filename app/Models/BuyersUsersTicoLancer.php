@@ -6,6 +6,8 @@ use App\Http\Middleware\Authenticate;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Models\CitiesTicolancer as Cities;
+use App\Models\BuyersLangTicolancer as BuyersLanguages;
 
 class BuyersUsersTicoLancer extends Authenticatable
 {
@@ -28,4 +30,14 @@ class BuyersUsersTicoLancer extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    public function city()
+    {
+        return $this->belongsTo(Cities::class, 'cities_ticolancers_id');
+    }
+
+    public function languages()
+    {
+        return $this->hasMany(BuyersLanguages::class, 'buyers_lang_ticolancers_id');
+    }
 }

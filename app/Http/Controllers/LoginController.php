@@ -29,7 +29,7 @@ class LoginController extends Controller
 
         if (Auth::guard('buyers')->attempt($credentials)) {
             // Autenticación exitosa
-            return redirect()->route('buyerDashboard'); 
+            return redirect()->route('buyerProfile'); 
         } 
         else if ($request->email == "" || $request->password == "")
         {

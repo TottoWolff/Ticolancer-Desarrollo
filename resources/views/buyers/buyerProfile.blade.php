@@ -15,8 +15,8 @@
 
                 <div class="flex flex-col items-center gap-[20px]">
                     <img class="w-[120px] h-[120px] rounded-full bg-center object-cover" src="https://media.istockphoto.com/id/1386479313/es/foto/feliz-mujer-de-negocios-afroamericana-millennial-posando-aislada-en-blanco.jpg?s=612x612&w=0&k=20&c=JP0NBxlxG2-bdpTRPlTXBbX13zkNj0mR5g1KoOdbtO4=" alt="Jonathan Corrales Ruiz">
-                    <h2 class="mt-4 text-[22px] font-semibold text-blue">Jonathan Corrales Ruiz</h2>
-                    <p class="text-blue text-[18px] font-light">@corralesjonathan</p>
+                    <h2 class="mt-4 text-[22px] font-semibold text-blue">{{ $name }} {{ $lastname }}</h2>
+                    <p class="text-blue text-[18px] font-light">{{ $username }}</p>
                     <div class="h-[1px] bg-blue bg-opacity-50 w-full"></div>
                 </div>
 
@@ -24,12 +24,28 @@
                     <div class="flex flex-col gap-[20px] items-center">
                         <div class="flex gap-[10px] w-full items-center justify-start">
                             <img src="{{ asset('icons/location.svg') }}" alt="">
-                            <span class="font-light text-[16px]">San Ramón, Alajuela, CR</span>
+                            <span class="font-light text-[16px]">{{ $cityName }},  {{ $provinceName }}, CR</span>
                         </div>
 
                         <div class="flex w-full gap-[10px] items-center">
                             <img src="{{ asset('icons/user.svg') }}" alt="">
-                            <span class="font-light text-[16px]">Se unió en enero, 2023</span>
+                            <span class="font-light text-[16px]">Se unió el {{ $joinDate }}</span>
+                        </div>
+
+                        <div class="h-[1px] bg-blue bg-opacity-50 w-full"></div>
+                    </div>
+                </div>
+
+                <div class="mt-6 space-y-2">
+                    <div class="flex flex-col gap-[20px] items-center">
+                        <div class="flex gap-[10px] w-full items-center justify-start">
+                            <img src="{{ asset('icons/phone.svg') }}" alt="">
+                            <span class="font-light text-[16px]">+506 {{ $phone }}</span>
+                        </div>
+
+                        <div class="flex w-full gap-[10px] items-center">
+                            <img src="{{ asset('icons/email.svg') }}" alt="">
+                            <span class="font-light text-[16px]">{{ $email }}</span>
                         </div>
 
                         <div class="h-[1px] bg-blue bg-opacity-50 w-full"></div>
@@ -48,7 +64,7 @@
             <!-- Settings end -->
 
             <!--Logout -->
-            <a class="flex w-full items-center gap-[10px] justify-center border-[1px] border-blue border-opacity-50 rounded-[12px] p-[10px] text-blue hover:text-white hover:bg-red-600 hover:border-red-600 transition-all duration-500 " href=""><img src="{{ asset('icons/leave.svg') }}" alt="">Cerrar sesión</a>
+            <a class="flex w-full items-center gap-[10px] justify-center border-[1px] border-blue border-opacity-50 rounded-[12px] p-[10px] text-blue hover:text-white hover:bg-red-600 hover:border-red-600 transition-all duration-500 " href="{{ route('login.logout') }}"><img src="{{ asset('icons/leave.svg') }}" alt="">Cerrar sesión</a>
             <!--Logout end -->
 
             <!-- Note -->
@@ -68,7 +84,7 @@
 
             <!-- Welcome Message -->
             <div>
-                <h1 class="text-[32px] font-medium text-blue">Hola Jonathan 👋 <br>Bienvenido a tu perfil!</h1>
+                <h1 class="text-[32px] font-medium text-blue">Hola {{ $name }} 👋 <br>Bienvenido a tu perfil!</h1>
             </div>
 
             <!-- Favorite Freelancers -->

@@ -8,6 +8,7 @@ use App\Models\BuyersUsersTicolancer as BuyersUsers;
 use App\Models\AdminUsersTicolancer as AdminUsers;
 use App\Models\ProvincesTicolancer as Provinces;
 use App\Models\CitiesTicolancer as Cities;
+use App\Models\BuyersLangTicolancer as BuyersLanguages;
 
 
 

@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\CitiesTicolancer as Cities;
+use App\Models\BuyersLangTicolancer as BuyersLanguages;
+use Carbon\Carbon;
 
 class BuyerProfileController extends Controller
 {
@@ -11,9 +15,26 @@ class BuyerProfileController extends Controller
      */
     public function index()
     {
-        //
-        return view('buyers.buyerProfile');
+        $buyer = Auth::guard('buyers')->user(); 
+        $city = $buyer->city;
+        $province = $city->province;
+        $joinDate =  $city->created_at = Carbon::parse($city->created_at)->format('j M, Y');
+        $languages = $buyer->languages;
+        
+
+        return view('buyers.buyerProfile', [
+            'name' => $buyer->name, 
+            'lastname' => $buyer->lastname, 
+            'username' => $buyer->username,
+            'email' => $buyer->email,
+            'phone' => $buyer->phone,
+            'joinDate' => $joinDate,
+            'cityName' => $city ? $city->city : null,
+            'provinceName' => $province ? $province->province : null, 
+            'languages' => $languages
+        ]);
     }
+
 
     public function settings()
     {

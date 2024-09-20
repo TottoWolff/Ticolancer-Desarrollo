@@ -11,13 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users_lang_ticolancers', function (Blueprint $table) {
+        //
+
+        Schema::create('buyers_lang_ticolancers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('sellers_users_ticolancers_id')->constrained();
+            $table->foreignId('buyers_users_ticolancers_id')->constrained();
             $table->foreignId('languages_ticolancers_id')->constrained();
             $table->foreignId('language_levels_ticolancers_id')->constrained();
             $table->timestamps();
         });
+
     }
 
     /**
@@ -25,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users_lang_ticolancers');
+        //
     }
 };
