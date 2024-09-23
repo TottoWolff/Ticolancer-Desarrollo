@@ -9,6 +9,7 @@ use App\Http\Controllers\SignUpAdminController as SignUpAdmin;
 use App\Http\Controllers\LoginAdminController as LoginAdmin;
 use App\Http\Controllers\DashboardAdminController as DashboardAdmin;
 use App\Http\Controllers\BuyerProfileController as BuyerProfile;
+use App\Http\Controllers\GigsController as Gigs;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +42,9 @@ Route::get('/dashboard', [BuyerDashboard::class, 'index'])->name('buyerDashboard
 
 Route::get('/buyerProfile', [BuyerProfile::class, 'index'])->name('buyerProfile');
 Route::get('/buyers/buyerProfileSettigns', [BuyerProfile::class, 'settings'])->name('buyerProfileSettings');
+
+Route::resource('/gigs', Gigs::class);
+Route::get('/gigcreation', [Gigs::class, 'index'])->name('gigCreation');
 
 
 
