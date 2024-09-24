@@ -59,14 +59,17 @@ class BuyerProfileController extends Controller
     }
 
     public function updatePicture(Request $request){
-        //$request->validate([
-            //'picture' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-        //]);
+        
+        $request->validate([
+            'picture' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+        ]);
+
         $buyer = Auth::guard('buyers')->user(); 
 
         if ($request->hasFile('picture')) {
             $file = $request->file('picture');
-            $filename = $buyer->name . '-' . $file->getClientOriginalName();
+            $fileType = $file->getClientOriginalExtension();
+            $filename = $buyer->username. '.' .$fileType;
             $file->move(public_path('images/buyers_profiles'), $filename);
             $buyer = Auth::guard('buyers')->user();
             $buyer->picture = $filename;
@@ -75,8 +78,20 @@ class BuyerProfileController extends Controller
             return redirect()->back();  
         }
 
-        
+    }
 
+    public function deletePicture(){
+        
+        $buyer = Auth::guard('buyers')->user(); 
+        $currentPicturePath = public_path('images/buyers_profiles/'.$buyer->picture);
+
+        if ($buyer->picture !== 'profile_placeholder.png' && file_exists($currentPicturePath)) {
+            unlink($currentPicturePath);
+        }
+
+        $buyer->picture = "profile_placeholder.png";
+        $buyer->save();
+        return redirect()->back();
     }
 
     /**

@@ -47,6 +47,7 @@ class SignUpController extends Controller
         // Verificar si ya existe un usuario con el correo ingresado
         $existingUser = BuyersUsers::where('email', $request->email)->first();
         $existingUsername = BuyersUsers::where('username', $request->name)->first();
+        
         if ($existingUser || $existingUsername) {
             return redirect()->route('signup')->with('error', 'Ya existe un usuario con este correo o nombre de usuario');
         }
