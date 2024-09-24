@@ -61,6 +61,7 @@ class SignUpController extends Controller
             return redirect()->route('signup')->with('warning', 'Formato de correo incorrecto');
         }
 
+
         try {
             // Crear el nuevo usuario
             BuyersUsers::create([
@@ -71,7 +72,8 @@ class SignUpController extends Controller
                 'password' => bcrypt($request->password),
                 'phone' => $request->phone,
                 'cities_ticolancers_id' => $request->city,
-                'provinces_ticolancers_id' => $request->province
+                'provinces_ticolancers_id' => $request->province,
+                'picture' => "profile_placeholder.png",
             ]);
 
         $to = $request->email;

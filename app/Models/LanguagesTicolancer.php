@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class LanguagesTicolancer extends Model
 {
     use HasFactory;
+
+    
 }

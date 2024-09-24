@@ -42,6 +42,7 @@ Route::get('/dashboard', [BuyerDashboard::class, 'index'])->name('buyerDashboard
 
 Route::get('/buyerProfile', [BuyerProfile::class, 'index'])->name('buyerProfile');
 Route::get('/buyers/buyerProfileSettigns', [BuyerProfile::class, 'settings'])->name('buyerProfileSettings');
+Route::post('/buyers/update-picture', [BuyerProfile::class, 'updatePicture'])->name('buyers.updatePicture');
 
 Route::resource('/gigs', Gigs::class);
 Route::get('/gigcreation', [Gigs::class, 'index'])->name('gigCreation');

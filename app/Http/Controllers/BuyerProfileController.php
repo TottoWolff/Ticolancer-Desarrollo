@@ -19,7 +19,23 @@ class BuyerProfileController extends Controller
         $city = $buyer->city;
         $province = $city->province;
         $joinDate =  $city->created_at = Carbon::parse($city->created_at)->format('j M, Y');
-        //$languages = $buyer->languages;
+        $buyerId = $buyer->id;
+        
+        $languages = \DB::table('buyers_lang_ticolancers')
+        ->where('buyers_users_ticolancers_id', $buyerId)
+        ->join('languages_ticolancers', 'buyers_lang_ticolancers.languages_ticolancers_id', '=', 'languages_ticolancers.id')
+        ->join('language_levels_ticolancers', 'buyers_lang_ticolancers.language_levels_ticolancers_id', '=', 'language_levels_ticolancers.id')
+        ->select('languages_ticolancers.language as language_name', 'language_levels_ticolancers.level as level_name')
+        ->get();
+
+        // return response()->json([
+        //     'buyerId' => $buyerId,
+        //     'languages' => $languages
+        // ]);
+
+        $profile = $buyer->picture;
+
+        
         
 
         return view('buyers.buyerProfile', [
@@ -29,17 +45,38 @@ class BuyerProfileController extends Controller
             'email' => $buyer->email,
             'phone' => $buyer->phone,
             'joinDate' => $joinDate,
+            'picture' => $profile,
             'cityName' => $city ? $city->city : null,
             'provinceName' => $province ? $province->province : null, 
-           // 'languages' => $languages
+            'languages' => $languages
         ]);
     }
 
 
     public function settings()
     {
-    
-     return view('buyers.buyerProfileSettings');
+        return view('buyers.buyerProfileSettings');
+    }
+
+    public function updatePicture(Request $request){
+        //$request->validate([
+            //'picture' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+        //]);
+        $buyer = Auth::guard('buyers')->user(); 
+
+        if ($request->hasFile('picture')) {
+            $file = $request->file('picture');
+            $filename = $buyer->name . '-' . $file->getClientOriginalName();
+            $file->move(public_path('images/buyers_profiles'), $filename);
+            $buyer = Auth::guard('buyers')->user();
+            $buyer->picture = $filename;
+            $buyer->save();
+
+            return redirect()->back();  
+        }
+
+        
+
     }
 
     /**
