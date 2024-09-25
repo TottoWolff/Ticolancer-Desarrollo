@@ -30,6 +30,8 @@ Route::post('/contacto', [Homepage::class, 'store_contact_form'])->name('contact
 
 Route::get('/signup', [Signup::class, 'index'])->name('signup');
 Route::post('/signup', [Signup::class, 'store'])->name('signup.store');
+Route::get('/signup/get-cities/{provinceId}', [Signup::class, 'signup.getCities']);
+
 
 Route::get('/login', [Login::class, 'index'])->name('login');
 Route::post('/login', [Login::class, 'login'])->name('login.login');
