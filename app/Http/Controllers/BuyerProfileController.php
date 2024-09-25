@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\CitiesTicolancer as Cities;
 use App\Models\BuyersLangTicolancer as BuyersLanguages;
+use App\Models\LanguagesTicolancer as Languages;
+use App\Models\LanguageLevelsTicolancer as LanguageLevels;
+use App\Models\BuyersUsersTicolancer as BuyersUsers;
 use Carbon\Carbon;
 
 class BuyerProfileController extends Controller
@@ -20,6 +23,7 @@ class BuyerProfileController extends Controller
         $province = $city->province;
         $joinDate =  $city->created_at = Carbon::parse($city->created_at)->format('j M, Y');
         $buyerId = $buyer->id;
+        $username = $buyer->username;
         
         $languages = \DB::table('buyers_lang_ticolancers')
         ->where('buyers_users_ticolancers_id', $buyerId)
@@ -53,10 +57,83 @@ class BuyerProfileController extends Controller
     }
 
 
-    public function settings()
+    public function settingsAccount()
     {
-        return view('buyers.buyerProfileSettings');
+        $user = Auth::guard('buyers')->user();
+        $name = $user->name;
+        $lastname = $user->lastname;
+        $email = $user->email;
+        $phone = $user->phone;
+        $username = $user->username;
+        $buyerId = $user->id;
+        $userLanguages = \DB::table('buyers_lang_ticolancers')
+        ->where('buyers_users_ticolancers_id', $buyerId)
+        ->join('languages_ticolancers', 'buyers_lang_ticolancers.languages_ticolancers_id', '=', 'languages_ticolancers.id')
+        ->join('language_levels_ticolancers', 'buyers_lang_ticolancers.language_levels_ticolancers_id', '=', 'language_levels_ticolancers.id')
+        ->select('languages_ticolancers.language as language_name', 'language_levels_ticolancers.level as level_name', 'languages_ticolancers.id as language_id', 'language_levels_ticolancers.id as level_id')
+        ->get();
+
+        $languages = Languages::all();
+        $levels = LanguageLevels::all();
+
+        return view('buyers.buyerProfileSettingsAccount', ['username' => $user->username], compact('username', 'name', 'lastname', 'email', 'phone', 'userLanguages', 'languages', 'levels'));
     }
+
+    public function settingsSecurity()
+    {
+        $user = Auth::guard('buyers')->user();
+        $username = $user->username;
+        return view('buyers.buyerProfileSettingsSecurity', ['username' => $user->username], compact('username'));
+    }
+
+    public function updatePersonalInfo(Request $request){
+        $user = Auth::guard('buyers')->user();
+        
+        $existingUser = BuyersUsers::where('email', $request->email)->first();
+        $existingUsername = BuyersUsers::where('username', $request->username)->first();
+        
+        if ($existingUser && $user->email != $request->email || $existingUsername && $user->username != $request->username) {
+            return redirect()->back()->with('error', 'Ya existe un usuario con este correo o nombre de usuario');
+        }
+
+        $name = $request->name;
+        $lastname = $request->lastname;
+        $username = $request->username;
+        $email = $request->email;
+
+
+        $user ->update([
+            'name' => $name,
+            'lastname' => $lastname,
+            'username' => $username,
+            'email' => $email
+        ]);
+
+        return redirect()->back()->with('success', 'Información actualizada exitosamente');
+        
+    }
+
+    public function updateContactInfo(Request $request){
+        $user = Auth::guard('buyers')->user();
+        $phone = $request->phone;
+        $user ->update([
+            'phone' => $phone
+        ]);
+        return redirect()->back()->with('success', 'Información actualizada exitosamente');
+    }
+
+    public function desactivateAccount(){
+        $user = Auth::guard('buyers')->user();
+        $user->languages()->delete();
+        $user ->delete();
+        Auth::guard('buyers')->logout();
+        
+        return redirect()->route('ticolancer.login')->with('success', 'Cuenta desactivada exitosamente');
+    }
+
+        
+        
+    
 
     public function updatePicture(Request $request){
         

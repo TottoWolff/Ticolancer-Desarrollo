@@ -42,10 +42,14 @@ Route::post('/recover', [Login::class, 'recover'])->name('login.recover');
 
 Route::get('/dashboard', [BuyerDashboard::class, 'index'])->name('buyerDashboard');
 
-Route::get('/buyerProfile', [BuyerProfile::class, 'index'])->name('buyerProfile');
-Route::get('/buyers/buyerProfileSettigns', [BuyerProfile::class, 'settings'])->name('buyerProfileSettings');
+Route::get('/{username}', [BuyerProfile::class, 'index'])->name('buyerProfile');
+Route::get('/{username}/settings/account', [BuyerProfile::class, 'settingsAccount'])->name('buyerProfileSettingsAccount');
+Route::get('/{username}/settings/security', [BuyerProfile::class, 'settingsSecurity'])->name('buyerProfileSettingsSecurity');
 Route::post('/buyers/update-picture', [BuyerProfile::class, 'updatePicture'])->name('buyers.updatePicture');
 Route::post('/buyers/delete-picture', [BuyerProfile::class, 'deletePicture'])->name('buyers.deletePicture');
+Route::post('/{username}/update/personal-info', [BuyerProfile::class, 'updatePersonalInfo'])->name('buyers.updatePersonalInfo');
+Route::post('/{username}/update/contact-info', [BuyerProfile::class, 'updateContactInfo'])->name('buyers.updateContactInfo');
+Route::post('/{username}/desactivate-account', [BuyerProfile::class, 'desactivateAccount'])->name('buyers.desactivateAccount');
 
 Route::resource('/gigs', Gigs::class);
 Route::get('/gigcreation', [Gigs::class, 'index'])->name('gigCreation');
