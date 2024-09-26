@@ -50,6 +50,8 @@ Route::post('/buyers/delete-picture', [BuyerProfile::class, 'deletePicture'])->n
 Route::post('/{username}/update/personal-info', [BuyerProfile::class, 'updatePersonalInfo'])->name('buyers.updatePersonalInfo');
 Route::post('/{username}/update/contact-info', [BuyerProfile::class, 'updateContactInfo'])->name('buyers.updateContactInfo');
 Route::post('/{username}/desactivate-account', [BuyerProfile::class, 'desactivateAccount'])->name('buyers.desactivateAccount');
+Route::post('/{username}/update/location', [BuyerProfile::class, 'updateLocation'])->name('buyers.updateLocation');
+Route::post('/{username}/update/languages', [BuyerProfile::class, 'updateLanguages'])->name('buyers.updateLanguages');
 
 Route::resource('/gigs', Gigs::class);
 Route::get('/gigcreation', [Gigs::class, 'index'])->name('gigCreation');

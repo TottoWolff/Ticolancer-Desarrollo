@@ -74,13 +74,16 @@ class BuyerProfileController extends Controller
         ->join('language_levels_ticolancers', 'buyers_lang_ticolancers.language_levels_ticolancers_id', '=', 'language_levels_ticolancers.id')
         ->select('languages_ticolancers.language as language_name', 'language_levels_ticolancers.level as level_name', 'languages_ticolancers.id as language_id', 'language_levels_ticolancers.id as level_id')
         ->get();
+        $userProvince=$user->city->province->province;
+        $userCity=$user->city->city;
+
 
         $languages = Languages::all();
         $levels = LanguageLevels::all();
         $provinces = Provinces::all();
         $cities = Cities::all();
 
-        return view('buyers.buyerProfileSettingsAccount', ['username' => $user->username], compact('username', 'name', 'lastname', 'email', 'phone', 'userLanguages', 'languages', 'levels', 'provinces', 'cities'));
+        return view('buyers.buyerProfileSettingsAccount', ['username' => $user->username], compact('username', 'name', 'lastname', 'email', 'phone', 'userLanguages', 'languages', 'levels', 'provinces', 'cities',	 'userCity', 'userProvince'));
     }
 
     public function settingsSecurity()
@@ -126,6 +129,15 @@ class BuyerProfileController extends Controller
         return redirect()->back()->with('success', 'Información actualizada exitosamente');
     }
 
+    public function updateLOcation(Request $request){
+        $user = Auth::guard('buyers')->user();
+        $user ->update([
+            'provinces_ticolancers_id' => $request->province,
+            'cities_ticolancers_id' => $request->city
+        ]);
+        return redirect()->back()->with('success', 'Información actualizada exitosamente');
+    }
+
     public function desactivateAccount(){
         $user = Auth::guard('buyers')->user();
         $user->languages()->delete();
@@ -134,6 +146,34 @@ class BuyerProfileController extends Controller
         
         return redirect()->route('login')->with('success', 'Cuenta desactivada exitosamente');
     }
+
+
+    public function updateLanguages(Request $request)
+{
+    // Obtén el usuario autenticado
+    $user = Auth::guard('buyers')->user();
+
+   
+
+    // Eliminar idiomas que no están en el array
+    $user->languages()->whereNotIn('languages_ticolancers_id', $request->language_ids)->delete();
+
+    // Agregar nuevos idiomas que no existan
+    foreach ($request->language_ids as $index => $languageId) {
+        // Verifica si el idioma ya está asociado al usuario
+        if (!$user->languages()->where('languages_ticolancers_id', $languageId)->exists()) {
+            // Si no existe, créalo
+            $user->languages()->create([
+                'languages_ticolancers_id' => $languageId, 
+                'buyers_users_ticolancers_id' => $user->id,
+                'language_levels_ticolancers_id' => $request->language_levels[$index] // Asignar el nivel de idioma correspondiente
+            ]);
+        }
+    }
+
+    return redirect()->back()->with('success', 'Información actualizada exitosamente');
+}
+
 
         
         
