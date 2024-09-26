@@ -10,6 +10,7 @@ use App\Models\LanguagesTicolancer as Languages;
 use App\Models\LanguageLevelsTicolancer as LanguageLevels;
 use App\Models\BuyersUsersTicolancer as BuyersUsers;
 use Carbon\Carbon;
+use App\Models\ProvincesTicolancer as Provinces;
 
 class BuyerProfileController extends Controller
 {
@@ -24,6 +25,7 @@ class BuyerProfileController extends Controller
         $joinDate =  $city->created_at = Carbon::parse($city->created_at)->format('j M, Y');
         $buyerId = $buyer->id;
         $username = $buyer->username;
+        
         
         $languages = \DB::table('buyers_lang_ticolancers')
         ->where('buyers_users_ticolancers_id', $buyerId)
@@ -75,8 +77,10 @@ class BuyerProfileController extends Controller
 
         $languages = Languages::all();
         $levels = LanguageLevels::all();
+        $provinces = Provinces::all();
+        $cities = Cities::all();
 
-        return view('buyers.buyerProfileSettingsAccount', ['username' => $user->username], compact('username', 'name', 'lastname', 'email', 'phone', 'userLanguages', 'languages', 'levels'));
+        return view('buyers.buyerProfileSettingsAccount', ['username' => $user->username], compact('username', 'name', 'lastname', 'email', 'phone', 'userLanguages', 'languages', 'levels', 'provinces', 'cities'));
     }
 
     public function settingsSecurity()
