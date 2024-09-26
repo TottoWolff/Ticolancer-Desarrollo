@@ -40,7 +40,7 @@ class BuyersUsersTicoLancer extends Authenticatable
 
     public function languages()
     {
-        return $this->hasMany(BuyersLanguages::class, 'buyers_lang_ticolancers_id');
+        return $this->hasMany(BuyersLanguages::class, 'buyers_users_ticolancers_id');
     }
 
     public function user()

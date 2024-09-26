@@ -111,7 +111,7 @@
             <!-- Languages end -->
 
             <!-- Desactive account -->
-                <form action="" method="POST" class="w-full flex flex-col p-[20px] gap-[20px] border-[0.5px] border-solid border-blue border-opacity-50 rounded-[16px]">
+                <form action="{{ route('buyers.desactivateAccount', ['username' => $username]) }}" method="POST" class="w-full flex flex-col p-[20px] gap-[20px] border-[0.5px] border-solid border-blue border-opacity-50 rounded-[16px]">
                     @csrf
                     <h4 class="text-[22px] text-blue font-semibold">Desactivar cuenta</h4>
                     <!-- desactive reason -->

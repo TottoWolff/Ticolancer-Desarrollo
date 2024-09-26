@@ -128,7 +128,7 @@ class BuyerProfileController extends Controller
         $user ->delete();
         Auth::guard('buyers')->logout();
         
-        return redirect()->route('ticolancer.login')->with('success', 'Cuenta desactivada exitosamente');
+        return redirect()->route('login')->with('success', 'Cuenta desactivada exitosamente');
     }
 
         
