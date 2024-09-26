@@ -9,6 +9,8 @@ use App\Models\AdminUsersTicolancer as AdminUsers;
 use App\Models\ProvincesTicolancer as Provinces;
 use App\Models\CitiesTicolancer as Cities;
 use App\Models\BuyersLangTicolancer as BuyersLanguages;
+use App\Models\LanguagesTicolancer as Languages;
+use App\Models\LanguageLevelsTicolancer as LanguageLevels;
 
 
 
@@ -23,7 +25,16 @@ class SignUpController extends Controller
         $cities = Cities::with('province')->get();
         $provinces = Provinces::all();
 
-        return view('ticolancer.signup', compact('provinces', 'cities'));
+        $levels = LanguageLevels::with('language')->get();
+        $languages = Languages::all();
+
+        return view('ticolancer.signup', compact('provinces', 'cities', 'levels', 'languages'));
+    }
+
+    public function getCities($provinceId)
+    {
+        $cities = Cities::where('province_id', $provinceId)->get();
+        return response()->json($cities);
     }
 
 
@@ -47,12 +58,13 @@ class SignUpController extends Controller
         // Verificar si ya existe un usuario con el correo ingresado
         $existingUser = BuyersUsers::where('email', $request->email)->first();
         $existingUsername = BuyersUsers::where('username', $request->name)->first();
+        
         if ($existingUser || $existingUsername) {
             return redirect()->route('signup')->with('error', 'Ya existe un usuario con este correo o nombre de usuario');
         }
 
         // Validar los datos del formulario
-        if ($request->name == "" || $request->lastname == "" || $request->email == "" || $request->password == "" || $request->username == "") {
+        if ($request->name == "" || $request->lastname == "" || $request->email == "" || $request->password == "" || $request->username == "" || $request->phone == "" || $request->city == "" || $request->province == "" || $request->language == "" || $request->level == "") {
             return redirect()->route('signup')->with('warning', 'Todos los campos son obligatorios');
         }
 
@@ -64,7 +76,7 @@ class SignUpController extends Controller
 
         try {
             // Crear el nuevo usuario
-            BuyersUsers::create([
+            $user = BuyersUsers::create([
                 'name' => $request->name,
                 'lastname' => $request->lastname,
                 'username' => $request->username,
@@ -74,6 +86,17 @@ class SignUpController extends Controller
                 'cities_ticolancers_id' => $request->city,
                 'provinces_ticolancers_id' => $request->province,
                 'picture' => "profile_placeholder.png",
+            ]);
+
+            if (!Languages::find($request->language) || !LanguageLevels::find($request->level)) {
+                return redirect()->route('signup')->with('warning', 'El idioma o el nivel de idioma no son válidos');
+            }
+
+            //Agregar idiomas de usuario
+            BuyersLanguages::create([
+                'buyers_users_ticolancers_id' => $user->id,
+                'languages_ticolancers_id' => $request->language,
+                'language_levels_ticolancers_id' => $request->level
             ]);
 
         $to = $request->email;

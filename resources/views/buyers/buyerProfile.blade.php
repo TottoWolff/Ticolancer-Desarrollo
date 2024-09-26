@@ -78,53 +78,82 @@
             <!-- Profile Card end -->
 
             <!-- Modal -->
-            <form action="{{ route('buyers.updatePicture') }}" method="POST" enctype="multipart/form-data">
-                @csrf
                 <div id="modal" class="w-[100vw] h-[100vh] fixed hidden z-10 top-0 right-0 bg-blue bg-opacity-50 backdrop-blur-sm">
-                    <div id="modal-content" class="fixed flex items-center flex-col gap-[40px] right-[50%] left-[50%] top-[50%] -translate-x-[50%] -translate-y-[50%] rounded-[16px] w-[30vw] max-sm:w-[90vw] max-sm:h-[70vh] h-[600px] bg-white p-[40px]">
+                    
+                    <form action="{{ route('buyers.updatePicture') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                        <div id="modal-content" class="fixed flex items-center flex-col gap-[40px] right-[50%] left-[50%] top-[50%] -translate-x-[50%] -translate-y-[50%] rounded-[16px] w-[30vw] max-sm:w-[90vw] max-sm:h-[70vh] h-[600px] bg-white p-[40px]">
+                            
+                            <button type="button" class="absolute p-[14px] rounded-bl-[10px] bg-blue right-0 top-0" onclick="closeModal()"><img src="{{ asset('icons/close.svg') }}"></button>    
+
+                            <div class="flex items-start w-full flex-col">
+                                <h5 class="text-[36px] text-blue font-medium">Imagen de perfil</h5>
+                                <p class="text-[16px] text-slate-400 font-light">Selecciona una nueva imagen de perfil o elimina la actual</p>
+                            </div>
+
+                            <img class="rounded-full w-[280px] h-[280px] max-sm:w-[180px] max-sm:h-[180px] bg-center object-cover" src="{{ asset('images/buyers_profiles/' . $picture) }}" alt="">
+
+                            <div class="items-center justify-center flex gap-[20px] w-full">
+                                    <input class="hidden" name="picture" id="image-input" type="file" accept="image/*">
+                                    <button onclick="showFileChooser()" type="button" id="change-button" class="button px-[20px] py-[10px] rounded-[10px] text-blue font-semibold border-solid border-[1px] border-blue hover:translate-y-[-5px] transition-all duration-500 ease-out hover:bg-blue hover:text-white ">Cambiar</button>
+                                    @if ($picture != 'profile_placeholder.png')
+                                    <button onclick="openDeleteModal()" type="button" class="button px-[20px] py-[10px] rounded-[10px] text-blue font-semibold border-solid border-[1px] border-blue hover:translate-y-[-5px] transition-all duration-500 ease-out hover:bg-blue hover:text-white ">Eliminar</button>
+                                    @endif
+                                </div>
+                        </div>
+
+                        <div id="modal-changes" class="fixed hidden items-center flex-col gap-[40px] right-[50%] left-[50%] top-[50%] -translate-x-[50%] -translate-y-[50%] rounded-[16px] w-[30vw] max-sm:w-[90vw] max-sm:h-[70vh] h-[600px] bg-white p-[40px]">
+                            
+                            <button type="button" class="absolute p-[14px] rounded-bl-[10px] bg-blue right-0 top-0" onclick="closeModal()"><img src="{{ asset('icons/close.svg') }}"></button>    
+
+                            <div class="flex items-start w-full flex-col">
+                                <h5 class="text-[36px] text-blue font-medium">Desea guardar los cambios?</h5>
+                                <p class="text-[16px] text-slate-400 font-light">Esta será tu nueva imagen de perfil</p>
+                            </div>
+
+                            <img id="modal-changes-image" class="rounded-full w-[280px] h-[280px] bg-center object-cover" src="{{ $picture }}" alt="">
+
+                            <div class="items-center justify-center flex gap-[20px] w-full">
+                                <button type="submit" class="button px-[20px] py-[10px] rounded-[10px] text-blue font-semibold border-solid border-[1px] border-blue hover:translate-y-[-5px] transition-all duration-500 ease-out hover:bg-blue hover:text-white ">Guardar cambios</button>
+                                <button onclick="closeModal()" type="button" class="button px-[20px] py-[10px] rounded-[10px] text-blue font-semibold border-solid border-[1px] border-blue hover:translate-y-[-5px] transition-all duration-500 ease-out hover:bg-red-600 hover:border-red-600 hover:text-white ">Cancelar</button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <div id="modal-delete" class="fixed hidden items-center flex-col gap-[40px] right-[50%] left-[50%] top-[50%] -translate-x-[50%] -translate-y-[50%] rounded-[16px] w-[30vw] max-sm:w-[90vw] max-sm:h-[70vh] h-[600px] bg-white p-[40px]">
+                        <button type="button" class="absolute p-[14px] rounded-bl-[10px] bg-blue right-0 top-0" onclick="closeModal()"><img src="{{ asset('icons/close.svg') }}"></button>
                         
-                        <button class="absolute p-[14px] rounded-bl-[10px] bg-blue right-0 top-0" onclick="closeModal()"><img src="{{ asset('icons/close.svg') }}"></button>    
-
                         <div class="flex items-start w-full flex-col">
-                            <h5 class="text-[36px] text-blue font-medium">Imagen de perfil</h5>
-                            <p class="text-[16px] text-slate-400 font-light">Selecciona una nueva imagen de tu perfil</p>
+                            <h5 class="text-[36px] text-blue font-medium">Quitar la imagen de perfil?</h5>
                         </div>
 
-                        <img class="rounded-full w-[280px] h-[280px] max-sm:w-[180px] max-sm:h-[180px] bg-center object-cover" src="{{ asset('images/buyers_profiles/' . $picture) }}" alt="">
-
-                        <div class="items-center justify-center flex gap-[20px] w-full">
-                                <input class="hidden" name="picture" id="image-input" type="file" accept="image/*">
-                                <button onclick="showFileChooser()" type="button" id="change-button" class="button px-[20px] py-[10px] rounded-[10px] text-blue font-semibold border-solid border-[1px] border-blue hover:translate-y-[-5px] transition-all duration-500 ease-out hover:bg-blue hover:text-white ">Cambiar</button>
-                                <button type="button" class="button px-[20px] py-[10px] rounded-[10px] text-blue font-semibold border-solid border-[1px] border-blue hover:translate-y-[-5px] transition-all duration-500 ease-out hover:bg-blue hover:text-white ">Eliminar</button>
-                        </div>
-                    </div>
-
-                    <div id="modal-changes" class="fixed hidden items-center flex-col gap-[40px] right-[50%] left-[50%] top-[50%] -translate-x-[50%] -translate-y-[50%] rounded-[16px] w-[30vw] max-sm:w-[90vw] max-sm:h-[70vh] h-[600px] bg-white p-[40px]">
-                        
-                        <button class="absolute p-[14px] rounded-bl-[10px] bg-blue right-0 top-0" onclick="closeModal()"><img src="{{ asset('icons/close.svg') }}"></button>    
-
-                        <div class="flex items-start w-full flex-col">
-                            <h5 class="text-[36px] text-blue font-medium">Desea guardar los cambios?</h5>
-                            <p class="text-[16px] text-slate-400 font-light">Esta será tu nueva imagen de perfil</p>
+                        <div class="flex gap-[20px] items-center justify-center h-full w-full">
+                            <img class="rounded-full w-[180px] h-[180px] max-sm:w-[180px] max-sm:h-[180px] bg-center object-cover" src="{{ asset('images/buyers_profiles/' . $picture) }}" alt="">
+                            <img src="{{ asset('icons/arrow-right.svg') }}" alt="">
+                            <img class="rounded-full w-[180px] h-[180px] max-sm:w-[180px] max-sm:h-[180px] bg-center object-cover" src="{{ asset('images/buyers_profiles/profile_placeholder.png') }}" alt="">
                         </div>
 
-                        <img id="modal-changes-image" class="rounded-full w-[280px] h-[280px] bg-center object-cover" src="{{ $picture }}" alt="">
-
-                        <div class="items-center justify-center flex gap-[20px] w-full">
-                            <button type="submit" class="button px-[20px] py-[10px] rounded-[10px] text-blue font-semibold border-solid border-[1px] border-blue hover:translate-y-[-5px] transition-all duration-500 ease-out hover:bg-blue hover:text-white ">Guardar cambios</button>
-                            <button onclick="closeModal()" type="button" class="button px-[20px] py-[10px] rounded-[10px] text-blue font-semibold border-solid border-[1px] border-blue hover:translate-y-[-5px] transition-all duration-500 ease-out hover:bg-red-600 hover:border-red-600 hover:text-white ">Cancelar</button>
+                        <div id="modal-delete" class="flex h-full items-end justify-between w-full">
+                            <button onclick="closeDeleteModal()" class="button px-[20px] py-[10px] rounded-[10px] text-blue font-semibold border-solid border-[1px] border-blue hover:translate-y-[-5px] transition-all duration-500 ease-out hover:bg-blue hover:text-white ">Cancelar</button>
+                            <form action="{{ route('buyers.deletePicture') }}" method="POST">
+                                @csrf
+                                <button type="submit" class="px-[20px] py-[10px] rounded-[10px] text-blue font-semibold border-solid border-[1px] border-blue hover:translate-y-[-5px] transition-all duration-500 ease-out hover:bg-blue hover:text-white ">Quitar</button>
+                            </form>
                         </div>
                     </div>
                 </div>
-            </form>
             <!-- Modal end -->
 
             <!-- Settings -->
-            <a class="flex w-full items-center gap-[10px] justify-center border-[1px] border-blue border-opacity-50 rounded-[12px] p-[10px] text-blue hover:text-white hover:bg-blue hover:border-blue transition-all duration-500 " href="{{ route('buyerProfileSettings') }}"><img src="{{ asset('icons/settings.svg') }}" alt="">Configuraciones</a>
+            <a class="flex w-full items-center gap-[10px] justify-center border-[1px] border-blue border-opacity-50 rounded-[12px] p-[10px] text-blue hover:text-white hover:bg-blue hover:border-blue transition-all duration-500 " href="{{ route('buyerProfileSettingsAccount', ['username' => $username]) }}"><img src="{{ asset('icons/settings.svg') }}" alt="">Configuraciones</a>
             <!-- Settings end -->
 
             <!--Logout -->
-            <a class="flex w-full items-center gap-[10px] justify-center border-[1px] border-blue border-opacity-50 rounded-[12px] p-[10px] text-blue hover:text-white hover:bg-red-600 hover:border-red-600 transition-all duration-500 " href="{{ route('login.logout') }}"><img src="{{ asset('icons/leave.svg') }}" alt="">Cerrar sesión</a>
+            <form action="{{ route('login.logout') }}" method="POST">
+                @csrf
+                <button class="flex w-full items-center gap-[10px] justify-center border-[1px] border-blue border-opacity-50 rounded-[12px] p-[10px] text-blue hover:text-white hover:bg-red-600 hover:border-red-600 transition-all duration-500 "><img src="{{ asset('icons/leave.svg') }}" alt="">Cerrar sesión</Button>
+            </form>
+            
             <!--Logout end -->
 
             <!-- Note -->
@@ -225,6 +254,7 @@
     modalContent = document.getElementById('modal-content');
     modalChanges = document.getElementById('modal-changes');
     modalChangesImage = document.getElementById('modal-changes-image');
+    modalDelete = document.getElementById('modal-delete');
 
     function showProfileButton() {
         profileButton.classList.remove('hidden');
@@ -253,6 +283,18 @@
     function closeModal() {
         modal.classList.add('hidden');
         
+    }
+
+    function openDeleteModal() {
+        modalContent.classList.add('hidden');
+        modalDelete.classList.remove('hidden');
+        modalDelete.classList.add('flex');
+    }
+
+    function closeDeleteModal() {
+        modalDelete.classList.add('hidden');
+        modalContent.classList.remove('hidden');
+        modalContent.classList.add('flex');
     }
 
     imageInput.addEventListener('change', () => {

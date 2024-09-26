@@ -14,10 +14,11 @@
 
                     <ul class="flex flex-row gap-[10px] max-sm:hidden">
                         <li class="p-[10px] hover:text-blue rounded-[10px] hover:bg-white transition-all duration-500 hover:translate-y-[-5px] ease-out"><a href="{{ route('inicio') }}">Inicio</a></li>
-                        <li class="p-[10px] hover:text-blue rounded-[10px] hover:bg-white transition-all duration-500 hover:translate-y-[-5px] ease-out"><a href="{{ route('buyerProfile') }}">Servicios</a></li>
+                        <li class="p-[10px] hover:text-blue rounded-[10px] hover:bg-white transition-all duration-500 hover:translate-y-[-5px] ease-out"><a href="#">Servicios</a></li>
                         <li class="p-[10px] hover:text-blue rounded-[10px] hover:bg-white transition-all duration-500 hover:translate-y-[-5px] ease-out"><a href="{{ route('nosotros') }}">Nosotros</a></li>
                         <li class="p-[10px] hover:text-blue rounded-[10px] hover:bg-white transition-all duration-500 hover:translate-y-[-5px] ease-out"><a href="#">Contacto</a></li>
-                        <li class="py-[10px] px-[20px] border-[1px] border-white hover:text-blue rounded-[10px] hover:bg-white transition-all duration-500 hover:translate-y-[-5px] ease-out"><a href="{{ route('signup') }}">Únete</a></li>
+                        <li class="p-[10px] hover:text-blue rounded-[10px] hover:bg-white transition-all duration-500 hover:translate-y-[-5px] ease-out"><a href="{{ route('login') }}">Iniciar sesión</a></li>
+                        <li class="py-[10px] px-[20px] border-[1px] border-white hover:text-blue rounded-[10px] hover:bg-white transition-all duration-500 hover:translate-y-[-5px] ease-out"><a href="{{ route('signup') }}">Unirse</a></li>
                     </ul>
                     
                     {{-- Mobile Menu --}}
@@ -31,6 +32,7 @@
                             <li class="text-white hover:text-green transition-all duration-500 translate-y-[-5px] ease-out"><a href="#">Servicios</a></li>
                             <li class="text-white hover:text-green transition-all duration-500 translate-y-[-5px] ease-out"><a href="#">Nosotros</a></li>
                             <li class="text-white hover:text-green transition-all duration-500 translate-y-[-5px] ease-out"><a href="#">Contacto</a></li>
+                            <li class="text-white hover:text-green transition-all duration-500 translate-y-[-5px] ease-out"><a href="{{ route('login') }}">Iniciar sesión</a></li>
                             <li class="text-green hover:text-white hover:bg-green p-[10px] border-[1px] border-solid border-green rounded-[10px] transition-all duration-500 translate-y-[-5px] ease-out"><a href="{{ route('signup') }}">Únete</a></li>
                         </ul>
                     </div>

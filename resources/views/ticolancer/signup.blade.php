@@ -9,7 +9,8 @@
             <form class="w-full flex flex-col gap-[20px]" action="{{ route('signup.store') }} " method="POST">
                 @csrf
                 {{--Step 1--}}
-                    <div id="step-1" class="flex flex-col w-full gap-[20px]">
+                    <div id="step-1" class="flex flex-col items-center w-full gap-[20px]">
+                        <img class="w-[200px]" src="{{ asset('images/signup/account.png') }}" alt="">
                         <h2 class="text-white text-[24px] font-light">1. Crea una cuenta</h2>
                         <input oninput="hideMessage()" id="email" name="email" type="text" placeholder="Email" class="placeholder:text-slate-400 flex w-full border-b-[1px] border-solid border-white bg-transparent border-opacity-50 px-[20px] py-[10px] text-white text-[16px] font-regular  outline-none">
                         <input oninput="checkPassword(), hideMessage()" id="password" name="password" type="password" placeholder="Contraseña" class="placeholder:text-slate-400 flex w-full border-b-[1px] border-solid border-white bg-transparent border-opacity-50 px-[20px] py-[10px] text-white text-[16px] font-regular  outline-none">
@@ -19,7 +20,8 @@
                 {{--Step 1 end--}}
 
                 {{--Step 2--}}
-                    <div id="step-2" class="hidden flex-col w-full gap-[20px]">
+                    <div id="step-2" class="hidden flex-col w-full gap-[20px] items-center">
+                        <img class="w-[200px]" src="{{ asset('images/signup/account.png') }}" alt="">
                         <h2 class="text-white text-[24px] font-light">2. Crea tu perfil</h2>
                         <input oninput="hideMessage()" id="username" name="username" type="text" placeholder="Username" class="placeholder:text-slate-400 flex w-full border-b-[1px] border-solid border-white bg-transparent border-opacity-50 px-[20px] py-[10px] text-white text-[16px] font-regular  outline-none">
                         <input oninput="hideMessage()" id="name" name="name" type="text" placeholder="Nombre" class="placeholder:text-slate-400 flex w-full border-b-[1px] border-solid border-white bg-transparent border-opacity-50 px-[20px] py-[10px] text-white text-[16px] font-regular  outline-none">
@@ -33,7 +35,8 @@
                 {{--Step 2 end--}}
 
                 {{--Step 3--}}
-                    <div id="step-3" class="hidden flex-col w-full gap-[20px]">
+                    <div id="step-3" class="hidden flex-col w-full gap-[20px] items-center">
+                        <img class="w-[200px]" src="{{ asset('images/signup/contact.png') }}" alt="">
                         <h2 class="text-white text-[24px] font-light">3. Informacion de contacto</h2>
                         <div class="flex flex-row w-full gap-[20px]">
                             <input value="+506" readonly class="placeholder:text-slate-400 flex w-[25%] border-b-[1px] border-solid border-white bg-transparent border-opacity-50 px-[20px] py-[10px] text-white text-[16px] font-regular  outline-none">
@@ -47,10 +50,10 @@
                 {{--Step 3 end--}}
 
                 {{--Step 4--}}
-                    <div id="step-4" class="hidden flex-col w-full gap-[20px]">
+                    <div id="step-4" class="hidden flex-col items-center w-full gap-[20px]">
+                        <img class="w-[200px]" src="{{ asset('images/signup/location.png') }}" alt="">
                         <h2 class="text-white text-[24px] font-light">4. Donde te encuentras</h2>
                         <div class="flex flex-row w-full gap-[20px]">
-
                         <select name="province" id="province" class="placeholder:text-slate-400 flex w-full border-b-[1px] border-solid border-white bg-transparent border-opacity-50 px-[20px] py-[10px]  text-[16px] font-regular  outline-none text-white">
                             <option selected disabled value="">Provincia</option>
                             @foreach ($provinces as $province)
@@ -69,11 +72,41 @@
                         
                         <div class="flex flex-row w-full gap-[20px]">
                             <input onclick="prevStep(4)" type="button" value="Atrás " class="rounded-[10px] cursor-pointer transition-all duration-500 ease-out hover:translate-y-[-5px] hover:bg-green hover:border-green w-full px-[20px] py-[10px] text-white border-[1px] border-solid border-white text-[16px] font-semibold  outline-none">
-                            <input type="submit" value="Enviar " class="rounded-[10px] cursor-pointer transition-all duration-500 ease-out hover:translate-y-[-5px] hover:bg-green hover:text-white w-full bg-white px-[20px] py-[10px] text-blue text-[16px] font-semibold  outline-none">
+                            <input onclick="nextStep(4)" type="button" value="Siguiente " class="rounded-[10px] cursor-pointer transition-all duration-500 ease-out hover:translate-y-[-5px] hover:bg-green hover:text-white w-full bg-white px-[20px] py-[10px] text-blue text-[16px] font-semibold  outline-none">
                         </div>
 
                     </div>
                 {{--Step 4 end--}}
+
+                {{--Step 5--}}
+                    <div id="step-5" class="hidden flex-col items-center w-full gap-[20px]">
+                        <img class="w-[200px]" src="{{ asset('images/signup/location.png') }}" alt="">
+                        <h2 class="text-white text-[24px] font-light">5. Tus idiomas</h2>
+                        <div class="flex flex-row w-full gap-[20px]">
+                        
+                        <select name="language" id="language" class="placeholder:text-slate-400 flex w-full border-b-[1px] border-solid border-white bg-transparent border-opacity-50 px-[20px] py-[10px]  text-[16px] font-regular  outline-none text-white">
+                            <option selected disabled value="">Lenguage</option>
+                            @foreach ($languages as $language)
+                                <option class="text-blue bg-white" value="{{ $language->id }}">{{ $language->language }}</option>
+                            @endforeach
+                        </select>
+
+                        <select name="level" id="level" class="placeholder:text-slate-400 flex w-full border-b-[1px] border-solid border-white bg-transparent border-opacity-50 px-[20px] py-[10px]  text-[16px] font-regular  outline-none text-white">
+                            <option selected disabled value="">Nivel</option>
+                            @foreach ($levels as $level)
+                                <option class="text-blue bg-white" value="{{ $level->id }}">{{ $level->level }}</option>
+                            @endforeach
+                        </select>    
+
+                        </div>
+                        
+                        <div class="flex flex-row w-full gap-[20px]">
+                            <input onclick="prevStep(5)" type="button" value="Atrás " class="rounded-[10px] cursor-pointer transition-all duration-500 ease-out hover:translate-y-[-5px] hover:bg-green hover:border-green w-full px-[20px] py-[10px] text-white border-[1px] border-solid border-white text-[16px] font-semibold  outline-none">
+                            <input type="submit" value="Enviar " class="rounded-[10px] cursor-pointer transition-all duration-500 ease-out hover:translate-y-[-5px] hover:bg-green hover:text-white w-full bg-white px-[20px] py-[10px] text-blue text-[16px] font-semibold  outline-none">
+                        </div>
+
+                    </div>
+                {{--Step 5 end--}}
 
 
                 <div id="alert" class="hidden p-[10px] justify-between bg-red-100 border-[1px] border-red-300 rounded-[10px]">
@@ -99,6 +132,8 @@
     </div>
 
     <script>
+
+
         password = document.getElementById('password');
         password_confirmation = document.getElementById('password_confirmation');
         submit = document.getElementById('submit');
@@ -112,6 +147,7 @@
         step2 = document.getElementById('step-2');
         step3 = document.getElementById('step-3');
         step4 = document.getElementById('step-4');
+        step5 = document.getElementById('step-5');
 
         phone = document.getElementById('phone');
 
