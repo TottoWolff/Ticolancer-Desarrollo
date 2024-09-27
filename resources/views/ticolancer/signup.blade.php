@@ -202,40 +202,55 @@
         }
 
         function checkPasswordCharacters() {
+            console.log(password.value);
+            
+            
             let isValid = true; // Asumimos que es válido hasta que se demuestre lo contrario
+            console.log(isValid);
+
 
             if (password.value.length >= 8) {
+                passwordLength.classList.remove('text-red-600');
                 passwordLength.classList.add('text-[#4ADE80]');
             } else {
                 passwordLength.classList.remove('text-[#4ADE80]');
+                passwordLength.classList.add('text-red-600');
                 isValid = false; // No cumple con la longitud
             }
 
             if (/[A-Z]/.test(password.value)) {
+                passwordUppercase.classList.remove('text-red-600');
                 passwordUppercase.classList.add('text-[#4ADE80]');
             } else {
                 passwordUppercase.classList.remove('text-[#4ADE80]');
+                passwordUppercase.classList.add('text-red-600');
                 isValid = false; // No tiene mayúscula
             }
 
             if (/[a-z]/.test(password.value)) {
                 passwordLowercase.classList.add('text-[#4ADE80]');
+                passwordLowercase.classList.remove('text-red-600');
             } else {
                 passwordLowercase.classList.remove('text-[#4ADE80]');
+                passwordLowercase.classList.add('text-red-600');
                 isValid = false; // No tiene minúscula
             }
 
             if (/[0-9]/.test(password.value)) {
                 passwordNumber.classList.add('text-[#4ADE80]');
+                passwordNumber.classList.remove('text-red-600');
             } else {
                 passwordNumber.classList.remove('text-[#4ADE80]');
+                passwordNumber.classList.add('text-red-600');
                 isValid = false; // No tiene número
             }
 
             if (/[^A-Za-z0-9]/.test(password.value)) {
                 passwordSpecial.classList.add('text-[#4ADE80]');
+                passwordSpecial.classList.remove('text-red-600');
             } else {
                 passwordSpecial.classList.remove('text-[#4ADE80]');
+                passwordSpecial.classList.add('text-red-600');
                 isValid = false; // No tiene carácter especial
             }
 
