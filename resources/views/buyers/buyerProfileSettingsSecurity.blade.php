@@ -16,7 +16,6 @@
             </div>
             @endif
 
-
             <!-- error -->
             @if ($message = Session::get('error'))
             <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-[10px]  text-center w-full" role="alert">
@@ -28,73 +27,72 @@
         <!--column right -->
         <div class="w-full flex-col flex py-[20px] gap-[20px]">
             <!-- Personal information -->
-                <form id="password-form" action="{{ route('buyers.updatePassword', ['username' => $username]) }}" method="POST" class="w-full flex flex-col p-[20px] gap-[20px] border-[0.5px] border-solid border-blue border-opacity-50 rounded-[16px]">
-                    @csrf
-                    <h4 class="text-[22px] text-blue font-semibold">Cambio de contraseña</h4>
-                    <!--current Password    -->
-                    <div class="flex items-center justify-between">
-                        <label for="currentPassword" class="text-[14px] font-light">CONTRASEÑA ACTUAL</label>
-                        <input type="password" name="currentPassword" id="currentPassword" placeholder="Contraseña Actual" class="outline-none bg-transparent border-[0.5px] border-solid border-blue border-opacity-50 rounded-[10px] p-[10px] w-[70%]">
-                    </div>
-                    <!-- new password -->
-                    <div class="flex items-center justify-between">
-                        <label for="newPassword" class="text-[14px] font-light">NUEVA CONTRASEÑA</label>
-                        <input oninput="checkPasswordMatch(), checkPasswordCharacters()" type="password" name="newPassword" id="newPassword" placeholder="Nueva Contraseña" class="outline-none bg-transparent border-[0.5px] border-solid border-blue border-opacity-50 rounded-[10px] p-[10px] w-[70%]">
-                    </div>
-                    <!-- comfirm new password -->
-                    <div class="flex items-center justify-between">
-                        <label for="confirmNewPassword" class="text-[14px] font-light">CONFIRMAR CONTRASEÑA</label>
-                        <input oninput="checkPasswordMatch()" type="password" name="confirmNewPassword" id="confirmNewPassword" placeholder="Confirmar Contraseña" class="outline-none bg-transparent border-[0.5px] border-solid border-blue border-opacity-50 rounded-[10px] p-[10px] w-[70%]">
-                    </div>
-                    <!-- alert -->
-                    <div id="alert" class="hidden w-full p-[10px] justify-between bg-red-100 border-[1px] border-red-300 rounded-[10px]">
-                        <p id="alert-text" class="text-red-600">Las contraseñas no coinciden</p>
-                    </div>
-                    <!-- password check -->
-                    <div id="check-password" class="text-red-600 text-[12px] flex flex-col p-[10px] justify-between">
-                            <p id="password-length">- La contraseña debe ser de al menos 8 caracteres</p>
-                            <p id="password-uppercase">- Una mayuscula</p>
-                            <p id="password-lowercase">- Una minuscula</p>
-                            <p id="password-number">- Un numero</p>
-                            <p id="password-special">- Un caracter especial</p>
-                        </div>
-                    <!-- save changes -->
-                    <div class="items-center justify-end flex w-full">
-                        <button id="save-changes" onclick="saveChanges()" type="button" class="w-fit bg-green rounded-[10px] p-[10px] text-white font-semibold text-[14px] hover:translate-y-[-5px] transition-all duration-500 ease-out">Guardar cambios</button>
-                    </div>
-                </form>
+            <form id="password-form" action="{{ route('buyers.updatePassword', ['username' => $username]) }}" method="POST" class="w-full flex flex-col p-[20px] gap-[20px] border-[0.5px] border-solid border-blue border-opacity-50 rounded-[16px]">
+                @csrf
+                <h4 class="text-[22px] text-blue font-semibold">Cambio de contraseña</h4>
+                <!--current Password -->
+                <div class="flex items-center justify-between">
+                    <label for="currentPassword" class="text-[14px] font-light">CONTRASEÑA ACTUAL</label>
+                    <input type="password" name="currentPassword" id="currentPassword" placeholder="Contraseña Actual" class="outline-none bg-transparent border-[0.5px] border-solid border-blue border-opacity-50 rounded-[10px] p-[10px] w-[70%]">
+                </div>
+                <!-- new password -->
+                <div class="flex items-center justify-between">
+                    <label for="newPassword" class="text-[14px] font-light">NUEVA CONTRASEÑA</label>
+                    <input oninput="checkPasswordMatch(), checkPasswordCharacters()" type="password" name="newPassword" id="newPassword" placeholder="Nueva Contraseña" class="outline-none bg-transparent border-[0.5px] border-solid border-blue border-opacity-50 rounded-[10px] p-[10px] w-[70%]">
+                </div>
+                <!-- confirm new password -->
+                <div class="flex items-center justify-between">
+                    <label for="confirmNewPassword" class="text-[14px] font-light">CONFIRMAR CONTRASEÑA</label>
+                    <input oninput="checkPasswordMatch()" type="password" name="confirmNewPassword" id="confirmNewPassword" placeholder="Confirmar Contraseña" class="outline-none bg-transparent border-[0.5px] border-solid border-blue border-opacity-50 rounded-[10px] p-[10px] w-[70%]">
+                </div>
+                <!-- alert -->
+                <div id="alert" class="hidden w-full p-[10px] justify-between bg-red-100 border-[1px] border-red-300 rounded-[10px]">
+                    <p id="alert-text" class="text-red-600">Las contraseñas no coinciden</p>
+                </div>
+                <!-- password check -->
+                <div id="check-password" class="text-red-600 text-[12px] flex flex-col p-[10px] justify-between">
+                    <p id="password-length">- La contraseña debe ser de al menos 8 caracteres</p>
+                    <p id="password-uppercase">- Una mayuscula</p>
+                    <p id="password-lowercase">- Una minuscula</p>
+                    <p id="password-number">- Un numero</p>
+                    <p id="password-special">- Un caracter especial</p>
+                </div>
+                <!-- save changes -->
+                <div class="items-center justify-end flex w-full">
+                    <button id="save-changes" type="button" onclick="saveChanges()" class="w-fit bg-green rounded-[10px] p-[10px] text-white font-semibold text-[14px] hover:translate-y-[-5px] transition-all duration-500 ease-out">Guardar cambios</button>
+                </div>
+            </form>
             <!-- Personal information end -->
         </div>
     </div>
 </div>
 
 <script>
-    passwordLength = document.getElementById('password-length');
-    passwordUppercase = document.getElementById('password-uppercase');
-    passwordLowercase = document.getElementById('password-lowercase');
-    passwordNumber = document.getElementById('password-number');
-    passwordSpecial = document.getElementById('password-special');
+    document.addEventListener('DOMContentLoaded', function() {
+        const passwordLength = document.getElementById('password-length');
+        const passwordUppercase = document.getElementById('password-uppercase');
+        const passwordLowercase = document.getElementById('password-lowercase');
+        const passwordNumber = document.getElementById('password-number');
+        const passwordSpecial = document.getElementById('password-special');
 
-    password = document.getElementById('newPassword');
-    password_confirmation = document.getElementById('confirmNewPassword');
-    alert = document.getElementById('alert');
-    alertText = document.getElementById('alert-text');
+        const password = document.getElementById('newPassword');
+        const password_confirmation = document.getElementById('confirmNewPassword');
+        const alert = document.getElementById('alert');
+        const alertText = document.getElementById('alert-text');
+        const form = document.getElementById('password-form');
 
-    saveChangesButton = document.getElementById('save-changes');
-    form = document.getElementById('password-form');
+        window.saveChanges = function() {
+            const isValid = checkPasswordCharacters();
 
-    function saveChanges() {
-       const isValid = checkPasswordCharacters();
-       
-       if (isValid) {
-        form.submit();
-       } else {
-        console.log('contraseñas no correctas');
-       }
-    }
+            if (isValid && password.value === password_confirmation.value) {
+                form.submit();
+            } else {
+                console.log('Contraseña no válida o no coinciden');
+            }
+        };
 
-    function checkPasswordMatch() {
-            if (password.value != password_confirmation.value) {
+        function checkPasswordMatch() {
+            if (password.value !== password_confirmation.value) {
                 alertText.innerHTML = 'Las contraseñas no coinciden';
                 alert.classList.remove('hidden');
                 alert.classList.add('flex');
@@ -102,14 +100,10 @@
                 alert.classList.remove('flex');
                 alert.classList.add('hidden');
             }
-    }
+        }
 
-    function checkPasswordCharacters() {
-            console.log(password.value);
-            
-            let isValid = true; // Asumimos que es válido hasta que se demuestre lo contrario
-            console.log(isValid);
-
+        function checkPasswordCharacters() {
+            let isValid = true;
 
             if (password.value.length >= 8) {
                 passwordLength.classList.remove('text-red-600');
@@ -117,7 +111,7 @@
             } else {
                 passwordLength.classList.remove('text-[#4ADE80]');
                 passwordLength.classList.add('text-red-600');
-                isValid = false; // No cumple con la longitud
+                isValid = false;
             }
 
             if (/[A-Z]/.test(password.value)) {
@@ -126,7 +120,7 @@
             } else {
                 passwordUppercase.classList.remove('text-[#4ADE80]');
                 passwordUppercase.classList.add('text-red-600');
-                isValid = false; // No tiene mayúscula
+                isValid = false;
             }
 
             if (/[a-z]/.test(password.value)) {
@@ -135,7 +129,7 @@
             } else {
                 passwordLowercase.classList.remove('text-[#4ADE80]');
                 passwordLowercase.classList.add('text-red-600');
-                isValid = false; // No tiene minúscula
+                isValid = false;
             }
 
             if (/[0-9]/.test(password.value)) {
@@ -144,7 +138,7 @@
             } else {
                 passwordNumber.classList.remove('text-[#4ADE80]');
                 passwordNumber.classList.add('text-red-600');
-                isValid = false; // No tiene número
+                isValid = false;
             }
 
             if (/[^A-Za-z0-9]/.test(password.value)) {
@@ -153,12 +147,20 @@
             } else {
                 passwordSpecial.classList.remove('text-[#4ADE80]');
                 passwordSpecial.classList.add('text-red-600');
-                isValid = false; // No tiene carácter especial
+                isValid = false;
             }
 
-            return isValid; // Devuelve true si todas las condiciones se cumplen
-    }
+            return isValid;
+        }
 
-
-
+        // Vincular funciones de verificación a los campos de entrada
+        password.oninput = function() {
+            checkPasswordMatch();
+            checkPasswordCharacters();
+        };
+        
+        password_confirmation.oninput = checkPasswordMatch;
+    });
 </script>
+
+@endsection
