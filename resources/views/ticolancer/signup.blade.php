@@ -151,6 +151,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     let currentStep = 1;
 
+    // Asignar eventos a los campos de entrada
     password.oninput = function() {
         checkPasswordMatch();
         checkPasswordCharacters();
@@ -158,26 +159,27 @@ document.addEventListener('DOMContentLoaded', function() {
 
     password_confirmation.oninput = checkPasswordMatch;
 
-    function nextStep(step) {
+    window.nextStep = function(step) { // Hacer la función global
         if (step === 1) {
             const isPasswordValid = checkPasswordCharacters();
-            checkPasswordMatch(); // Verificar coincidencia de contraseñas
+            checkPasswordMatch();
 
             if (!isPasswordValid || alert.classList.contains('flex')) {
                 return; // No avanzar si no es válido o hay error
             }
         }
-        
+
+        // Avanza al siguiente paso
         document.getElementById(`step-${step}`).classList.add('hidden');
         document.getElementById(`step-${step + 1}`).classList.remove('hidden', 'flex', 'flex-col', 'w-full', 'gap-[20px]');
         document.getElementById(`step-${step + 1}`).classList.add('flex', 'flex-col', 'w-full', 'gap-[20px]');
-    }
+    };
 
-    function prevStep(step) {
+    window.prevStep = function(step) { // Hacer la función global
         document.getElementById(`step-${step}`).classList.add('hidden');
         document.getElementById(`step-${step - 1}`).classList.remove('hidden', 'flex', 'flex-col', 'w-full', 'gap-[20px]');
         document.getElementById(`step-${step - 1}`).classList.add('flex', 'flex-col', 'w-full', 'gap-[20px]');
-    }
+    };
 
     function checkPasswordMatch() {
         if (password.value !== password_confirmation.value) {
@@ -198,7 +200,7 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             passwordLength.classList.remove('text-[#4ADE80]');
             passwordLength.classList.add('text-red-600');
-            isValid = false; // No cumple con la longitud
+            isValid = false;
         }
 
         if (/[A-Z]/.test(password.value)) {
@@ -207,7 +209,7 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             passwordUppercase.classList.remove('text-[#4ADE80]');
             passwordUppercase.classList.add('text-red-600');
-            isValid = false; // No tiene mayúscula
+            isValid = false;
         }
 
         if (/[a-z]/.test(password.value)) {
@@ -216,7 +218,7 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             passwordLowercase.classList.remove('text-[#4ADE80]');
             passwordLowercase.classList.add('text-red-600');
-            isValid = false; // No tiene minúscula
+            isValid = false;
         }
 
         if (/[0-9]/.test(password.value)) {
@@ -225,7 +227,7 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             passwordNumber.classList.remove('text-[#4ADE80]');
             passwordNumber.classList.add('text-red-600');
-            isValid = false; // No tiene número
+            isValid = false;
         }
 
         if (/[^A-Za-z0-9]/.test(password.value)) {
@@ -234,12 +236,13 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             passwordSpecial.classList.remove('text-[#4ADE80]');
             passwordSpecial.classList.add('text-red-600');
-            isValid = false; // No tiene carácter especial
+            isValid = false;
         }
 
-        return isValid; // Devuelve true si todas las condiciones se cumplen
+        return isValid;
     }
 });
 </script>
+
 
 @endsection
