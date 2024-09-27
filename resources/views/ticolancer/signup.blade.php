@@ -143,7 +143,6 @@
         password_confirmation = document.getElementById('password_confirmation');
         submit = document.getElementById('submit');
         alert = document.getElementById('alert');
-        alertText = document.getElementById('alert-text');
 
         checkPassword = document.getElementById('check-password');
 
@@ -153,8 +152,6 @@
         passwordNumber = document.getElementById('password-number');
         passwordSpecial = document.getElementById('password-special');
 
-        warning = document.getElementById('warning');
-        error = document.getElementById('error');
 
         step1 = document.getElementById('step-1');
         step2 = document.getElementById('step-2');
@@ -190,9 +187,8 @@
 
         function checkPasswordMatch() {
             if (password.value != password_confirmation.value) {
-                alertText.innerHTML = 'Las contraseñas no coinciden';
-                alert.classList.remove('hidden');
                 alert.classList.add('flex');
+                alert.classList.remove('hidden');
             } else {
                 alert.classList.remove('flex');
                 alert.classList.add('hidden');
