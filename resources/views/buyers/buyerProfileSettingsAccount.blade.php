@@ -125,7 +125,6 @@
                             @endforeach
                         </select>
 
-                        <button type="button" class="remove-language"><img class="w-[26px]" src="{{ asset('icons/close-blue.svg') }}" alt="Eliminar idioma"></button>
                     </div>
                 </div>
 
