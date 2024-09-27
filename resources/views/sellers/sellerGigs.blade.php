@@ -4,7 +4,7 @@
 <div class="grid grid-cols-1 bg-blue h-screen w-full max-sm:grid-cols-1">
     <div
         class="flex flex-col justify-center items-center px-[120px] gap-[20px] max-sm:w-[90vw] max-sm:px-0 max-sm:m-auto mt-[6rem]">
-        <form action="{{ route('gigs.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('gigStore') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="mt-4">
                 <input
@@ -70,7 +70,12 @@
                     type="submit">Crear</button>
             </div>
         </form>
-        <a href="{{ route('gigs.index') }}">
+        @if ($message = Session::get('success'))
+                    <div class="bg-[#DCFCE7] border-[1px] border-[#4ADE80] text-[#15763D] px-4 py-3 rounded-[10px] text-center w-full" role="alert">
+                        <p>{{ $message }}</p>
+                    </div>
+            @endif
+        <a href="{{ route('gigCreation') }}">
             <button class=" text-white" type="button">
                 Regresa a tus emprendimientos
             </button>

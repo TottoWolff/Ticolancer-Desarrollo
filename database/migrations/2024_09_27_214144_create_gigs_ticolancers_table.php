@@ -18,8 +18,8 @@ return new class extends Migration
             $table->text('gig_description');
             $table->text('gig_email');
             $table->string('gig_phone_number');
-            $table->foreignId('province_id')->constrained('provinces_ticolancers')->onDelete('cascade');
-            $table->foreignId('city_id')->constrained('cities_ticolancers')->onDelete('cascade');
+            $table->foreignId('provinces_ticolancers_id')->constrained()->onDelete('cascade');
+            $table->foreignId('cities_ticolancers_id')->constrained()->onDelete('cascade');
             //$table->foreignId('category_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });

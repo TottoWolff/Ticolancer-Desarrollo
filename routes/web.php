@@ -54,9 +54,9 @@ Route::post('/{username}/update/location', [BuyerProfile::class, 'updateLocation
 Route::post('/{username}/update/languages', [BuyerProfile::class, 'updateLanguages'])->name('buyers.updateLanguages');
 Route::post('/{username}/update/password', [BuyerProfile::class, 'updatePassword'])->name('buyers.updatePassword');
 
-Route::resource('/gigs', Gigs::class);
-Route::get('/gigcreation', [Gigs::class, 'index'])->name('gigCreation');
-
+//Route::get('/gigs', Gigs::class, 'index')->name('gigs');
+Route::get('/sellers/gigcreation', [Gigs::class, 'index'])->name('gigCreation');
+Route::post('/sellers/gigstore', [Gigs::class, 'store'])->name('gigStore');
 
 
 //ADMIN

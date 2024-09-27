@@ -11,8 +11,9 @@ class GigsController extends Controller
 {
     public function index()
     {
-        $gigs = GigsTicolancer::all();
-        return view('sellers.sellerGigs', ['gigs' => $gigs]);
+        //$gigs = GigsTicolancer::all();
+        return view('sellers.sellerGigs');
+        
     }
 
     /**
@@ -51,11 +52,11 @@ class GigsController extends Controller
         $gig->gig_description = $request->gig_description;
         $gig->gig_email = $request->gig_email;
         $gig->gig_phone_number = $request->gig_phone_number;
-        $gig->province_id = $request->province_id;
-        $gig->city_id = $request->city_id;
+        $gig->provinces_ticolancers_id = $request->province_id;
+        $gig->cities_ticolancers_id = $request->city_id;
         $gig->save();
 
-        return redirect('/gigs');
+        return redirect()->back()->with('warning', 'Gig creado exitosamente');
     }
 
     /**
