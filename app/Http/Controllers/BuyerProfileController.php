@@ -11,6 +11,7 @@ use App\Models\LanguageLevelsTicolancer as LanguageLevels;
 use App\Models\BuyersUsersTicolancer as BuyersUsers;
 use Carbon\Carbon;
 use App\Models\ProvincesTicolancer as Provinces;
+use Illuminate\Support\Facades\Hash;
 
 class BuyerProfileController extends Controller
 {
@@ -173,6 +174,27 @@ class BuyerProfileController extends Controller
     
         return redirect()->back()->with('success', 'Idiomas actualizados exitosamente');
     }
+
+    public function updatePassword(Request $request){
+
+        $user = Auth::guard('buyers')->user();
+
+        $password = $user->password;
+        $currentPassword = $request->currentPassword;
+        $newPassword = $request->newPassword;
+
+        if (Hash::check($currentPassword, $password)) {
+            $newPasswordHash = Hash::make($newPassword);
+            $user ->update([
+                'password' => $newPasswordHash
+            ]);
+            return redirect()->back()->with('success', 'Contraseña actualizada exitosamente');
+        } else {
+            return redirect()->back()->with('error', 'La contraseña actual es incorrecta');
+        }
+    }
+        
+    
     
 
         

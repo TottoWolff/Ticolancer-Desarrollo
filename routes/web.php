@@ -52,6 +52,7 @@ Route::post('/{username}/update/contact-info', [BuyerProfile::class, 'updateCont
 Route::post('/{username}/desactivate-account', [BuyerProfile::class, 'desactivateAccount'])->name('buyers.desactivateAccount');
 Route::post('/{username}/update/location', [BuyerProfile::class, 'updateLocation'])->name('buyers.updateLocation');
 Route::post('/{username}/update/languages', [BuyerProfile::class, 'updateLanguages'])->name('buyers.updateLanguages');
+Route::post('/{username}/update/password', [BuyerProfile::class, 'updatePassword'])->name('buyers.updatePassword');
 
 Route::resource('/gigs', Gigs::class);
 Route::get('/gigcreation', [Gigs::class, 'index'])->name('gigCreation');

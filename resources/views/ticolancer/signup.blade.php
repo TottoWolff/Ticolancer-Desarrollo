@@ -15,13 +15,16 @@
                         <input oninput="hideMessage()" id="email" name="email" type="text" placeholder="Email" class="placeholder:text-slate-400 flex w-full border-b-[1px] border-solid border-white bg-transparent border-opacity-50 px-[20px] py-[10px] text-white text-[16px] font-regular  outline-none">
                         <input oninput="checkPasswordMatch(), checkPasswordCharacters(), hideMessage()" id="password" name="password" type="password" placeholder="Contraseña" class="placeholder:text-slate-400 flex w-full border-b-[1px] border-solid border-white bg-transparent border-opacity-50 px-[20px] py-[10px] text-white text-[16px] font-regular  outline-none">
                         <input oninput="checkPasswordMatch(), hideMessage()" id="password_confirmation" name="password_confirmation" type="password" placeholder="Confirmar contraseña" class="placeholder:text-slate-400 flex w-full border-b-[1px] border-solid border-white bg-transparent border-opacity-50 px-[20px] py-[10px] text-white text-[16px] font-regular  outline-none">
+                        <div id="alert" class="hidden w-full p-[10px] justify-between bg-red-100 border-[1px] border-red-300 rounded-[10px]">
+                            <p id="alert-text" class="text-red-600">Las contraseñas no coinciden</p>
+                        </div>
                         <input onclick="nextStep(1)" type="button" value="Siguiente " class="rounded-[10px] cursor-pointer transition-all duration-500 ease-out hover:translate-y-[-5px] hover:bg-green hover:text-white w-full bg-white px-[20px] py-[10px] text-blue text-[16px] font-semibold  outline-none">
-                        <div id="check-password" class="flex flex-col p-[10px] justify-between">
-                            <p id="password-length" class="text-red-600 text-[14px]">- La contraseña debe ser de al menos 8 caracteres</p>
-                            <p id="password-uppercase" class="text-red-600 text-[14px]">- Una mayuscula</p>
-                            <p id="password-lowercase" class="text-red-600 text-[14px]">- Una minuscula</p>
-                            <p id="password-number" class="text-red-600 text-[14px]">- Un numero</p>
-                            <p id="password-special" class="text-red-600 text-[14px]">- Un caracter especial</p>
+                        <div id="check-password" class="text-red-600 text-[12px] flex flex-col p-[10px] justify-between">
+                            <p id="password-length">- La contraseña debe ser de al menos 8 caracteres</p>
+                            <p id="password-uppercase">- Una mayuscula</p>
+                            <p id="password-lowercase">- Una minuscula</p>
+                            <p id="password-number">- Un numero</p>
+                            <p id="password-special">- Un caracter especial</p>
                         </div>
                     </div>
                 {{--Step 1 end--}}
@@ -114,11 +117,6 @@
 
                     </div>
                 {{--Step 5 end--}}
-
-
-                <div id="alert" class="hidden p-[10px] justify-between bg-red-100 border-[1px] border-red-300 rounded-[10px]">
-                    <p id="alert-text" class="text-red-600">Las contraseñas no coinciden</p>
-                </div>
 
 
                 @if ($message = Session::get('error'))
