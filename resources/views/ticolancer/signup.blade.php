@@ -137,125 +137,109 @@
     </div>
 
     <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const password = document.getElementById('password');
+    const password_confirmation = document.getElementById('password_confirmation');
+    const alert = document.getElementById('alert');
 
+    const checkPassword = document.getElementById('check-password');
+    const passwordLength = document.getElementById('password-length');
+    const passwordUppercase = document.getElementById('password-uppercase');
+    const passwordLowercase = document.getElementById('password-lowercase');
+    const passwordNumber = document.getElementById('password-number');
+    const passwordSpecial = document.getElementById('password-special');
 
-        password = document.getElementById('password');
-        password_confirmation = document.getElementById('password_confirmation');
-        submit = document.getElementById('submit');
-        alert = document.getElementById('alert');
+    let currentStep = 1;
 
-        checkPassword = document.getElementById('check-password');
+    password.oninput = function() {
+        checkPasswordMatch();
+        checkPasswordCharacters();
+    };
 
-        passwordLength = document.getElementById('password-length');
-        passwordUppercase = document.getElementById('password-uppercase');
-        passwordLowercase = document.getElementById('password-lowercase');
-        passwordNumber = document.getElementById('password-number');
-        passwordSpecial = document.getElementById('password-special');
+    password_confirmation.oninput = checkPasswordMatch;
 
+    function nextStep(step) {
+        if (step === 1) {
+            const isPasswordValid = checkPasswordCharacters();
+            checkPasswordMatch(); // Verificar coincidencia de contraseñas
 
-        step1 = document.getElementById('step-1');
-        step2 = document.getElementById('step-2');
-        step3 = document.getElementById('step-3');
-        step4 = document.getElementById('step-4');
-        step5 = document.getElementById('step-5');
-
-        phone = document.getElementById('phone');
-
-        let currentStep = 1;
-
-        function nextStep(step) {
-            if (step === 1) { // Solo validamos en el paso 1
-                const isPasswordValid = checkPasswordCharacters();
-                checkPasswordMatch(); // También comprueba si las contraseñas coinciden
-
-                if (!isPasswordValid || alert.classList.contains('flex')) {
-                    return; // No avanza si no es válido o si hay un mensaje de error
-                }
+            if (!isPasswordValid || alert.classList.contains('flex')) {
+                return; // No avanzar si no es válido o hay error
             }
-            
-            // Avanza al siguiente paso si todas las validaciones son correctas
-            document.getElementById(`step-${step}`).classList.add('hidden');
-            document.getElementById(`step-${step + 1}`).classList.remove('hidden', 'flex', 'flex-col', 'w-full', 'gap-[20px]');
-            document.getElementById(`step-${step + 1}`).classList.add('flex', 'flex-col', 'w-full', 'gap-[20px]');
-        }
-
-        function prevStep(step) {
-            document.getElementById(`step-${step}`).classList.add('hidden');
-            document.getElementById(`step-${step - 1}`).classList.remove('hidden', 'flex', 'flex-col', 'w-full', 'gap-[20px]');
-            document.getElementById(`step-${step - 1}`).classList.add('flex', 'flex-col', 'w-full', 'gap-[20px]');
-        }
-
-        function checkPasswordMatch() {
-            if (password.value != password_confirmation.value) {
-                alert.classList.add('flex');
-                alert.classList.remove('hidden');
-            } else {
-                alert.classList.remove('flex');
-                alert.classList.add('hidden');
-            }
-        }
-
-        function checkPasswordCharacters() {
-            console.log(password.value);
-            
-            
-            let isValid = true; // Asumimos que es válido hasta que se demuestre lo contrario
-            console.log(isValid);
-
-
-            if (password.value.length >= 8) {
-                passwordLength.classList.remove('text-red-600');
-                passwordLength.classList.add('text-[#4ADE80]');
-            } else {
-                passwordLength.classList.remove('text-[#4ADE80]');
-                passwordLength.classList.add('text-red-600');
-                isValid = false; // No cumple con la longitud
-            }
-
-            if (/[A-Z]/.test(password.value)) {
-                passwordUppercase.classList.remove('text-red-600');
-                passwordUppercase.classList.add('text-[#4ADE80]');
-            } else {
-                passwordUppercase.classList.remove('text-[#4ADE80]');
-                passwordUppercase.classList.add('text-red-600');
-                isValid = false; // No tiene mayúscula
-            }
-
-            if (/[a-z]/.test(password.value)) {
-                passwordLowercase.classList.add('text-[#4ADE80]');
-                passwordLowercase.classList.remove('text-red-600');
-            } else {
-                passwordLowercase.classList.remove('text-[#4ADE80]');
-                passwordLowercase.classList.add('text-red-600');
-                isValid = false; // No tiene minúscula
-            }
-
-            if (/[0-9]/.test(password.value)) {
-                passwordNumber.classList.add('text-[#4ADE80]');
-                passwordNumber.classList.remove('text-red-600');
-            } else {
-                passwordNumber.classList.remove('text-[#4ADE80]');
-                passwordNumber.classList.add('text-red-600');
-                isValid = false; // No tiene número
-            }
-
-            if (/[^A-Za-z0-9]/.test(password.value)) {
-                passwordSpecial.classList.add('text-[#4ADE80]');
-                passwordSpecial.classList.remove('text-red-600');
-            } else {
-                passwordSpecial.classList.remove('text-[#4ADE80]');
-                passwordSpecial.classList.add('text-red-600');
-                isValid = false; // No tiene carácter especial
-            }
-
-            return isValid; // Devuelve true si todas las condiciones se cumplen
         }
         
-        
+        document.getElementById(`step-${step}`).classList.add('hidden');
+        document.getElementById(`step-${step + 1}`).classList.remove('hidden', 'flex', 'flex-col', 'w-full', 'gap-[20px]');
+        document.getElementById(`step-${step + 1}`).classList.add('flex', 'flex-col', 'w-full', 'gap-[20px]');
+    }
 
-        
+    function prevStep(step) {
+        document.getElementById(`step-${step}`).classList.add('hidden');
+        document.getElementById(`step-${step - 1}`).classList.remove('hidden', 'flex', 'flex-col', 'w-full', 'gap-[20px]');
+        document.getElementById(`step-${step - 1}`).classList.add('flex', 'flex-col', 'w-full', 'gap-[20px]');
+    }
 
+    function checkPasswordMatch() {
+        if (password.value !== password_confirmation.value) {
+            alert.classList.add('flex');
+            alert.classList.remove('hidden');
+        } else {
+            alert.classList.remove('flex');
+            alert.classList.add('hidden');
+        }
+    }
 
+    function checkPasswordCharacters() {
+        let isValid = true;
 
-    </script>
+        if (password.value.length >= 8) {
+            passwordLength.classList.remove('text-red-600');
+            passwordLength.classList.add('text-[#4ADE80]');
+        } else {
+            passwordLength.classList.remove('text-[#4ADE80]');
+            passwordLength.classList.add('text-red-600');
+            isValid = false; // No cumple con la longitud
+        }
+
+        if (/[A-Z]/.test(password.value)) {
+            passwordUppercase.classList.remove('text-red-600');
+            passwordUppercase.classList.add('text-[#4ADE80]');
+        } else {
+            passwordUppercase.classList.remove('text-[#4ADE80]');
+            passwordUppercase.classList.add('text-red-600');
+            isValid = false; // No tiene mayúscula
+        }
+
+        if (/[a-z]/.test(password.value)) {
+            passwordLowercase.classList.add('text-[#4ADE80]');
+            passwordLowercase.classList.remove('text-red-600');
+        } else {
+            passwordLowercase.classList.remove('text-[#4ADE80]');
+            passwordLowercase.classList.add('text-red-600');
+            isValid = false; // No tiene minúscula
+        }
+
+        if (/[0-9]/.test(password.value)) {
+            passwordNumber.classList.add('text-[#4ADE80]');
+            passwordNumber.classList.remove('text-red-600');
+        } else {
+            passwordNumber.classList.remove('text-[#4ADE80]');
+            passwordNumber.classList.add('text-red-600');
+            isValid = false; // No tiene número
+        }
+
+        if (/[^A-Za-z0-9]/.test(password.value)) {
+            passwordSpecial.classList.add('text-[#4ADE80]');
+            passwordSpecial.classList.remove('text-red-600');
+        } else {
+            passwordSpecial.classList.remove('text-[#4ADE80]');
+            passwordSpecial.classList.add('text-red-600');
+            isValid = false; // No tiene carácter especial
+        }
+
+        return isValid; // Devuelve true si todas las condiciones se cumplen
+    }
+});
+</script>
+
 @endsection
