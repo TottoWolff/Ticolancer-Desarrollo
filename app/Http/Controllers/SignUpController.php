@@ -53,7 +53,30 @@ class SignUpController extends Controller
      */
     public function store(Request $request)
     {
-        // return response()->json($request->all());
+        //Verificar mayusculas contraseña
+        if (!preg_match('/[A-Z]/', $request->password)) {
+            return redirect()->route('signup')->with('warning', 'La contraseña debe contener al menos una mayuscula');
+        }
+
+        //Verificar minusculas contraseña
+        if (!preg_match('/[a-z]/', $request->password)) {
+            return redirect()->route('signup')->with('warning', 'La contraseña debe contener al menos una minuscula');
+        }
+
+        //Verificar numero contraseña
+        if (!preg_match('/[0-9]/', $request->password)) {
+            return redirect()->route('signup')->with('warning', 'La contraseña debe contener al menos un numero');
+        }
+
+        //Verificar caracteres especiales contraseña
+        if (!preg_match('/[^A-Za-z0-9]/', $request->password)) {
+            return redirect()->route('signup')->with('warning', 'La contraseña debe contener al menos un caracter especial');
+        }
+
+        //Verificar longitud contraseña
+        if (strlen($request->password) < 8) {
+            return redirect()->route('signup')->with('warning', 'La contraseña debe tener al menos 8 caracteres');
+        }
         
         // Verificar si ya existe un usuario con el correo ingresado
         $existingUser = BuyersUsers::where('email', $request->email)->first();
