@@ -76,6 +76,7 @@ class BuyerProfileController extends Controller
         ->get();
         $userProvince=$user->city->province->province;
         $userCity=$user->city->city;
+        
 
 
         $languages = Languages::all();
@@ -148,32 +149,31 @@ class BuyerProfileController extends Controller
     }
 
 
-    public function updateLanguages(Request $request)
-{
-    // Obtén el usuario autenticado
-    $user = Auth::guard('buyers')->user();
-
-   
-
-    // Eliminar idiomas que no están en el array
-    $user->languages()->whereNotIn('languages_ticolancers_id', $request->language_ids)->delete();
-
-    // Agregar nuevos idiomas que no existan
-    foreach ($request->language_ids as $index => $languageId) {
-        // Verifica si el idioma ya está asociado al usuario
-        if (!$user->languages()->where('languages_ticolancers_id', $languageId)->exists()) {
-            // Si no existe, créalo
-            $user->languages()->create([
-                'languages_ticolancers_id' => $languageId, 
-                'buyers_users_ticolancers_id' => $user->id,
-                'language_levels_ticolancers_id' => $request->language_levels[$index] // Asignar el nivel de idioma correspondiente
-            ]);
+    public function updateLanguages(Request $request) {
+        $user = Auth::guard('buyers')->user();
+    
+        $languageIds = $request->input('language_ids');
+        $levelIds = $request->input('level');
+        
+      
+        $user->languages()->delete();
+    
+       
+        if (is_array($languageIds) && is_array($levelIds) && count($languageIds) === count($levelIds)) {
+            foreach ($languageIds as $index => $languageId) {
+                $levelId = $levelIds[$index];
+    
+                // Crear la nueva relación de lenguaje y nivel
+                $user->languages()->create([
+                    'languages_ticolancers_id' => $languageId,
+                    'language_levels_ticolancers_id' => $levelId,
+                ]);
+            }
         }
+    
+        return redirect()->back()->with('success', 'Idiomas actualizados exitosamente');
     }
-
-    return redirect()->back()->with('success', 'Información actualizada exitosamente');
-}
-
+    
 
         
         

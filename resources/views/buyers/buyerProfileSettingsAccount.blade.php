@@ -85,24 +85,43 @@
                 @csrf
                 <h4 class="text-[22px] text-blue font-semibold">Idiomas</h4>
 
-                <!-- Idiomas dinámicos -->
-                <div id="languages-container">
-                    <!-- Idioma -->
+                <!-- Languages from User (User's registered languages) -->
+                <div id="user-languages-container">
+                    @foreach ($userLanguages as $userLanguage)
                     <div class="language-item flex items-center gap-[20px] my-[20px]">
-                        <select name="language_ids[] multiple" id="language" class="text-[14px] font-light uppercase outline-none bg-transparent border-[0.5px] border-solid border-blue border-opacity-50 rounded-[10px] p-[10px] w-full">
-                            <!-- Aquí solo necesitas un select con varias opciones -->
+                        <select name="language_ids[]" class="text-[14px] font-light uppercase outline-none bg-transparent border-[0.5px] border-solid border-blue border-opacity-50 rounded-[10px] p-[10px] w-full">
+                            <option class="text-[14px] font-light uppercase" value="{{ $userLanguage->language_id }}" selected>{{ $userLanguage->language_name }}</option>
+                            @foreach ($languages as $optionLanguage)
+                            <option class="text-[14px] font-light uppercase" value="{{ $optionLanguage->id }}">{{ $optionLanguage->language }}</option>
+                            @endforeach
+                        </select>
+
+                        <select name="level[]" class="text-[14px] font-light uppercase outline-none bg-transparent border-[0.5px] border-solid border-blue border-opacity-50 rounded-[10px] p-[10px] w-full">
+                            <option class="text-[14px] font-light uppercase" value="{{ $userLanguage->level_id }}" selected>{{ $userLanguage->level_name }}</option>
+                            @foreach ($levels as $level)
+                            <option class="text-[14px] font-light uppercase" value="{{ $level->id }}">{{ $level->level }}</option>
+                            @endforeach
+                        </select>
+
+                        <button type="button" class="remove-language"><img class="w-[26px]" src="{{ asset('icons/close-blue.svg') }}" alt="Eliminar idioma"></button>
+                    </div>
+                    @endforeach
+                </div>
+
+                <!-- Dynamic Languages (Newly added languages) -->
+                <div id="new-languages-container">
+                    <div class="language-item flex items-center gap-[20px] my-[20px]">
+                        <select name="language_ids[]" class="text-[14px] font-light uppercase outline-none bg-transparent border-[0.5px] border-solid border-blue border-opacity-50 rounded-[10px] p-[10px] w-full">
+                            <option class="text-[14px] font-light uppercase" value="" disabled selected>Nuevo idioma</option>
                             @foreach ($languages as $language)
                             <option class="text-[14px] font-light uppercase" value="{{ $language->id }}">{{ $language->language }}</option>
                             @endforeach
                         </select>
 
-                        <select name="language_levels[]" id="level" class="text-[14px] font-light uppercase outline-none bg-transparent border-[0.5px] border-solid border-blue border-opacity-50 rounded-[10px] p-[10px] w-full">
-                            <!-- Opciones de nivel -->
-                            @foreach ($userLanguages as $userlanguage)
-                            <option class="text-[14px] font-light uppercase" value="{{ $userlanguage->level_id }}">{{ $userlanguage->level_name }}</option>
+                        <select name="level[]" class="text-[14px] font-light uppercase outline-none bg-transparent border-[0.5px] border-solid border-blue border-opacity-50 rounded-[10px] p-[10px] w-full">
+                            <option class="text-[14px] font-light uppercase" value="" disabled selected>Selecciona el nivel</option>
                             @foreach ($levels as $level)
                             <option class="text-[14px] font-light uppercase" value="{{ $level->id }}">{{ $level->level }}</option>
-                            @endforeach
                             @endforeach
                         </select>
 
@@ -110,15 +129,14 @@
                     </div>
                 </div>
 
-
-                <!-- save changes -->
+                <!-- Add new language button -->
                 <div class="items-end justify-center flex flex-col w-full gap-[10px]">
                     <button type="button" id="add-language" class="text-[14px] p-[10px] font-light underline hover:text-green transition-all duration-500 ease-out">Agregar nuevo</button>
                     <button type="submit" class="w-fit bg-green rounded-[10px] p-[10px] text-white font-semibold text-[14px] hover:translate-y-[-5px] transition-all duration-500 ease-out">Guardar cambios</button>
                 </div>
             </form>
-            <!-- Languages end -->
 
+            <!-- Languages end -->
 
             <!-- location -->
             <form action="{{ route('buyers.updateLocation', ['username' => $username]) }}" method="POST" class="w-full flex flex-col p-[20px] gap-[20px] border-[0.5px] border-solid border-blue border-opacity-50 rounded-[16px]">
@@ -190,34 +208,32 @@
 </div>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const languagesContainer = document.getElementById('languages-container');
-        const addLanguageButton = document.getElementById('add-language');
+  document.addEventListener("DOMContentLoaded", function() {
+    const languagesContainer = document.getElementById('new-languages-container');
+    const addLanguageButton = document.getElementById('add-language');
 
-        // Evento para agregar nuevo idioma
-        addLanguageButton.addEventListener('click', function() {
+    // Evento para agregar nuevo idioma
+    addLanguageButton.addEventListener('click', function() {
+        const languageItem = document.querySelector('.language-item').cloneNode(true);
 
-            const languageItem = document.querySelector('.language-item');
-            const newLanguageItem = languageItem.cloneNode(true);
+        // Resetear valores de selects para que el usuario seleccione nuevos valores
+        languageItem.querySelector('select[name="language_ids[]"]').value = '';
+        languageItem.querySelector('select[name="level[]"]').value = '';
 
-
-            newLanguageItem.querySelector('select[name="language_ids[]"]').value = '';
-            newLanguageItem.querySelector('select[name="level[]"]').value = '';
-
-
-            newLanguageItem.querySelector('.remove-language').addEventListener('click', function() {
-                newLanguageItem.remove(); // Eliminar el bloque actual
-            });
-
-
-            languagesContainer.appendChild(newLanguageItem);
+        // Agregar evento para remover el idioma agregado
+        languageItem.querySelector('.remove-language').addEventListener('click', function() {
+            languageItem.remove();
         });
 
+        languagesContainer.appendChild(languageItem);
+    });
 
-        document.querySelectorAll('.remove-language').forEach(function(button) {
-            button.addEventListener('click', function() {
-                this.parentElement.remove();
-            });
+    // Remover idioma existente
+    document.querySelectorAll('.remove-language').forEach(function(button) {
+        button.addEventListener('click', function() {
+            this.parentElement.remove();
         });
     });
+});
+
 </script>

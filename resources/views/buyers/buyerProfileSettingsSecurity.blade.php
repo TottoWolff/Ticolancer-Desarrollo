@@ -15,31 +15,23 @@
         <div class="w-full flex-col flex py-[20px] gap-[20px]">
             <!-- Personal information -->
                 <form action="" class="w-full flex flex-col p-[20px] gap-[20px] border-[0.5px] border-solid border-blue border-opacity-50 rounded-[16px]">
-                    <h4 class="text-[22px] text-blue font-semibold">Información personal</h4>
-                    <!-- name -->
+                    <h4 class="text-[22px] text-blue font-semibold">Cambio de contraseña</h4>
+                    <!--current Password    -->
                     <div class="flex items-center justify-between">
-                        <label for="name" class="text-[14px] font-light">NOMBRE</label>
-                        <input type="text" name="name" id="name" placeholder="Name" class="outline-none bg-transparent border-[0.5px] border-solid border-blue border-opacity-50 rounded-[10px] p-[10px] w-[80%]">
+                        <label for="name" class="text-[14px] font-light">CONTRASEÑA ACTUAL</label>
+                        <input type="text" name="name" id="name" placeholder="Contraseña" class="outline-none bg-transparent border-[0.5px] border-solid border-blue border-opacity-50 rounded-[10px] p-[10px] w-[70%]">
                     </div>
-                    <!-- lastname -->
+                    <!-- new password -->
                     <div class="flex items-center justify-between">
-                        <label for="lastname" class="text-[14px] font-light">APELLIDOS</label>
-                        <input type="text" name="lastname" id="lastname" placeholder="Lastname" class="outline-none bg-transparent border-[0.5px] border-solid border-blue border-opacity-50 rounded-[10px] p-[10px] w-[80%]">
+                        <label for="lastname" class="text-[14px] font-light">NUEVA CONTRASEÑA</label>
+                        <input type="text" name="lastname" id="lastname" placeholder="Nueva Contraseña" class="outline-none bg-transparent border-[0.5px] border-solid border-blue border-opacity-50 rounded-[10px] p-[10px] w-[70%]">
                     </div>
-                    <!-- username -->
+                    <!-- comfirm new password -->
                     <div class="flex items-center justify-between">
-                        <label for="username" class="text-[14px] font-light">USERNAME</label>
-                        <input type="text" name="username" id="username" placeholder="Username" class="outline-none bg-transparent border-[0.5px] border-solid border-blue border-opacity-50 rounded-[10px] p-[10px] w-[80%]">
+                        <label for="username" class="text-[14px] font-light">CONFIRMAR CONTRASEÑA</label>
+                        <input type="text" name="username" id="username" placeholder="Confirmar Contraseña" class="outline-none bg-transparent border-[0.5px] border-solid border-blue border-opacity-50 rounded-[10px] p-[10px] w-[70%]">
                     </div>
-                    <!-- email -->
-                    <div class="flex items-center justify-between">
-                        <label for="email" class="text-[14px] font-light">EMAIL</label>
-                        <input type="text" name="email" id="email" placeholder="Email" class="outline-none bg-transparent border-[0.5px] border-solid border-blue border-opacity-50 rounded-[10px] p-[10px] w-[80%]">
-                    </div>
-                    <!-- save changes -->
-                    <div class="items-center justify-end flex w-full">
-                        <button class="w-fit bg-green rounded-[10px] p-[10px] text-white font-semibold text-[14px] hover:translate-y-[-5px] transition-all duration-500 ease-out">Guardar cambios</button>
-                    </div>
+                    
                 </form>
             <!-- Personal information end -->
         </div>
