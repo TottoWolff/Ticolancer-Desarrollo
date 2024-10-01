@@ -58,6 +58,9 @@ Route::post('/{username}/update/password', [BuyerProfile::class, 'updatePassword
 Route::get('/sellers/gigcreation', [Gigs::class, 'index'])->name('gigCreation');
 Route::post('/sellers/gigstore', [Gigs::class, 'store'])->name('gigStore');
 
+Route::get('/sellers/gigs', [FreelancerServices::class, 'index'])->name('freelancerServices');
+Route::get('/sellers/gig', [IndividualService::class, 'index'])->name('individualService');
+
 
 //ADMIN
 Route::get('/admin/signup', [SignUpAdmin::class, 'index'])->name('admin.signup');
