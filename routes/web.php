@@ -10,6 +10,9 @@ use App\Http\Controllers\LoginAdminController as LoginAdmin;
 use App\Http\Controllers\DashboardAdminController as DashboardAdmin;
 use App\Http\Controllers\BuyerProfileController as BuyerProfile;
 use App\Http\Controllers\GigsController as Gigs;
+use App\Http\Controllers\SellerGigController as SellerGig;
+use App\Http\Controllers\SellerGigsProfileController as SellerGigsProfile;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -58,8 +61,8 @@ Route::post('/{username}/update/password', [BuyerProfile::class, 'updatePassword
 Route::get('/sellers/gigcreation', [Gigs::class, 'index'])->name('gigCreation');
 Route::post('/sellers/gigstore', [Gigs::class, 'store'])->name('gigStore');
 
-Route::get('/sellers/gigs', [FreelancerServices::class, 'index'])->name('freelancerServices');
-Route::get('/sellers/gig', [IndividualService::class, 'index'])->name('individualService');
+Route::get('/sellers/gigs', [SellerGigsProfile::class, 'index'])->name('sellerGigsProfile');
+Route::get('/sellers/gig', [SellerGig::class, 'index'])->name('sellerGig');
 
 
 //ADMIN

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class FreelancerServicesController extends Controller
+class SellerGigsProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -12,7 +12,7 @@ class FreelancerServicesController extends Controller
     public function index()
     {
         //
-        return View('freelancer.freelancerServices');
+        return View('sellers.sellerGigsProfile');
     }
 
     /**
