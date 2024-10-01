@@ -12,7 +12,7 @@ class SellerGigController extends Controller
     public function index()
     {
         //
-        return View('sellers.sellerGigs');
+        return View('sellers.sellerGig');
     }
 
     /**
