@@ -14,6 +14,7 @@ class GigsTicolancer extends Model
         'gig_description',
         'gig_email',
         'gig_phone_number',
+        'sellers_id',
         'province_id',
         'city_id'
     ];
