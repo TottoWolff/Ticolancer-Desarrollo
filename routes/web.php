@@ -9,6 +9,7 @@ use App\Http\Controllers\SignUpAdminController as SignUpAdmin;
 use App\Http\Controllers\LoginAdminController as LoginAdmin;
 use App\Http\Controllers\DashboardAdminController as DashboardAdmin;
 use App\Http\Controllers\BuyerProfileController as BuyerProfile;
+use App\Http\Controllers\SellerProfileController as SellerProfile;
 use App\Http\Controllers\GigsController as Gigs;
 use App\Http\Controllers\SellerGigController as SellerGig;
 use App\Http\Controllers\SellerGigsProfileController as SellerGigsProfile;
@@ -40,7 +41,7 @@ Route::post('/login', [Login::class, 'login'])->name('login.login');
 Route::post('/logout', [Login::class, 'logout'])->name('login.logout');
 Route::post('/recover', [Login::class, 'recover'])->name('login.recover');
 
-
+//ROUTES FOR BUYERS
 Route::get('buyers/{username}', [BuyerProfile::class, 'index'])->name('buyerProfile');
 Route::get('buyers/{username}/settings/account', [BuyerProfile::class, 'settingsAccount'])->name('buyerProfileSettingsAccount');
 Route::get('buyers/{username}/settings/security', [BuyerProfile::class, 'settingsSecurity'])->name('buyerProfileSettingsSecurity');
@@ -52,6 +53,21 @@ Route::post('/{username}/desactivate-account', [BuyerProfile::class, 'desactivat
 Route::post('/{username}/update/location', [BuyerProfile::class, 'updateLocation'])->name('buyers.updateLocation');
 Route::post('/{username}/update/languages', [BuyerProfile::class, 'updateLanguages'])->name('buyers.updateLanguages');
 Route::post('/{username}/update/password', [BuyerProfile::class, 'updatePassword'])->name('buyers.updatePassword');
+
+
+//ROUTES FOR SELLERS
+Route::get('sellers/{username}', [SellerProfile::class, 'index'])->name('sellerProfile');
+Route::get('sellers/{username}/settings/account', [SellerProfile::class, 'settingsAccount'])->name('sellerProfileSettingsAccount');
+Route::get('sellers/{username}/settings/security', [SellerProfile::class, 'settingsSecurity'])->name('sellerProfileSettingsSecurity');
+Route::post('/sellers/update-picture', [SellerProfile::class, 'updatePicture'])->name('sellers.updatePicture');
+Route::post('/sellers/delete-picture', [SellerProfile::class, 'deletePicture'])->name('sellers.deletePicture');
+Route::post('/{username}/update/personal-info', [SellerProfile::class, 'updatePersonalInfo'])->name('sellers.updatePersonalInfo');
+Route::post('/{username}/update/contact-info', [SellerProfile::class, 'updateContactInfo'])->name('sellers.updateContactInfo');
+Route::post('/{username}/desactivate-account', [SellerProfile::class, 'desactivateAccount'])->name('sellers.desactivateAccount');
+Route::post('/{username}/update/location', [SellerProfile::class, 'updateLocation'])->name('sellers.updateLocation');
+Route::post('/{username}/update/languages', [SellerProfile::class, 'updateLanguages'])->name('sellers.updateLanguages');
+Route::post('/{username}/update/password', [SellerProfile::class, 'updatePassword'])->name('sellers.updatePassword');
+
 
 //Route::get('/gigs', Gigs::class, 'index')->name('gigs');
 Route::get('/sellers/gigcreation', [Gigs::class, 'index'])->name('gigCreation');
