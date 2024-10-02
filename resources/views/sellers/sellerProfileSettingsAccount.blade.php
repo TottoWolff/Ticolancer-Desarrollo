@@ -137,6 +137,29 @@
 
             <!-- Languages end -->
 
+            <!-- address -->
+            <form action="{{ route('sellers.updateAddress', ['username' => $username]) }}" method="POST" class="w-full flex flex-col p-[20px] gap-[20px] border-[0.5px] border-solid border-blue border-opacity-50 rounded-[16px]">
+                @csrf
+                <h4 class="text-[22px] text-blue font-semibold">Dirección</h4>
+
+                <div class="flex items-center gap-[20px] w-full">
+                    
+                        
+                        <div class="flex items-center w-full gap-[20px]">
+                            <input type="text" name="sellerAddress" id="phone" value="{{ $sellerAddress }}" placeholder="{{ $sellerAddress }}" class="outline-none bg-transparent border-[0.5px] border-solid border-blue border-opacity-50 rounded-[10px] p-[10px] w-[90%]">
+                        </div>
+                   
+
+                </div>
+
+
+                <!-- save changes -->
+                <div class="items-end justify-center flex flex-col w-full gap-[10px]">
+                    <button type="submit" class="w-fit bg-green rounded-[10px] p-[10px] text-white font-semibold text-[14px] hover:translate-y-[-5px] transition-all duration-500 ease-out">Guardar cambios</button>
+                </div>
+            </form>
+            <!-- address end -->
+
             <!-- location -->
             <form action="{{ route('sellers.updateLocation', ['username' => $username]) }}" method="POST" class="w-full flex flex-col p-[20px] gap-[20px] border-[0.5px] border-solid border-blue border-opacity-50 rounded-[16px]">
                 @csrf
@@ -207,32 +230,31 @@
 </div>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const languagesContainer = document.getElementById('new-languages-container');
-    const addLanguageButton = document.getElementById('add-language');
+    document.addEventListener("DOMContentLoaded", function() {
+        const languagesContainer = document.getElementById('new-languages-container');
+        const addLanguageButton = document.getElementById('add-language');
 
-    // Evento para agregar nuevo idioma
-    addLanguageButton.addEventListener('click', function() {
-        const languageItem = document.querySelector('.language-item').cloneNode(true);
+        // Evento para agregar nuevo idioma
+        addLanguageButton.addEventListener('click', function() {
+            const languageItem = document.querySelector('.language-item').cloneNode(true);
 
-        // Resetear valores de selects para que el usuario seleccione nuevos valores
-        languageItem.querySelector('select[name="language_ids[]"]').value = '';
-        languageItem.querySelector('select[name="level[]"]').value = '';
+            // Resetear valores de selects para que el usuario seleccione nuevos valores
+            languageItem.querySelector('select[name="language_ids[]"]').value = '';
+            languageItem.querySelector('select[name="level[]"]').value = '';
 
-        // Agregar evento para remover el idioma agregado
-        languageItem.querySelector('.remove-language').addEventListener('click', function() {
-            languageItem.remove();
+            // Agregar evento para remover el idioma agregado
+            languageItem.querySelector('.remove-language').addEventListener('click', function() {
+                languageItem.remove();
+            });
+
+            languagesContainer.appendChild(languageItem);
         });
 
-        languagesContainer.appendChild(languageItem);
-    });
-
-    // Remover idioma existente
-    document.querySelectorAll('.remove-language').forEach(function(button) {
-        button.addEventListener('click', function() {
-            this.parentElement.remove();
+        // Remover idioma existente
+        document.querySelectorAll('.remove-language').forEach(function(button) {
+            button.addEventListener('click', function() {
+                this.parentElement.remove();
+            });
         });
     });
-});
-
 </script>

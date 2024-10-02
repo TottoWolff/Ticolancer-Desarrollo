@@ -67,6 +67,7 @@ Route::post('/{username}/desactivate-account', [SellerProfile::class, 'desactiva
 Route::post('/{username}/update/location', [SellerProfile::class, 'updateLocation'])->name('sellers.updateLocation');
 Route::post('/{username}/update/languages', [SellerProfile::class, 'updateLanguages'])->name('sellers.updateLanguages');
 Route::post('/{username}/update/password', [SellerProfile::class, 'updatePassword'])->name('sellers.updatePassword');
+Route::post('/{username}/update/address', [SellerProfile::class, 'updateAddress'])->name('sellers.updateAddress');
 
 
 //Route::get('/gigs', Gigs::class, 'index')->name('gigs');
