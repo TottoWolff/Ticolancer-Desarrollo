@@ -20,79 +20,90 @@ class BuyerProfileController extends Controller
      */
     public function index()
     {
-        $buyer = Auth::guard('buyers')->user(); 
-        $city = $buyer->city;
-        $province = $city->province;
-        $joinDate =  $city->created_at = Carbon::parse($city->created_at)->format('j M, Y');
-        $buyerId = $buyer->id;
-        $username = $buyer->username;
-        
-        
-        $languages = \DB::table('buyers_lang_ticolancers')
-        ->where('buyers_users_ticolancers_id', $buyerId)
-        ->join('languages_ticolancers', 'buyers_lang_ticolancers.languages_ticolancers_id', '=', 'languages_ticolancers.id')
-        ->join('language_levels_ticolancers', 'buyers_lang_ticolancers.language_levels_ticolancers_id', '=', 'language_levels_ticolancers.id')
-        ->select('languages_ticolancers.language as language_name', 'language_levels_ticolancers.level as level_name')
-        ->get();
+        $sessionActive = Auth::guard('buyers')->check();
 
-        // return response()->json([
-        //     'buyerId' => $buyerId,
-        //     'languages' => $languages
-        // ]);
+        if (!$sessionActive) {
+            return redirect()->route('login');
+        } 
+        else{
 
-        $profile = $buyer->picture;
+            $buyer = Auth::guard('buyers')->user(); 
+            $city = $buyer->city;
+            $province = $city->province;
+            $joinDate =  $city->created_at = Carbon::parse($city->created_at)->format('j M, Y');
+            $buyerId = $buyer->id;
+            $username = $buyer->username;
+            $languages = \DB::table('buyers_lang_ticolancers')
+            ->where('buyers_users_ticolancers_id', $buyerId)
+            ->join('languages_ticolancers', 'buyers_lang_ticolancers.languages_ticolancers_id', '=', 'languages_ticolancers.id')
+            ->join('language_levels_ticolancers', 'buyers_lang_ticolancers.language_levels_ticolancers_id', '=', 'language_levels_ticolancers.id')
+            ->select('languages_ticolancers.language as language_name', 'language_levels_ticolancers.level as level_name')
+            ->get();
+            $profile = $buyer->picture;
 
-        
-        
 
-        return view('buyers.buyerProfile', [
-            'name' => $buyer->name, 
-            'lastname' => $buyer->lastname, 
-            'username' => $buyer->username,
-            'email' => $buyer->email,
-            'phone' => $buyer->phone,
-            'joinDate' => $joinDate,
-            'picture' => $profile,
-            'cityName' => $city ? $city->city : null,
-            'provinceName' => $province ? $province->province : null, 
-            'languages' => $languages
-        ]);
+            return view('buyers.buyerProfile', [
+                'name' => $buyer->name, 
+                'lastname' => $buyer->lastname, 
+                'username' => $buyer->username,
+                'email' => $buyer->email,
+                'phone' => $buyer->phone,
+                'joinDate' => $joinDate,
+                'picture' => $profile,
+                'cityName' => $city ? $city->city : null,
+                'provinceName' => $province ? $province->province : null, 
+                'languages' => $languages
+            ]);
+        }
+
     }
 
 
     public function settingsAccount()
     {
-        $user = Auth::guard('buyers')->user();
-        $name = $user->name;
-        $lastname = $user->lastname;
-        $email = $user->email;
-        $phone = $user->phone;
-        $username = $user->username;
-        $buyerId = $user->id;
-        $userLanguages = \DB::table('buyers_lang_ticolancers')
-        ->where('buyers_users_ticolancers_id', $buyerId)
-        ->join('languages_ticolancers', 'buyers_lang_ticolancers.languages_ticolancers_id', '=', 'languages_ticolancers.id')
-        ->join('language_levels_ticolancers', 'buyers_lang_ticolancers.language_levels_ticolancers_id', '=', 'language_levels_ticolancers.id')
-        ->select('languages_ticolancers.language as language_name', 'language_levels_ticolancers.level as level_name', 'languages_ticolancers.id as language_id', 'language_levels_ticolancers.id as level_id')
-        ->get();
-        $userProvince=$user->city->province->province;
-        $userCity=$user->city->city;
-        
+        $sessionActive = Auth::guard('buyers')->check();
+        if (!$sessionActive) {
+            return redirect()->route('login');
+        }
+        else{
+            $user = Auth::guard('buyers')->user();
+            $name = $user->name;
+            $lastname = $user->lastname;
+            $email = $user->email;
+            $phone = $user->phone;
+            $username = $user->username;
+            $buyerId = $user->id;
+            $userLanguages = \DB::table('buyers_lang_ticolancers')
+            ->where('buyers_users_ticolancers_id', $buyerId)
+            ->join('languages_ticolancers', 'buyers_lang_ticolancers.languages_ticolancers_id', '=', 'languages_ticolancers.id')
+            ->join('language_levels_ticolancers', 'buyers_lang_ticolancers.language_levels_ticolancers_id', '=', 'language_levels_ticolancers.id')
+            ->select('languages_ticolancers.language as language_name', 'language_levels_ticolancers.level as level_name', 'languages_ticolancers.id as language_id', 'language_levels_ticolancers.id as level_id')
+            ->get();
+            $userProvince=$user->city->province->province;
+            $userCity=$user->city->city;
+            
 
 
-        $languages = Languages::all();
-        $levels = LanguageLevels::all();
-        $provinces = Provinces::all();
-        $cities = Cities::all();
+            $languages = Languages::all();
+            $levels = LanguageLevels::all();
+            $provinces = Provinces::all();
+            $cities = Cities::all();
 
-        return view('buyers.buyerProfileSettingsAccount', ['username' => $user->username], compact('username', 'name', 'lastname', 'email', 'phone', 'userLanguages', 'languages', 'levels', 'provinces', 'cities',	 'userCity', 'userProvince'));
+            return view('buyers.buyerProfileSettingsAccount', ['username' => $user->username], compact('username', 'name', 'lastname', 'email', 'phone', 'userLanguages', 'languages', 'levels', 'provinces', 'cities',	 'userCity', 'userProvince'));
+        }
     }
 
     public function settingsSecurity()
     {
-        $user = Auth::guard('buyers')->user();
-        $username = $user->username;
-        return view('buyers.buyerProfileSettingsSecurity', ['username' => $user->username], compact('username'));
+        $sessionActive = Auth::guard('buyers')->check();
+        if (!$sessionActive) {
+            return redirect()->route('login');
+        }
+        else{
+            $user = Auth::guard('buyers')->user();
+            $username = $user->username;
+            return view('buyers.buyerProfileSettingsSecurity', ['username' => $user->username], compact('username'));
+        }
     }
 
     public function updatePersonalInfo(Request $request){

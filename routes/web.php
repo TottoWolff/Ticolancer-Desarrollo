@@ -25,29 +25,25 @@ use App\Http\Controllers\SellerGigsProfileController as SellerGigsProfile;
 |
 */
 
+//ROUTES FOR VISITORS
 Route::get('/', [Homepage::class, 'index'])->name('inicio');
 Route::get('/nosotros', [Homepage::class, 'nosotros'])->name('nosotros');
-
 Route::get('/contacto', [Homepage::class, 'contacto'])->name('contacto');
 Route::post('/contacto', [Homepage::class, 'store_contact_form'])->name('contacto.store');
 
+//ROUTES TO SIGN UP, LOG IN AND LOG OUT
 Route::get('/signup', [Signup::class, 'index'])->name('signup');
 Route::post('/signup', [Signup::class, 'store'])->name('signup.store');
 Route::get('/signup/get-cities/{provinceId}', [Signup::class, 'signup.getCities']);
-
-
 Route::get('/login', [Login::class, 'index'])->name('login');
 Route::post('/login', [Login::class, 'login'])->name('login.login');
-
 Route::post('/logout', [Login::class, 'logout'])->name('login.logout');
-
 Route::post('/recover', [Login::class, 'recover'])->name('login.recover');
 
-Route::get('/dashboard', [BuyerDashboard::class, 'index'])->name('buyerDashboard');
 
-Route::get('/{username}', [BuyerProfile::class, 'index'])->name('buyerProfile');
-Route::get('/{username}/settings/account', [BuyerProfile::class, 'settingsAccount'])->name('buyerProfileSettingsAccount');
-Route::get('/{username}/settings/security', [BuyerProfile::class, 'settingsSecurity'])->name('buyerProfileSettingsSecurity');
+Route::get('buyers/{username}', [BuyerProfile::class, 'index'])->name('buyerProfile');
+Route::get('buyers/{username}/settings/account', [BuyerProfile::class, 'settingsAccount'])->name('buyerProfileSettingsAccount');
+Route::get('buyers/{username}/settings/security', [BuyerProfile::class, 'settingsSecurity'])->name('buyerProfileSettingsSecurity');
 Route::post('/buyers/update-picture', [BuyerProfile::class, 'updatePicture'])->name('buyers.updatePicture');
 Route::post('/buyers/delete-picture', [BuyerProfile::class, 'deletePicture'])->name('buyers.deletePicture');
 Route::post('/{username}/update/personal-info', [BuyerProfile::class, 'updatePersonalInfo'])->name('buyers.updatePersonalInfo');
@@ -65,17 +61,13 @@ Route::get('/sellers/gigs', [SellerGigsProfile::class, 'index'])->name('sellerGi
 Route::get('/sellers/gig', [SellerGig::class, 'index'])->name('sellerGig');
 
 
-//ADMIN
+//ROUTES FOR ADMIN
 Route::get('/admin/signup', [SignUpAdmin::class, 'index'])->name('admin.signup');
 Route::post('/admin/signup', [SignUpAdmin::class, 'store'])->name('admin.signup.store');
-
-
 Route::get('/admin', [LoginAdmin::class, 'index'])->name('admin.login');
 Route::post('/admin', [LoginAdmin::class, 'login'])->name('admin.login.login');
-
 Route::post('/admin/logout', [LoginAdmin::class, 'logout'])->name('admin.login.logout');
-
-Route::get('/admin/dashboard', [DashboardAdmin::class, 'index'])->name('admin.dashboard');
+Route::get('/admin/{username}/dashboard', [DashboardAdmin::class, 'index'])->name('admin.dashboard');
 
 
 
