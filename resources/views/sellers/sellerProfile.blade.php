@@ -207,11 +207,7 @@
 
             <!--Logout end -->
 
-            <!-- Note -->
-            <p class="text-[16px] text-gray-500">
-                Actualmente estás en tu perfil de comprador. Para acceder a tu perfil de vendedor, <a href="#" class="underline hover:text-green"> cambia a modo vendedor</a>
-            </p>
-            <!-- Note end -->
+            
 
         </div>
 
