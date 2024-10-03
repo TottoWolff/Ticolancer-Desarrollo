@@ -200,6 +200,46 @@
                 </div>
             </form>
             <!-- location end -->
+            
+
+
+            <!-- Social media -->
+            <form action="{{ route('sellers.updateSocialMedia', ['username' => $username]) }}" method="POST" class="w-full flex flex-col p-[20px] gap-[20px] border-[0.5px] border-solid border-blue border-opacity-50 rounded-[16px]">
+                @csrf
+                <h4 class="text-[22px] text-blue font-semibold">Redes sociales</h4>
+                <!-- Facebook -->
+                <div class="flex items-center justify-between">
+                    <label for="facebook" class="text-[14px] font-light">FACEBOOK</label>
+                    <input type="url" name="facebook" id="facebook" value="{{ $sellerFacebook }}" placeholder="{{ $sellerFacebook }}" class="outline-none bg-transparent border-[0.5px] border-solid border-blue border-opacity-50 rounded-[10px] p-[10px] w-[80%]">
+                </div>
+                <!-- Instagram -->
+                <div class="flex items-center justify-between">
+                    <label for="instagram" class="text-[14px] font-light">INSTAGRAM</label>
+                    <input type="url" name="instagram" id="instagram" value="{{ $sellerInstagram }}" placeholder="{{ $sellerInstagram }}" class="outline-none bg-transparent border-[0.5px] border-solid border-blue border-opacity-50 rounded-[10px] p-[10px] w-[80%]">
+                </div>
+                <!-- Twitter -->
+                <div class="flex items-center justify-between">
+                    <label for="twitter" class="text-[14px] font-light">TWITTER</label>
+                    <input type="url" name="twitter" id="twitter" value="{{ $sellerTwitter }}" placeholder="{{ $sellerTwitter }}" class="outline-none bg-transparent border-[0.5px] border-solid border-blue border-opacity-50 rounded-[10px] p-[10px] w-[80%]">
+                </div>
+                <!-- Linkedin -->
+                <div class="flex items-center justify-between">
+                    <label for="linkedin" class="text-[14px] font-light">LINKEDIN</label>
+                    <input type="url" name="linkedin" id="linkedin" value="{{ $sellerLinkedin }}" placeholder="{{ $sellerLinkedin }}" class="outline-none bg-transparent border-[0.5px] border-solid border-blue border-opacity-50 rounded-[10px] p-[10px] w-[80%]">
+                </div>
+                
+
+                <!-- Website -->
+                <div class="flex items-center justify-between">
+                    <label for="website" class="text-[14px] font-light">WEBSITE</label>
+                    <input type="url" name="website" id="website" value="{{ $sellerWebsite }}" placeholder="{{ $sellerWebsite }}" class="outline-none bg-transparent border-[0.5px] border-solid border-blue border-opacity-50 rounded-[10px] p-[10px] w-[80%]">
+                </div>
+
+                <!-- save changes -->
+                <div class="items-center justify-end flex w-full">
+                    <button type="submit" class="w-fit bg-green rounded-[10px] p-[10px] text-white font-semibold text-[14px] hover:translate-y-[-5px] transition-all duration-500 ease-out">Guardar cambios</button>
+                </div>
+            </form>
 
 
             <!-- Desactive account -->

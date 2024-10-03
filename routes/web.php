@@ -68,6 +68,7 @@ Route::post('/{username}/update/location', [SellerProfile::class, 'updateLocatio
 Route::post('/{username}/update/languages', [SellerProfile::class, 'updateLanguages'])->name('sellers.updateLanguages');
 Route::post('/{username}/update/password', [SellerProfile::class, 'updatePassword'])->name('sellers.updatePassword');
 Route::post('/{username}/update/address', [SellerProfile::class, 'updateAddress'])->name('sellers.updateAddress');
+Route::post('/{username}/update/socialMedia', [SellerProfile::class, 'updateSocialMedia'])->name('sellers.updateSocialMedia');
 
 
 //Route::get('/gigs', Gigs::class, 'index')->name('gigs');

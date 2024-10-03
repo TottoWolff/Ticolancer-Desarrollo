@@ -299,6 +299,27 @@ class SellerProfileController extends Controller
         return redirect()->back()->with('success', 'Información actualizada exitosamente');
     }
 
+    public function updateSocialMedia(Request $request)
+    {
+        $user = Auth::guard('buyers')->user();
+        $facebook = $request->facebook;
+        $twitter = $request->twitter;
+        $instagram = $request->instagram;
+        $linkedin = $request->linkedin;
+        $website = $request->website;
+
+        $seller = \App\Models\SellersUsersTicolancer::where('buyers_users_ticolancers_id', $user->id)->first();
+
+        $seller->update([
+            'facebook' => $facebook,
+            'twitter' => $twitter,
+            'instagram' => $instagram,
+            'linkedin' => $linkedin,
+            'website' => $website
+        ]);
+        return redirect()->back()->with('success', 'Información actualizada exitosamente');
+    }
+
     /**
      * Show the form for creating a new resource.
      */
