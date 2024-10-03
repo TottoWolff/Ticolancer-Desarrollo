@@ -121,7 +121,7 @@ class SellerProfileController extends Controller
             $provinces = Provinces::all();
             $cities = Cities::all();
 
-            return view('sellers.sellerProfileSettingsAccount', ['username' => $user->username], compact('username', 'name', 'lastname', 'email', 'phone', 'userLanguages', 'languages', 'levels', 'provinces', 'cities',     'userCity', 'userProvince', 'sellerDescription', 'sellerBirthdate', 'sellerAddress', 'sellerFacebook', 'sellerInstagram', 'sellerTwitter', 'sellerLinkedin', 'sellerWebsite'));
+            return view('sellers.sellerProfileSettingsAccount', ['username' => $user->username], compact('username', 'name', 'lastname', 'email', 'phone', 'userLanguages', 'languages', 'levels', 'provinces', 'cities', 'userCity', 'userProvince', 'sellerDescription', 'sellerBirthdate', 'sellerAddress', 'sellerFacebook', 'sellerInstagram', 'sellerTwitter', 'sellerLinkedin', 'sellerWebsite'));
         }
     }
 
@@ -152,6 +152,7 @@ class SellerProfileController extends Controller
         $lastname = $request->lastname;
         $username = $request->username;
         $email = $request->email;
+        $userBirthdate = $request->userBirthdate;
 
 
         $user->update([
@@ -159,6 +160,12 @@ class SellerProfileController extends Controller
             'lastname' => $lastname,
             'username' => $username,
             'email' => $email
+        ]);
+
+        $seller = \App\Models\SellersUsersTicolancer::where('buyers_users_ticolancers_id', $user->id)->first();
+
+        $seller->update([
+            'birthdate' => $request->userBirthdate,
         ]);
 
         return redirect()->back()->with('success', 'Información actualizada exitosamente');
@@ -240,12 +247,6 @@ class SellerProfileController extends Controller
             return redirect()->back()->with('error', 'La contraseña actual es incorrecta');
         }
     }
-
-
-
-
-
-
 
 
     public function updatePicture(Request $request)

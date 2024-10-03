@@ -48,12 +48,12 @@
                 <div class="mt-6 space-y-2">
                     <div class="flex flex-col gap-[20px] items-center">
                         <div class="flex gap-[10px] w-full items-center justify-start">
-                            <img src="{{ asset('icons/location.svg') }}" alt="">
+                            <img src="{{ asset('icons/BirthdayCake.svg') }}" alt="">
                             <span class="font-light text-[16px]">{{ $sellerBirthdate }}</span>
                         </div>
 
                         <div class="flex w-full gap-[10px] items-center">
-                            <img src="{{ asset('icons/user.svg') }}" alt="">
+                            <img src="{{ asset('icons/home.svg') }}" alt="">
                             <span class="font-light text-[16px]">{{ $sellerAddress }}</span>
                         </div>
 
@@ -111,7 +111,7 @@
                 <div class="mt-6 space-y-2">
                     <div class="flex flex-col gap-[20px] items-center">
                         <div class="flex gap-[10px] w-full items-center justify-start">
-                            <img src="{{ asset('icons/phone.svg') }}" alt="">
+                            <img src="{{ asset('icons/World wide web.svg') }}" alt="">
                             <span class="font-light text-[16px]">Redes Sociales</span>
                         </div>
 

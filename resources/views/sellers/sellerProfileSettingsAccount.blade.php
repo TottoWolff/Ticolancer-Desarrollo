@@ -53,6 +53,14 @@
                     <input type="text" name="email" id="email" value="{{ $email }}" placeholder="{{ $email }}" class="outline-none bg-transparent border-[0.5px] border-solid border-blue border-opacity-50 rounded-[10px] p-[10px] w-[80%]">
                 </div>
 
+                <!-- birthdate -->
+                <div class="flex items-center justify-between">
+                    <label for="birthdate" class="text-[14px] font-light">EDAD</label>
+                    <div class="flex items-center justify-between w-[80%] gap-[20px]">
+                        <input type="date" name="userBirthdate" id="userBirthdate" value="{{ $sellerBirthdate }}" placeholder="{{ $sellerBirthdate }}" class="outline-none bg-transparent border-[0.5px] border-solid border-blue border-opacity-50 rounded-[10px] p-[10px] w-[30%]">
+                    </div>
+                </div>
+
                 <!-- save changes -->
                 <div class="items-center justify-end flex w-full">
                     <button type="submit" class="w-fit bg-green rounded-[10px] p-[10px] text-white font-semibold text-[14px] hover:translate-y-[-5px] transition-all duration-500 ease-out">Guardar cambios</button>
