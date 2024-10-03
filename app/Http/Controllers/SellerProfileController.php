@@ -45,14 +45,14 @@ class SellerProfileController extends Controller
 
             $sellerInfo = \App\Models\SellersUsersTicolancer::where('buyers_users_ticolancers_id', $buyerId)->first();
 
-            $sellerDescription = $sellerInfo ? $sellerInfo->description : 'No Description';
-            $sellerBirthdate = $sellerInfo ? $sellerInfo->birthdate : 'N/A';
-            $sellerAddress = $sellerInfo ? $sellerInfo->residence_address : 'N/A';
-            $sellerFacebook = $sellerInfo ? $sellerInfo->facebook : null;
-            $sellerInstagram = $sellerInfo ? $sellerInfo->instagram : null;
-            $sellerTwitter = $sellerInfo ? $sellerInfo->twitter : null;
-            $sellerLinkedin = $sellerInfo ? $sellerInfo->linkedin : null;
-            $sellerWebsite = $sellerInfo ? $sellerInfo->website : null;
+            $sellerDescription = $sellerInfo ? $sellerInfo->description : 'Agrega una descripción';
+            $sellerBirthdate = $sellerInfo ? $sellerInfo->birthdate : 'Agrega tu fecha de nacimiento';
+            $sellerAddress = $sellerInfo ? $sellerInfo->residence_address : 'Agrega tu dirección de residencia';
+            $sellerFacebook = $sellerInfo ? $sellerInfo->facebook : 'https://es-la.facebook.com/#:~:text=Inicia%20sesi%C3%B3n%20en%20Facebook%20para%20empezar%20a%20compartir%20y';
+            $sellerInstagram = $sellerInfo ? $sellerInfo->instagram : 'https://www.instagram.com/';
+            $sellerTwitter = $sellerInfo ? $sellerInfo->twitter : 'https://x.com/';
+            $sellerLinkedin = $sellerInfo ? $sellerInfo->linkedin : 'https://es.linkedin.com/#:~:text=1%20mil%20millones%20de%20miembros%20|%20Gestiona%20tu%20identidad';
+            $sellerWebsite = $sellerInfo ? $sellerInfo->website : '#';
 
             $profile = $buyer->picture;
 

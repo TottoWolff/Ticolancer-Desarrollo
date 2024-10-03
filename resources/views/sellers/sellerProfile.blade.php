@@ -103,21 +103,34 @@
                         </div>
                         @endforeach
                     </div>
-                    
+
                 </div>
                 <div class="h-[1px] bg-blue bg-opacity-50 w-full"></div>
-                
+
 
                 <div class="mt-6 space-y-2">
-                    <div class="flex flex-col gap-[20px] items-center">
+                    <div class="flex flex-col gap-[20px] ">
                         <div class="flex gap-[10px] w-full items-center justify-start">
                             <img src="{{ asset('icons/World wide web.svg') }}" alt="">
                             <span class="font-light text-[16px]">Redes Sociales</span>
                         </div>
 
-                        <div class="flex w-full gap-[10px] items-center">
-                            <img src="{{ asset('icons/email.svg') }}" alt="">
-                            <span class="font-light text-[16px]">{{ $sellerTwitter }}</span>
+                        <div class="flex w-[50%] justify-between">
+                            <a href="{{$sellerFacebook}}" class="flex gap-[10px] items-center">
+                                <img src="{{ asset('icons/facebook.svg') }}" alt="Facebook" class="w-[34px] h-[34px]" />
+                            </a>
+                            <a href="{{$sellerLinkedin}}" class="flex gap-[10px] items-center">
+                                <img src="{{ asset('icons/linkedin.svg') }}" alt="Facebook" class="w-[34px] h-[34px]" />
+                            </a>
+                            <a href="{{$sellerInstagram}}" class="flex gap-[10px] items-center">
+                                <img src="{{ asset('icons/instagram.svg') }}" alt="Facebook" class="w-[34px] h-[34px]" />
+                            </a>
+                            <a href="{{$sellerTwitter}}" class="flex gap-[10px] items-center">
+                                <img src="{{ asset('icons/twitter.svg') }}" alt="Facebook" class="w-[34px] h-[34px]" />
+                            </a>
+                            <a href="{{$sellerWebsite}}" class="flex gap-[10px] items-center">
+                                <img src="{{ asset('icons/internet.svg') }}" alt="Facebook" class="w-[34px] h-[34px]" />
+                            </a>
                         </div>
 
                         <div class="h-[1px] bg-blue bg-opacity-50 w-full"></div>
@@ -207,7 +220,7 @@
 
             <!--Logout end -->
 
-            
+
 
         </div>
 
