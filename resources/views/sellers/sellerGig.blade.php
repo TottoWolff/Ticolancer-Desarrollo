@@ -2,15 +2,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="icon" href="{{ asset('images/profile/logo.png') }}" type="image/x-icon"> -->
     <title>Service</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    
 </head>
 <body>
     <nav class="bg-[#F8FBFF] py-4">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
 
             <div class="flex items-center">
-                <img src="{{ asset('icons/logo.svg') }}" alt="TicoLancer logo" class="h-10">
+                <img class="h-10 cursor-pointer" src="{{ asset('icons/logo.svg') }}" alt="TicoLancer logo" >
             </div>
             <div class="w-full max-w-xl mx-auto">
                 <div class="relative">
@@ -81,8 +83,8 @@
             <!-- Segunda columna -->
             <div class="grid gap-3">
                 
-                <div class="w-[46px] h-[45px] border border-gray-300 p-3 rounded-md flex ml-auto">
-                    <img src="{{ asset('images/profile/share.png') }}" alt="">
+                <div class="w-[46px] h-[45px] border border-gray-300 p-3 rounded-md flex ml-auto hover:bg-gray-200">
+                    <img class="cursor-pointer " src="{{ asset('images/profile/share.png') }}" alt="">
                 </div>
                 
                 <!-- Detalle de servicio -->
@@ -105,21 +107,22 @@
                 <!-- Contacto -->
                 
                 <div class="grid gap-8 w-[393px] h-[84px] bg-gray-200 rounded-md p-6 items-center">
-                    <div class="flex w-[340px] h-[45px] gap-2 border border-gray-400 rounded-md cursor-pointer place-items-center place-content-center"> 
+                    <div class="flex w-[340px] h-[45px] gap-2 border border-gray-400 rounded-md cursor-pointer place-items-center place-content-center hover:translate-y-[-5px] 
+                    hover:bg-gray-300 " id="contact-button"> 
                         <span class="font-medium text-xl">Contáctame</span> 
                         <img class="w-[15px] h-[9px]" src="{{ asset('images/profile/arrow.png') }}" alt="">
                     </div> 
 
-                    <div class="grid">
-                        <div class="flex gap-4 border border-gray rounded-t-md p-3">
+                    <div id="contact-container"  class="hidden transition-all duration-1000 ease-in-out transform -translate-y-10">
+                        <div class="flex gap-4 border border-gray rounded-t-md p-3 hover:bg-gray-200 cursor-pointer">
                             <img class="w-[24px] h-[24px]" src="{{ asset('images/profile/whatsapp.png') }}" alt="">
                             <span class="font-medium text-xl">Whatsapp</span>
                         </div>
-                        <div class="flex gap-4 border border-gray p-3">
+                        <div class="flex gap-4 border border-gray p-3 hover:bg-gray-200 cursor-pointer">
                             <img class="w-[24px] h-[24px]" src="{{ asset('images/profile/message.png') }}" alt="">
-                            <span class="font-medium text-xl">Correo</span>
+                            <span class="font-medium text-xl ">Correo</span>
                         </div>
-                        <div class="flex gap-4 border border-gray rounded-b-md p-3">
+                        <div class="flex gap-4 border border-gray rounded-b-md p-3 hover:bg-gray-200 cursor-pointer">
                             <img class="w-[24px] h-[24px]" src="{{ asset('images/profile/phone.png') }}" alt="">
                             <span class="font-medium text-xl">Teléfono</span>
                         </div>
@@ -162,7 +165,7 @@
             </section>
 
 
-            <div >
+            <div class="cursor-pointer">
                 <div class="flex max-sm:grid gap-9 mt-20 border border-gray-300 rounded-md p-5 shadow-md w-[667px]">
                     <div>
                         <img class="w-[130px] max-sm:w-[120px]" src="{{ asset('images/profile/photo.png') }}" alt="">
@@ -201,6 +204,27 @@
             mainImage.src = element.src;
         }
     </script>
+
+<script>
+    document.getElementById('contact-button').addEventListener('click', function() {
+        const contactContainer = document.getElementById('contact-container');
+    
+        contactContainer.classList.toggle('hidden');
+
+        if (contactContainer.classList.contains('hidden')) {
+            contactContainer.classList.remove('opacity-100', 'translate-y-0');
+            contactContainer.classList.add('opacity-0', 'translate-y-5');
+        } else {
+            contactContainer.classList.remove('opacity-0', 'translate-y-5');
+            contactContainer.classList.add('opacity-100', 'translate-y-0');
+        }
+        setTimeout(() => {
+            if (contactContainer.classList.contains('hidden')) {
+                contactContainer.classList.add('hidden'); 
+            }
+        }, 300); 
+    });
+</script>
     
 </body>
 </html>
