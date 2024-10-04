@@ -13,6 +13,7 @@ use App\Http\Controllers\SellerProfileController as SellerProfile;
 use App\Http\Controllers\GigsController as Gigs;
 use App\Http\Controllers\SellerGigController as SellerGig;
 use App\Http\Controllers\SellerGigsProfileController as SellerGigsProfile;
+use App\Http\Controllers\SellerGigsProfileAdminController as SellerGigsProfileAdmin;
 
 
 /*
@@ -71,12 +72,17 @@ Route::post('/{username}/update/address', [SellerProfile::class, 'updateAddress'
 Route::post('/{username}/update/socialMedia', [SellerProfile::class, 'updateSocialMedia'])->name('sellers.updateSocialMedia');
 
 
+
 //Route::get('/gigs', Gigs::class, 'index')->name('gigs');
-Route::get('/sellers/gigcreation', [Gigs::class, 'index'])->name('gigCreation');
+Route::get('/sellers/{username}/gigCreation', [Gigs::class, 'index'])->name('gigCreation');
 Route::post('/sellers/gigstore', [Gigs::class, 'store'])->name('gigStore');
 
 Route::get('/sellers/{username}/gigs', [SellerGigsProfile::class, 'index'])->name('sellerGigsProfile');
 Route::get('/sellers/{username}/gig', [SellerGig::class, 'index'])->name('sellerGig');
+
+Route::get('/sellers/{username}/gigsAdmin', [SellerGigsProfileAdmin::class, 'index'])->name('sellerGigsProfileAdmin');
+
+
 
 
 //ROUTES FOR ADMIN

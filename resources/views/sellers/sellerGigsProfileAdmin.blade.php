@@ -1,3 +1,4 @@
+{{-- sellers/sellerGigs.blade.php --}}
 @extends('buyers.buyerLayout')
 
 @section('content')
@@ -145,105 +146,12 @@
 
             <div class="flex wrap">
                 <div class="mt-5 gap-2">
-                    <img src="{{ asset('images/profile/service2.png') }}" alt="">
-                    <span class="text-[16px] max-sm:text-[14px] font-light text-black">Logos personalizados</span>
-
-                    <div class="grid gap-2">
-                        <div class="flex gap-2 mt-6">
-                            <div>
-                                <img class="mt-0.5" src="{{ asset('images/profile/star.png') }}" alt="">
-                            </div>
-                            <div class="flex gap-1">
-                                <span class="text-primary font-semibold text-[15px] max-sm:text-[12px]">4,9</span>
-                                <span class="text-primary font-medium text-gray-400 text-[15px] max-sm:text-[10px]">(221)</span>    
-                            </div>    
-                        </div>
-                        <div class="text-primary font-semibold text-[16px] max-sm:text-[12px]">Desde ₡15,000 </div>
-                    </div> 
+                    <a
+                    class="w-[260px] h-[174px] rounded-[10px] cursor-pointer transition-all duration-500 ease-out hover:translate-y-[-5px] hover:bg-blue 
+                    hover:text-green bg-green px-[20px] py-[10px] text-white text-[16px] font-semibold outline-none mt-6"
+                    type="button"  >Añadir Servicio</a>
                 </div>
             </div>
-
-            <div class="flex wrap">
-                <div class="mt-5 gap-2">
-                    <img src="{{ asset('images/profile/service3.png') }}" alt="">
-                    <span class="text-[16px] max-sm:text-[14px] font-light text-black">Logos personalizados</span>
-
-                    <div class="grid gap-2">
-                        <div class="flex gap-2 mt-6">
-                            <div>
-                                <img class="mt-0.5" src="{{ asset('images/profile/star.png') }}" alt="">
-                            </div>
-                            <div class="flex gap-1">
-                                <span class="text-primary font-semibold text-[15px] max-sm:text-[12px]">4,9</span>
-                                <span class="text-primary font-medium text-gray-400 text-[15px] max-sm:text-[10px]">(221)</span>    
-                            </div>    
-                        </div>
-                        <div class="text-primary font-semibold text-[16px] max-sm:text-[12px]">Desde ₡15,000 </div>
-                    </div> 
-                </div>
-            </div>
-
-            <div class="flex wrap">
-                <div class="mt-5 gap-2">
-                    <img src="{{ asset('images/profile/service4.png') }}" alt="">
-                    <span class="text-[16px] max-sm:text-[14px] font-light text-black">Logos personalizados</span>
-
-                    <div class="grid gap-2">
-                        <div class="flex gap-2 mt-6">
-                            <div>
-                                <img class="mt-0.5" src="{{ asset('images/profile/star.png') }}" alt="">
-                            </div>
-                            <div class="flex gap-1">
-                                <span class="text-primary font-semibold text-[15px] max-sm:text-[12px]">4,9</span>
-                                <span class="text-primary font-medium text-gray-400 text-[15px] max-sm:text-[10px]">(221)</span>    
-                            </div>    
-                        </div>
-                        <div class="text-primary font-semibold text-[16px] max-sm:text-[12px]">Desde ₡15,000 </div>
-                    </div> 
-                </div>
-            </div>
-
-            <div class="flex wrap">
-                <div class="mt-5 gap-2">
-                    <img src="{{ asset('images/profile/service5.png') }}" alt="">
-                    <span class="text-[16px] max-sm:text-[14px] font-light text-black">Logos personalizados</span>
-
-                    <div class="grid gap-2">
-                        <div class="flex gap-2 mt-6">
-                            <div>
-                                <img class="mt-0.5" src="{{ asset('images/profile/star.png') }}" alt="">
-                            </div>
-                            <div class="flex gap-1">
-                                <span class="text-primary font-semibold text-[15px] max-sm:text-[12px]">4,9</span>
-                                <span class="text-primary font-medium text-gray-400 text-[15px] max-sm:text-[10px]">(221)</span>    
-                            </div>    
-                        </div>
-                        <div class="text-primary font-semibold text-[16px] max-sm:text-[12px]">Desde ₡15,000 </div>
-                    </div> 
-                </div>
-            </div>
-
-            <div class="flex wrap">
-                <div class="mt-5 gap-2">
-                    <img src="{{ asset('images/profile/service6.png') }}" alt="">
-                    <span class="text-[16px] max-sm:text-[14px] font-light text-black">Logos personalizados</span>
-
-                    <div class="grid gap-2">
-                        <div class="flex gap-2 mt-6">
-                            <div>
-                                <img class="mt-0.5" src="{{ asset('images/profile/star.png') }}" alt="">
-                            </div>
-                            <div class="flex gap-1">
-                                <span class="text-primary font-semibold text-[15px] max-sm:text-[12px]">4,9</span>
-                                <span class="text-primary font-medium text-gray-400 text-[15px] max-sm:text-[10px]">(221)</span>    
-                            </div>    
-                        </div>
-                        <div class="text-primary font-semibold text-[16px] max-sm:text-[12px]">Desde ₡15,000 </div>
-                    </div> 
-                </div>
-            </div>
-
-
         </div>
 
 

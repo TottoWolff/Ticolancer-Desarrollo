@@ -75,11 +75,7 @@
                         <p>{{ $message }}</p>
                     </div>
             @endif
-        <a href="{{ route('gigCreation') }}">
-            <button class=" text-white" type="button">
-                Regresa a tus emprendimientos
-            </button>
-        </a>
+        
     </div>
 </div>
 
