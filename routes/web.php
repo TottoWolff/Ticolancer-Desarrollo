@@ -74,8 +74,8 @@ Route::post('/{username}/update/address', [SellerProfile::class, 'updateAddress'
 Route::get('/sellers/gigcreation', [Gigs::class, 'index'])->name('gigCreation');
 Route::post('/sellers/gigstore', [Gigs::class, 'store'])->name('gigStore');
 
-Route::get('/sellers/gigs', [SellerGigsProfile::class, 'index'])->name('sellerGigsProfile');
-Route::get('/sellers/gig', [SellerGig::class, 'index'])->name('sellerGig');
+Route::get('/sellers/{username}/gigs', [SellerGigsProfile::class, 'index'])->name('sellerGigsProfile');
+Route::get('/sellers/{username}/gig', [SellerGig::class, 'index'])->name('sellerGig');
 
 
 //ROUTES FOR ADMIN

@@ -30,90 +30,112 @@
 
     <section class="px-[15rem] p-20">
         <section>
-            <div class="grid gap-2">
-                <h1 class="text-3xl font-semibold">Modelado 3D</h1>
-                <h2 class="text-xl">Modelado 3D en Blender</h2>
-            </div>
 
-            <div class="flex max-sm:grid gap-6 mt-3 ">
-                <div>
-                    <img class="w-[70px] max-sm:w-[70px]" src="{{ asset('images/profile/photo.png') }}" alt="">
+        <!-- Inicia contenedor arriba -->
+        <div class="flex flex-row gap-[24rem]">
+
+            <!-- Primera columna -->
+            <div>
+                <div class="grid gap-2">
+                    <h1 class="text-3xl font-semibold">Modelado 3D</h1>
+                    <h2 class="text-xl">Modelado 3D en Blender</h2>
                 </div>
-                        
-                <div class="grid">
-                    <div class="grid grid-cols-2 max-sm:grid-cols-1 max-md:grid-cols-1 max-lg:grid-cols-1 gap-30 max-sm:gap-1">
-                        <div class="w-40">
-                            <span class="text-primary font-semibold text-[18px] max-sm:text-[14px]">Emanuel Jiménez</span>
+
+                <div class="flex max-sm:grid gap-6 mt-3 ">
+                    <div>
+                        <img class="w-[70px] max-sm:w-[70px]" src="{{ asset('images/profile/photo.png') }}" alt="">
+                    </div>
+                            
+                    <div class="grid">
+                        <div class="grid grid-cols-2 max-sm:grid-cols-1 max-md:grid-cols-1 max-lg:grid-cols-1 gap-30 max-sm:gap-1">
+                            <div class="w-40">
+                                <span class="text-primary font-semibold text-[18px] max-sm:text-[14px]">Emanuel Jiménez</span>
+                            </div>
+                            <span class="text-[16px] max-sm:text-[12px] font-light text-gray-400" >@jimenezemanuel</span>
                         </div>
-                        <span class="text-[16px] max-sm:text-[12px] font-light text-gray-400" >@jimenezemanuel</span>
-                    </div>
-                    <div class="flex">
-                        <img class="w-[14px] h-[15px] mr-2 mb-2" src="{{ asset('images/profile/star.png') }}" alt="">
-                        <span class="text-[16px] font-light text-black">4.8</span>
-                    </div>
-                    <div class="flex">
-                        <img class="w-[14px] h-[19px] mr-2" src="{{ asset('icons/location.svg') }}" alt="">
-                        <span class="text-[16px] font-light text-black max-sm:text-[12px]" >San Ramón, Aljuela, CR</span>
+                        <div class="flex">
+                            <img class="w-[14px] h-[15px] mr-2 mb-2" src="{{ asset('images/profile/star.png') }}" alt="">
+                            <span class="text-[16px] font-light text-black">4.8</span>
+                        </div>
+                        <div class="flex">
+                            <img class="w-[14px] h-[19px] mr-2" src="{{ asset('icons/location.svg') }}" alt="">
+                            <span class="text-[16px] font-light text-black max-sm:text-[12px]" >San Ramón, Aljuela, CR</span>
+                        </div>
                     </div>
                 </div>
+
+
+                <div class="mt-3">
+                    <img class="rounded-md" id="mainImage" src=" {{ asset('images/profile/serviceImage1.png') }}" alt="">
+                </div>
+
+                <div class="flex  space-x-4 mt-6">
+                    <img onclick="changeImage(this)" class="w-[156px] h-24 object-cover rounded-md shadow cursor-pointer" src="{{ asset('images/profile/serviceImage1.png') }}" alt="Imagen 1">
+                    <img onclick="changeImage(this)" class="w-[156px] h-24 object-cover rounded-md shadow cursor-pointer" src="{{ asset('images/profile/serviceImage2.png') }}" alt="Imagen 2">
+                    <img onclick="changeImage(this)" class="w-[156px] h-24 object-cover rounded-md shadow cursor-pointer" src="{{ asset('images/profile/serviceImage3.png') }}" alt="Imagen 3">
+                    <img onclick="changeImage(this)" class="w-[156px] h-24 object-cover rounded-md shadow cursor-pointer" src="{{ asset('images/profile/serviceImage4.png') }}" alt="Imagen 4">
+                </div>
+
             </div>
 
+            <!-- Segunda columna -->
+            <div class="grid gap-3">
+                
+                <div class="w-[46px] h-[45px] border border-gray-300 p-3 rounded-md flex ml-auto">
+                    <img src="{{ asset('images/profile/share.png') }}" alt="">
+                </div>
+                
+                <!-- Detalle de servicio -->
+                <div class="border border-gray-300 rounded-md">
+                    <h1 class="p-5 text-2xl font-semibold" >Detalle del servicio</h1>
+                    <img src="{{ asset('images/profile/line.png') }}" alt="">
+                    <div class="p-5 grid gap-3">
+                        <span class="text-primary font-semibold text-[18px] max-sm:text-[14px]">Desde ₡100,000</span>
+                        <div class="flex">
+                            <img class="w-[14px] h-[15px] mr-2 mb-2" src="{{ asset('images/profile/star.png') }}" alt="">
+                            <div>
+                                <span class="text-primary font-semibold text-[18px] max-sm:text-[14px]">4.0</span>
+                                <span class="text-primary text-gray-400 font-semibold text-[18px] max-sm:text-[14px]">(10 opiniones)</span>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
 
-            <div class="mt-3">
-                <img class="rounded-md" id="mainImage" src=" {{ asset('images/profile/serviceImage1.png') }}" alt="">
+                <!-- Contacto -->
+                
+                <div class="grid gap-8 w-[393px] h-[84px] bg-gray-200 rounded-md p-6 items-center">
+                    <div class="flex w-[340px] h-[45px] gap-2 border border-gray-400 rounded-md cursor-pointer place-items-center place-content-center"> 
+                        <span class="font-medium text-xl">Contáctame</span> 
+                        <img class="w-[15px] h-[9px]" src="{{ asset('images/profile/arrow.png') }}" alt="">
+                    </div> 
+
+                    <div class="grid">
+                        <div class="flex gap-4 border border-gray rounded-t-md p-3">
+                            <img class="w-[24px] h-[24px]" src="{{ asset('images/profile/whatsapp.png') }}" alt="">
+                            <span class="font-medium text-xl">Whatsapp</span>
+                        </div>
+                        <div class="flex gap-4 border border-gray p-3">
+                            <img class="w-[24px] h-[24px]" src="{{ asset('images/profile/message.png') }}" alt="">
+                            <span class="font-medium text-xl">Correo</span>
+                        </div>
+                        <div class="flex gap-4 border border-gray rounded-b-md p-3">
+                            <img class="w-[24px] h-[24px]" src="{{ asset('images/profile/phone.png') }}" alt="">
+                            <span class="font-medium text-xl">Teléfono</span>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+        
             </div>
-
-            <div class="flex  space-x-4 mt-6">
-                <img onclick="changeImage(this)" class="w-[156px] h-24 object-cover rounded-md shadow cursor-pointer" src="{{ asset('images/profile/serviceImage1.png') }}" alt="Imagen 1">
-                <img onclick="changeImage(this)" class="w-[156px] h-24 object-cover rounded-md shadow cursor-pointer" src="{{ asset('images/profile/serviceImage2.png') }}" alt="Imagen 2">
-                <img onclick="changeImage(this)" class="w-[156px] h-24 object-cover rounded-md shadow cursor-pointer" src="{{ asset('images/profile/serviceImage3.png') }}" alt="Imagen 3">
-                <img onclick="changeImage(this)" class="w-[156px] h-24 object-cover rounded-md shadow cursor-pointer" src="{{ asset('images/profile/serviceImage4.png') }}" alt="Imagen 4">
-            </div>
-
-
-            <div class="flex flex-col md:flex-row">
- 
-
- 
-  <div class="md:w-80 md:ml-8 p-4 md:fixed right-[26rem] top-36 h-auto md:h-screen">
-    <div class="bg-white shadow-md border border-gray-300 rounded-lg p-4">
-      <h2 class="text-lg font-bold">Detalles del servicio</h2>
-      <p class="mt-2 text-xl font-semibold">Desde ₡100,000</p>
-
-      <div class="flex items-center mt-2">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-500" viewBox="0 0 20 20" fill="currentColor">
-          <path d="M9.049 2.927a1 1 0 011.902 0l1.716 4.937a1 1 0 00.95.69h5.18a1 1 0 01.593 1.805l-4.192 3.052a1 1 0 00-.364 1.118l1.716 4.937a1 1 0 01-1.54 1.118L10 15.812l-4.192 3.052a1 1 0 01-1.54-1.118l1.716-4.937a1 1 0 00-.364-1.118L1.428 9.36a1 1 0 01.593-1.805h5.18a1 1 0 00.95-.69l1.716-4.937z"/>
-        </svg>
-        <span class="ml-1 text-gray-700">4.0</span>
-        <span class="ml-1 text-gray-500">(140)</span>
-      </div>
-
-      <div class="mt-4">
-        <h3 class="text-md font-semibold">Contáctame</h3>
-        <div class="mt-2">
-          <button class="w-full flex items-center justify-center bg-green-500 text-white py-2 px-4 rounded-lg mb-2 hover:bg-green-600">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-              <path d="M1 4a2 2 0 012-2h14a2 2 0 012 2v12a2 2 0 01-2 2H3a2 2 0 01-2-2V4zm5.707 1.707a1 1 0 00-1.414 1.414l6 6a1 1 0 001.414-1.414l-6-6zM6 8.75a.75.75 0 111.5 0 .75.75 0 01-1.5 0z"/>
-            </svg>
-            Whatsapp
-          </button>
-          <button class="w-full flex items-center justify-center bg-blue-500 text-white py-2 px-4 rounded-lg mb-2 hover:bg-blue-600">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M22 2.01L11 13 7 9l-5 5 9 9 12-12V2.01z"/>
-            </svg>
-            Correo electrónico
-          </button>
+            
         </div>
-      </div>
 
-      <div class="mt-4">
-        <p class="text-md text-gray-700">Teléfono: <strong>6207-6022</strong></p>
-      </div>
-    </div>
-  </div>
-</div>
+        <!-- termina contenedor de arriba -->
+        
 
-
+           
 
             <section class="max-sm:text-2xl mt-10">
                 <h1 class="text-primary font-bold text-[20px] max-sm:text-[14px]">Descripción del servicio</h1>
