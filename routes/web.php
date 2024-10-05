@@ -48,12 +48,11 @@ Route::get('buyers/{username}/settings/account', [BuyerProfile::class, 'settings
 Route::get('buyers/{username}/settings/security', [BuyerProfile::class, 'settingsSecurity'])->name('buyerProfileSettingsSecurity');
 Route::post('/buyers/update-picture', [BuyerProfile::class, 'updatePicture'])->name('buyers.updatePicture');
 Route::post('/buyers/delete-picture', [BuyerProfile::class, 'deletePicture'])->name('buyers.deletePicture');
-Route::post('/{username}/update/personal-info', [BuyerProfile::class, 'updatePersonalInfo'])->name('buyers.updatePersonalInfo');
-Route::post('/{username}/update/contact-info', [BuyerProfile::class, 'updateContactInfo'])->name('buyers.updateContactInfo');
-Route::post('/{username}/desactivate-account', [BuyerProfile::class, 'desactivateAccount'])->name('buyers.desactivateAccount');
-Route::post('/{username}/update/location', [BuyerProfile::class, 'updateLocation'])->name('buyers.updateLocation');
-Route::post('/{username}/update/languages', [BuyerProfile::class, 'updateLanguages'])->name('buyers.updateLanguages');
-Route::post('/{username}/update/password', [BuyerProfile::class, 'updatePassword'])->name('buyers.updatePassword');
+Route::post('/{username}/buyers/update/personal-info', [BuyerProfile::class, 'updatePersonalInfo'])->name('buyers.updatePersonalInfo');
+Route::post('/{username}/buyers/update/contact-info', [BuyerProfile::class, 'updateContactInfo'])->name('buyers.updateContactInfo');
+Route::post('/{username}/buyers/desactivate-account', [BuyerProfile::class, 'desactivateAccount'])->name('buyers.desactivateAccount');
+Route::post('/{username}/buyers/update/location', [BuyerProfile::class, 'updateLocation'])->name('buyers.updateLocation');
+Route::post('/{username}/buyers/update/languages', [BuyerProfile::class, 'updateLanguages'])->name('buyers.updateLanguages');
 
 
 //ROUTES FOR SELLERS
