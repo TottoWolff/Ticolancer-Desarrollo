@@ -74,7 +74,7 @@ Route::post('/{username}/update/socialMedia', [SellerProfile::class, 'updateSoci
 
 //Route::get('/gigs', Gigs::class, 'index')->name('gigs');
 Route::get('/sellers/{username}/gigCreation', [Gigs::class, 'index'])->name('gigCreation');
-Route::post('/sellers/gigstore', [Gigs::class, 'store'])->name('gigStore');
+Route::post('/sellers/{username}/gigstore', [Gigs::class, 'store'])->name('sellers.gigStore');
 
 Route::get('/sellers/{username}/gigs', [SellerGigsProfile::class, 'index'])->name('sellerGigsProfile');
 Route::get('/sellers/{username}/gig', [SellerGig::class, 'index'])->name('sellerGig');

@@ -133,7 +133,6 @@
                             </a>
                         </div>
 
-                        <div class="h-[1px] bg-blue bg-opacity-50 w-full"></div>
                     </div>
                 </div>
             </div>

@@ -4,7 +4,7 @@
 <div class="grid grid-cols-1 bg-blue h-screen w-full max-sm:grid-cols-1">
     <div
         class="flex flex-col justify-center items-center px-[120px] gap-[20px] max-sm:w-[90vw] max-sm:px-0 max-sm:m-auto mt-[6rem]">
-        <form action="{{ route('gigStore') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('sellers.gigStore',['username'=>$username]) }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="mt-4">
                 <input
