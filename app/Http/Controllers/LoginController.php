@@ -32,7 +32,7 @@ class LoginController extends Controller
         if (Auth::guard('buyers')->attempt($credentials)) {
             // Autenticación exitosa
             $user = Auth::guard('buyers')->user();
-            return redirect()->route('buyerProfile', ['username' => $user->username]); 
+            return redirect()->route('sellers.DashboardGigs', ['username' => $user->username]); 
         } 
         else if ($request->email == "" || $request->password == "")
         {
