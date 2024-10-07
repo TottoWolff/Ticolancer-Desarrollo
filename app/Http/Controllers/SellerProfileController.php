@@ -57,7 +57,8 @@ class SellerProfileController extends Controller
             $profile = $buyer->picture;
 
 
-            return view('sellers.sellerProfile', [
+            return 
+            view('sellers.sellerProfile', [
                 'name' => $buyer->name,
                 'lastname' => $buyer->lastname,
                 'username' => $buyer->username,
