@@ -29,9 +29,11 @@
                     </button>
                 </div>
             </div>
-            <div class="flex items-center">
-                <img src="{{ asset('images/profile/photo.png') }}" alt="Profile picture" class="w-10 h-10 rounded-full">
-            </div>
+            @if ($profile == null)
+                <img src="{{ asset('images/buyers_profiles/profile_placeholder.png') }}" alt="Profile picture" class="w-10 h-10 rounded-full">
+            @else
+                <img src="{{ asset('images/buyers_profiles/' . $profile) }}" alt="Profile picture" class="w-10 h-10 rounded-full">
+            @endif
         </div>
     </nav>
 
@@ -45,15 +47,19 @@
                 
                 <div class="flex max-sm:grid gap-9 px-[3rem] max-sm:place-items-center max-sm:text-center">
                     <div>
-                        <img class="w-[190px] max-sm:w-[120px]" src="{{ asset('images/profile/photo.png') }}" alt="">
+                    @if ($profile == null)
+                        <img class="w-[190px] max-sm:w-[120px] rounded-full h-[190px]" src="{{ asset('images/buyers_profiles/profile_placeholder.png') }}" alt="">
+                    @else
+                        <img class="w-[190px] max-sm:w-[120px] rounded-full h-[190px]" src="{{ asset('images/buyers_profiles/' . $profile) }}" alt="">
+                    @endif
                     </div>
                     
                     <div class="grid max-sm:place-items-center">
                         <div class="grid grid-cols-2 max-sm:grid-cols-1 max-md:grid-cols-1 max-lg:grid-cols-1 gap-30 max-sm:gap-1">
                             <div class="w-40">
-                                <span class="text-primary font-semibold text-[18px] max-sm:text-[14px] max-sm:text-center">Emanuel Jiménez</span>
+                                <span class="text-primary font-semibold text-[18px] max-sm:text-[14px] max-sm:text-center">{{ $name }} {{ $lastname }}</span>
                             </div>
-                            <span class="text-[16px] max-sm:text-[12px] font-light text-gray-400 " >@jimenezemanuel</span>
+                            <span class="text-[16px] max-sm:text-[12px] font-light text-gray-400 " > @ {{ $username }}</span>
                         </div>
                         <div class="flex">
                             <img class="w-[14px] h-[15px] mr-2 mb-2" src="{{ asset('images/profile/star.png') }}" alt="">
@@ -61,7 +67,7 @@
                         </div>
                         <div class="flex">
                             <img class="w-[14px] h-[19px] mr-2" src="{{ asset('icons/location.svg') }}" alt="">
-                            <span class="text-[16px] font-light text-black max-sm:text-[12px]" >San Ramón, Aljuela, CR</span>
+                            <span class="text-[16px] font-light text-black max-sm:text-[12px]" >{{ $userCity }} , {{ $userProvince }}, CR</span>
                         </div>
                         <div class="flex">
                             <img class="w-[14px] h-[19px] mr-2" src="{{ asset('images/profile/user.png') }}" alt="">
@@ -152,27 +158,16 @@
             @endforeach
         
 
-            
+            <a href="{{ route('gigCreation', ['username' => $username]) }}" class="block w-full cursor-pointer">
+                <div class="flex wrap ">
+                    <div class="mt-5 gap-2 w-[260px] h-[174px] border border-gray-400 bg-white flex place-content-center 
+                    items-center rounded-md transition-all duration-500 ease-out hover:translate-y-[-5px] 
+                        hover:bg-gray-300 hover:text-green">
+                        <img class="w-[67px] h-[67px] cursor-pointer " src="{{ asset('images/profile/add.png') }}" type="button">
 
-            
-
-
-            
-
-            
-
-            <div class="flex wrap ">
-                <div class="mt-5 gap-2 w-[260px] h-[174px] border border-gray-400 bg-white flex place-content-center 
-                items-center rounded-md transition-all duration-500 ease-out hover:translate-y-[-5px] 
-                    hover:bg-gray-300 hover:text-green">
-                    <img class="w-[67px] h-[67px] cursor-pointer " src="{{ asset('images/profile/add.png') }}" type="button">
-                    <!-- <a class="rounded-[10px] cursor-pointer transition-all duration-500 ease-out hover:translate-y-[-5px] 
-                    hover:bg-blue hover:text-green bg-green  text-white text-[16px] font-semibold outline-none"
-                    type="button">Añadir Servicio</a> -->
- 
-
+                    </div>
                 </div>
-            </div>
+            </a>
         </div>
 
 

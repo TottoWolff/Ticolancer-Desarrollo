@@ -25,7 +25,12 @@
                 </div>
             </div>
             <div class="flex items-center">
-                <img src="{{ asset('images/profile/photo.png') }}" alt="Profile picture" class="w-10 h-10 rounded-full">
+                @if ($profile == null)
+                <img src="{{ asset('images/buyers_profiles/profile_placeholder.png') }}"  alt="Profile picture" class="w-10 h-10 rounded-full">
+                @else
+                <img src="{{ asset('images/buyers_profiles/' . $profile) }}" alt="Profile picture" class="w-10 h-10 rounded-full">
+                @endif
+
             </div>
         </div>
     </nav>
@@ -42,6 +47,7 @@
 
             <!-- Primera columna -->
             <div>
+                
                 <div class="grid gap-2 max-sm:text-center">
                     <h1 class="text-3xl font-semibold">Modelado 3D</h1>
                     <h2 class="text-xl">Modelado 3D en Blender</h2>
@@ -49,15 +55,19 @@
 
                 <div class="flex max-sm:grid gap-6 mt-3 max-sm:justify-center max-sm:place-items-center">
                     <div>
-                        <img class="w-[70px] max-sm:w-[70px]" src="{{ asset('images/profile/photo.png') }}" alt="">
+                        @if ($profile == null)
+                        <img class="w-[70px] max-sm:w-[70px] rounded-full h-[70px]" src="{{ asset('images/buyers_profiles/profile_placeholder.png') }}"  alt="">
+                        @else
+                        <img class="w-[70px] max-sm:w-[70px] rounded-full h-[70px]" src="{{ asset('images/buyers_profiles/' . $profile) }}" alt="">
+                        @endif
                     </div>
                             
                     <div class="grid max-sm:text-center max-sm:justify-center">
                         <div class="grid grid-cols-2 max-sm:grid-cols-1 max-md:grid-cols-1 max-lg:grid-cols-1 gap-30 max-sm:gap-1">
                             <div class="w-40 ">
-                                <span class="text-primary font-semibold text-[18px]">Emanuel Jiménez</span>
+                                <span class="text-primary font-semibold text-[18px]">{{ $name }} {{ $lastname }} </span>
                             </div>
-                            <span class="text-[16px]  font-light text-gray-400" >@jimenezemanuel</span>
+                            <span class="text-[16px]  font-light text-gray-400" >@ {{ $username }} </span>
                         </div>
                         <div class="flex max-sm:justify-center">
                             <img class="w-[14px] h-[15px] mr-2 mb-2" src="{{ asset('images/profile/star.png') }}" alt="">
@@ -65,7 +75,7 @@
                         </div>
                         <div class="flex max-sm:justify-center">
                             <img class="w-[14px] h-[19px] mr-2" src="{{ asset('icons/location.svg') }}" alt="">
-                            <span class="text-[16px] font-light text-black" >San Ramón, Aljuela, CR</span>
+                            <span class="text-[16px] font-light text-black">{{ $userCity }} , {{ $userProvince }}, CR</span>
                         </div>
                     </div>
                 </div>

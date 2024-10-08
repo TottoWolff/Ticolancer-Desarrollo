@@ -69,6 +69,13 @@
                     class="rounded-[10px] cursor-pointer transition-all duration-500 ease-out hover:translate-y-[-5px] hover:bg-white hover:text-green w-full bg-green px-[20px] py-[10px] text-white text-[16px] font-semibold outline-none mt-6"
                     type="submit">Crear</button>
             </div>
+
+            <div class="flex items-center justify-between gap-4">
+                <a
+                    class="text-center rounded-[10px] cursor-pointer transition-all duration-500 ease-out hover:translate-y-[-5px] hover:bg-white hover:text-red-600 w-full bg-red-600 px-[20px] py-[10px] text-white text-[16px] font-semibold outline-none mt-6"
+                    type="button" href="{{ route('sellerGigsProfileAdmin', ['username' => $username]) }}">Cancelar</a>
+            </div>
+
         </form>
         @if ($message = Session::get('success'))
                     <div class="bg-[#DCFCE7] border-[1px] border-[#4ADE80] text-[#15763D] px-4 py-3 rounded-[10px] text-center w-full" role="alert">
