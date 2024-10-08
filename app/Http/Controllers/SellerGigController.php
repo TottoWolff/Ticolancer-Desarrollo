@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\GigsTicolancer;
 
 class SellerGigController extends Controller
 {
@@ -12,7 +13,10 @@ class SellerGigController extends Controller
     public function index()
     {
         //
-        return View('sellers.sellerGig');
+
+        $gigs = GigsTicolancer::all();
+
+        return View('sellers.sellerGig', compact('gigs'));
     }
 
     /**

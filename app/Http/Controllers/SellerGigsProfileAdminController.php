@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\GigsTicolancer;
 
 class SellerGigsProfileAdminController extends Controller
 {
@@ -12,8 +13,13 @@ class SellerGigsProfileAdminController extends Controller
     public function index()
     {
         //
-        return View('sellers.sellerGigsProfileAdmin');
+
+        $gigs = GigsTicolancer::all();
+
+        return View('sellers.sellerGigsProfileAdmin', compact('gigs'));
     }
+
+    
 
     /**
      * Show the form for creating a new resource.

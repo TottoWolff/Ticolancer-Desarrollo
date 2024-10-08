@@ -123,126 +123,43 @@
         <h1 class="text-primary font-bold text-[20px] max-sm:text-[20px]">Mis Servicios</h1>
 
         <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            
+            @foreach ($gigs as $gig)
+                <div class="flex wrap">
+                    <a href="{{ url('/sellers/{username}/gig') }}" class="block w-full cursor-pointer">
+                        <div class="mt-5 gap-2">
+                            <img class="cursor-pointer" src="{{ asset($gig->gig_image) }}" alt="{{ $gig->gig_name }}">
 
-            <div class="flex wrap">
-                <div class="mt-5 gap-2">
-                    <img class="cursor-pointer" src="{{ asset('images/profile/service1.png') }}" alt="">
-                    <span class="text-[16px] max-sm:text-[14px] font-light text-black cursor-pointer">Logos personalizados</span>
+                            <span class="text-[16px] max-sm:text-[14px] font-light text-black">{{ $gig->gig_name }}</span>
 
-                    <div class="grid gap-2">
-                        <div class="flex gap-2 mt-6">
-                            <div>
-                                <img class="mt-0.5" src="{{ asset('images/profile/star.png') }}" alt="">
-                            </div>
-                            <div class="flex gap-1">
-                                <span class="text-primary font-semibold text-[15px] max-sm:text-[12px]">4,9</span>
-                                <span class="text-primary font-medium text-gray-400 text-[15px] max-sm:text-[10px]">(221)</span>    
-                            </div>    
+                            <div class="grid gap-2">
+                                <div class="flex gap-2 mt-6">
+                                    <div>
+                                        <img class="mt-0.5" src="{{ asset('images/profile/star.png') }}" alt="">
+                                    </div>
+                                    <div class="flex gap-1">
+                                        <span class="text-primary font-semibold text-[15px] max-sm:text-[12px]">4.9</span>
+                                        <span class="text-primary font-medium text-gray-400 text-[15px] max-sm:text-[10px]">(221)</span>
+                                    </div>
+                                </div>
+                                <div class="text-primary font-semibold text-[16px] max-sm:text-[12px]">Desde ₡15,000</div>
+                            </div> 
                         </div>
-                        <div class="text-primary font-semibold text-[16px] max-sm:text-[12px]">Desde ₡15,000 </div>
-                    </div> 
+                    </a>
                 </div>
-            </div>
 
-            <div class="flex wrap">
-                <div class="mt-5 gap-2">
-                    <img class="cursor-pointer" src="{{ asset('images/profile/service2.png') }}" alt="">
-                    <span class="text-[16px] max-sm:text-[14px] font-light text-black cursor-pointer">Logos personalizados</span>
+                
+            @endforeach
+        
 
-                    <div class="grid gap-2">
-                        <div class="flex gap-2 mt-6">
-                            <div>
-                                <img class="mt-0.5" src="{{ asset('images/profile/star.png') }}" alt="">
-                            </div>
-                            <div class="flex gap-1">
-                                <span class="text-primary font-semibold text-[15px] max-sm:text-[12px]">4,9</span>
-                                <span class="text-primary font-medium text-gray-400 text-[15px] max-sm:text-[10px]">(221)</span>    
-                            </div>    
-                        </div>
-                        <div class="text-primary font-semibold text-[16px] max-sm:text-[12px]">Desde ₡15,000 </div>
-                    </div> 
-                </div>
-            </div>
+            
 
-            <div class="flex wrap">
-                <div class="mt-5 gap-2">
-                    <img class="cursor-pointer" src="{{ asset('images/profile/service3.png') }}" alt="">
-                    <span class="text-[16px] max-sm:text-[14px] font-light text-black cursor-pointer">Logos personalizados</span>
+            
 
-                    <div class="grid gap-2">
-                        <div class="flex gap-2 mt-6">
-                            <div>
-                                <img class="mt-0.5" src="{{ asset('images/profile/star.png') }}" alt="">
-                            </div>
-                            <div class="flex gap-1">
-                                <span class="text-primary font-semibold text-[15px] max-sm:text-[12px]">4,9</span>
-                                <span class="text-primary font-medium text-gray-400 text-[15px] max-sm:text-[10px]">(221)</span>    
-                            </div>    
-                        </div>
-                        <div class="text-primary font-semibold text-[16px] max-sm:text-[12px]">Desde ₡15,000 </div>
-                    </div> 
-                </div>
-            </div>
 
-            <div class="flex wrap">
-                <div class="mt-5 gap-2">
-                    <img class="cursor-pointer" src="{{ asset('images/profile/service4.png') }}" alt="">
-                    <span class="text-[16px] max-sm:text-[14px] font-light text-black cursor-pointer">Logos personalizados</span>
+            
 
-                    <div class="grid gap-2">
-                        <div class="flex gap-2 mt-6">
-                            <div>
-                                <img class="mt-0.5" src="{{ asset('images/profile/star.png') }}" alt="">
-                            </div>
-                            <div class="flex gap-1">
-                                <span class="text-primary font-semibold text-[15px] max-sm:text-[12px]">4,9</span>
-                                <span class="text-primary font-medium text-gray-400 text-[15px] max-sm:text-[10px]">(221)</span>    
-                            </div>    
-                        </div>
-                        <div class="text-primary font-semibold text-[16px] max-sm:text-[12px]">Desde ₡15,000 </div>
-                    </div> 
-                </div>
-            </div>
-
-            <div class="flex wrap">
-                <div class="mt-5 gap-2">
-                    <img class="cursor-pointer" src="{{ asset('images/profile/service5.png') }}" alt="" href="{{ route('login') }}">
-                    <span class="text-[16px] max-sm:text-[14px] font-light text-black cursor-pointer">Logos personalizados</span>
-
-                    <div class="grid gap-2">
-                        <div class="flex gap-2 mt-6">
-                            <div>
-                                <img class="mt-0.5" src="{{ asset('images/profile/star.png') }}" alt="">
-                            </div>
-                            <div class="flex gap-1">
-                                <span class="text-primary font-semibold text-[15px] max-sm:text-[12px]">4,9</span>
-                                <span class="text-primary font-medium text-gray-400 text-[15px] max-sm:text-[10px]">(221)</span>    
-                            </div>    
-                        </div>
-                        <div class="text-primary font-semibold text-[16px] max-sm:text-[12px]">Desde ₡15,000 </div>
-                    </div> 
-                </div>
-            </div>
-
-            <div class="flex wrap">
-                <div class="mt-5 gap-2">
-                    <img class="cursor-pointer" src="{{ asset('images/profile/service6.png') }}" alt="">
-                    <span class="text-[16px] max-sm:text-[14px] font-light text-black cursor-pointer">Logos personalizados</span>
-
-                    <div class="grid gap-2">
-                        <div class="flex gap-2 mt-6">
-                            <div>
-                                <img class="mt-0.5" src="{{ asset('images/profile/star.png') }}" alt="">
-                            </div>
-                            <div class="flex gap-1">
-                                <span class="text-primary font-semibold text-[15px] max-sm:text-[12px]">4,9</span>
-                                <span class="text-primary font-medium text-gray-400 text-[15px] max-sm:text-[10px]">(221)</span>    
-                            </div>    
-                        </div>
-                        <div class="text-primary font-semibold text-[16px] max-sm:text-[12px]">Desde ₡15,000 </div>
-                    </div> 
-                </div>
-            </div>
+            
 
             <div class="flex wrap ">
                 <div class="mt-5 gap-2 w-[260px] h-[174px] border border-gray-400 bg-white flex place-content-center 
