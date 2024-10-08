@@ -14,6 +14,7 @@ use App\Http\Controllers\GigsController as Gigs;
 use App\Http\Controllers\SellerGigController as SellerGig;
 use App\Http\Controllers\SellerGigsProfileController as SellerGigsProfile;
 use App\Http\Controllers\SellerGigsProfileAdminController as SellerGigsProfileAdmin;
+use App\Http\Controllers\DashboardGigsController as DashboardGigs;
 
 
 /*
@@ -54,6 +55,7 @@ Route::post('/{username}/buyers/desactivate-account', [BuyerProfile::class, 'des
 Route::post('/{username}/buyers/update/location', [BuyerProfile::class, 'updateLocation'])->name('buyers.updateLocation');
 Route::post('/{username}/buyers/update/languages', [BuyerProfile::class, 'updateLanguages'])->name('buyers.updateLanguages');
 
+Route::get('/buyers/{username}/dashboardgigs', [DashboardGigs::class, 'index'])->name('sellers.DashboardGigs');
 
 //ROUTES FOR SELLERS
 Route::get('sellers/{username}', [SellerProfile::class, 'index'])->name('sellerProfile');
@@ -70,7 +72,7 @@ Route::post('/{username}/update/password', [SellerProfile::class, 'updatePasswor
 Route::post('/{username}/update/address', [SellerProfile::class, 'updateAddress'])->name('sellers.updateAddress');
 Route::post('/{username}/update/socialMedia', [SellerProfile::class, 'updateSocialMedia'])->name('sellers.updateSocialMedia');
 
-
+Route::get('/sellers/{username}/dashboardgigs', [DashboardGigs::class, 'index'])->name('sellers.DashboardGigs');
 
 //Route::get('/gigs', Gigs::class, 'index')->name('gigs');
 Route::get('/sellers/{username}/gigCreation', [Gigs::class, 'index'])->name('gigCreation');
