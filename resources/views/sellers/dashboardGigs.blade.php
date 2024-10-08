@@ -82,7 +82,7 @@
             <div class="relative bg-white border rounded-md shadow-md dark:bg-gray-800 dark:border-gray-700 transform transition duration-500 hover:scale-105 h-[360px] w-[450px] ">
                 
                 <div class="p-4 flex justify-center pt-6">
-                    <a href="#">
+                    <a href="{{ route('sellerGigsProfile', ['username' => $username]) }}">
                         
                     <img class="rounded-sm w-[600px] h-[200px] object-cover" src="{{ asset($gig->gig_image) }}" alt="{{ $gig->gig_name }}" loading="lazy">
                     </a>

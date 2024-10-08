@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\GigsTicolancer;
+use App\Models\SellersUsersTicolancer;
+
+use Illuminate\Support\Facades\Auth;
 
 class SellerGigController extends Controller
 {
@@ -13,10 +16,16 @@ class SellerGigController extends Controller
     public function index()
     {
         //
-
         $gigs = GigsTicolancer::all();
 
-        return View('sellers.sellerGig', compact('gigs'));
+        $buyer = Auth::guard('buyers')->user();
+        $username = $buyer->username;
+
+        // $sellerInfo = \App\Models\SellersUsersTicolancer::where('buyers_users_ticolancers_id', $buyerId)->first();
+
+
+        return view('sellers.sellerGig', ['username' => $buyer->username, 'gigs' => $gigs], compact('gigs' ,'username'));
+
     }
 
     /**

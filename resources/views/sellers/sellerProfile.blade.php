@@ -208,7 +208,8 @@
             <!-- Modal end -->
 
             <!-- Settings -->
-            <a class="flex w-full items-center gap-[10px] justify-center border-[1px] border-blue border-opacity-50 rounded-[12px] p-[10px] text-blue hover:text-white hover:bg-blue hover:border-blue transition-all duration-500 " href="{{ route('sellerProfileSettingsAccount', ['username' => $username]) }}"><img src="{{ asset('icons/settings.svg') }}" alt="">Configuraciones</a>
+            <a class="flex w-full items-center gap-[10px] justify-center border-[1px] border-blue border-opacity-50 rounded-[12px] p-[10px] text-blue hover:text-white hover:bg-blue hover:border-blue transition-all duration-500 " 
+            href="{{ route('sellerProfileSettingsAccount', ['username' => $username]) }}"><img src="{{ asset('icons/settings.svg') }}" alt="">Configuraciones</a>
             <!-- Settings end -->
 
             <!--Logout -->
