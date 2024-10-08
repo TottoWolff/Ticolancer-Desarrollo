@@ -92,7 +92,7 @@
                 </div>
                 
                 <!-- Detalle de servicio -->
-                <div class="border border-gray-300 rounded-md max-sm:w-[90%] sm:flex ">
+                <div class="border border-gray-300 rounded-md max-sm:w-[90%] ">
                     <h1 class="p-5 text-2xl font-semibold" >Detalle del servicio</h1>
                     <img src="{{ asset('images/profile/line.png') }}" alt="">
                     <div class="p-5 grid gap-3">
