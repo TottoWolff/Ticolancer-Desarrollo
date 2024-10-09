@@ -92,7 +92,7 @@ Route::post('/admin/signup', [SignUpAdmin::class, 'store'])->name('admin.signup.
 Route::get('/admin', [LoginAdmin::class, 'index'])->name('admin.login');
 Route::post('/admin', [LoginAdmin::class, 'login'])->name('admin.login.login');
 Route::post('/admin/logout', [LoginAdmin::class, 'logout'])->name('admin.login.logout');
-Route::get('/admin/{username}/dashboard', [DashboardAdmin::class, 'index'])->name('admin.dashboard');
+Route::get('/admin/{username}', [DashboardAdmin::class, 'index'])->name('admin.dashboard');
 
 
 

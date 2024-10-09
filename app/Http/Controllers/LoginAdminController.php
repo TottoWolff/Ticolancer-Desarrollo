@@ -21,14 +21,15 @@ class LoginAdminController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->only('username', 'password');
+        $user = AdminUsers::where('username', $request->username)->first();
 
         if (Auth::guard('admin')->attempt($credentials)) {
             // Autenticación exitosa
-            return redirect()->route('admin.dashboard'); 
+            return redirect()->route('admin.dashboard', ['username' => $user->username]); 
         } 
         else if ($request->password == "" || $request->username == "")
         {
-            return redirect()->route('admin.login')->with('warning', 'Debes rellenar todos los campos'); 
+            return view('admin.login')->with('warning', 'Debes rellenar todos los campos'); 
         } 
         else  
         {
