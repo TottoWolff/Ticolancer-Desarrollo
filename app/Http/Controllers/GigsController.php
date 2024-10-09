@@ -130,6 +130,7 @@ class GigsController extends Controller
     {
         $gig = GigsTicolancer::findOrFail($id);
         $gig->delete();
-        return redirect('/gigs');
+
+        return redirect()->back()->with('warning', 'Gig eliminado exitosamente');
     }
 }
