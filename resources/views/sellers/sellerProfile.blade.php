@@ -208,8 +208,8 @@
             <!-- Modal end -->
 
             <!-- Settings -->
-            <a class="flex w-full items-center gap-[10px] justify-center border-[1px] border-blue border-opacity-50 rounded-[12px] p-[10px] text-blue hover:text-white hover:bg-blue hover:border-blue transition-all duration-500 " 
-            href="{{ route('sellerProfileSettingsAccount', ['username' => $username]) }}"><img src="{{ asset('icons/settings.svg') }}" alt="">Configuraciones</a>
+            <a class="flex w-full items-center gap-[10px] justify-center border-[1px] border-blue border-opacity-50 rounded-[12px] p-[10px] text-blue hover:text-white hover:bg-blue hover:border-blue transition-all duration-500 "
+                href="{{ route('sellerProfileSettingsAccount', ['username' => $username]) }}"><img src="{{ asset('icons/settings.svg') }}" alt="">Configuraciones</a>
             <!-- Settings end -->
 
             <!--Logout -->
@@ -299,6 +299,64 @@
                 </div>
 
             </div>
+            
+            <!-- My Services -->
+            <ul class="list-none border-[0.5px] border-blue border-opacity-50 rounded-[16px] p-6">
+
+            <h3 class="font-semibold text-[22px] mb-4 text-blue">Mis Servicios</h3>
+
+                @foreach ($gigs as $gig)
+                <li class="flex items-center justify-between p-4 ">
+                   
+                    <div class="flex items-center gap-4">
+                        <img class="w-16 h-16 object-cover" src="{{ asset('images/gigs/' .$gig->gig_image) }}" alt="{{ $gig->gig_name }}">
+
+                        
+                        <div class="flex flex-col">
+                            <span class="text-[16px] font-light text-black">{{ $gig->gig_name }}</span>
+                            <div class="flex gap-2">
+                                
+                                <img class="w-4 h-4 mt-0.5" src="{{ asset('images/profile/star.png') }}" alt="Rating">
+                                <span class="text-primary font-semibold text-[15px]">4.9</span>
+                                <span class="text-gray-400 text-[15px]">(221)</span>
+                            </div>
+                            
+                            <div class="text-primary font-semibold text-[16px]">Desde ₡15,000</div>
+                        </div>
+                    </div>
+
+                    <!-- Botones de editar y eliminar -->
+                    <div class="flex gap-4">
+                        
+                        <a href="{{ url('/sellers/'.$gig->username.'/gig/edit/'.$gig->id) }}" class="bg-blue-500 py-1 px-3 rounded hover:bg-blue-600  border-[1px] border-blue border-opacity-50  p-[10px] text-blue hover:text-white hover:bg-blue hover:border-blue transition-all duration-500">
+                            Editar
+                        </a>
+
+                        <form action="{{ route('deleteGig', ['id' => $gig->id]) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar este gig?');">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="bg-blue-500 py-1 px-3 rounded hover:bg-blue-600  border-[1px] border-blue border-opacity-50  p-[10px] text-blue hover:text-white hover:bg-red-600 hover:border-red-600 transition-all duration-500 ">
+                                Eliminar
+                            </button>
+                        </form>
+                    </div>
+                    
+                </li>
+                <div class="h-[1px] bg-blue bg-opacity-50 w-full"></div>
+                @endforeach
+                <a href="{{ route('gigCreation', ['username' => $username]) }}" class="block w-full cursor-pointer">
+                <div class="flex wrap ">
+                    <div class="mt-5 gap-2 w-full h-[10vh] border border-gray-400 bg-white flex place-content-center 
+                    items-center rounded-md transition-all duration-500 ease-out hover:translate-y-[-5px] 
+                        hover:bg-gray-300 hover:text-green">
+                        <img class="w-[50px] h-[50px] cursor-pointer " src="{{ asset('images/profile/add.png') }}" type="button">
+
+                    </div>
+                </div>
+            </a>
+                
+            </ul>
+
         </div>
 
     </div>
