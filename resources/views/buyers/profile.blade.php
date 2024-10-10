@@ -1,4 +1,4 @@
-@extends('buyers.buyerLayout')
+@extends('buyers.layout')
 
 @section('content')
 <div class="min-h-[90vh] min-w-[90vw] flex items-center justify-center mt-[100px]">

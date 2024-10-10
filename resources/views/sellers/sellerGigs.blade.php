@@ -69,8 +69,8 @@
                     @endif
                 </div>
                 
+                <!-- Right Column -->
                 <div class="w-full flex flex-col justify-start items-start gap-[20px]">
-                    <!-- Right Column -->
                     <div class="flex flex-col justify-start items-start gap-[20px] mt-[60px]">
                         <div class="w-full rounded-[16px] border-blue border-[0.5px] border-opacity-50">
                             <div class="flex items-start justify-between p-[20px]">

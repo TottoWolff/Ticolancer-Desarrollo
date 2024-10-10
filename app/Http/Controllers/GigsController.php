@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\GigsTicolancer;
 use Illuminate\Support\Facades\Auth;
 use App\Models\GigsCategoriesTicolancer as GigsCategories ;
+use App\Models\GigsImagesTicolancer as GigsImages;
 use Carbon\Carbon;
 
 class GigsController extends Controller
@@ -52,13 +53,14 @@ class GigsController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-{
+    {
         if (!Auth::guard('buyers')->check()) {
             return redirect()->route('login');
         }
 
         $user = Auth::guard('buyers')->user();
         $date = Carbon::now();
+
 
         $gig = new GigsTicolancer;
         $gig->gig_name = $request->gig_name;
@@ -84,6 +86,31 @@ class GigsController extends Controller
 
         // Guardar el gig en la base de datos
         $gig->save();
+
+         // Manejar las imágenes
+        $images = [
+            $request->file('gig_image1'),
+            $request->file('gig_image2'),
+            $request->file('gig_image3'),
+            $request->file('gig_image4'),
+        ];
+
+
+        foreach ($images as $image) {
+            if ($image) {
+                $fileType = $image->getClientOriginalExtension();
+                $filename = $gig->gig_name . '_' . uniqid() . '.' . $fileType; // Agrega un identificador único para evitar conflictos
+                
+                // Mover el archivo a la carpeta pública
+                $image->move(public_path('images/gigs'), $filename);
+    
+                // Crear una nueva entrada en GigsImages
+                GigsImages::create([
+                    'gigs_ticolancers_id' => $gig->id, // Usar el ID del gig recién creado
+                    'image' => $filename
+                ]);
+            }
+        }
 
         return redirect()->back()->with('success', 'Gig creado exitosamente');
     }
