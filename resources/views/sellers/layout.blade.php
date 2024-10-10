@@ -14,11 +14,9 @@
 </head>
 
 <body class="bg-bg font-main">
-
+    @include('sellers.navbar')
     @yield('content')
-
-    @include('ticolancer.footer')
-    
+    @include('ticolancer.footer') 
 </body>
 
 </html> 
