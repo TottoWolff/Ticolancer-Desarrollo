@@ -19,17 +19,28 @@ use App\Models\SellersUsersTicolancer as SellersUsers;
 use Carbon\Carbon;
 use App\Models\ProvincesTicolancer as Provinces;
 use Illuminate\Support\Facades\Hash;
+use App\Models\GigsReviewsTicolancer;
 
 class SellerGigsProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($id)
     {
         //
         
         $gigs = GigsTicolancer::all();
+
+
+        $reviews = GigsReviewsTicolancer::
+        where('gigs_ticolancers_id', $id)
+        ->join('gigs_ticolancers', 'gigs_reviews_ticolancers.gigs_ticolancers_id', '=', 'gigs_ticolancers.id')
+        ->select('gigs_reviews_ticolancers.*')
+        ->get();
+
+        $ratings = $reviews->pluck('rating');
+        $averageRating = $ratings->avg();
 
         $buyer = Auth::guard('buyers')->user();
         $username = $buyer->username;
@@ -53,7 +64,7 @@ class SellerGigsProfileController extends Controller
 
 
         return view('sellers.sellerGigsProfile', 
-        ['username' => $buyer->username, 'gigs' => $gigs], compact('gigs' ,'username', 'name', 'lastname', 'email', 'phone', 'username', 'buyerId', 'userLanguages', 'userProvince', 'userCity', 'profile'));
+        ['username' => $buyer->username, 'gigs' => $gigs], compact('gigs' ,'username', 'name', 'lastname', 'email', 'phone', 'username', 'buyerId', 'userLanguages', 'userProvince', 'userCity', 'profile', 'averageRating'));
 
         
     }

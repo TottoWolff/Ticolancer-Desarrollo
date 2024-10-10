@@ -135,7 +135,7 @@
                 <div class="flex wrap">
                     <a href="{{ route('sellerGig', ['id' => $gig->id, 'username' => $username]) }}" class="block w-full cursor-pointer">
                         <div class="mt-5 gap-2">
-                            <img class="cursor-pointer" src="{{ asset($gig->gig_image) }}" alt="{{ $gig->gig_name }}">
+                            <img class="cursor-pointer" src="{{ asset('images/gigs/' .$gig->gig_image) }}" alt="{{ $gig->gig_name }}">
 
                             <span class="text-[16px] max-sm:text-[14px] font-light text-black">{{ $gig->gig_name }}</span>
 
@@ -145,11 +145,11 @@
                                         <img class="mt-0.5" src="{{ asset('images/profile/star.png') }}" alt="">
                                     </div>
                                     <div class="flex gap-1">
-                                        <span class="text-primary font-semibold text-[15px] max-sm:text-[12px]">4.9</span>
+                                        <span class="text-primary font-semibold text-[15px] max-sm:text-[12px]">{{ $averageRating }} /5</span>
                                         <span class="text-primary font-medium text-gray-400 text-[15px] max-sm:text-[10px]">(221)</span>
                                     </div>
                                 </div>
-                                <div class="text-primary font-semibold text-[16px] max-sm:text-[12px]">Desde ₡15,000</div>
+                                <div class="text-primary font-semibold text-[16px] max-sm:text-[12px]">Desde ₡ {{ $gig->gig_price }}</div>
                             </div> 
                         </div>
                     </a>

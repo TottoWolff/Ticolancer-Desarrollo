@@ -22,6 +22,7 @@ class GigsTicolancer extends Model
 
     //relation 
 
+
     public function categories()
     {
         return $this->belongsTo(GigsCategoriesTicolancer::class, 'gigs_categories_ticolancers_id');

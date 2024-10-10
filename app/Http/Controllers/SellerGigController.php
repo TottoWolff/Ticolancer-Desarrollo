@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\GigsTicolancer;
 use App\Models\SellersUsersTicolancer;
+use App\Models\GigsReviewsTicolancer;
+
 
 use Illuminate\Support\Facades\Auth;
 
@@ -20,6 +22,17 @@ class SellerGigController extends Controller
         $buyer = Auth::guard('buyers')->user();
 
         $seller = $buyer->seller;
+
+        $reviews = GigsReviewsTicolancer::
+        where('gigs_ticolancers_id', $id)
+        ->join('gigs_ticolancers', 'gigs_reviews_ticolancers.gigs_ticolancers_id', '=', 'gigs_ticolancers.id')
+        ->select('gigs_reviews_ticolancers.*')
+        ->get();
+
+        $ratings = $reviews->pluck('rating');
+        $averageRating = $ratings->avg();
+
+
 
         $username = $buyer->username;
         $name = $buyer->name;
@@ -41,7 +54,7 @@ class SellerGigController extends Controller
         $userCity = $buyer->city->city;
 
         return view('sellers.sellerGig', compact(
-            'gig', 'username', 'name', 'lastname', 'email', 'phone', 'buyerId', 'userLanguages', 'userProvince', 'userCity', 'profile'
+            'gig', 'username', 'name', 'lastname', 'email', 'phone', 'buyerId', 'userLanguages', 'userProvince', 'userCity', 'profile', 'reviews', 'ratings', 'averageRating'
         ));
     }
 

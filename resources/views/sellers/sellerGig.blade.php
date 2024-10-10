@@ -75,7 +75,7 @@
 
 
                 <div class="mt-3 max-sm:mt-[2rem] max-sm:flex max-sm:justify-center">
-                    <img class="w-[36rem] max-h-[20rem] rounded-md object-cover max-sm:w-[90%] max-md:w-[70%]" id="mainImage" src="{{ asset($gig->gig_image) }}" alt="">
+                    <img class="w-[36rem] max-h-[20rem] rounded-md object-cover max-sm:w-[90%] max-md:w-[70%]" id="mainImage" src="{{ asset('images/gigs/' .$gig->gig_image) }}" alt="">
                 </div>
 
                 <div class="flex space-x-4 mt-6 max-sm:justify-center">
@@ -100,11 +100,11 @@
                     <h1 class="p-5 text-2xl font-semibold" >Detalle del servicio</h1>
                     <img src="{{ asset('images/profile/line.png') }}" alt="">
                     <div class="p-5 grid gap-3">
-                        <span class="text-primary font-semibold text-[18px] max-sm:text-[14px]">Desde ₡100,000</span>
+                        <span class="text-primary font-semibold text-[18px] max-sm:text-[14px]">Desde  ₡ {{ $gig->gig_price }}</span>
                         <div class="flex">
                             <img class="w-[14px] h-[15px] mr-2 mb-2" src="{{ asset('images/profile/star.png') }}" alt="">
                             <div class="flex max-sm:justify-center">
-                                <span class="text-primary font-semibold text-[18px] max-sm:text-[14px]">4.0</span>
+                                <span class="text-primary font-semibold text-[18px] max-sm:text-[14px]">{{ $averageRating }} /5</span>
                                 <span class="text-primary text-gray-400 font-semibold text-[18px] max-sm:text-[14px]">(10 opiniones)</span>
                             </div>
                             
