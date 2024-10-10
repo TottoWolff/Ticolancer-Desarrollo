@@ -1,5 +1,6 @@
-@extends('buyers.layout')<html lang="en">
-<body>
+@extends('buyers.layout')
+@section('content')
+
     <section class="px-[15rem] p-20 md:px-16 md:py-16 max-sm:p-5  max-sm:mt-[2rem]">
 
 
@@ -160,7 +161,7 @@
             
         </section>
     </section>
-
+@endsection
     <script>
         function changeImage(element) 
         {
@@ -189,6 +190,4 @@
         }, 300); 
     });
 </script>
-    
-</body>
-</html>
+
