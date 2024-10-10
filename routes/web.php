@@ -33,6 +33,7 @@ Route::get('/', [Homepage::class, 'index'])->name('inicio');
 Route::get('/nosotros', [Homepage::class, 'nosotros'])->name('nosotros');
 Route::get('/contacto', [Homepage::class, 'contacto'])->name('contacto');
 Route::post('/contacto', [Homepage::class, 'store_contact_form'])->name('contacto.store');
+Route::post('/', [Homepage::class, 'store_subscription'])->name('subscription.store');
 
 //ROUTES TO SIGN UP, LOG IN AND LOG OUT
 Route::get('/signup', [Signup::class, 'index'])->name('signup');
@@ -54,6 +55,7 @@ Route::post('/{username}/buyers/update/contact-info', [BuyerProfile::class, 'upd
 Route::post('/{username}/buyers/desactivate-account', [BuyerProfile::class, 'desactivateAccount'])->name('buyers.desactivateAccount');
 Route::post('/{username}/buyers/update/location', [BuyerProfile::class, 'updateLocation'])->name('buyers.updateLocation');
 Route::post('/{username}/buyers/update/languages', [BuyerProfile::class, 'updateLanguages'])->name('buyers.updateLanguages');
+Route::post('/{username}/buyers/update/password', [BuyerProfile::class, 'updatePassword'])->name('buyers.updatePassword');
 
 Route::get('/buyers/{username}/dashboardgigs', [DashboardGigs::class, 'index'])->name('sellers.DashboardGigs');
 
@@ -91,8 +93,13 @@ Route::get('/admin/signup', [SignUpAdmin::class, 'index'])->name('admin.signup')
 Route::post('/admin/signup', [SignUpAdmin::class, 'store'])->name('admin.signup.store');
 Route::get('/admin', [LoginAdmin::class, 'index'])->name('admin.login');
 Route::post('/admin', [LoginAdmin::class, 'login'])->name('admin.login.login');
-Route::post('/admin/logout', [LoginAdmin::class, 'logout'])->name('admin.login.logout');
-Route::get('/admin/{username}', [DashboardAdmin::class, 'index'])->name('admin.dashboard');
+Route::get('/admin/logout', [LoginAdmin::class, 'logout'])->name('admin.logout');
+Route::get('/admin/dashboard', [DashboardAdmin::class, 'index'])->name('admin.dashboard');
+Route::get('/admin/buyers', [DashboardAdmin::class, 'buyers'])->name('admin.buyers');
+Route::get('/admin/forms', [DashboardAdmin::class, 'forms'])->name('admin.forms');
+Route::get('/admin/subscriptions', [DashboardAdmin::class, 'subscriptions'])->name('admin.subscriptions');
+
+
 
 
 

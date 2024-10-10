@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ContactFormsTicolancer as ContactForms;
+use App\Models\SubscriptionsTicolancer as Subscriptions;
 
 class HomepageController extends Controller
 {
@@ -56,6 +57,27 @@ class HomepageController extends Controller
         }
 
        
+    }
+
+    public function store_subscription(Request $request) 
+    {
+        try {
+            Subscriptions::create([
+                'email' => $request->email
+            ]);
+
+            $to = $request->email;
+            $subject = 'Gracias por suscribirte';
+            $message = 'Gracias por suscribirte, es un gusto que seas parte de nuestra comunidad';
+            $headers = 'From: Ticolancer' . "\r\n";
+
+            mail ($to, $subject, $message, $headers);
+
+            return redirect()->back()->with('success', 'Gracias por suscribirte, es un gusto que seas parte de nuestra comunidad');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('warning', 'Error al enviar el formulario');
+        }
+
     }
 
     /**

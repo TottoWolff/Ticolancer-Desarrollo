@@ -265,9 +265,10 @@
                 <div class="flex flex-col w-full gap-[20px] max-sm:items-center">
                     <h2 class="text-white w-fit text-[36px] max-sm:text-[28px] font-light">¿Deseas <span class="text-green font-secondary">contactarnos?</span></h2>
                     <h3 class="text-white font-light text-[22px]">¡Únete a la familia Ticolancer!</h3>
-                    <form class="flex flex-row" action="">
-                        <input type="text" placeholder="Email" class="rounded-l-[10px] w-[40%] max-sm:w-[100%] p-[10px] text-[16px] text-white bg-transparent border-[1px] border-white font-light outline-none">
-                        <input type="submit" placeholder="Nombre" class="rounded-r-[10px] p-[10px] cursor-pointer text-[16px] text-primary font-semibold bg-white outline-none">
+                    <form class="flex flex-row" action="{{ route('subscription.store') }}" method="POST">
+                        @csrf
+                        <input type="text" name="email" placeholder="Email" class="rounded-l-[10px] w-[40%] max-sm:w-[100%] p-[10px] text-[16px] text-white bg-transparent border-[1px] border-white font-light outline-none">
+                        <input type="submit" class="rounded-r-[10px] p-[10px] cursor-pointer text-[16px] text-primary font-semibold bg-white outline-none">
                     </form>
                 </div>
             </div>
