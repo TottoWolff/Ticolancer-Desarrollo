@@ -70,7 +70,7 @@ class SellerProfileController extends Controller
 
 
             return
-                view('sellers.sellerProfile', [
+                view('sellers.profile', [
                     'name' => $buyer->name,
                     'lastname' => $buyer->lastname,
                     'username' => $buyer->username,
@@ -135,7 +135,7 @@ class SellerProfileController extends Controller
             $provinces = Provinces::all();
             $cities = Cities::all();
 
-            return view('sellers.sellerProfileSettingsAccount', ['username' => $user->username], compact('username', 'name', 'lastname', 'email', 'phone', 'userLanguages', 'languages', 'levels', 'provinces', 'cities', 'userCity', 'userProvince', 'sellerDescription', 'sellerBirthdate', 'sellerAddress', 'sellerFacebook', 'sellerInstagram', 'sellerTwitter', 'sellerLinkedin', 'sellerWebsite'));
+            return view('sellers.settingsAccount', ['username' => $user->username], compact('username', 'name', 'lastname', 'email', 'phone', 'userLanguages', 'languages', 'levels', 'provinces', 'cities', 'userCity', 'userProvince', 'sellerDescription', 'sellerBirthdate', 'sellerAddress', 'sellerFacebook', 'sellerInstagram', 'sellerTwitter', 'sellerLinkedin', 'sellerWebsite'));
         }
     }
 
@@ -147,7 +147,7 @@ class SellerProfileController extends Controller
         } else {
             $user = Auth::guard('buyers')->user();
             $username = $user->username;
-            return view('sellers.sellerProfileSettingsSecurity', ['username' => $user->username], compact('username'));
+            return view('sellers.settingsSecurity', ['username' => $user->username], compact('username'));
         }
     }
 

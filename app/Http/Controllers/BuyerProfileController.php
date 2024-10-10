@@ -42,7 +42,7 @@ class BuyerProfileController extends Controller
             $profile = $buyer->picture;
 
 
-            return view('buyers.buyerProfile', [
+            return view('buyers.profile', [
                 'name' => $buyer->name, 
                 'lastname' => $buyer->lastname, 
                 'username' => $buyer->username,
@@ -89,7 +89,7 @@ class BuyerProfileController extends Controller
             $provinces = Provinces::all();
             $cities = Cities::all();
 
-            return view('buyers.buyerProfileSettingsAccount', ['username' => $user->username], compact('username', 'name', 'lastname', 'email', 'phone', 'userLanguages', 'languages', 'levels', 'provinces', 'cities',	 'userCity', 'userProvince'));
+            return view('buyers.settingsAccount', ['username' => $user->username], compact('username', 'name', 'lastname', 'email', 'phone', 'userLanguages', 'languages', 'levels', 'provinces', 'cities',	 'userCity', 'userProvince'));
         }
     }
 
@@ -102,7 +102,7 @@ class BuyerProfileController extends Controller
         else{
             $user = Auth::guard('buyers')->user();
             $username = $user->username;
-            return view('buyers.buyerProfileSettingsSecurity', ['username' => $user->username], compact('username'));
+            return view('buyers.settingsSecurity', ['username' => $user->username], compact('username'));
         }
     }
 

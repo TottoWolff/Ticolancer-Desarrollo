@@ -1,35 +1,35 @@
-@extends('sellers.sellerLayout')
+@extends('buyers.layout')
 
 @section('content')
 <div class="w-[90vw] bg-bg flex justify-center mt-[100px] m-auto">
     <div class="bg-bg rounded-lg w-full grid grid-cols-2 gap-[20px] max-sm:grid-cols-1">
 
         <!-- column left-->
-             <div class="flex flex-col justify-start items-start gap-[20px] py-[20px]">
-                 <a class="flex w-full items-center gap-[10px] justify-center border-[1px] border-blue border-opacity-50 rounded-[12px] p-[10px] text-white bg-blue transition-all duration-500 hover:translate-y-[-5px]">Cuenta</a>
-                 <a class="flex w-full items-center gap-[10px] justify-center border-[1px] border-blue border-opacity-50 rounded-[12px] p-[10px] text-blue hover:text-white hover:bg-blue hover:border-blue transition-all duration-500 hover:translate-y-[-5px] " href="{{ route('sellerProfileSettingsSecurity', ['username' => $username]) }}">Seguridad</a>
-                 <a class="text-[16px] text-blue underline hover:text-green transition-all duration-500 ease-out" href="{{ route('sellerProfile', ['username' => $username]) }}">🡠 Ir a mi perfil</a>
-                 
-                 <!-- message -->
-                 @if ($message = Session::get('success'))
-                 <div class="bg-[#DCFCE7] border-[1px] border-[#4ADE80] text-[#15763D] px-4 py-3 rounded-[10px] text-center w-full" role="alert">
-                     <p>{{ $message }}</p>
-                    </div>
-                    @endif
-                    
-                    
-                    <!-- error -->
-                    @if ($message = Session::get('error'))
-                    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-[10px]  text-center w-full" role="alert">
-                        <p>{{ $message }}</p>
-                    </div>
-                    @endif
-                </div>
-    
-                <!--column right -->
+        <div class="flex flex-col justify-start items-start gap-[20px] py-[20px]">
+            <a class="flex w-full items-center gap-[10px] justify-center border-[1px] border-blue border-opacity-50 rounded-[12px] p-[10px] text-white bg-blue transition-all duration-500 hover:translate-y-[-5px]">Cuenta</a>
+            <a class="flex w-full items-center gap-[10px] justify-center border-[1px] border-blue border-opacity-50 rounded-[12px] p-[10px] text-blue hover:text-white hover:bg-blue hover:border-blue transition-all duration-500 hover:translate-y-[-5px] " href="{{ route('buyerProfileSettingsSecurity', ['username' => $username]) }}">Seguridad</a>
+            <a class="text-[16px] text-blue underline hover:text-green transition-all duration-500 ease-out" href="{{ route('buyerProfile', ['username' => $username]) }}">🡠 Ir a mi perfil</a>
+
+            <!-- message -->
+            @if ($message = Session::get('success'))
+            <div class="bg-[#DCFCE7] border-[1px] border-[#4ADE80] text-[#15763D] px-4 py-3 rounded-[10px] text-center w-full" role="alert">
+                <p>{{ $message }}</p>
+            </div>
+            @endif
+
+
+            <!-- error -->
+            @if ($message = Session::get('error'))
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-[10px]  text-center w-full" role="alert">
+                <p>{{ $message }}</p>
+            </div>
+            @endif
+        </div>
+
+        <!--column right -->
         <div class="w-full flex-col flex py-[20px] gap-[20px]">
             <!-- Personal information -->
-            <form action="{{ route('sellers.updatePersonalInfo', ['username' => $username]) }}" method="POST" class="w-full flex flex-col p-[20px] gap-[20px] border-[0.5px] border-solid border-blue border-opacity-50 rounded-[16px]">
+            <form action="{{ route('buyers.updatePersonalInfo', ['username' => $username]) }}" method="POST" class="w-full flex flex-col p-[20px] gap-[20px] border-[0.5px] border-solid border-blue border-opacity-50 rounded-[16px]">
                 @csrf
                 <h4 class="text-[22px] text-blue font-semibold">Información personal</h4>
                 <!-- name -->
@@ -53,14 +53,6 @@
                     <input type="text" name="email" id="email" value="{{ $email }}" placeholder="{{ $email }}" class="outline-none bg-transparent border-[0.5px] border-solid border-blue border-opacity-50 rounded-[10px] p-[10px] w-[80%]">
                 </div>
 
-                <!-- birthdate -->
-                <div class="flex items-center justify-between">
-                    <label for="birthdate" class="text-[14px] font-light">EDAD</label>
-                    <div class="flex items-center justify-between w-[80%] gap-[20px]">
-                        <input type="date" name="userBirthdate" id="userBirthdate" value="{{ $sellerBirthdate }}" placeholder="{{ $sellerBirthdate }}" class="outline-none bg-transparent border-[0.5px] border-solid border-blue border-opacity-50 rounded-[10px] p-[10px] w-[30%]">
-                    </div>
-                </div>
-
                 <!-- save changes -->
                 <div class="items-center justify-end flex w-full">
                     <button type="submit" class="w-fit bg-green rounded-[10px] p-[10px] text-white font-semibold text-[14px] hover:translate-y-[-5px] transition-all duration-500 ease-out">Guardar cambios</button>
@@ -69,7 +61,7 @@
             <!-- Personal information end -->
 
             <!-- Contact information -->
-            <form action="{{ route('sellers.updateContactInfo', ['username' => $username]) }}" method="POST" class="w-full flex flex-col p-[20px] gap-[20px] border-[0.5px] border-solid border-blue border-opacity-50 rounded-[16px]">
+            <form action="{{ route('buyers.updateContactInfo', ['username' => $username]) }}" method="POST" class="w-full flex flex-col p-[20px] gap-[20px] border-[0.5px] border-solid border-blue border-opacity-50 rounded-[16px]">
                 @csrf
                 <h4 class="text-[22px] text-blue font-semibold">Contacto</h4>
                 <!-- phone -->
@@ -89,7 +81,7 @@
             <!-- Contact information end -->
 
             <!-- Languages -->
-            <form action="{{ route('sellers.updateLanguages', ['username' => $username]) }}" method="POST" id="languages-form" class="w-full flex flex-col p-[20px] gap-[20px] border-[0.5px] border-solid border-blue border-opacity-50 rounded-[16px]">
+            <form action="{{ route('buyers.updateLanguages', ['username' => $username]) }}" method="POST" id="languages-form" class="w-full flex flex-col p-[20px] gap-[20px] border-[0.5px] border-solid border-blue border-opacity-50 rounded-[16px]">
                 @csrf
                 <h4 class="text-[22px] text-blue font-semibold">Idiomas</h4>
 
@@ -145,31 +137,8 @@
 
             <!-- Languages end -->
 
-            <!-- address -->
-            <form action="{{ route('sellers.updateAddress', ['username' => $username]) }}" method="POST" class="w-full flex flex-col p-[20px] gap-[20px] border-[0.5px] border-solid border-blue border-opacity-50 rounded-[16px]">
-                @csrf
-                <h4 class="text-[22px] text-blue font-semibold">Dirección</h4>
-
-                <div class="flex items-center gap-[20px] w-full">
-                    
-                        
-                        <div class="flex items-center w-full gap-[20px]">
-                            <input type="text" name="sellerAddress" id="phone" value="{{ $sellerAddress }}" placeholder="{{ $sellerAddress }}" class="outline-none bg-transparent border-[0.5px] border-solid border-blue border-opacity-50 rounded-[10px] p-[10px] w-[90%]">
-                        </div>
-                   
-
-                </div>
-
-
-                <!-- save changes -->
-                <div class="items-end justify-center flex flex-col w-full gap-[10px]">
-                    <button type="submit" class="w-fit bg-green rounded-[10px] p-[10px] text-white font-semibold text-[14px] hover:translate-y-[-5px] transition-all duration-500 ease-out">Guardar cambios</button>
-                </div>
-            </form>
-            <!-- address end -->
-
             <!-- location -->
-            <form action="{{ route('sellers.updateLocation', ['username' => $username]) }}" method="POST" class="w-full flex flex-col p-[20px] gap-[20px] border-[0.5px] border-solid border-blue border-opacity-50 rounded-[16px]">
+            <form action="{{ route('buyers.updateLocation', ['username' => $username]) }}" method="POST" class="w-full flex flex-col p-[20px] gap-[20px] border-[0.5px] border-solid border-blue border-opacity-50 rounded-[16px]">
                 @csrf
                 <h4 class="text-[22px] text-blue font-semibold">Ubicación</h4>
 
@@ -200,50 +169,10 @@
                 </div>
             </form>
             <!-- location end -->
-            
-
-
-            <!-- Social media -->
-            <form action="{{ route('sellers.updateSocialMedia', ['username' => $username]) }}" method="POST" class="w-full flex flex-col p-[20px] gap-[20px] border-[0.5px] border-solid border-blue border-opacity-50 rounded-[16px]">
-                @csrf
-                <h4 class="text-[22px] text-blue font-semibold">Redes sociales</h4>
-                <!-- Facebook -->
-                <div class="flex items-center justify-between">
-                    <label for="facebook" class="text-[14px] font-light">FACEBOOK</label>
-                    <input type="url" name="facebook" id="facebook" value="{{ $sellerFacebook }}" placeholder="{{ $sellerFacebook }}" class="outline-none bg-transparent border-[0.5px] border-solid border-blue border-opacity-50 rounded-[10px] p-[10px] w-[80%]">
-                </div>
-                <!-- Instagram -->
-                <div class="flex items-center justify-between">
-                    <label for="instagram" class="text-[14px] font-light">INSTAGRAM</label>
-                    <input type="url" name="instagram" id="instagram" value="{{ $sellerInstagram }}" placeholder="{{ $sellerInstagram }}" class="outline-none bg-transparent border-[0.5px] border-solid border-blue border-opacity-50 rounded-[10px] p-[10px] w-[80%]">
-                </div>
-                <!-- Twitter -->
-                <div class="flex items-center justify-between">
-                    <label for="twitter" class="text-[14px] font-light">TWITTER</label>
-                    <input type="url" name="twitter" id="twitter" value="{{ $sellerTwitter }}" placeholder="{{ $sellerTwitter }}" class="outline-none bg-transparent border-[0.5px] border-solid border-blue border-opacity-50 rounded-[10px] p-[10px] w-[80%]">
-                </div>
-                <!-- Linkedin -->
-                <div class="flex items-center justify-between">
-                    <label for="linkedin" class="text-[14px] font-light">LINKEDIN</label>
-                    <input type="url" name="linkedin" id="linkedin" value="{{ $sellerLinkedin }}" placeholder="{{ $sellerLinkedin }}" class="outline-none bg-transparent border-[0.5px] border-solid border-blue border-opacity-50 rounded-[10px] p-[10px] w-[80%]">
-                </div>
-                
-
-                <!-- Website -->
-                <div class="flex items-center justify-between">
-                    <label for="website" class="text-[14px] font-light">WEBSITE</label>
-                    <input  name="website" id="website"  placeholder="{{ $sellerWebsite }}" class="outline-none bg-transparent border-[0.5px] border-solid border-blue border-opacity-50 rounded-[10px] p-[10px] w-[80%]">
-                </div>
-
-                <!-- save changes -->
-                <div class="items-center justify-end flex w-full">
-                    <button type="submit" class="w-fit bg-green rounded-[10px] p-[10px] text-white font-semibold text-[14px] hover:translate-y-[-5px] transition-all duration-500 ease-out">Guardar cambios</button>
-                </div>
-            </form>
 
 
             <!-- Desactive account -->
-            <form action="{{ route('sellers.desactivateAccount', ['username' => $username]) }}" method="POST" class="w-full flex flex-col p-[20px] gap-[20px] border-[0.5px] border-solid border-blue border-opacity-50 rounded-[16px]">
+            <form action="{{ route('buyers.desactivateAccount', ['username' => $username]) }}" method="POST" class="w-full flex flex-col p-[20px] gap-[20px] border-[0.5px] border-solid border-blue border-opacity-50 rounded-[16px]">
                 @csrf
                 <h4 class="text-[22px] text-blue font-semibold">Desactivar cuenta</h4>
                 <!-- desactive reason -->
@@ -278,31 +207,32 @@
 </div>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const languagesContainer = document.getElementById('new-languages-container');
-        const addLanguageButton = document.getElementById('add-language');
+  document.addEventListener("DOMContentLoaded", function() {
+    const languagesContainer = document.getElementById('new-languages-container');
+    const addLanguageButton = document.getElementById('add-language');
 
-        // Evento para agregar nuevo idioma
-        addLanguageButton.addEventListener('click', function() {
-            const languageItem = document.querySelector('.language-item').cloneNode(true);
+    // Evento para agregar nuevo idioma
+    addLanguageButton.addEventListener('click', function() {
+        const languageItem = document.querySelector('.language-item').cloneNode(true);
 
-            // Resetear valores de selects para que el usuario seleccione nuevos valores
-            languageItem.querySelector('select[name="language_ids[]"]').value = '';
-            languageItem.querySelector('select[name="level[]"]').value = '';
+        // Resetear valores de selects para que el usuario seleccione nuevos valores
+        languageItem.querySelector('select[name="language_ids[]"]').value = '';
+        languageItem.querySelector('select[name="level[]"]').value = '';
 
-            // Agregar evento para remover el idioma agregado
-            languageItem.querySelector('.remove-language').addEventListener('click', function() {
-                languageItem.remove();
-            });
-
-            languagesContainer.appendChild(languageItem);
+        // Agregar evento para remover el idioma agregado
+        languageItem.querySelector('.remove-language').addEventListener('click', function() {
+            languageItem.remove();
         });
 
-        // Remover idioma existente
-        document.querySelectorAll('.remove-language').forEach(function(button) {
-            button.addEventListener('click', function() {
-                this.parentElement.remove();
-            });
+        languagesContainer.appendChild(languageItem);
+    });
+
+    // Remover idioma existente
+    document.querySelectorAll('.remove-language').forEach(function(button) {
+        button.addEventListener('click', function() {
+            this.parentElement.remove();
         });
     });
+});
+
 </script>

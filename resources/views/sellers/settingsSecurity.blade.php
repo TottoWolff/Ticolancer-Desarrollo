@@ -1,4 +1,4 @@
-@extends('buyers.buyerLayout')
+@extends('sellers.Layout')    
 
 @section('content')
 <div class="w-[90vw] bg-bg flex justify-center mt-[100px] m-auto">
@@ -6,9 +6,9 @@
 
         <!-- column left-->
         <div class="flex flex-col justify-start items-start gap-[20px] py-[20px]">
-            <a class="flex w-full items-center gap-[10px] justify-center border-[1px] border-blue border-opacity-50 rounded-[12px] p-[10px] text-blue hover:text-white hover:bg-blue hover:border-blue transition-all duration-500 hover:translate-y-[-5px] " href="{{ route('buyerProfileSettingsAccount', ['username' => $username]) }}">Cuenta</a>
+            <a class="flex w-full items-center gap-[10px] justify-center border-[1px] border-blue border-opacity-50 rounded-[12px] p-[10px] text-blue hover:text-white hover:bg-blue hover:border-blue transition-all duration-500 hover:translate-y-[-5px] " href="{{ route('sellerProfileSettingsAccount', ['username' => $username]) }}">Cuenta</a>
             <a class="flex w-full items-center gap-[10px] justify-center border-[1px] border-blue border-opacity-50 rounded-[12px] p-[10px] text-white bg-blue transition-all duration-500 hover:translate-y-[-5px] " href="#">Seguridad</a>
-            <a class="text-[16px] text-blue underline hover:text-green transition-all duration-500 ease-out" href="{{ route('buyerProfile', ['username' => $username]) }}">🡠 Ir a mi perfil</a>
+            <a class="text-[16px] text-blue underline hover:text-green transition-all duration-500 ease-out" href="{{ route('sellerProfile', ['username' => $username]) }}">🡠 Ir a mi perfil</a>
             <!-- message -->
             @if ($message = Session::get('success'))
             <div class="bg-[#DCFCE7] border-[1px] border-[#4ADE80] text-[#15763D] px-4 py-3 rounded-[10px] text-center w-full" role="alert">
@@ -27,7 +27,7 @@
         <!--column right -->
         <div class="w-full flex-col flex py-[20px] gap-[20px]">
             <!-- Personal information -->
-            <form id="password-form" action="{{ route('buyers.updatePassword', ['username' => $username]) }}" method="POST" class="w-full flex flex-col p-[20px] gap-[20px] border-[0.5px] border-solid border-blue border-opacity-50 rounded-[16px]">
+            <form id="password-form" action="{{ route('sellers.updatePassword', ['username' => $username]) }}" method="POST" class="w-full flex flex-col p-[20px] gap-[20px] border-[0.5px] border-solid border-blue border-opacity-50 rounded-[16px]">
                 @csrf
                 <h4 class="text-[22px] text-blue font-semibold">Cambio de contraseña</h4>
                 <!--current Password -->
