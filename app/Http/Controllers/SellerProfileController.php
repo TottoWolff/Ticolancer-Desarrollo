@@ -57,31 +57,40 @@ class SellerProfileController extends Controller
 
             $profile = $buyer->picture;
 
-            $gigs = GigsTicolancer::all();
+            // $sellerGigs = GigsTicolancer::all();
+
+            //id buyer = id fk seller get 1pk find gigs
+
+            $sellerGigs = \DB::table('sellers_users_ticolancers')
+                ->where('buyers_users_ticolancers_id', '=', $buyerId) // Aquí obtienes el seller relacionado al buyer autenticado
+                ->join('gigs_ticolancers', 'gigs_ticolancers.sellers_users_ticolancers_id', '=', 'sellers_users_ticolancers.id') // Aquí haces el join por el id de seller
+                ->select('gigs_ticolancers.*') // Selecciona solo las columnas de gigs
+                ->get();
 
 
-            return 
-            view('sellers.sellerProfile', [
-                'name' => $buyer->name,
-                'lastname' => $buyer->lastname,
-                'username' => $buyer->username,
-                'email' => $buyer->email,
-                'phone' => $buyer->phone,
-                'joinDate' => $joinDate,
-                'picture' => $profile,
-                'cityName' => $city ? $city->city : null,
-                'provinceName' => $province ? $province->province : null,
-                'languages' => $languages,
-                'sellerDescription' => $sellerDescription,
-                'sellerBirthdate' => $sellerBirthdate,
-                'sellerAddress' => $sellerAddress,
-                'sellerFacebook' => $sellerFacebook,
-                'sellerInstagram' => $sellerInstagram,
-                'sellerTwitter' => $sellerTwitter,
-                'sellerLinkedin' => $sellerLinkedin,
-                'sellerWebsite' => $sellerWebsite,
-                'gigs' => $gigs,
-            ]);
+
+            return
+                view('sellers.sellerProfile', [
+                    'name' => $buyer->name,
+                    'lastname' => $buyer->lastname,
+                    'username' => $buyer->username,
+                    'email' => $buyer->email,
+                    'phone' => $buyer->phone,
+                    'joinDate' => $joinDate,
+                    'picture' => $profile,
+                    'cityName' => $city ? $city->city : null,
+                    'provinceName' => $province ? $province->province : null,
+                    'languages' => $languages,
+                    'sellerDescription' => $sellerDescription,
+                    'sellerBirthdate' => $sellerBirthdate,
+                    'sellerAddress' => $sellerAddress,
+                    'sellerFacebook' => $sellerFacebook,
+                    'sellerInstagram' => $sellerInstagram,
+                    'sellerTwitter' => $sellerTwitter,
+                    'sellerLinkedin' => $sellerLinkedin,
+                    'sellerWebsite' => $sellerWebsite,
+                    'gigs' => $sellerGigs,
+                ]);
         }
     }
 
@@ -294,7 +303,7 @@ class SellerProfileController extends Controller
     public function updateAddress(Request $request)
     {
         $user = Auth::guard('buyers')->user();
-        
+
         $seller = \App\Models\SellersUsersTicolancer::where('buyers_users_ticolancers_id', $user->id)->first();
 
         $seller->update([

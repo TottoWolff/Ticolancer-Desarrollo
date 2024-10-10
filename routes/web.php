@@ -74,8 +74,6 @@ Route::post('/{username}/update/password', [SellerProfile::class, 'updatePasswor
 Route::post('/{username}/update/address', [SellerProfile::class, 'updateAddress'])->name('sellers.updateAddress');
 Route::post('/{username}/update/socialMedia', [SellerProfile::class, 'updateSocialMedia'])->name('sellers.updateSocialMedia');
 
-Route::get('/sellers/{username}/dashboardgigs', [DashboardGigs::class, 'index'])->name('sellers.DashboardGigs');
-
 //Route::get('/gigs', Gigs::class, 'index')->name('gigs');
 Route::get('/sellers/{username}/gigCreation', [Gigs::class, 'index'])->name('gigCreation');
 Route::post('/sellers/{username}/gigstore', [Gigs::class, 'store'])->name('sellers.gigStore');

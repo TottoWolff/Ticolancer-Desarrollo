@@ -26,7 +26,7 @@ class DashboardGigsController extends Controller
         $username = $buyer->username;
 
 
-        return view('sellers.dashboardGigs', ['username' => $buyer->username, 'gigs' => $gigs], compact('gigs' ,'username'));
+        return view('buyers.dashboardGigs', ['username' => $buyer->username, 'gigs' => $gigs], compact('gigs' ,'username'));
 
     }
 

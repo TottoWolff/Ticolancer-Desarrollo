@@ -1,68 +1,35 @@
 @extends('ticolancer.layout')
 
 @section('content') 
-<div class="grid grid-cols-1 bg-blue h-screen w-full max-sm:grid-cols-1">
+<div class="grid grid-cols-1 bg-blue h-auto py-[40px] w-full max-sm:grid-cols-1">
     <div
         class="flex flex-col justify-center items-center px-[120px] gap-[20px] max-sm:w-[90vw] max-sm:px-0 max-sm:m-auto mt-[6rem]">
-        <form action="{{ route('sellers.gigStore', ['username' => $username]) }}" method="POST"
+        <form class="w-[50vw]" action="{{ route('sellers.gigStore', ['username' => $username]) }}" method="POST"
             enctype="multipart/form-data">
             @csrf
             <div class="mt-4">
                 <input
-                    class="appearance-none border rounded-[10px] py-2 px-3 text-gray-700 leading-tight focus:outline-none w-[42rem]"
-                    id="gig_name" name="gig_name" type="text" placeholder="Nombre del emprendimiento" required>
+                    class="placeholder:text-slate-400 flex w-full border-b-[1px] border-solid border-white bg-transparent border-opacity-50 px-[20px] py-[10px] text-white text-[16px] font-regular  outline-none"
+                    id="gig_name" name="gig_name" type="text" placeholder="Nombre del servicio" required>
             </div>
             <div class="mt-4">
                 <textarea
-                    class="appearance-none border rounded-[10px] w-full pb-28 py-2 px-3 text-gray-700 leading-tight focus:outline-none"
-                    id="gig_description" name="gig_description" placeholder="Descripcion" required
+                    class="placeholder:text-slate-400 flex w-full border-b-[1px] border-solid border-white bg-transparent border-opacity-50 px-[20px] py-[10px] text-white text-[16px] font-regular  outline-none"
+                    id="gig_description" name="gig_description" placeholder="Descripcion del servicio" required
                     style="vertical-align: top;"></textarea>
             </div>
 
             <div class="mt-4">
                 <input
-                    class="appearance-none border rounded-[10px] w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
-                    id="gig_email" name="gig_email" type="email" placeholder="Correo electrónico" required>
+                    class="placeholder:text-slate-400 flex w-full border-b-[1px] border-solid border-white bg-transparent border-opacity-50 px-[20px] py-[10px] text-white text-[16px] font-regular  outline-none"
+                    id="gig_price" name="gig_price" type="number" step="0.01" min="0" placeholder="Precio" required>
             </div>
             <div class="mt-4">
-                <input
-                    class="appearance-none border rounded-[10px] w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
-                    id="gig_phone_number" name="gig_phone_number" type="tel" placeholder="Número de teléfono" required
-                    oninput="formatPhoneNumber(this)">
-            </div>
-            <div class="mt-4">
-                <div class="relative">
-                    <select id="province_id" name="province_id"
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        placeholder="Provincia">
-                        <option value="" disabled selected>Provincia</option>
-                        @foreach(\App\Models\ProvincesTicolancer::all() as $province)
-                            <option value="{{ $province->id }}">{{ $province->province }}</option>
-                        @endforeach
-                    </select>
-                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                            <path d="M7 10l5 5 5-5H7z" />
-                        </svg>
-                    </div>
-                </div>
-            </div>
-            <div class="mt-4">
-                <div class="relative">
-                    <select id="city_id" name="city_id"
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        placeholder="Ciudad">
-                        <option value="" disabled selected>Ciudad</option>
-                        @foreach(\App\Models\CitiesTicolancer::all() as $city)
-                            <option value="{{ $city->id }}">{{ $city->city }}</option>
-                        @endforeach
-                    </select>
-                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                            <path d="M7 10l5 5 5-5H7z" />
-                        </svg>
-                    </div>
-                </div>
+            <select id="gig_category" class="text-slate-400 w-full border-b-[1px] border-solid border-white bg-transparent border-opacity-50 px-[20px] py-[10px]  text-[16px] font-regular  outline-none">
+                @foreach ($categories as $category)
+                    <option class="text-blue bg-white" name="gig_category" value="{{ $category->id }}">{{ $category->category }}</option>
+                @endforeach
+            </select>
             </div>
 
             <div class="flex gap-[20px] w-full mt-4">

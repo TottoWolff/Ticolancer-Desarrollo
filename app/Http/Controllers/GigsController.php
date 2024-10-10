@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\GigsTicolancer;
 use Illuminate\Support\Facades\Auth;
+use App\Models\GigsCategoriesTicolancer as GigsCategories ;
 
 class GigsController extends Controller
 {
@@ -17,9 +18,12 @@ class GigsController extends Controller
         } else {
             $user = Auth::guard('buyers')->user();
 
+            $categories = GigsCategories::all();
+
+
             if ($user) {
                 $username = $user->username;
-                return view('sellers.sellerGigs', ['username' => $username], compact('username'));
+                return view('sellers.sellerGigs', ['username' => $username], compact('username', 'categories'));
             } else {
                 return redirect()->route('login');
             }

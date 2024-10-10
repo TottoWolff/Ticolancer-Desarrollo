@@ -13,15 +13,18 @@ return new class extends Migration
     {
         Schema::create('gigs_ticolancers', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('gigs_categories_ticolancers_id')->constrained();
+            $table->foreignId('sellers_users_ticolancers_id')->constrained();
             $table->string('gig_name');
             $table->string('gig_image');
             $table->text('gig_description');
-            $table->text('gig_email');
-            $table->string('gig_phone_number');
-            $table->foreignId('sellers_users_ticolancers_id')->constrained()->onDelete('cascade');
-            $table->foreignId('provinces_ticolancers_id')->constrained()->onDelete('cascade');
-            $table->foreignId('cities_ticolancers_id')->constrained()->onDelete('cascade');
+            $table->decimal('gig_price');
+            // $table->text('gig_email');
+            // $table->string('gig_phone_number');
+            // $table->foreignId('provinces_ticolancers_id')->constrained()->onDelete('cascade');
+            // $table->foreignId('cities_ticolancers_id')->constrained()->onDelete('cascade');
             //$table->foreignId('category_id')->constrained()->onDelete('cascade');
+            $table->date('created_at');
             $table->timestamps();
         });
     }

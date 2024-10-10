@@ -309,7 +309,7 @@
                 <li class="flex items-center justify-between p-4 ">
                    
                     <div class="flex items-center gap-4">
-                        <img class="w-16 h-16 object-cover" src="{{ asset('images/gigs/' .$gig->gig_image) }}" alt="{{ $gig->gig_name }}">
+                        <img class="w-16 h-16 object-cover rounded-md" src="{{ asset('images/gigs/' .$gig->gig_image) }}" alt="{{ $gig->gig_name }}">
 
                         
                         <div class="flex flex-col">
@@ -328,7 +328,7 @@
                     <!-- Botones de editar y eliminar -->
                     <div class="flex gap-4">
                         
-                        <a href="{{ url('/sellers/'.$gig->username.'/gig/edit/'.$gig->id) }}" class="bg-blue-500 py-1 px-3 rounded hover:bg-blue-600  border-[1px] border-blue border-opacity-50  p-[10px] text-blue hover:text-white hover:bg-blue hover:border-blue transition-all duration-500">
+                        <a href="" class="bg-blue-500 py-1 px-3 rounded hover:bg-blue-600  border-[1px] border-blue border-opacity-50  p-[10px] text-blue hover:text-white hover:bg-blue hover:border-blue transition-all duration-500">
                             Editar
                         </a>
 

@@ -1,12 +1,4 @@
 @extends('buyers.buyerLayout')<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="icon" href="{{ asset('images/profile/logo.png') }}" type="image/x-icon"> -->
-    <title>Servicio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-</head>
 <body>
     <nav class="bg-[#F8FBFF] py-4">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
@@ -50,7 +42,7 @@
                 
                 <div class="grid gap-2 max-sm:text-center">
                     <h1 class="text-3xl font-semibold">Modelado 3D</h1>
-                    <h2 class="text-xl">Modelado 3D en Blender</h2>
+                    <h2 class="text-xl">$gig_name</h2>
                 </div>
 
                 <div class="flex max-sm:grid gap-6 mt-3 max-sm:justify-center max-sm:place-items-center">
