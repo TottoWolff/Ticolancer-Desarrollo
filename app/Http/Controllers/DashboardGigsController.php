@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\GigsTicolancer; 
-
 use App\Models\SellersUsersTicolancer;
-
 use Illuminate\Support\Facades\Auth;
 
 class DashboardGigsController extends Controller
@@ -16,18 +14,9 @@ class DashboardGigsController extends Controller
      */
     public function index()
     {
-        // $gigs = GigsTicolancer::all();
-
-        // return view ('sellers.dashboardGigs', compact('gigs'));
-
+        $user = Auth::guard('buyers')->user();
         $gigs = GigsTicolancer::all();
-
-        $buyer = Auth::guard('buyers')->user();
-        $username = $buyer->username;
-
-
-        return view('buyers.dashboardGigs', ['username' => $buyer->username, 'gigs' => $gigs], compact('gigs' ,'username'));
-
+        return view('buyers.dashboard', compact('gigs', 'user'));
     }
 
     /**

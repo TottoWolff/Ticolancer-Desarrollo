@@ -45,6 +45,8 @@ Route::post('/logout', [Login::class, 'logout'])->name('login.logout');
 Route::post('/recover', [Login::class, 'recover'])->name('login.recover');
 
 //ROUTES FOR BUYERS
+Route::get('/buyers/{username}/dashboard', [DashboardGigs::class, 'index'])->name('buyers.dashboard');
+
 Route::get('buyers/{username}', [BuyerProfile::class, 'index'])->name('buyerProfile');
 Route::get('buyers/{username}/settings/account', [BuyerProfile::class, 'settingsAccount'])->name('buyerProfileSettingsAccount');
 Route::get('buyers/{username}/settings/security', [BuyerProfile::class, 'settingsSecurity'])->name('buyerProfileSettingsSecurity');
@@ -57,7 +59,6 @@ Route::post('/{username}/buyers/update/location', [BuyerProfile::class, 'updateL
 Route::post('/{username}/buyers/update/languages', [BuyerProfile::class, 'updateLanguages'])->name('buyers.updateLanguages');
 Route::post('/{username}/buyers/update/password', [BuyerProfile::class, 'updatePassword'])->name('buyers.updatePassword');
 
-Route::get('/buyers/{username}/dashboardgigs', [DashboardGigs::class, 'index'])->name('sellers.DashboardGigs');
 
 //ROUTES FOR SELLERS
 Route::get('sellers/{username}', [SellerProfile::class, 'index'])->name('sellerProfile');
@@ -74,7 +75,7 @@ Route::post('/{username}/update/password', [SellerProfile::class, 'updatePasswor
 Route::post('/{username}/update/address', [SellerProfile::class, 'updateAddress'])->name('sellers.updateAddress');
 Route::post('/{username}/update/socialMedia', [SellerProfile::class, 'updateSocialMedia'])->name('sellers.updateSocialMedia');
 
-//Route::get('/gigs', Gigs::class, 'index')->name('gigs');
+
 Route::get('/sellers/{username}/gigCreation', [Gigs::class, 'index'])->name('gigCreation');
 Route::post('/sellers/{username}/gigstore', [Gigs::class, 'store'])->name('sellers.gigStore');
 Route::delete('/gig/delete/{id}', [Gigs::class, 'destroy'])->name('deleteGig');

@@ -5,27 +5,27 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use App\Models\GigsCategoriesTicolancer;
+
 class GigsTicolancer extends Model
 {
     use HasFactory;
     protected $fillable = [
         'gig_name',
         'gig_image',
+        'gig_price',
         'gig_description',
-        'gig_email',
-        'gig_phone_number',
+        'published_at',
+        'gigs_categories_ticolancers_id',
         'sellers_id',
-        'province_id',
-        'city_id'
     ];
 
-    public function province()
+    //relation 
+
+    public function categories()
     {
-        return $this->belongsTo(ProvincesTicolancer::class);
+        return $this->belongsTo(GigsCategoriesTicolancer::class, 'gigs_categories_ticolancers_id');
     }
 
-    public function city()
-    {
-        return $this->belongsTo(CitiesTicolancer::class);
-    }
+    
 }

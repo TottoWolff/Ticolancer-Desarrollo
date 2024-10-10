@@ -19,12 +19,7 @@ return new class extends Migration
             $table->string('gig_image');
             $table->text('gig_description');
             $table->decimal('gig_price');
-            // $table->text('gig_email');
-            // $table->string('gig_phone_number');
-            // $table->foreignId('provinces_ticolancers_id')->constrained()->onDelete('cascade');
-            // $table->foreignId('cities_ticolancers_id')->constrained()->onDelete('cascade');
-            //$table->foreignId('category_id')->constrained()->onDelete('cascade');
-            $table->date('created_at');
+            $table->date('published_at');
             $table->timestamps();
         });
     }

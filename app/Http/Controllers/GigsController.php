@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\GigsTicolancer;
 use Illuminate\Support\Facades\Auth;
 use App\Models\GigsCategoriesTicolancer as GigsCategories ;
+use Carbon\Carbon;
 
 class GigsController extends Controller
 {
@@ -17,13 +18,14 @@ class GigsController extends Controller
             return redirect()->route('login');
         } else {
             $user = Auth::guard('buyers')->user();
+            $username = $user->username;
 
             $categories = GigsCategories::all();
 
 
             if ($user) {
                 $username = $user->username;
-                return view('sellers.sellerGigs', ['username' => $username], compact('username', 'categories'));
+                return view('sellers.sellerGigs', ['username' => $username], compact('user', 'categories'));
             } else {
                 return redirect()->route('login');
             }
@@ -50,44 +52,42 @@ class GigsController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
+{
         if (!Auth::guard('buyers')->check()) {
             return redirect()->route('login');
-        } else {
-            $user = Auth::guard('buyers')->user();
-
-            $request->validate([
-                'gig_name' => 'required',
-                'gig_image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-                'gig_description' => 'required',
-                'gig_email' => 'required|email',
-                'gig_phone_number' => 'required',
-                'province_id' => 'required|exists:provinces_ticolancers,id',
-                'city_id' => 'required|exists:cities_ticolancers,id',
-            ]);
-
-            $gig = new GigsTicolancer;
-            $gig->gig_name = $request->gig_name;
-            $gig->gig_description = $request->gig_description;
-            $gig->gig_email = $request->gig_email;
-            $gig->gig_phone_number = $request->gig_phone_number;
-            $gig->provinces_ticolancers_id = $request->province_id;
-            $gig->cities_ticolancers_id = $request->city_id;
-            $gig->sellers_users_ticolancers_id = $user->id;
-
-            if ($request->hasFile('gig_image')) {
-                $file = $request->file('gig_image');
-                $fileType = $file->getClientOriginalExtension();
-                $filename = $gig->gig_name . '.' . $fileType;
-                $file->move(public_path('images/gigs'), $filename);
-                $gig->gig_image = $filename;
-            }
-
-            $gig->save();
-
-            return redirect()->back()->with('warning', 'Gig creado exitosamente');
         }
+
+        $user = Auth::guard('buyers')->user();
+        $date = Carbon::now();
+
+        $gig = new GigsTicolancer;
+        $gig->gig_name = $request->gig_name;
+        $gig->gig_description = $request->gig_description;
+        $gig->gig_price = $request->gig_price;
+        $gig->gigs_categories_ticolancers_id = $request->gig_category;
+        $gig->sellers_users_ticolancers_id = $user->id;
+        $gig->published_at = $date;
+
+        if ($request->hasFile('gig_image')) {
+            $file = $request->file('gig_image');
+            $fileType = $file->getClientOriginalExtension();
+            $filename = $gig->gig_name . '.' . $fileType;
+            
+            // Mover el archivo a la carpeta pública
+            $file->move(public_path('images/gigs'), $filename);
+            
+            // Guardar el nombre del archivo en el modelo
+            $gig->gig_image = $filename;
+        } else {
+            return redirect()->back()->with('error', 'No se subió ninguna imagen.');
+        }
+
+        // Guardar el gig en la base de datos
+        $gig->save();
+
+        return redirect()->back()->with('success', 'Gig creado exitosamente');
     }
+
 
 
     /**

@@ -17,7 +17,6 @@ class LoginController extends Controller
     public function index()
     {
         //
-        
         return view('ticolancer.login');
     }
 
@@ -32,17 +31,9 @@ class LoginController extends Controller
         if (Auth::guard('buyers')->attempt($credentials)) {
             // Autenticación exitosa
             $user = Auth::guard('buyers')->user();
-            return redirect()->route('buyers.DashboardGigs', ['username' => $user->username]); 
+            return redirect()->route('buyers.dashboard', ['username' => $user->username]);
         } 
-        else if ($request->email == "" || $request->password == "")
-        {
-            return redirect()->route('login')->with('warning', 'Debes rellenar todos los campos'); 
-        } 
-        else  
-        {
-            // Autenticación fallida
-            return redirect()->route('login')->with('error', 'El correo o la contraseña son incorrectos');
-        }
+        
     }
     
 
