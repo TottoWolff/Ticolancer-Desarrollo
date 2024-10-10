@@ -82,7 +82,7 @@ Route::delete('/gig/delete/{id}', [Gigs::class, 'destroy'])->name('deleteGig');
 
 
 Route::get('/sellers/{username}/gigs', [SellerGigsProfile::class, 'index'])->name('sellerGigsProfile');
-Route::get('/sellers/{username}/gig', [SellerGig::class, 'index'])->name('sellerGig');
+Route::get('/sellers/gig/{id}', [SellerGig::class, 'index'])->name('sellerGig');
 
 Route::get('/sellers/{username}/gigsAdmin', [SellerGigsProfileAdmin::class, 'index'])->name('sellerGigsProfileAdmin');
 
