@@ -14,7 +14,11 @@ class SellerNavbarController extends Controller
         //
         $user = Auth::guard('sellers')->user();
         $picture = $user->picture;
+
+        
+        
         return view('sellers.navbar', compact('user', 'picture'));
+        return response()->json($user);
     }
 
     /**

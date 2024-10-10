@@ -113,6 +113,7 @@ class GigsController extends Controller
         }
 
         return redirect()->back()->with('success', 'Gig creado exitosamente');
+        
     }
 
 
