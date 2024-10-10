@@ -1,34 +1,5 @@
-@extends('buyers.buyerLayout')<html lang="en">
+@extends('buyers.layout')<html lang="en">
 <body>
-    <nav class="bg-[#F8FBFF] py-4">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-
-            <div class="flex items-center">
-                <img class="h-10 cursor-pointer" src="{{ asset('icons/logo.svg') }}" alt="TicoLancer logo" >
-            </div>
-            <div class="w-full max-w-xl mx-auto">
-                <div class="relative">
-                    <input type="text" placeholder="¿Cuál servicio buscas hoy?" class="w-full border border-gray-300 rounded-full px-5 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 ">
-                    <button class="absolute right-3 top-1/2 transform -translate-y-1/2 bg-transparent focus:outline-none">
-                        <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 1010.5 3a7.5 7.5 0 106.15 13.65z"></path>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-            <div class="flex items-center">
-                @if ($profile == null)
-                <img src="{{ asset('images/buyers_profiles/profile_placeholder.png') }}"  alt="Profile picture" class="w-10 h-10 rounded-full">
-                @else
-                <img src="{{ asset('images/buyers_profiles/' . $profile) }}" alt="Profile picture" class="w-10 h-10 rounded-full">
-                @endif
-
-            </div>
-        </div>
-    </nav>
-
-
-    
     <section class="px-[15rem] p-20 md:px-16 md:py-16 max-sm:p-5  max-sm:mt-[2rem]">
 
 
