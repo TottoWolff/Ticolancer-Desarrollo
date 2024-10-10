@@ -14,6 +14,7 @@ use App\Models\SellersUsersTicolancer as SellersUsers;
 use Carbon\Carbon;
 use App\Models\ProvincesTicolancer as Provinces;
 use Illuminate\Support\Facades\Hash;
+use App\Models\GigsTicolancer;
 
 use function Laravel\Prompts\select;
 
@@ -56,6 +57,8 @@ class SellerProfileController extends Controller
 
             $profile = $buyer->picture;
 
+            $gigs = GigsTicolancer::all();
+
 
             return 
             view('sellers.sellerProfile', [
@@ -77,6 +80,7 @@ class SellerProfileController extends Controller
                 'sellerTwitter' => $sellerTwitter,
                 'sellerLinkedin' => $sellerLinkedin,
                 'sellerWebsite' => $sellerWebsite,
+                'gigs' => $gigs,
             ]);
         }
     }

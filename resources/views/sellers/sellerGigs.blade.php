@@ -4,7 +4,8 @@
 <div class="grid grid-cols-1 bg-blue h-screen w-full max-sm:grid-cols-1">
     <div
         class="flex flex-col justify-center items-center px-[120px] gap-[20px] max-sm:w-[90vw] max-sm:px-0 max-sm:m-auto mt-[6rem]">
-        <form action="{{ route('sellers.gigStore',['username'=>$username]) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('sellers.gigStore', ['username' => $username]) }}" method="POST"
+            enctype="multipart/form-data">
             @csrf
             <div class="mt-4">
                 <input
@@ -17,11 +18,7 @@
                     id="gig_description" name="gig_description" placeholder="Descripcion" required
                     style="vertical-align: top;"></textarea>
             </div>
-            <div class="mt-4">
-                <input
-                    class="appearance-none border rounded-[10px] w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
-                    id="gig_image" name="gig_image" type="text" placeholder="URL de la imagen" required>
-            </div>
+
             <div class="mt-4">
                 <input
                     class="appearance-none border rounded-[10px] w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
@@ -44,7 +41,9 @@
                         @endforeach
                     </select>
                     <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M7 10l5 5 5-5H7z"/></svg>
+                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                            <path d="M7 10l5 5 5-5H7z" />
+                        </svg>
                     </div>
                 </div>
             </div>
@@ -59,10 +58,22 @@
                         @endforeach
                     </select>
                     <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M7 10l5 5 5-5H7z"/></svg>
+                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                            <path d="M7 10l5 5 5-5H7z" />
+                        </svg>
                     </div>
                 </div>
             </div>
+
+            <div class="flex gap-[20px] w-full mt-4">
+    <input class="form-control hidden" name="gig_image" id="gig_image" type="file" accept="image/*">
+    <label for="gig_image" id="upload_label"
+        class="bg-white text-blue font-bold py-2 px-4 rounded cursor-pointer">Subir imagen</label>
+</div>
+
+<div class="mt-4">
+    <img id="selected_image" class="hidden w-full h-auto rounded-[10px]" />
+</div>
 
             <div class="flex items-center justify-between gap-4">
                 <button
@@ -71,28 +82,57 @@
             </div>
 
             <div class="flex items-center justify-between gap-4">
-                <a
-                    class="text-center rounded-[10px] cursor-pointer transition-all duration-500 ease-out hover:translate-y-[-5px] hover:bg-white hover:text-red-600 w-full bg-red-600 px-[20px] py-[10px] text-white text-[16px] font-semibold outline-none mt-6"
+                <a class="text-center rounded-[10px] cursor-pointer transition-all duration-500 ease-out hover:translate-y-[-5px] hover:bg-white hover:text-red-600 w-full bg-red-600 px-[20px] py-[10px] text-white text-[16px] font-semibold outline-none mt-6"
                     type="button" href="{{ route('sellerGigsProfileAdmin', ['username' => $username]) }}">Cancelar</a>
             </div>
 
         </form>
         @if ($message = Session::get('success'))
-                    <div class="bg-[#DCFCE7] border-[1px] border-[#4ADE80] text-[#15763D] px-4 py-3 rounded-[10px] text-center w-full" role="alert">
-                        <p>{{ $message }}</p>
-                    </div>
-            @endif
-        
+            <div class="bg-[#DCFCE7] border-[1px] border-[#4ADE80] text-[#15763D] px-4 py-3 rounded-[10px] text-center w-full"
+                role="alert">
+                <p>{{ $message }}</p>
+            </div>
+        @endif
+
     </div>
 </div>
 
 <script>
-function formatPhoneNumber(input) {
-    let value = input.value.replace(/\D/g, '');
-    if (value.length > 4) {
-        value = value.slice(0, 4) + '-' + value.slice(4, 8);
+    const imageInput = document.getElementById('gig_image');
+    const uploadLabel = document.getElementById('upload_label');
+    const selectedImage = document.getElementById('selected_image');
+
+    imageInput.addEventListener('change', function (event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                selectedImage.src = e.target.result;
+                selectedImage.classList.add('hidden');
+                uploadLabel.style.backgroundImage = `url(${e.target.result})`;
+                uploadLabel.style.backgroundSize = 'cover';
+                uploadLabel.style.backgroundPosition = 'center';
+                uploadLabel.style.width = '200px';
+                uploadLabel.style.height = '200px';
+                uploadLabel.textContent = '';
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+    function formatPhoneNumber(input) {
+        let value = input.value.replace(/\D/g, '');
+        if (value.length > 4) {
+            value = value.slice(0, 4) + '-' + value.slice(4, 8);
+        }
+        input.value = value;
     }
-    input.value = value;
-}
+
+    function showFileChooser() {
+        imageInput.click();
+        modalContent.classList.add('hidden');
+        modalChanges.classList.remove('hidden');
+        modalChanges.classList.add('flex');
+    }
 </script>
 @endsection
