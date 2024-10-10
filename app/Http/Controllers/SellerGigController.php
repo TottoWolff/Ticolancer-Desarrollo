@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\GigsTicolancer;
 use App\Models\SellersUsersTicolancer;
 use App\Models\GigsReviewsTicolancer;
+use App\Models\GigsImagesTicolancer;
 
 
 use Illuminate\Support\Facades\Auth;
@@ -23,6 +24,8 @@ class SellerGigController extends Controller
 
         $seller = $buyer->seller;
 
+       
+
         $reviews = GigsReviewsTicolancer::
         where('gigs_ticolancers_id', $id)
         ->join('gigs_ticolancers', 'gigs_reviews_ticolancers.gigs_ticolancers_id', '=', 'gigs_ticolancers.id')
@@ -32,6 +35,11 @@ class SellerGigController extends Controller
         $ratings = $reviews->pluck('rating');
         $averageRating = $ratings->avg();
 
+        $images = GigsImagesTicolancer::where('gigs_ticolancers_id', $id)->get();
+
+        $imagesNames = $images->pluck('image');
+
+        // return response ()->json($imagesNames);
 
 
         $username = $buyer->username;
@@ -54,7 +62,7 @@ class SellerGigController extends Controller
         $userCity = $buyer->city->city;
 
         return view('sellers.sellerGig', compact(
-            'gig', 'username', 'name', 'lastname', 'email', 'phone', 'buyerId', 'userLanguages', 'userProvince', 'userCity', 'profile', 'reviews', 'ratings', 'averageRating'
+            'gig', 'username', 'name', 'lastname', 'email', 'phone', 'buyerId', 'userLanguages', 'userProvince', 'userCity', 'profile', 'reviews', 'ratings', 'averageRating', 'imagesNames'
         ));
     }
 

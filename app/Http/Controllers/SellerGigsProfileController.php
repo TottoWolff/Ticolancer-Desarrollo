@@ -30,17 +30,19 @@ class SellerGigsProfileController extends Controller
     {
         //
         
-        $gigs = GigsTicolancer::all();
+        $gigs = GigsTicolancer::with(['reviews' => function($query) {
+            $query->select('gigs_ticolancers_id', \DB::raw('AVG(rating) as average_rating'))
+                ->groupBy('gigs_ticolancers_id');
+        }])->get();
 
+        $selectedGig = $gigs->find($id);
 
-        $reviews = GigsReviewsTicolancer::
-        where('gigs_ticolancers_id', $id)
-        ->join('gigs_ticolancers', 'gigs_reviews_ticolancers.gigs_ticolancers_id', '=', 'gigs_ticolancers.id')
-        ->select('gigs_reviews_ticolancers.*')
-        ->get();
+        $reviews = GigsReviewsTicolancer::where('gigs_ticolancers_id', $id)->get();
 
         $ratings = $reviews->pluck('rating');
-        $averageRating = $ratings->avg();
+        $averageRating = number_format($ratings->avg(), 1); 
+
+       
 
         $buyer = Auth::guard('buyers')->user();
         $username = $buyer->username;
@@ -60,11 +62,8 @@ class SellerGigsProfileController extends Controller
         $userProvince = $buyer->city->province->province;
         $userCity = $buyer->city->city;
 
-        // $sellerInfo = \App\Models\SellersUsersTicolancer::where('buyers_users_ticolancers_id', $buyerId)->first();
-
-
         return view('sellers.sellerGigsProfile', 
-        ['username' => $buyer->username, 'gigs' => $gigs], compact('gigs' ,'username', 'name', 'lastname', 'email', 'phone', 'username', 'buyerId', 'userLanguages', 'userProvince', 'userCity', 'profile', 'averageRating'));
+        ['username' => $buyer->username, 'gigs' => $gigs], compact('gigs' ,'username', 'name', 'lastname', 'email', 'phone', 'username', 'buyerId', 'userLanguages', 'userProvince', 'userCity', 'profile', 'reviews', 'averageRating', 'selectedGig'));
 
         
     }

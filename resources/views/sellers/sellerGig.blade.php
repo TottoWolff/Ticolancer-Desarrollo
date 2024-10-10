@@ -50,11 +50,14 @@
                 </div>
 
                 <div class="flex space-x-4 mt-6 max-sm:justify-center">
-                    <img onclick="changeImage(this)" class="w-full sm:w-1/3 md:w-28 h-24 max-sm:w-[25%] max-sm:h-auto max-md:w-[10%] max-md:h-[10%]  object-cover rounded-md shadow cursor-pointer" src="{{ asset('images/profile/serviceImage1.png') }}" alt="Imagen 1">
-                    <img onclick="changeImage(this)" class="w-full sm:w-1/3 md:w-28 h-24 max-sm:w-[25%] max-sm:h-auto max-md:w-[20%] max-md:h-auto  object-cover rounded-md shadow cursor-pointer" src="{{ asset('images/profile/serviceImage2.png') }}" alt="Imagen 2">
-                    <img onclick="changeImage(this)" class="w-full sm:w-1/3 md:w-28 h-24 max-sm:w-[25%] max-sm:h-auto max-md:w-[20%] max-md:h-auto  object-cover rounded-md shadow cursor-pointer" src="{{ asset('images/profile/serviceImage3.png') }}" alt="Imagen 3">
-                    <img onclick="changeImage(this)" class="w-full sm:w-1/3 md:w-28 h-24 max-sm:w-[25%] max-sm:h-auto max-md:w-[20%] max-md:h-auto  object-cover rounded-md shadow cursor-pointer" src="{{ asset('images/profile/serviceImage4.png') }}" alt="Imagen 4">
-                </div>
+                <img onclick="changeImage(this)" class="w-full sm:w-1/3 md:w-28 h-24 max-sm:w-[25%] max-sm:h-auto max-md:w-[10%] max-md:h-[10%]  object-cover rounded-md shadow cursor-pointer" src="{{ asset('images/gigs/' .$gig->gig_image) }}" alt="Imagen 1">
+
+                    @foreach ($imagesNames as $imageName)
+                        <img onclick="changeImage(this)" class="w-full sm:w-1/3 md:w-28 h-24 max-sm:w-[25%] max-sm:h-auto max-md:w-[10%] max-md:h-[10%]  object-cover rounded-md shadow cursor-pointer" src="{{ asset('images/gigs/' .$imageName) }}" alt="Imagen 1">
+                    @endforeach
+
+
+                 </div>
 
             </div>
 

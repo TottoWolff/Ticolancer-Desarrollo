@@ -118,7 +118,7 @@
                                         <img class="mt-0.5" src="{{ asset('images/profile/star.png') }}" alt="">
                                     </div>
                                     <div class="flex gap-1">
-                                        <span class="text-primary font-semibold text-[15px] max-sm:text-[12px]">{{ $averageRating }} /5</span>
+                                        <span class="text-primary font-semibold text-[15px] max-sm:text-[12px]">{{ $gig->reviews->isNotEmpty() ? number_format(optional($gig->reviews->first())->average_rating, 1) : 'Sin calificaciones' }} / 5</span>
                                         <span class="text-primary font-medium text-gray-400 text-[15px] max-sm:text-[10px]">(221)</span>
                                     </div>
                                 </div>

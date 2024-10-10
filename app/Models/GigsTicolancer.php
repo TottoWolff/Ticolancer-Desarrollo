@@ -28,5 +28,10 @@ class GigsTicolancer extends Model
         return $this->belongsTo(GigsCategoriesTicolancer::class, 'gigs_categories_ticolancers_id');
     }
 
+    public function reviews()
+    {
+        return $this->hasMany(GigsReviewsTicolancer::class, 'gigs_ticolancers_id', 'id');
+    }
+
     
 }
