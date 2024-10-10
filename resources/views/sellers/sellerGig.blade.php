@@ -29,20 +29,21 @@
 
 
     
-    <section class="px-[15rem] p-20 max-sm:p-0 max-sm:px-0 max-sm:mt-[2rem]">
+    <section class="px-[15rem] p-20 md:px-16 md:py-16 max-sm:p-5  max-sm:mt-[2rem]">
 
 
-        <section>
+        <section >
 
         <!-- Inicia contenedor arriba -->
-        <div class="flex flex-row max-sm:flex-col gap-[24rem] max-sm:gap-[10rem] ">
+        <div class="px-20 flex flex-wrap flex-row max-sm:flex-col max-md:flex-col lg:gap-[15rem] gap-[5rem] mmax-sm:gap-[2rem]">
+
 
             <!-- Primera columna -->
             <div>
                 
                 <div class="grid gap-2 max-sm:text-center">
-                    <h1 class="text-3xl font-semibold">Modelado 3D</h1>
-                    <h2 class="text-xl">$gig_name</h2>
+                    <h1 class="text-3xl font-semibold">{{ $gig->gig_name}}</h1>
+                    <h2 class="text-xl">Servicio de {{ $gig->gig_name}}</h2>
                 </div>
 
                 <div class="flex max-sm:grid gap-6 mt-3 max-sm:justify-center max-sm:place-items-center">
@@ -74,14 +75,14 @@
 
 
                 <div class="mt-3 max-sm:mt-[2rem] max-sm:flex max-sm:justify-center">
-                    <img class="rounded-md max-sm:w-[90%] max-sm:h-auto " id="mainImage" src=" {{ asset('images/profile/serviceImage1.png') }}" alt="">
+                    <img class="w-[36rem] max-h-[20rem] rounded-md object-cover max-sm:w-[90%] max-md:w-[70%]" id="mainImage" src="{{ asset($gig->gig_image) }}" alt="">
                 </div>
 
-                <div class="flex space-x-4 mt-6 max-sm:justify-center"">
-                    <img onclick="changeImage(this)" class="w-[156px] h-24 max-sm:w-[18%] max-sm:h-[20%] object-cover rounded-md shadow cursor-pointer" src="{{ asset('images/profile/serviceImage1.png') }}" alt="Imagen 1">
-                    <img onclick="changeImage(this)" class="w-[156px] h-24 max-sm:w-[20%] max-sm:h-[20%] object-cover rounded-md shadow cursor-pointer" src="{{ asset('images/profile/serviceImage2.png') }}" alt="Imagen 2">
-                    <img onclick="changeImage(this)" class="w-[156px] h-24 max-sm:w-[20%] max-sm:h-[20%] object-cover rounded-md shadow cursor-pointer" src="{{ asset('images/profile/serviceImage3.png') }}" alt="Imagen 3">
-                    <img onclick="changeImage(this)" class="w-[156px] h-24 max-sm:w-[20%] max-sm:h-[20%] object-cover rounded-md shadow cursor-pointer" src="{{ asset('images/profile/serviceImage4.png') }}" alt="Imagen 4">
+                <div class="flex space-x-4 mt-6 max-sm:justify-center">
+                    <img onclick="changeImage(this)" class="w-full sm:w-1/3 md:w-28 h-24 max-sm:w-[25%] max-sm:h-auto max-md:w-[10%] max-md:h-[10%]  object-cover rounded-md shadow cursor-pointer" src="{{ asset('images/profile/serviceImage1.png') }}" alt="Imagen 1">
+                    <img onclick="changeImage(this)" class="w-full sm:w-1/3 md:w-28 h-24 max-sm:w-[25%] max-sm:h-auto max-md:w-[20%] max-md:h-auto  object-cover rounded-md shadow cursor-pointer" src="{{ asset('images/profile/serviceImage2.png') }}" alt="Imagen 2">
+                    <img onclick="changeImage(this)" class="w-full sm:w-1/3 md:w-28 h-24 max-sm:w-[25%] max-sm:h-auto max-md:w-[20%] max-md:h-auto  object-cover rounded-md shadow cursor-pointer" src="{{ asset('images/profile/serviceImage3.png') }}" alt="Imagen 3">
+                    <img onclick="changeImage(this)" class="w-full sm:w-1/3 md:w-28 h-24 max-sm:w-[25%] max-sm:h-auto max-md:w-[20%] max-md:h-auto  object-cover rounded-md shadow cursor-pointer" src="{{ asset('images/profile/serviceImage4.png') }}" alt="Imagen 4">
                 </div>
 
             </div>
@@ -89,12 +90,13 @@
             <!-- Segunda columna -->
             <div class="grid gap-3">
                 
-                <div class="w-[46px] h-[45px] border border-gray-300 p-3 rounded-md flex ml-auto hover:bg-gray-200">
+            <!-- Botón Compartir -->
+                <!-- <div class="w-[46px] h-[45px] border border-gray-300 p-3 rounded-md flex ml-auto hover:bg-gray-200">
                     <img class="cursor-pointer " src="{{ asset('images/profile/share.png') }}" alt="">
-                </div>
+                </div> -->
                 
                 <!-- Detalle de servicio -->
-                <div class="border border-gray-300 rounded-md max-sm:w-[90%] ">
+                <div class="border border-gray-300 rounded-md max-sm:w-[90%] max-md:justify-center">
                     <h1 class="p-5 text-2xl font-semibold" >Detalle del servicio</h1>
                     <img src="{{ asset('images/profile/line.png') }}" alt="">
                     <div class="p-5 grid gap-3">
@@ -146,32 +148,14 @@
 
            
 
-            <section class="max-sm:text-2xl mt-10 max-sm:text-center max-sm:mt-[2rem]">
+            <section class="p-20 max-sm:text-2xl mt-10 max-sm:text-center max-sm:mt-[2rem]">
                 <h1 class="text-primary font-bold text-[20px]">Descripción del servicio</h1>
-                <p class="text-[16px] max-sm:text-[14px] font-light text-black mt-3">
-                ¡Hola! Soy Emanuel Jiménez, un experto en modelado 3D con más de 5 </br> 
-                años de experiencia, especializado en la creación de modelos 3D para</br>
-                diferentes industrias, incluyendo arquitectura, videojuegos y productos</br>
-                comerciales.</br>
-                </br>
-                Mi objetivo es que todos mis clientes queden completamente satisfechos,</br>
-                por lo que ofrezco revisiones ilimitadas para asegurar que cada detalle</br>
-                cumpla con tus expectativas.</br>
-                </br>
-                Me enfoco en ofrecerte un modelado preciso y detallado, adaptado a tus</br>
-                necesidades específicas, ya sea para renderizados fotorrealistas,</br>
-                animación o impresión 3D.</br>
-                </br>
-                Todos mis paquetes incluyen:</br>
-
-                -Modelos en alta calidad, listos para renderizar o animar</br>
-                -Revisión ilimitada para ajustes y mejoras</br>
-                -Entrega en múltiples formatos 3D compatibles con tus herramientas</br>
-                -Asesoramiento personalizado para optimizar el uso de tus modelos</br>
+                <p class="text-[16px] max-sm:text-[14px] font-light text-black mt-3 w-[45%]">
+                {{ $gig->gig_description }}
             </section>
 
 
-            <div class="cursor-pointer max-sm:justify-center ">
+            <div class="px-20 cursor-pointer max-sm:justify-center ">
                 <div class="flex max-sm:grid gap-9 mt-20 border border-gray-300 rounded-md p-5 shadow-md w-[667px] max-sm:w-[300px] max-sm:justify-center">
                     <div>
                         <img class="w-[130px] max-sm:w-[120px]" src="{{ asset('images/profile/photo.png') }}" alt="">
@@ -180,9 +164,9 @@
                     <div class="grid ">
                         <div class="grid grid-cols-2 max-sm:grid-cols-1 max-md:grid-cols-1 max-lg:grid-cols-1 gap-30 max-sm:gap-1">
                             <div class="w-40 sm:flex max-sm:justify-center ">
-                                <span class="text-primary font-semibold text-[18px] ">Emanuel Jiménez</span>
+                                <span class="text-primary font-semibold text-[18px] ">{{ $name }} {{ $lastname }}</span>
                             </div>
-                            <span class="text-[16px] font-light text-gray-400" >@jimenezemanuel</span>
+                            <span class="text-[16px] font-light text-gray-400" >@ {{ $username }}</span>
                         </div>
                         <div class="flex max-sm:justify-center ">
                             <img class="w-[14px] h-[15px] mr-2 mb-2" src="{{ asset('images/profile/star.png') }}" alt="">
@@ -190,7 +174,7 @@
                         </div>
                         <div class="flex max-sm:justify-center ">
                             <img class="w-[14px] h-[19px] mr-2" src="{{ asset('icons/location.svg') }}" alt="">
-                            <span class="text-[16px] font-light text-black" >San Ramón, Aljuela, CR</span>
+                            <span class="text-[16px] font-light text-black" >{{ $userCity }} , {{ $userProvince }}, CR</span>
                         </div>
                         <div class="flex max-sm:justify-center ">
                             <img class="w-[14px] h-[19px] mr-2" src="{{ asset('images/profile/user.png') }}" alt="">

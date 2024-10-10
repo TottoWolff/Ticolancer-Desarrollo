@@ -133,7 +133,7 @@
         @if ($gigs && count($gigs) > 0)
             @foreach ($gigs as $gig)
                 <div class="flex wrap">
-                    <a href="{{ route('sellerGig', ['username' => $username]) }}" class="block w-full cursor-pointer">
+                    <a href="{{ route('sellerGig', ['id' => $gig->id, 'username' => $username]) }}" class="block w-full cursor-pointer">
                         <div class="mt-5 gap-2">
                             <img class="cursor-pointer" src="{{ asset($gig->gig_image) }}" alt="{{ $gig->gig_name }}">
 
