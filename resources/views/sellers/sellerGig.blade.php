@@ -191,56 +191,61 @@
         </section>
     </section>
 
+    <!-- Añadir Reseñas -->
+    <div class="container mx-auto px-4 mt-10 grid grid-cols-2 gap-8">
 
-    <div class="bg-gray-100 p-6 mt-10 mb-10 mx-48 max-w-3xl rounded-lg shadow-lg">
-    <h2 class="text-2xl font-semibold text-gray-800 mb-4">Deja tu Reseña</h2>
-    @if(session('success'))
-        <div class="bg-green-100 text-green-700 p-4 mb-4 rounded">
-            {{ session('success') }}
+    <!-- Formulario para dejar la reseña -->
+    <div class="border border-gray-300 p-6 rounded-lg ">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-4">Deja tu Reseña</h2>
+        @if(session('success'))
+            <div class="bg-green-100 text-green-700 p-4 mb-4 rounded">
+                {{ session('success') }}
+            </div>
+        @endif
+        <form action="{{ route('reviews.store', ['gig' => $gig->id]) }}" method="POST" class="space-y-4">
+            @csrf
+
+            <div class="form-group">
+                <label for="gig-rating" class="block text-sm font-semibold text-gray-700 mb-2">Calificación</label>
+                <select name="rating" id="gig-rating"
+                    class="w-full px-[20px] py-[10px] rounded-[10px] text-blue font-semibold border-solid border-[1px] transition-all duration-500 focus:outline-none focus:border-blue focus:ring-2 focus:ring-blue">
+                    <option value="5">5 - Excelente</option>
+                    <option value="4">4 - Muy bueno</option>
+                    <option value="3">3 - Bueno</option>
+                    <option value="2">2 - Regular</option>
+                    <option value="1">1 - Malo</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="review-comments" class="block text-sm font-semibold text-blue mb-2">Comentario</label>
+                <textarea name="comment" id="review-comments" rows="4" placeholder="Escribe tu reseña aquí..."
+                    class="w-full px-[20px] py-[10px] rounded-[10px] text-blue font-semibold border-solid border-[1px] transition-all duration-500 focus:outline-none focus:border-blue focus:ring-2 focus:ring-blue"></textarea>
+            </div>
+
+            <button type="submit"
+                class="w-full px-[20px] py-[10px] rounded-[10px] text-blue font-semibold border-solid border-[1px] border-blue hover:translate-y-[-5px] transition-all duration-500 ease-out hover:bg-blue hover:text-white">
+                Enviar Reseña
+            </button>
+        </form>
+    </div>
+
+    <!-- Sección de reseñas -->
+    <div class="border border-gray-300 p-6 rounded-lg ">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-4">Reseñas</h2>
+        @forelse($reviews as $review)
+        <div class="border border-gray-300 p-4 mb-4 rounded-lg">
+            <p class="text-blue font-semibold">Calificación: {{ $review->rating }} / 5</p>
+            <p class="text-blue">{{ $review->comment }}</p>
+            <p class="text-sm text-blue">{{ $review->created_at->format('d M Y') }}</p>
         </div>
-    @endif
-    <form action="{{ route('reviews.store', {id: 14}) }}" method="POST" class="space-y-4">
-       
-        @csrf
-      
-    
+        @empty
+            <p class="text-blue">Aún no hay reseñas para este gig.</p>
+        @endforelse
+    </div>
 
-        <div class="form-group">
-            <label for="gig-rating" class="block text-sm font-semibold text-gray-700 mb-2">Calificación</label>
-            <select name="rating" id="gig-rating"
-                class="w-full px-[20px] py-[10px] rounded-[10px] text-blue font-semibold border-solid border-[1px] transition-all duration-500 focus:outline-none focus:border-blue focus:ring-2 focus:ring-blue">
-                <option value="5">5 - Excelente</option>
-                <option value="4">4 - Muy bueno</option>
-                <option value="3">3 - Bueno</option>
-                <option value="2">2 - Regular</option>
-                <option value="1">1 - Malo</option>
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label for="review-comments" class="block text-sm font-semibold text-gray-700 mb-2">Comentario</label>
-            <textarea name="comment" id="review-comments" rows="4" placeholder="Escribe tu reseña aquí..."
-                class="w-full px-[20px] py-[10px] rounded-[10px] text-blue font-semibold border-solid border-[1px] transition-all duration-500 focus:outline-none focus:border-blue focus:ring-2 focus:ring-blue"></textarea>
-        </div>
-
-        <button type="submit"
-            class="w-full px-[20px] py-[10px] rounded-[10px] text-blue font-semibold border-solid border-[1px] border-blue hover:translate-y-[-5px] transition-all duration-500 ease-out hover:bg-blue hover:text-white">
-            Enviar Reseña
-        </button>
-    </form>
 </div>
 
-<!-- Mostrar reseñas -->
-<div class="mt-10">
-    <h2 class="text-2xl font-semibold text-gray-800 mb-4">Reseñas</h2>
-    @forelse($reviews as $review)
-        <div class="bg-white p-4 rounded-lg shadow-lg mb-4">
-  
-        </div>
-    @empty
-        <p class="text-gray-500">Aún no hay reseñas para este gig.</p>
-    @endforelse
-</div>
 
 @endsection
 

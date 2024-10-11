@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\GigsReviewsTicolancer; 
 use App\Models\GigsTicolancer;       
 use App\Models\Buyers\BuyersUsersTicolancer;
-use App\Models\Sellers\SellersUsersTicolancer;      
+use App\Models\Sellers\SellersUsersTicolancer;  
+use Illuminate\Support\Facades\Auth;    
 
 class GigReviewController extends Controller
 {
@@ -19,27 +20,32 @@ class GigReviewController extends Controller
         return view('sellers.sellerGig', compact('gig', 'reviews'));
     }
 
-    public function store(Request $request)
+
+    public function store(Request $request, $gigId)
     {
+        // Obtener el comprador autenticado
+        $buyer = Auth::guard('buyers')->user();
+        $buyerId = $buyer->id;
+    
+        // Validar los campos del request
         $request->validate([
-            
-            'gigs_ticolancers_id' => 'required|exists:gigs_ticolancers,id',
-            'buyers_users_ticolancers_id' => 'required|exists:users,id',
             'comment' => 'required|string|max:500',
-            'rating' => 'required|integer|min:1|max:5',
+            'rating' => 'required|numeric|min:1|max:5',
+            // Aquí omitimos la validación del 'buyers_users_ticolancers_id' 
+            // porque ya lo obtenemos del usuario autenticado
         ]);
-
-        return response()->json($request->all());
-
-        // Crear nueva reseña
+    
+        // Crear la nueva review
         GigsReviewsTicolancer::create([
-            'gigs_ticolancers_id' => $request->gigs_ticolancers_id,
-            'buyers_users_ticolancers_id' => $request->buyers_users_ticolancers_id,
+            'gigs_ticolancers_id' => $gigId, // Usamos el gigId que recibimos
+            'buyers_users_ticolancers_id' => $buyerId, // Usamos el id del comprador autenticado
             'comment' => $request->comment,
             'rating' => $request->rating,
             'published_at' => now(),
         ]);
-
-        return redirect()->back()->with('success', 'Reseña enviada con éxito');
+    
+        // Mensaje de éxito o redirección
+        return redirect()->back()->with('success', '¡Review creada con éxito!');
     }
+    
 }
