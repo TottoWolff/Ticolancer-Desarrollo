@@ -79,6 +79,9 @@ Route::post('/{username}/update/socialMedia', [SellerProfile::class, 'updateSoci
 Route::get('/sellers/{username}/gigCreation', [Gigs::class, 'index'])->name('gigCreation');
 Route::post('/sellers/{username}/gigstore', [Gigs::class, 'store'])->name('sellers.gigStore');
 Route::delete('/gig/delete/{id}', [Gigs::class, 'destroy'])->name('deleteGig');
+Route::get('/gig/edit/{id}', [Gigs::class, 'edit'])->name('editGig');
+Route::post('/gig/update/{id}', [Gigs::class, 'update'])->name('updateGig');
+
 
 
 Route::get('/sellers/{username}/gigs', [SellerGigsProfile::class, 'index'])->name('sellerGigsProfile');
