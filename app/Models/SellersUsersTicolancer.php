@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\SellersUsersTicolancer as SellersUsers;
+use App\Models\BuyersUsersTicolancer as BuyersUsers;
 
 class SellersUsersTicolancer extends Model
 {
@@ -32,5 +33,10 @@ class SellersUsersTicolancer extends Model
     public function user()
     {
         return $this->belongsTo(SellersUsers::class, 'sellers_users_ticolancers_id');
+    }
+
+    public function buyers()
+    {
+        return $this->hasMany(BuyersUsers::class, 'buyers_users_ticolancers_id');
     }
 }

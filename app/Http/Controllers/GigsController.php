@@ -7,6 +7,7 @@ use App\Models\GigsTicolancer;
 use Illuminate\Support\Facades\Auth;
 use App\Models\GigsCategoriesTicolancer as GigsCategories ;
 use App\Models\GigsImagesTicolancer as GigsImages;
+use App\Models\SellersUsersTicolancer as SellersUsers;
 use Carbon\Carbon;
 
 class GigsController extends Controller
@@ -57,17 +58,23 @@ class GigsController extends Controller
         if (!Auth::guard('buyers')->check()) {
             return redirect()->route('login');
         }
+        
 
         $user = Auth::guard('buyers')->user();
+
+        $userId = $user->id;
         $date = Carbon::now();
 
+        // Verificar si el buyer logueado tambien es seller
+        $sellers = SellersUsers::where('buyers_users_ticolancers_id', $userId)->first();
+        $sellerId = $sellers->id;
 
         $gig = new GigsTicolancer;
         $gig->gig_name = $request->gig_name;
         $gig->gig_description = $request->gig_description;
         $gig->gig_price = $request->gig_price;
         $gig->gigs_categories_ticolancers_id = $request->gig_category;
-        $gig->sellers_users_ticolancers_id = $user->id;
+        $gig->sellers_users_ticolancers_id = $sellerId;
         $gig->published_at = $date;
 
         if ($request->hasFile('gig_image')) {

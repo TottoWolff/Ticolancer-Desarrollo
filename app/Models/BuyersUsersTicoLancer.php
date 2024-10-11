@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Models\CitiesTicolancer as Cities;
 use App\Models\BuyersLangTicolancer as BuyersLanguages;
 use App\Models\BuyersUsersTicolancer as BuyersUsers;
+use App\Models\SellersUsersTicolancer as SellersUsers;
 
 class BuyersUsersTicoLancer extends Authenticatable
 {
@@ -43,8 +44,8 @@ class BuyersUsersTicoLancer extends Authenticatable
         return $this->hasMany(BuyersLanguages::class, 'buyers_users_ticolancers_id');
     }
 
-    public function user()
+    public function sellers()
     {
-        return $this->belongsTo(BuyersUsers::class, 'buyers_users_ticolancers_id');
+        return $this->belongsTo(SellersUsers::class, 'buyers_users_ticolancers_id');
     }
 }
