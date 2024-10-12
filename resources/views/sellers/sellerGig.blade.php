@@ -1,6 +1,6 @@
 @extends('sellers.layout')
 @section('content')
-    <section class="px-[15rem] p-20 md:px-16 md:py-16 max-sm:p-5  max-sm:mt-[2rem]">
+    <section class="px-[15rem] p-20 md:px-16 md:py-16 max-sm:p-5  max-sm:mt-[2rem] mt-[140px]">
 
 
         <section>
