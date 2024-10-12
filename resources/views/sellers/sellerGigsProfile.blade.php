@@ -35,7 +35,7 @@
                         </div>
                         <div class="flex">
                             <img class="w-[14px] h-[19px] mr-2" src="{{ asset('images/profile/user.png') }}" alt="">
-                            <span class="text-[16px] max-sm:text-[14px] font-light text-black">Se unió en enero, 2023</span>
+                            <span class="text-[16px] max-sm:text-[14px] font-light text-black">Se unió en {{ $created_at}}</span>
                         </div>
                     </div>
                 </div>
@@ -63,13 +63,8 @@
     <section class="w-[90vw] p-14 max-sm:text-2xl max-sm:text-center">
         <h1 class="text-primary font-bold text-[20px] max-sm:text-[20px]">Sobre mi</h1>
         <p class="text-[16px] max-sm:text-[16px] font-light text-black mt-3 w-[33rem]">
-        Hola, soy Emanuel. Soy parte del campo de diseño gráfico con años 
-        de experiencia. Soy bueno especialmente haciendo logotipos, y también
-        banners, diseños de medios  sociales, volantes, tarjetas de visita, y la
-        eliminación de fondo o cualquier edición de Photoshop. Soy una persona 
-        muy amable y con mucha paciencia. Estaré encantada de ayudarle en su
-        trabajo, asegurándome de que siempre obtenga la mejor calidad y servicio.
-        Gracias.</p>
+        {{ $seller-> description }}
+    </p>
     </section>
 
     <section class="w-[90vw] p-14 max-sm:text-center">

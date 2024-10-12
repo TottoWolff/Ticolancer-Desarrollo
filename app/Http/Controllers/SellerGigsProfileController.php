@@ -42,9 +42,17 @@ class SellerGigsProfileController extends Controller
         $ratings = $reviews->pluck('rating');
         $averageRating = number_format($ratings->avg(), 1); 
 
-       
+             
 
         $buyer = Auth::guard('buyers')->user();
+
+        $buyerId = $buyer->id;
+
+        $seller = SellersUsersTicolancer::where('buyers_users_ticolancers_id', $buyerId)->first();
+        $description = $seller ? $seller->description : null;
+        $created_at = Carbon::parse($seller->created_at)->translatedFormat('F Y');
+
+
         $username = $buyer->username;
         $name = $buyer->name;
         $lastname = $buyer->lastname;
@@ -63,7 +71,7 @@ class SellerGigsProfileController extends Controller
         $userCity = $buyer->city->city;
 
         return view('sellers.sellerGigsProfile', 
-        ['username' => $buyer->username, 'gigs' => $gigs], compact('gigs' ,'username', 'name', 'lastname', 'email', 'phone', 'username', 'buyerId', 'userLanguages', 'userProvince', 'userCity', 'profile', 'reviews', 'averageRating', 'selectedGig'));
+        ['username' => $buyer->username, 'gigs' => $gigs], compact('gigs' ,'username', 'name', 'lastname', 'email', 'phone', 'username', 'buyerId', 'userLanguages', 'userProvince', 'userCity', 'profile', 'reviews', 'averageRating', 'selectedGig', 'seller', 'description', 'created_at'));
 
         
     }
