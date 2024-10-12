@@ -23,7 +23,7 @@
                             <div class="w-40">
                                 <span class="text-primary font-semibold text-[18px] max-sm:text-[14px] max-sm:text-center">{{ $name }} {{ $lastname }}</span>
                             </div>
-                            <span class="text-[16px] max-sm:text-[12px] font-light text-gray-400 " > @ {{ $username }}</span>
+                            <span class="text-[16px] max-sm:text-[12px] font-light text-gray-400 "> @ {{ $username }}</span>
                         </div>
                         <div class="flex">
                             <img class="w-[14px] h-[15px] mr-2 mb-2" src="{{ asset('images/profile/star.png') }}" alt="">

@@ -71,7 +71,9 @@ class SellerGigsProfileController extends Controller
         $userCity = $buyer->city->city;
 
         return view('sellers.sellerGigsProfile', 
-        ['username' => $buyer->username, 'gigs' => $gigs], compact('gigs' ,'username', 'name', 'lastname', 'email', 'phone', 'username', 'buyerId', 'userLanguages', 'userProvince', 'userCity', 'profile', 'reviews', 'averageRating', 'selectedGig', 'seller', 'description', 'created_at'));
+        ['username' => $buyer->username, 'gigs' => $gigs], 
+        compact('gigs' ,'username', 'name', 'lastname', 'email', 'phone', 'username', 'buyerId', 'userLanguages','userProvince',
+        'userCity', 'profile', 'reviews','averageRating', 'selectedGig', 'seller', 'description', 'created_at'));
 
         
     }
