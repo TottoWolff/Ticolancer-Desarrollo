@@ -12,9 +12,10 @@
                 <div class="flex max-sm:grid gap-9 px-[3rem] max-sm:place-items-center max-sm:text-center">
                     <div>
                     @if ($profile == null)
-                        <img class="w-[190px] max-sm:w-[120px] rounded-full h-[190px]" src="{{ asset('images/buyers_profiles/profile_placeholder.png') }}" alt="">
+                        <img class="w-[190px] max-sm:w-[120px] rounded-full h-[190px] object-cover" src="{{ asset('images/buyers_profiles/profile_placeholder.png') }}" alt="">
                     @else
-                        <img class="w-[190px] max-sm:w-[120px] rounded-full h-[190px]" src="{{ asset('images/buyers_profiles/' . $profile) }}" alt="">
+                        <img class="w-[190px] max-sm:w-[120px] rounded-full h-[190px] object-cover" src="{{ asset('images/buyers_profiles/' . $profile) }}" alt="">
+                        
                     @endif
                     </div>
                     

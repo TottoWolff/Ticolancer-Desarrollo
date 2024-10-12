@@ -362,7 +362,7 @@
                             </div>
                         </div>
 
-                    </a>
+                    </a> 
 
                         <!-- Botones de editar y eliminar -->
                         <div class="flex gap-4">

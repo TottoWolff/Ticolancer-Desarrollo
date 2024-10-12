@@ -1,6 +1,6 @@
 @extends('sellers.layout')
 @section('content')
-    <section class=" md:px-16 md:py-16 max-sm:p-5  max-sm:mt-[2rem] mt-[140px] ">
+    <section class=" md:px-16 md:py-16 max-sm:p-5  max-sm:mt-[2rem] mt-[120px] ">
 
 
         <section>
@@ -10,7 +10,7 @@
 
 
                 <!-- Primera columna -->
-                <div class="border-[1px] border-blue border-opacity-50 rounded-[16px] p-[20px] relative">
+                <div class="border-[1px] border-blue border-opacity-50 rounded-[16px] p-[20px] h-auto">
 
                     <div class="grid gap-2 max-sm:text-center">
                         <h1 class="text-3xl font-semibold">{{ $gig->gig_name }}</h1>
@@ -21,11 +21,11 @@
                     <div class="flex max-sm:grid gap-6 mt-3 max-sm:justify-center max-sm:place-items-center">
                         <div>
                             @if ($profile == null)
-                                <img class="w-[70px] max-sm:w-[70px] rounded-full h-[70px] "
+                                <img class="w-[70px] max-sm:w-[70px] rounded-full h-[70px] cursor-pointer object-cover"
                                     src="{{ asset('images/buyers_profiles/profile_placeholder.png') }}" alt="">
                             @else
                             <a href="{{ route('sellerGigsProfile', $username) }}">
-                                <img class="w-[70px] max-sm:w-[70px] rounded-full h-[70px] cursor-pointer"
+                                <img class="w-[70px] max-sm:w-[70px] rounded-full h-[70px] cursor-pointer object-cover"
                                     src="{{ asset('images/buyers_profiles/' . $profile) }}" alt="">
                             </a>
                             @endif
@@ -55,7 +55,7 @@
                     </div>
                     <div class="h-[1px] bg-blue bg-opacity-50 w-full mt-3"></div>
 
-                    <div class="flex  bg-blue justify-center mt-10 mb-10 max-sm:mt-[2rem] max-sm:flex max-sm:justify-center border-[1px] border-blue border-opacity-50 rounded-md">
+                    <div class="flex   justify-center mt-10 mb-10 max-sm:mt-[2rem] max-sm:flex max-sm:justify-center border-opacity-50 rounded-md">
                         <img class="flex justify-center w-[625px] h-[320px]  rounded-md object-cover max-sm:w-[90%] max-md:w-[70%]"
                             id="mainImage" src="{{ asset('images/gigs/' . $gig->gig_image) }}" alt="">
                     </div>
@@ -83,10 +83,11 @@
 
                     </div>
 
-                    <section class="max-sm:text-2xl mt-10 max-sm:text-center max-sm:mt-[2rem] h-48 mb-14">
+                    <section class="max-sm:text-2xl mt-10 max-sm:text-center max-sm:mt-[2rem] w-full max-w-[40rem] max-sm:max-w-[20rem] ">
                         <h1 class="text-primary font-bold text-[20px]">Descripción del servicio</h1>
-                        <p class=" text-[16px] max-sm:text-[14px] font-light text-black mt-3 w-full border-[1px] border-blue border-opacity-50 rounded-[16px] p-[20px] relative min-h-48  ">
+                        <p class="text-[16px] max-sm:text-[14px] font-light text-black mt-3 w-full border-[1px] border-blue border-opacity-50 rounded-[16px] p-[20px] min-h-[48px] max-h-auto">
                             {{ $gig->gig_description }}
+                        </p>
                     </section>
 
 
