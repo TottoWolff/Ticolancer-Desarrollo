@@ -55,8 +55,8 @@
                     </div>
                     <div class="h-[1px] bg-blue bg-opacity-50 w-full mt-3"></div>
 
-                    <div class="flex justify-center mt-10 mb-10 max-sm:mt-[2rem] max-sm:flex max-sm:justify-center">
-                        <img class="flex justify-centerw-[36rem] max-h-[20rem] rounded-md object-cover max-sm:w-[90%] max-md:w-[70%]"
+                    <div class="flex  bg-blue justify-center mt-10 mb-10 max-sm:mt-[2rem] max-sm:flex max-sm:justify-center border-[1px] border-blue border-opacity-50 rounded-md">
+                        <img class="flex justify-center w-[625px] h-[320px]  rounded-md object-cover max-sm:w-[90%] max-md:w-[70%]"
                             id="mainImage" src="{{ asset('images/gigs/' . $gig->gig_image) }}" alt="">
                     </div>
 
