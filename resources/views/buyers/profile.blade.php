@@ -27,7 +27,7 @@
                         @endif
                     </div>
                     <h2 class="mt-4 text-[22px] font-semibold text-blue">{{ $name }} {{ $lastname }}</h2>
-                    <p class="text-blue text-[18px] font-light">{{ $username }} , {{ $id }}</p>
+                    <p class="text-blue text-[18px] font-light">{{ $username }}</p>
                     <div class="h-[1px] bg-blue bg-opacity-50 w-full"></div>
                 </div>
 
