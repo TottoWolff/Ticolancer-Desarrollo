@@ -93,7 +93,7 @@
                 <div class="flex wrap">
                     <a href="{{ route('sellerGig', ['id' => $gig->id, 'username' => $username]) }}" class="block w-full cursor-pointer">
                         <div class="mt-5 gap-2">
-                            <img class="cursor-pointer" src="{{ asset('images/gigs/' .$gig->gig_image) }}" alt="{{ $gig->gig_name }}">
+                            <img class="cursor-pointer w-full h-[15rem]" src="{{ asset('images/gigs/' .$gig->gig_image) }}" alt="{{ $gig->gig_name }}">
 
                             <span class="text-[16px] max-sm:text-[14px] font-light text-black">{{ $gig->gig_name }}</span>
 
