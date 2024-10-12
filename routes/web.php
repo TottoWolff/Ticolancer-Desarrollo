@@ -15,6 +15,7 @@ use App\Http\Controllers\SellerGigController as SellerGig;
 use App\Http\Controllers\SellerGigsProfileController as SellerGigsProfile;
 use App\Http\Controllers\SellerGigsProfileAdminController as SellerGigsProfileAdmin;
 use App\Http\Controllers\DashboardGigsController as DashboardGigs;
+use App\Http\Controllers\GigReviewController;
 
 
 /*
@@ -79,12 +80,23 @@ Route::post('/{username}/update/socialMedia', [SellerProfile::class, 'updateSoci
 Route::get('/sellers/{username}/gigCreation', [Gigs::class, 'index'])->name('gigCreation');
 Route::post('/sellers/{username}/gigstore', [Gigs::class, 'store'])->name('sellers.gigStore');
 Route::delete('/gig/delete/{id}', [Gigs::class, 'destroy'])->name('deleteGig');
+Route::get('/gig/edit/{id}', [Gigs::class, 'edit'])->name('editGig');
+Route::post('/gig/update/{id}', [Gigs::class, 'update'])->name('updateGig');
+
 
 
 Route::get('/sellers/{username}/gigs', [SellerGigsProfile::class, 'index'])->name('sellerGigsProfile');
 Route::get('/sellers/gig/{id}', [SellerGig::class, 'index'])->name('sellerGig');
 
 Route::get('/sellers/{username}/gigsAdmin', [SellerGigsProfileAdmin::class, 'index'])->name('sellerGigsProfileAdmin');
+
+
+Route::get('/gigs/{gigId}/reviews', [GigReviewController::class, 'index'])->name('reviews.index');
+
+    Route::post('/gigs/{gig}/reviews', [GigReviewController::class, 'store'])->name('reviews.store');
+
+
+
 
 
 
@@ -99,6 +111,8 @@ Route::get('/admin/dashboard', [DashboardAdmin::class, 'index'])->name('admin.da
 Route::get('/admin/buyers', [DashboardAdmin::class, 'buyers'])->name('admin.buyers');
 Route::get('/admin/forms', [DashboardAdmin::class, 'forms'])->name('admin.forms');
 Route::get('/admin/subscriptions', [DashboardAdmin::class, 'subscriptions'])->name('admin.subscriptions');
+
+
 
 
 

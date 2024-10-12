@@ -43,6 +43,7 @@ class BuyerProfileController extends Controller
 
 
             return view('buyers.profile', [
+                'id' => $buyer->id,
                 'name' => $buyer->name, 
                 'lastname' => $buyer->lastname, 
                 'username' => $buyer->username,

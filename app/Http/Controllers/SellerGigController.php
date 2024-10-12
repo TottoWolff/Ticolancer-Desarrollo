@@ -41,7 +41,7 @@ class SellerGigController extends Controller
 
         // return response ()->json($imagesNames);
 
-
+        $gigId = $id;
         $username = $buyer->username;
         $name = $buyer->name;
         $lastname = $buyer->lastname;
@@ -62,7 +62,7 @@ class SellerGigController extends Controller
         $userCity = $buyer->city->city;
 
         return view('sellers.sellerGig', compact(
-            'gig', 'username', 'name', 'lastname', 'email', 'phone', 'buyerId', 'userLanguages', 'userProvince', 'userCity', 'profile', 'reviews', 'ratings', 'averageRating', 'imagesNames'
+            'gig', 'username', 'name', 'lastname', 'email', 'phone', 'buyerId', 'userLanguages', 'userProvince', 'userCity', 'profile', 'reviews', 'ratings', 'averageRating', 'imagesNames','gigId'
         ));
     }
 

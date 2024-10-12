@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\BuyersUsersTicolancer as BuyersUsers;
+use App\Models\SellersUsersTicolancer as SellersUsers;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Hash;
@@ -25,12 +26,17 @@ class LoginController extends Controller
      */
     public function login(Request $request)
     {
+
+        
         $credentials = $request->only('email', 'password');
 
 
         if (Auth::guard('buyers')->attempt($credentials)) {
             // Autenticación exitosa
             $user = Auth::guard('buyers')->user();
+
+            
+
             return redirect()->route('buyers.dashboard', ['username' => $user->username]);
         } 
         

@@ -27,7 +27,7 @@
                         @endif
                     </div>
                     <h2 class="mt-4 text-[22px] font-semibold text-blue">{{ $name }} {{ $lastname }}</h2>
-                    <p class="text-blue text-[18px] font-light">{{ $username }}</p>
+                    <p class="text-blue text-[18px] font-light">{{ $username }} , {{ $id }}</p>
                     <div class="h-[1px] bg-blue bg-opacity-50 w-full"></div>
                 </div>
 
@@ -158,7 +158,7 @@
 
             <!-- Note -->
             <p class="text-[16px] text-gray-500">
-                Actualmente estás en tu perfil de comprador. Para acceder a tu perfil de vendedor, <a href="#" class="underline hover:text-green"> cambia a modo vendedor</a>
+                Actualmente estás en tu perfil de comprador. Para acceder a tu perfil de vendedor, <a href="{{ route('sellerProfile', ['username' => $username]) }}" class="underline hover:text-green"> cambia a modo vendedor</a>
             </p>
             <!-- Note end -->
 

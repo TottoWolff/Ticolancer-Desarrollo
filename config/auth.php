@@ -40,6 +40,10 @@ return [
             'driver' => 'session',
             'provider' => 'buyers',
         ],
+        'sellers' => [
+            'driver' => 'session',
+            'provider' => 'sellers',
+        ],
         'admin' => [
             'driver' => 'session',
             'provider' => 'admins',
@@ -68,6 +72,11 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\BuyersUsersTicolancer::class,
         ],
+        'sellers' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\SellersUsersTicolancer::class,
+        ],
+        
         'admins' => [
             'driver' => 'eloquent',
             'model' => App\Models\AdminUsersTicolancer::class,
