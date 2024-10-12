@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\ContactFormsTicolancer as ContactForms;
 use App\Models\SubscriptionsTicolancer as Subscriptions;
+use App\Models\GigsTicolancer; 
+use Illuminate\Support\Facades\Auth;
 
 class HomepageController extends Controller
 {
@@ -13,8 +15,15 @@ class HomepageController extends Controller
      */
     public function index()
     {
-        //
-        return view('ticolancer.index');
+        // Si el usuario está autenticado, obtener su username, si no, dejarlo en null
+        $user = Auth::guard('buyers')->user();
+        $username = $user ? $user->username : null;
+    
+        // Obtener todos los gigs
+        $gigs = GigsTicolancer::all();
+    
+        // Retornar la vista con los gigs y el nombre de usuario
+        return view('ticolancer.index', compact('gigs', 'username'));
     }
 
     public function nosotros()
