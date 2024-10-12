@@ -1,7 +1,7 @@
 @extends('sellers.layout')
 
 @section('content')
-<div class="min-h-[90vh] min-w-[90vw] flex items-center justify-center mt-[100px]">
+<div class="min-h-[90vh] min-w-[90vw] flex items-center justify-center mt-[140px]">
     <div class=" rounded-lg w-full  sm:max-w-4xl md:max-w-6xl lg:max-w-[90vw] grid md:grid-cols-2 gap-6 p-6">
         <!-- Left Column -->
         <div class="flex flex-col gap-[20px]">
