@@ -18,7 +18,7 @@
             <div class="flex items-center gap-[20px]">
                 <img src="{{ asset('icons/like.svg') }}" alt="">
                 <div class="relative">
-                    <img class="w-[40px] h-[40px] rounded-full bg-center object-cover" src="{{ asset('images/buyers_profiles/profile_placeholder.png') }}" alt="">
+                        <img class="w-[40px] h-[40px] rounded-full bg-center object-cover" src="{{ asset('images/buyers_profiles/profile_placeholder.png') }}" alt="">
                     <div class="w-[10px] h-[10px] bg-green border-[1px] border-bg rounded-full absolute right-1 top-8"></div>
                 </div>
             </div>

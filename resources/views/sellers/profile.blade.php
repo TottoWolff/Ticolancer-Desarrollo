@@ -343,7 +343,7 @@
 
                 @foreach ($gigs as $gig)
                     <li class="flex items-center justify-between p-4 ">
-
+                    <a href="{{ route('sellerGig', ['id' => $gig->id, 'username' => $username]) }}" class="block w-full cursor-pointer">
                         <div class="flex items-center gap-4">
                             <img class="w-16 h-16 object-cover rounded-md"
                                 src="{{ asset('images/gigs/' . $gig->gig_image) }}" alt="{{ $gig->gig_name }}">
@@ -361,6 +361,8 @@
                                 <div class="text-primary font-semibold text-[16px]">Desde ₡15,000</div>
                             </div>
                         </div>
+
+                    </a> 
 
                         <!-- Botones de editar y eliminar -->
                         <div class="flex gap-4">

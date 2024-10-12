@@ -7,6 +7,7 @@ use App\Models\GigsTicolancer;
 use App\Models\SellersUsersTicolancer;
 use App\Models\GigsReviewsTicolancer;
 use App\Models\GigsImagesTicolancer;
+use Carbon\Carbon;
 
 
 use Illuminate\Support\Facades\Auth;
@@ -19,6 +20,8 @@ class SellerGigController extends Controller
     public function index($id)
     {
         $gig = GigsTicolancer::findOrFail($id); 
+
+        $published_at = Carbon::parse($gig->published_at)->translatedFormat('F Y');
 
         $buyer = Auth::guard('buyers')->user();
 
@@ -39,7 +42,7 @@ class SellerGigController extends Controller
 
         $imagesNames = $images->pluck('image');
 
-        // return response ()->json($imagesNames);
+        
 
         $gigId = $id;
         $username = $buyer->username;
@@ -62,7 +65,8 @@ class SellerGigController extends Controller
         $userCity = $buyer->city->city;
 
         return view('sellers.sellerGig', compact(
-            'gig', 'username', 'name', 'lastname', 'email', 'phone', 'buyerId', 'userLanguages', 'userProvince', 'userCity', 'profile', 'reviews', 'ratings', 'averageRating', 'imagesNames','gigId'
+            'gig', 'username', 'name', 'lastname', 'email', 'phone', 'buyerId', 'userLanguages', 'userProvince', 'userCity', 
+            'profile', 'reviews', 'ratings', 'averageRating', 'imagesNames','gigId', 'published_at'
         ));
     }
 

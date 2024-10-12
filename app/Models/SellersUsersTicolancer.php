@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\SellersUsersTicolancer as SellersUsers;
 use App\Models\BuyersUsersTicolancer as BuyersUsers;
+use Carbon\Carbon;
 
 class SellersUsersTicolancer extends Model
 {
@@ -22,6 +23,7 @@ class SellersUsersTicolancer extends Model
         'twitter',
         'linkedin',
         'website',
+        'created_at',
     ];
 
     protected $hidden = [

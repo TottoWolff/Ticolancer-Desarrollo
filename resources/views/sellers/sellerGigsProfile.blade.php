@@ -2,17 +2,7 @@
 
 @section('content')
 
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil Freelancer</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-
-
-
-<section>
+<section class="mt-[140px]">
 
     <section class="flex flex-col px-[140px] gap-[20px] max-sm:w-[90vw] max-sm:px-0 max-sm:m-auto mt-[80px]">
     
@@ -22,9 +12,10 @@
                 <div class="flex max-sm:grid gap-9 px-[3rem] max-sm:place-items-center max-sm:text-center">
                     <div>
                     @if ($profile == null)
-                        <img class="w-[190px] max-sm:w-[120px] rounded-full h-[190px]" src="{{ asset('images/buyers_profiles/profile_placeholder.png') }}" alt="">
+                        <img class="w-[190px] max-sm:w-[120px] rounded-full h-[190px] object-cover" src="{{ asset('images/buyers_profiles/profile_placeholder.png') }}" alt="">
                     @else
-                        <img class="w-[190px] max-sm:w-[120px] rounded-full h-[190px]" src="{{ asset('images/buyers_profiles/' . $profile) }}" alt="">
+                        <img class="w-[190px] max-sm:w-[120px] rounded-full h-[190px] object-cover" src="{{ asset('images/buyers_profiles/' . $profile) }}" alt="">
+                        
                     @endif
                     </div>
                     
@@ -33,7 +24,7 @@
                             <div class="w-40">
                                 <span class="text-primary font-semibold text-[18px] max-sm:text-[14px] max-sm:text-center">{{ $name }} {{ $lastname }}</span>
                             </div>
-                            <span class="text-[16px] max-sm:text-[12px] font-light text-gray-400 " > @ {{ $username }}</span>
+                            <span class="text-[16px] max-sm:text-[12px] font-light text-gray-400 "> @ {{ $username }}</span>
                         </div>
                         <div class="flex">
                             <img class="w-[14px] h-[15px] mr-2 mb-2" src="{{ asset('images/profile/star.png') }}" alt="">
@@ -45,7 +36,7 @@
                         </div>
                         <div class="flex">
                             <img class="w-[14px] h-[19px] mr-2" src="{{ asset('images/profile/user.png') }}" alt="">
-                            <span class="text-[16px] max-sm:text-[14px] font-light text-black">Se unió en enero, 2023</span>
+                            <span class="text-[16px] max-sm:text-[14px] font-light text-black">Se unió en {{ $created_at}}</span>
                         </div>
                     </div>
                 </div>
@@ -73,13 +64,8 @@
     <section class="w-[90vw] p-14 max-sm:text-2xl max-sm:text-center">
         <h1 class="text-primary font-bold text-[20px] max-sm:text-[20px]">Sobre mi</h1>
         <p class="text-[16px] max-sm:text-[16px] font-light text-black mt-3 w-[33rem]">
-        Hola, soy Emanuel. Soy parte del campo de diseño gráfico con años 
-        de experiencia. Soy bueno especialmente haciendo logotipos, y también
-        banners, diseños de medios  sociales, volantes, tarjetas de visita, y la
-        eliminación de fondo o cualquier edición de Photoshop. Soy una persona 
-        muy amable y con mucha paciencia. Estaré encantada de ayudarle en su
-        trabajo, asegurándome de que siempre obtenga la mejor calidad y servicio.
-        Gracias.</p>
+        {{ $seller-> description }}
+    </p>
     </section>
 
     <section class="w-[90vw] p-14 max-sm:text-center">
@@ -108,7 +94,7 @@
                 <div class="flex wrap">
                     <a href="{{ route('sellerGig', ['id' => $gig->id, 'username' => $username]) }}" class="block w-full cursor-pointer">
                         <div class="mt-5 gap-2">
-                            <img class="cursor-pointer" src="{{ asset('images/gigs/' .$gig->gig_image) }}" alt="{{ $gig->gig_name }}">
+                            <img class="cursor-pointer w-full h-[15rem]" src="{{ asset('images/gigs/' .$gig->gig_image) }}" alt="{{ $gig->gig_name }}">
 
                             <span class="text-[16px] max-sm:text-[14px] font-light text-black">{{ $gig->gig_name }}</span>
 
