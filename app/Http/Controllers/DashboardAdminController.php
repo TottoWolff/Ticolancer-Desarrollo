@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\BuyersUsersTicolancer as Buyers;
 use App\Models\ContactFormsTicolancer as ContactForms;
 use App\Models\SubscriptionsTicolancer as Subscriptions;
+use App\Models\SellersUsersTicolancer as Sellers;
 use Illuminate\Support\Facades\Auth;
 
 class DashboardAdminController extends Controller
@@ -18,9 +19,10 @@ class DashboardAdminController extends Controller
         //
         $user = Auth::guard('admin')->user();
         $buyers = Buyers::all();
+        $sellers = Sellers::all();
         $contactForms = ContactForms::all();
         $subscriptions = Subscriptions::all();
-        return view('admin.dashboard', compact('buyers', 'contactForms', 'user', 'subscriptions'));
+        return view('admin.dashboard', compact('buyers', 'contactForms', 'user', 'subscriptions', 'sellers'));
     }
     
 

@@ -10,7 +10,7 @@
                         <p class="text-[18px] max-sm:text-[14px] font-light text-white w-[800px] max-sm:w-[90vw] ">Conecta con los mejores freelancers de Costa Rica en Ticolancer. Encuentra talento local para llevar tu proyecto al siguiente nivel o ofrece tus servicios y destaca en la comunidad. ¡Es momento de crecer juntos!</p>
                         <div class="flex flex-row gap-[20px]">
                             <a class="rounded-[10px] text-blue px-[20px] py-[10px] bg-white font-semibold hover:translate-y-[-5px] transition-all duration-500 ease-out hover:text-green" href="#">Ver servicios</a>
-                            <a class="rounded-[10px] px-[20px] py-[10px] text-white font-semibold border-solid border-[1px] border-white hover:translate-y-[-5px] transition-all duration-500 ease-out hover:bg-white hover:text-green" href="{#">Leer más</a>
+                            <a class="rounded-[10px] px-[20px] py-[10px] text-white font-semibold border-solid border-[1px] border-white hover:translate-y-[-5px] transition-all duration-500 ease-out hover:bg-white hover:text-green" href="{{ route('nosotros') }}">Leer más</a>
                         </div> 
                     </div>
         </div>
@@ -240,7 +240,7 @@
                         </div>
                     </div>
                 </div>
-                <a class="px-[20px] py-[10px] text-blue bg-white rounded-[10px] font-semibold hover:text-green hover:translate-y-[-5px] transition-all duration-500 ease-out " href="#">Leer más</a>
+                <a class="px-[20px] py-[10px] text-blue bg-white rounded-[10px] font-semibold hover:text-green hover:translate-y-[-5px] transition-all duration-500 ease-out " href="{{ route('nosotros') }}">Leer más</a>
             </div>
         </div>
     {{-- Quienes somos end --}}
