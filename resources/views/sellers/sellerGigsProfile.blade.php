@@ -2,16 +2,6 @@
 
 @section('content')
 
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil Freelancer</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-
-
-
 <section>
 
     <section class="flex flex-col px-[140px] gap-[20px] max-sm:w-[90vw] max-sm:px-0 max-sm:m-auto mt-[80px]">
