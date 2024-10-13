@@ -1,6 +1,6 @@
 <header>
-    <div id="navbar" class="flex-col h-[100px] gap-[20px] z-[999] flex fixed top-0 w-full left-[50%] -translate-x-1/2 m-auto py-[20px] max-sm:py-[20px] max-sm:px-[20px] items-center justify-between font-main font-semibold text-[18px] text-white transition-all duration-500 ease-out bg-bg">
-        <div id="navbar" class=" w-[90vw] flex flex-row justify-between items-center ">
+    <div id="navbar" class="flex-col h-[100px] z-[999] flex fixed top-0 w-full left-[50%] -translate-x-1/2 m-auto py-[20px] max-sm:py-[20px] max-sm:px-[20px] items-center justify-between font-main font-semibold text-[18px] text-white transition-all duration-500 ease-out bg-bg">
+        <div id="navbar" class=" w-[90vw] flex flex-row justify-between items-center">
             <!-- Logo -->
             <a href="{{ route ('inicio') }}">
                 <img class="w-[140px]" src="{{ asset('icons/logo.svg') }}" alt="">
@@ -23,6 +23,9 @@
                 </div>
             </div>
         </div>
+
+        
+
     </div>
 </header>
 

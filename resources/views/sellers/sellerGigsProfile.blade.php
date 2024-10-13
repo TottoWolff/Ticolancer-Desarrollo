@@ -2,7 +2,7 @@
 
 @section('content')
 
-<section class="mt-[140px]">
+<section class="mt-[210px]">
 
     <section class="flex flex-col px-[140px] gap-[20px] max-sm:w-[90vw] max-sm:px-0 max-sm:m-auto mt-[80px]">
     
