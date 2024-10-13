@@ -15,6 +15,7 @@
 
 <body class="bg-bg font-main">
     @include('sellers.navbar')
+    @include('sellers.categoriesBar')
     @yield('content')
     @include('ticolancer.footer') 
 </body>

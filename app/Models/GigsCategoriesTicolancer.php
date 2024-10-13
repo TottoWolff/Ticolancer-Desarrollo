@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class GigsCategoriesTicolancer extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'category',
+    ];
 }

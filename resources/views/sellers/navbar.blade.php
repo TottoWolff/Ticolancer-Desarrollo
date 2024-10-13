@@ -1,6 +1,6 @@
 <header>
     <div id="navbar" class="flex-col h-[100px] z-[999] flex fixed top-0 w-full left-[50%] -translate-x-1/2 m-auto py-[20px] max-sm:py-[20px] max-sm:px-[20px] items-center justify-between font-main font-semibold text-[18px] text-white transition-all duration-500 ease-out bg-bg">
-        <div id="navbar" class=" w-[90vw] flex flex-row justify-between items-center ">
+        <div id="navbar" class=" w-[90vw] flex flex-row justify-between items-center">
             <!-- Logo -->
             <a href="{{ route ('inicio') }}">
                 <img class="w-[140px]" src="{{ asset('icons/logo.svg') }}" alt="">
@@ -24,38 +24,7 @@
             </div>
         </div>
 
-        <!-- Categories -->
-        <div class="flex gap-[10px] border-b-[1px] border-t-[1px] border-solid w-full justify-center bg-blue  mt-3">
-            <li class="flex place-content-between gap-10">
-                    <div class="hover:border-b-[3px] hover:border-b-green p-[10px]">
-                        <a class=" text-white font-light text-[17px]" href="">Programación y Tecnología</a>
-                    </div>
-                    <div class="hover:border-b-[3px] hover:border-b-green p-[10px]">
-                        <a class=" text-white font-light text-[17px]" href="">Marketing Digital</a>
-                    </div>
-                    <div class="hover:border-b-[3px] hover:border-b-green p-[10px]">
-                        <a class=" text-white font-light text-[17px]" href="">Video y Animación</a>
-                    </div>
-                    <div class="hover:border-b-[3px] hover:border-b-green p-[10px]">
-                        <a class=" text-white font-light text-[17px]" href="">Arquitectura</a>
-                    </div>
-                    <div class="hover:border-b-[3px] hover:border-b-green p-[10px]">
-                        <a class=" text-white font-light text-[17px]" href="">Diseño Gráfico</a>
-                    </div>
-                    <div class="hover:border-b-[3px] hover:border-b-green p-[10px]">
-                        <a class=" text-white font-light text-[17px]" href="">Música y Audio</a>
-                    </div>
-                    <div class="hover:border-b-[3px] hover:border-b-green p-[10px]">
-                        <a class=" text-white font-light text-[17px]" href="">Servicios de IA</a>
-                    </div>
-                    <!-- <div class="hover:border-b-[3px] hover:border-b-green p-[10px]">
-                        <a class=" text-white font-light" href="">Traducción y Escritura</a>
-                    </div>
-                    <div class="hover:border-b-[3px] hover:border-b-green p-[10px]">
-                    <a class=" text-white font-light" href="">Fotografía</a>
-                    </div> -->
-            </li>
-        </div>
+        
 
     </div>
 </header>
