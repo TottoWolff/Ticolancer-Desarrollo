@@ -34,9 +34,6 @@ class LoginController extends Controller
         if (Auth::guard('buyers')->attempt($credentials)) {
             // Autenticación exitosa
             $user = Auth::guard('buyers')->user();
-
-            
-
             return redirect()->route('buyers.dashboard', ['username' => $user->username]);
         } 
         

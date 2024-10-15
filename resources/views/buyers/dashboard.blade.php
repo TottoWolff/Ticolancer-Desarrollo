@@ -1,5 +1,7 @@
-@extends('sellers.layout')
-<div class="relative h-[825px] max-sm:h-[100px] flex items-center justify-center mt-[130px]">
+
+@extends('buyers.layout')
+@section('content')
+<div class="relative h-[825px] max-sm:h-[100px] flex items-center justify-center mt-[100px]">
     
     <div class="absolute inset-0 bg-cover bg-bottom brightness-50" style="background-image: url(https://traveler.marriott.com/es/wp-content/uploads/sites/2/2017/11/Costa-Rica_Animal-encounters_toucan-GettyImages-503235008.jpg);">
     </div>
@@ -113,3 +115,4 @@
         </div>
     </div>
 </div>
+@endsection

@@ -15,7 +15,7 @@
 
 <body class="bg-bg font-main">
 
-   
+    @include('buyers.navbar')
     
     @yield('content')
 

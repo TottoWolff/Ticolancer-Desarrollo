@@ -4,6 +4,7 @@
             <!-- Logo -->
             <a href="{{ route ('inicio') }}">
                 <img class="w-[140px]" src="{{ asset('icons/logo.svg') }}" alt="">
+                <h1 class="text-[36px] font-light font-main">{{ $user->name }}</h1>
             </a>
 
             <!-- Search -->

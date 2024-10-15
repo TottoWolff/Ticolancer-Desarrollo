@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class SellerNavbarController extends Controller
+class BuyerNavbarController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -12,8 +12,8 @@ class SellerNavbarController extends Controller
     public function index()
     {
         //
-        $user = Auth::guard('sellers')->user();
-        return view('sellers.navbar', compact('user'));
+        $user = Auth::guard('buyers')->user();
+        return view('buyers.navbar', compact('user'));
     }
 
     /**
