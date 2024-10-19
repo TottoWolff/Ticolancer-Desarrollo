@@ -35,7 +35,7 @@
                         <div
                             class="grid grid-cols-2 max-sm:grid-cols-1 max-md:grid-cols-1 max-lg:grid-cols-1 gap-30 max-sm:gap-1">
                             <div class="w-40 ">
-                                <a href="{{ route('sellerGigsProfile', $username) }}" class="text-primary font-semibold text-[18px]  hover:underline cursor-pointer">{{ $name }}
+                                <a href="{{ route('sellerGigsProfile', $buyerId) }}" class="text-primary font-semibold text-[18px]  hover:underline cursor-pointer">{{ $name }}
                                     {{ $lastname }} </a>
                             </div>
                             <span class="text-[16px]  font-light text-gray-400">@ {{ $username }} </span>
@@ -47,7 +47,7 @@
                         </div>
                         <div class="flex max-sm:justify-center">
                             <img class="w-[14px] h-[19px] mr-2" src="{{ asset('icons/location.svg') }}" alt="">
-                            <span class="text-[16px] font-light text-black">{{ $userCity }} , {{ $userProvince }},
+                            <span class="text-[16px] font-light text-black">{{ $sellerCity }} , {{ $sellerProvince }},
                                 CR</span>
                         </div>
                     </div>

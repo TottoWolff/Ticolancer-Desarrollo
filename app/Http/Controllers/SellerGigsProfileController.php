@@ -6,19 +6,13 @@ use Illuminate\Http\Request;
 use App\Models\GigsTicolancer;
 
 use App\Models\SellersUsersTicolancer;
+use App\Models\BuyersUsersTicolancer;
 
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Support\Facades\DB;
-use App\Models\CitiesTicolancer as Cities;
-use App\Models\BuyersLangTicolancer as BuyersLanguages;
-use App\Models\LanguagesTicolancer as Languages;
-use App\Models\LanguageLevelsTicolancer as LanguageLevels;
-use App\Models\BuyersUsersTicolancer as BuyersUsers;
-use App\Models\SellersUsersTicolancer as SellersUsers;
+;
 use Carbon\Carbon;
-use App\Models\ProvincesTicolancer as Provinces;
-use Illuminate\Support\Facades\Hash;
 use App\Models\GigsReviewsTicolancer;
 
 class SellerGigsProfileController extends Controller
@@ -29,28 +23,30 @@ class SellerGigsProfileController extends Controller
     public function index($id)
     {
         //
-        
-        $gigs = GigsTicolancer::with(['reviews' => function($query) {
+        $gigs = GigsTicolancer::with(['reviews' => function ($query) {
             $query->select('gigs_ticolancers_id', \DB::raw('AVG(rating) as average_rating'))
                 ->groupBy('gigs_ticolancers_id');
-        }])->get();
-
-        $selectedGig = $gigs->find($id);
-
+        }])
+        ->join('sellers_users_ticolancers', 'gigs_ticolancers.sellers_users_ticolancers_id', '=', 'sellers_users_ticolancers.id') // Join con la tabla sellers_users_ticolancers
+        ->where('sellers_users_ticolancers.buyers_users_ticolancers_id', '=', $id) // Filtra por el seller relacionado al buyer autenticado
+        ->select('gigs_ticolancers.*') // Selecciona solo las columnas de gigs
+        ->get();
+        
+          
         $reviews = GigsReviewsTicolancer::where('gigs_ticolancers_id', $id)->get();
-
+        
         $ratings = $reviews->pluck('rating');
         $averageRating = number_format($ratings->avg(), 1); 
-
-             
-
-        $buyer = Auth::guard('buyers')->user();
-
-        $buyerId = $buyer->id;
-
-        $seller = SellersUsersTicolancer::where('buyers_users_ticolancers_id', $buyerId)->first();
+        
+        
+        $buyer = BuyersUsersTicolancer::where('id', $id)->first();
+        
+        
+        // Obtener el idBuyer (FK de la tabla buyers_users_ticolancer)
+        $seller = SellersUsersTicolancer::where('buyers_users_ticolancers_id', $id)->first();
         $description = $seller ? $seller->description : null;
         $created_at = Carbon::parse($seller->created_at)->translatedFormat('F Y');
+        
 
 
         $username = $buyer->username;
@@ -70,10 +66,20 @@ class SellerGigsProfileController extends Controller
         $userProvince = $buyer->city->province->province;
         $userCity = $buyer->city->city;
 
+
+        $languages = \DB::table('buyers_lang_ticolancers')
+                ->where('buyers_users_ticolancers_id', $id)
+                ->join('languages_ticolancers', 'buyers_lang_ticolancers.languages_ticolancers_id', '=', 'languages_ticolancers.id')
+                ->join('language_levels_ticolancers', 'buyers_lang_ticolancers.language_levels_ticolancers_id', '=', 'language_levels_ticolancers.id')
+                ->select('languages_ticolancers.language as language_name', 'language_levels_ticolancers.level as level_name')
+                ->get();
+
+
+
         return view('sellers.sellerGigsProfile', 
         ['username' => $buyer->username, 'gigs' => $gigs], 
-        compact('gigs' ,'username', 'name', 'lastname', 'email', 'phone', 'username', 'buyerId', 'userLanguages','userProvince',
-        'userCity', 'profile', 'reviews','averageRating', 'selectedGig', 'seller', 'description', 'created_at'));
+        compact('gigs','username', 'name', 'lastname', 'email', 'phone', 'username', 'buyerId', 'userLanguages','userProvince',
+        'userCity', 'profile', 'reviews','averageRating', 'seller', 'description', 'created_at', 'languages'));
 
         
     }
