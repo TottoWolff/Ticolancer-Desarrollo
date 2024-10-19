@@ -46,6 +46,11 @@ class SellerGigsProfileController extends Controller
         $seller = SellersUsersTicolancer::where('buyers_users_ticolancers_id', $id)->first();
         $description = $seller ? $seller->description : null;
         $created_at = Carbon::parse($seller->created_at)->translatedFormat('F Y');
+        $facebook = $seller ? $seller->facebook : null;
+        $instagram = $seller ? $seller->instagram : null;
+        $twitter = $seller ? $seller->twitter : null;
+        $linkedin = $seller ? $seller->linkedin : null;
+        $website = $seller ? $seller->website : null;
         
 
 

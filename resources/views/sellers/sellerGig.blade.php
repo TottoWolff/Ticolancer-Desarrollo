@@ -1,12 +1,12 @@
 @extends('sellers.layout')
 @section('content')
-<section class=" md:px-16 md:py-16 max-sm:p-5  max-sm:mt-[2rem] mt-[120px] ">
+<section class=" md:px-16 md:py-16 max-sm:p-5  max-sm:mt-[8rem]  mt-[120px]">
 
 
     <section>
 
         <!-- Inicia contenedor arriba -->
-        <div class=" place-content-around sm:gap-10 max-sm:gap-5 container mx-auto px-4 mt-10 flex flex-wrap gap-8 flex-col-2 md:flex-col-2">
+        <div class=" sm:gap-10 max-sm:gap-5 container mx-auto px-4 mt-10 grid grid-cols-1 md:grid-cols-2 sm:grid-cols-1  gap-8">
 
 
             <!-- Primera columna -->
@@ -105,7 +105,7 @@
 
                 <!-- Detalle de servicio -->
 
-                <div class="border-[1px] border-blue border-opacity-50 rounded-[16px] w-[630px] h-[400px] max-sm:w-full max-md:justify-center p-[20px] relative">
+                <div class="border-[1px] border-blue border-opacity-50 rounded-[16px] h-auto max-sm:w-full max-md:justify-center p-[20px] relative">
                     <h1 class=" text-2xl font-semibold">Detalle del servicio</h1>
                     <div class="h-[1px] bg-blue bg-opacity-50 w-full"></div>
                     <div class="mt-3 grid gap-3">

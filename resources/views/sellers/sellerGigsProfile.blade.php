@@ -7,8 +7,8 @@
     <section class="flex flex-col px-[140px] gap-[20px] max-sm:w-[90vw] max-sm:px-0 max-sm:m-auto mt-[80px]">
 
 
-        <section class="grid grid-cols-2 max-sm:grid-cols-1 max-md:grid-cols-2 lg:grid-cols-2 max-sm:gap-[2rem] border-[1px] border-blue rounded-[16px] p-[30px] h-auto ">
-            <div>
+        <section class="container mx-auto px-4 mt-10 grid grid-cols-1 md:grid-cols-2 sm:grid-cols-1 gap-8">
+            <div class="border-[1px] border-blue rounded-[16px] p-[30px]">
                 <div class="flex max-sm:grid gap-9 max-sm:place-items-center max-sm:text-center">
                     <div>
                         @if ($profile == null)
@@ -36,13 +36,13 @@
                         </div>
                         <div class="flex">
                             <img class="w-[14px] h-[19px] mr-2" src="{{ asset('images/profile/user.png') }}" alt="">
-                            <span class="text-[16px] max-sm:text-[14px] font-light text-black">Se unió en {{ $created_at}}</span>
+                            <span class="text-[16px] max-sm:text-[14px] font-light text-black">Se unió en {{ $created_at }}</span>
                         </div>
                     </div>
                 </div>
                 <div>
                     <div class="h-[1px] bg-blue bg-opacity-50 w-full mt-8"></div>
-                    <section class="w-[90vw] py-14 max-sm:text-2xl max-sm:text-center">
+                    <section class="max-sm:text-2xl mt-10 max-sm:text-center max-sm:mt-[2rem] w-full max-w-[40rem] max-sm:max-w-[20rem] mb-10">
                         <h1 class="text-primary font-bold text-[20px] max-sm:text-[20px]">Sobre mi</h1>
                         <p class="text-[16px] max-sm:text-[16px] font-light text-black mt-3 w-[36rem] border-[1px] border-blue rounded-[16px] p-[30px] h-auto ">
                             {{ $seller-> description }}
@@ -50,15 +50,16 @@
                     </section>
 
                     <div class="h-[1px] bg-blue bg-opacity-50 w-full"></div>
-                    <section class="w-[90vw] py-14 max-sm:text-center">
+                    <section class="py-14 max-sm:text-center">
                         <h2 class="text-primary font-bold text-[20px] max-sm:text-[20px]">Idiomas</h2>
                         <div>
-                            <div class="flex flex-col gap-5 mt-5 md:flex-row">
+                            <div class="flex flex-col flex-wrap gap-5 mt-5 md:flex-row">
                                 @foreach ($languages as $language)
                                 <div class="border border-gray-400 rounded-full px-3 py-1">
                                     <span class="font-light text-[16px]">{{ $language->language_name }}
                                         ({{ $language->level_name }})</span>
                                 </div>
+                                
 
                                 @endforeach
                             </div>
@@ -66,10 +67,10 @@
                     </section>
 
                     <div class="h-[1px] bg-blue bg-opacity-50 w-full"></div>
-                    <section class="w-[90vw] py-14 max-sm:text-center">
+                    <section class="py-14 max-sm:text-center">
                         <h2 class="text-primary font-bold text-[20px] max-sm:text-[20px]">Habilidades</h2>
                         <div>
-                            <div class="flex flex-col gap-5 mt-5 md:flex-row">
+                            <div class="flex flex-col flex-wrap gap-5 mt-5 md:flex-row">
                                 <div class="border border-gray-400 rounded-full px-3 py-1">
                                     <span">Diseñador para redes sociales</span>
                                 </div>
@@ -79,27 +80,101 @@
                                 <div class="border border-gray-400 rounded-full px-3 py-1">
                                     <span">Diseñador de logos</span>
                                 </div>
+                                
                             </div>
                         </div>
                     </section>
                 </div>
             </div>
 
-            <div class="grid justify-end max-sm:justify-center relative">
-                <div class="flex gap-3">
-                    <div class="w-[173px] h-[45px] bg-white border border-gray-300 rounded-lg shadow-sm text-center">
+            <div class="flex flex-col gap-4 max-sm:justify-centery border-[1px] border-blue rounded-[16px] p-[30px]">
+                <div class="flex gap-3 py-8">
+                    <div class="w-full h-[45px] bg-white border border-gray-300 rounded-lg shadow-sm text-center">
                         <button class="text-primary font-medium text-[20px] max-sm:text-[14px] py-2">Más sobre mi</button>
                     </div>
                     <button class="w-[50px] h-[45px] bg-white border border-gray-300 rounded-lg shadow-sm text-center items-center justify-center p-2">
                         <img class="w-[34px] max-sm:w-[28px]" src="{{ asset('icons/liked.svg') }}" alt="">
                     </button>
                 </div>
-                <div>
-                    <button class="flex w-[14.7rem] h-[45px] bg-black border border-gray-300 rounded-lg shadow-sm text-center gap-2 items-center justify-center">
+                <div class="mb-9">
+                    <button class="flex w-full h-[45px] bg-black border border-gray-300 rounded-lg shadow-sm text-center gap-2 items-center justify-center">
                         <img class="w-[24px] h-[24px]" src="{{ asset('images/profile/send.png') }}" alt="">
                         <div class="text-primary font-medium text-[20px] max-sm:text-[18px] py-2 text-white">Contactar</div>
                     </button>
                 </div>
+
+                <div class="h-[1px] bg-blue bg-opacity-50 w-full"></div>
+                    <section class="py-6 max-sm:text-center">
+                        <h2 class="text-primary font-bold text-[20px] max-sm:text-[20px]">Redes Sociales</h2>
+                        <div>
+                            <div class="flex flex-col flex-wrap gap-5 mt-5 md:flex-row">
+
+                                <!-- Facebook -->
+                                @if($seller->facebook == null)
+                                <div>
+                                    <span class="font-light text-[16px]">Facebook</span>
+                                    <div class="border border-gray-400 rounded-full px-3 py-1 hidden">
+                                        <span class="font-light text-[16px]">{{ $seller->facebook }}</span>
+                                    </div>
+                                </div>
+                                
+                                @else
+                                <div>
+                                    <img src="" alt="">
+                                    <div class="border border-gray-400 rounded-full px-3 py-1">
+                                        <span class="font-light text-[16px]">{{ $seller->facebook }}</span>
+                                    </div>
+                                </div>
+                                @endif
+
+                                <!-- Instagram -->
+                                @if($seller->instagram == null)
+                                <div class="border border-gray-400 rounded-full px-3 py-1 hidden">
+                                    <span class="font-light text-[16px]">{{ $seller->instagram }}</span>
+                                </div>
+                                @else
+                                <div class="border border-gray-400 rounded-full px-3 py-1">
+                                    <span class="font-light text-[16px]">{{ $seller->instagram }}</span>
+                                </div>
+                                @endif
+
+                                <!-- Twitter -->
+                                @if($seller->twitter == null)
+                                <div class="border border-gray-400 rounded-full px-3 py-1 hidden">
+                                    <span class="font-light text-[16px]">{{ $seller->twitter }}</span>
+                                </div>
+                                @else
+                                <div class="border border-gray-400 rounded-full px-3 py-1">
+                                    <span class="font-light text-[16px]">{{ $seller->twitter }}</span>
+                                </div>
+                                @endif
+
+                                <!-- Linkedin -->
+                                @if($seller->linkedin == null)
+                                <div class="border border-gray-400 rounded-full px-3 py-1 hidden">
+                                    <span class="font-light text-[16px]">{{ $seller->linkedin }}</span>
+                                </div>
+                                @else
+                                <div class="border border-gray-400 rounded-full px-3 py-1">
+                                    <span class="font-light text-[16px]">{{ $seller->linkedin }}</span>
+                                </div>
+                                @endif
+
+                                <!-- Website -->
+                                @if($seller->linkedin == null)
+                                <div class="border border-gray-400 rounded-full px-3 py-1 hidden">
+                                    <span class="font-light text-[16px]">{{ $seller->website }}</span>
+                                </div>
+                                @else
+                                <div class="border border-gray-400 rounded-full px-3 py-1">
+                                    <span class="font-light text-[16px]">{{ $seller->website }}</span>
+                                </div>
+                                @endif
+
+                                
+                            </div>
+                        </div>
+                    </section>
             </div>
         </section>
 
@@ -107,16 +182,16 @@
 
 
 
-        <section class=" p-14">
-            <h1 class="text-primary font-bold text-[20px] max-sm:text-[20px]">Mis Servicios</h1>
+        <section class="py-[140px]">
+            <h1 class="text-primary font-bold text-[30px] max-sm:text-[20px]">Mis Servicios</h1>
 
-            <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 ">
                 @if ($gigs && count($gigs) > 0)
                 @foreach ($gigs as $gig)
                 <div class="flex wrap">
-                    <a href="{{ route('sellerGig', ['id' => $gig->id, 'username' => $username]) }}" class="block w-full cursor-pointer">
-                        <div class="mt-5 gap-2">
-                            <img class="cursor-pointer w-full h-[15rem]" src="{{ asset('images/gigs/' . $gig->gig_image) }}" alt="{{ $gig->gig_name }}">
+                    <a href="{{ route('sellerGig', ['id' => $gig->id, 'username' => $username]) }}" class="block w-full cursor-pointer ">
+                        <div class="mt-5 gap-2 ">
+                            <img class="cursor-pointer w-full h-[15rem] border-2 rounded-md" src="{{ asset('images/gigs/' . $gig->gig_image) }}" alt="{{ $gig->gig_name }}">
 
                             <span class="text-[16px] max-sm:text-[14px] font-light text-black">{{ $gig->gig_name }}</span>
 
