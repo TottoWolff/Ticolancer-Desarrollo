@@ -39,7 +39,10 @@ Route::post('/', [Homepage::class, 'store_subscription'])->name('subscription.st
 //ROUTES TO SIGN UP, LOG IN AND LOG OUT
 Route::get('/signup', [Signup::class, 'index'])->name('signup');
 Route::post('/signup', [Signup::class, 'store'])->name('signup.store');
-Route::get('/signup/get-cities/{provinceId}', [Signup::class, 'signup.getCities']);
+Route::get('/signup/get-cities/{provinceId}', [Signup::class, 'getCities']);
+
+
+
 Route::get('/login', [Login::class, 'index'])->name('login');
 Route::post('/login', [Login::class, 'login'])->name('login.login');
 Route::post('/logout', [Login::class, 'logout'])->name('login.logout');
