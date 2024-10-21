@@ -2,8 +2,7 @@
 
 @section('content') 
 <div class="w-[90vw] flex items-center justify-center mt-[140px] mb-[140px] m-auto">
-    <form action=" {{ route('updateGig', ['id' => $gig->id]) }} " method="POST"
-        enctype="multipart/form-data">
+    <form action="{{ route('updateGig', ['id' => $gig->id]) }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="w-full grid md:grid-cols-2 max-sm:grid-cols-1 gap-[20px]">
             <!-- Left Column -->
@@ -252,6 +251,38 @@
             reader.readAsDataURL(file);
         }
     })
+
+    function handleFileChange(inputId, imgId) {
+        const imageInput = document.getElementById(inputId);
+        const image = document.getElementById(imgId);
+        
+        imageInput.click();
+
+        imageInput.addEventListener('change', () => {
+            const file = imageInput.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    image.src = e.target.result;
+                }
+                reader.readAsDataURL(file);
+            } else {
+                console.log("No hay archivo seleccionado");
+            }
+        });
+    }
+
+    function init() {
+        // Main image input
+        handleFileChange('image-input', 'image');
+
+        // Gallery images inputs
+        @for ($i = 1; $i <= 4; $i++)
+        handleFileChange('image-input{{ $i }}', 'image{{ $i }}');
+        @endfor
+    }
+
+    document.addEventListener('DOMContentLoaded', init);
 
 </script>
 
