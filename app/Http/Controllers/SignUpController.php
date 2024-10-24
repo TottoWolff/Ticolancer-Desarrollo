@@ -33,9 +33,10 @@ class SignUpController extends Controller
 
     public function getCities($provinceId)
     {
-        $cities = Cities::where('province_id', $provinceId)->get();
+        $cities = Cities::where('provinces_ticolancers_id', $provinceId)->get();
         return response()->json($cities);
     }
+    
 
 
 

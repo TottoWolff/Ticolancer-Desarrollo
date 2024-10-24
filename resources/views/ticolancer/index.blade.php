@@ -260,7 +260,7 @@
     <div id="authModal" class="hidden fixed inset-0 bg-blue bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-50">
         <div class="bg-white rounded-lg p-8 max-w-sm w-full shadow-lg text-center">
             <h2 class="text-xl font-semibold mb-4 text-gray-800">Acción no permitida</h2>
-            <p class="text-gray-600 mb-6">Para ver más detalles del servicio debes estar logueado   .</p>
+            <p class="text-gray-600 mb-6">Para ver más detalles del servicio debes estar registrado.</p>
             <div class="flex justify-center gap-5">
                 <button id="closeModal" class="button px-[20px] py-[10px] rounded-[10px] text-blue font-semibold border-solid border-[1px] border-blue hover:translate-y-[-5px] transition-all duration-500 ease-out hover:bg-blue hover:text-white ">
                     Cancelar

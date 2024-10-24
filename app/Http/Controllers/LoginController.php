@@ -23,21 +23,27 @@ class LoginController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     */
-    public function login(Request $request)
-    {
+     */public function login(Request $request)
+{
+    $request->validate([
+        'email' => 'required|email',
+        'password' => 'required',
+    ]);
 
-        
-        $credentials = $request->only('email', 'password');
+    $credentials = $request->only('email', 'password');
 
-
-        if (Auth::guard('buyers')->attempt($credentials)) {
-            // Autenticación exitosa
-            $user = Auth::guard('buyers')->user();
-            return redirect()->route('buyers.dashboard', ['username' => $user->username]);
-        } 
-        
+    if (Auth::guard('buyers')->attempt($credentials)) {
+        // Autenticación exitosa
+        $user = Auth::guard('buyers')->user();
+        return redirect()->route('buyers.dashboard', ['username' => $user->username]);
+    } else {
+        // Autenticación fallida
+        return redirect()->back()->with('error', 'Credenciales incorrectas. Por favor, intenta de nuevo.');
     }
+}
+
+
+    
     
 
     public function logout()

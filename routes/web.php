@@ -16,6 +16,7 @@ use App\Http\Controllers\SellerGigsProfileController as SellerGigsProfile;
 use App\Http\Controllers\SellerGigsProfileAdminController as SellerGigsProfileAdmin;
 use App\Http\Controllers\DashboardGigsController as DashboardGigs;
 use App\Http\Controllers\GigReviewController;
+use App\Http\Controllers\SellerApplicationController as SellerApplication;
 
 
 /*
@@ -39,7 +40,10 @@ Route::post('/', [Homepage::class, 'store_subscription'])->name('subscription.st
 //ROUTES TO SIGN UP, LOG IN AND LOG OUT
 Route::get('/signup', [Signup::class, 'index'])->name('signup');
 Route::post('/signup', [Signup::class, 'store'])->name('signup.store');
-Route::get('/signup/get-cities/{provinceId}', [Signup::class, 'signup.getCities']);
+Route::get('/signup/get-cities/{provinceId}', [Signup::class, 'getCities']);
+
+
+
 Route::get('/login', [Login::class, 'index'])->name('login');
 Route::post('/login', [Login::class, 'login'])->name('login.login');
 Route::post('/logout', [Login::class, 'logout'])->name('login.logout');
@@ -59,6 +63,9 @@ Route::post('/{username}/buyers/desactivate-account', [BuyerProfile::class, 'des
 Route::post('/{username}/buyers/update/location', [BuyerProfile::class, 'updateLocation'])->name('buyers.updateLocation');
 Route::post('/{username}/buyers/update/languages', [BuyerProfile::class, 'updateLanguages'])->name('buyers.updateLanguages');
 Route::post('/{username}/buyers/update/password', [BuyerProfile::class, 'updatePassword'])->name('buyers.updatePassword');
+
+Route::get('/buyers/{username}/sellerApplication', [SellerApplication::class, 'index'])->name('sellerApplication');
+Route::post('/buyers/{username}/sellerApplication', [SellerApplication::class, 'store'])->name('sellerApplication.store');
 
 
 //ROUTES FOR SELLERS
