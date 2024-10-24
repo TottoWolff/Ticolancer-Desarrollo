@@ -1,8 +1,8 @@
 @extends('buyers.layout')
 @section('content')
-<div class="relative h-[412px] max-sm:h-[100px] flex items-center justify-center mt-[100px]">
-    
-    <div class="absolute inset-0 bg-cover bg-center brightness-50" style="background-image: url(https://traveler.marriott.com/es/wp-content/uploads/sites/2/2017/11/Costa-Rica_Animal-encounters_toucan-GettyImages-503235008.jpg); background-size: cover;">
+<div class="relative h-[825px] max-sm:h-[100px] flex items-center justify-center mt-[100px]">
+
+    <div class="absolute inset-0 bg-cover bg-bottom brightness-50" style="background-image: url(https://traveler.marriott.com/es/wp-content/uploads/sites/2/2017/11/Costa-Rica_Animal-encounters_toucan-GettyImages-503235008.jpg);">
     </div>
 
     <h1 class="relative z-10 w-fit text-[150px] max-sm:text-[48px] font-light font-secondary text-white">Bienvenido {{$user->name}}</h1>
@@ -139,4 +139,40 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal -->
+    <div id="successModal" class="hidden fixed inset-0 bg-blue bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-50">
+        <div class="bg-white rounded-lg p-8 max-w-sm w-full shadow-lg text-center">
+            <h2 class="text-xl font-semibold">{{ session('success') }}</p>
+                <div class="flex justify-center gap-5">
+                    <button id="closeModal" class="button px-[20px] py-[10px] rounded-[10px] text-blue font-semibold border-solid border-[1px] border-blue hover:translate-y-[-5px] transition-all duration-500 ease-out hover:bg-blue hover:text-white ">
+                        Aceptar
+                    </button>
+                </div>
+        </div>
+    </div>
+
+</div>
 @endsection
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Verificar si hay un mensaje de éxito en la sesión
+        @if(session('success'))
+        // Mostrar el modal
+        const modal = document.getElementById('successModal');
+        modal.classList.remove('hidden');
+
+        // Cerrar el modal al hacer clic en el botón
+        document.getElementById('closeModal').addEventListener('click', function() {
+            modal.classList.add('hidden');
+        });
+
+        // Cerrar el modal si se hace clic en el fondo
+        modal.addEventListener('click', function(event) {
+            if (event.target === modal) {
+                modal.classList.add('hidden');
+            }
+        });
+        @endif
+    });
+</script>

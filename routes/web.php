@@ -16,6 +16,7 @@ use App\Http\Controllers\SellerGigsProfileController as SellerGigsProfile;
 use App\Http\Controllers\SellerGigsProfileAdminController as SellerGigsProfileAdmin;
 use App\Http\Controllers\DashboardGigsController as DashboardGigs;
 use App\Http\Controllers\GigReviewController;
+use App\Http\Controllers\SellerApplicationController as SellerApplication;
 
 
 /*
@@ -62,6 +63,9 @@ Route::post('/{username}/buyers/desactivate-account', [BuyerProfile::class, 'des
 Route::post('/{username}/buyers/update/location', [BuyerProfile::class, 'updateLocation'])->name('buyers.updateLocation');
 Route::post('/{username}/buyers/update/languages', [BuyerProfile::class, 'updateLanguages'])->name('buyers.updateLanguages');
 Route::post('/{username}/buyers/update/password', [BuyerProfile::class, 'updatePassword'])->name('buyers.updatePassword');
+
+Route::get('/buyers/{username}/sellerApplication', [SellerApplication::class, 'index'])->name('sellerApplication');
+Route::post('/buyers/{username}/sellerApplication', [SellerApplication::class, 'store'])->name('sellerApplication.store');
 
 
 //ROUTES FOR SELLERS
