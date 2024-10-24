@@ -14,7 +14,9 @@ return new class extends Migration
         Schema::create('gigs_images_ticolancers', function (Blueprint $table) {
             $table->id();
             $table->string('image');
-            $table->foreignId('gigs_ticolancers_id')->constrained();
+            $table->foreignId('gigs_ticolancers_id')
+            ->constrained('gigs_ticolancers')
+            ->onDelete('cascade');
             $table->timestamps();
         });
     }
