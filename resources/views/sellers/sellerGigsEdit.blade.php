@@ -106,7 +106,7 @@
                             </div>
                             <div class="w-[60%]">
                                 <img id="image" class="w-full rounded-[10px] h-[400px] object-cover"
-                                    src="{{ asset('images/gigs/' . $gig_image) }}" alt="">
+                                    src="{{ asset('images/gigs/' . $gig_image) }}?{{ time() }}" alt="">
                             </div>
                         </div>
 
@@ -122,7 +122,7 @@
                                         <div class="items-center justify-start flex flex-col w-full gap-[5px]">
                                             <img id="image{{ $index + 1 }}"
                                                 class="w-full rounded-[10px] h-[200px] object-cover"
-                                                src="{{ asset('images/gigs/' . $imagesName) }}" alt="">
+                                                src="{{ asset('images/gigs/' . $imagesName) }}?{{ time() }}" alt="">
                                             <button type="button" onclick="showFileChooser{{ $index + 1 }}()"
                                                 class="w-full rounded-[10px] p-[10px] underline text-blue font-semibold text-[14px] hover:translate-y-[-5px] transition-all duration-500 ease-out">Subir
                                                 imagen</button>
@@ -130,6 +130,7 @@
                                                 id="image-input{{ $index + 1 }}" type="file" accept="image/*">
                                         </div>
                                     @endforeach
+
 
                                     @for ($i = count($imagesNames); $i < 4; $i++)
                                         <div class="items-center justify-start flex flex-col w-full gap-[5px]">

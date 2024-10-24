@@ -168,11 +168,9 @@ class GigsController extends Controller
         if ($request->hasFile('gig_image')) {
             $gigImage = $gig->gig_image;
             $currentPicturePath = public_path('images/gigs/' . $gigImage);
-
             if (file_exists($currentPicturePath)) {
                 unlink($currentPicturePath);
             }
-
             try {
                 $file = $request->file('gig_image');
                 $fileType = $file->getClientOriginalExtension();
@@ -180,15 +178,13 @@ class GigsController extends Controller
                 $file->move(public_path('images/gigs'), $filename);
                 $gig->gig_image = $filename;
             } catch (\Exception $e) {
-                return redirect()->back()->with('error', 'Error al mover la imagen: ' . $e->getMessage());
+                return response()->json(['success' => false, 'message' => 'Error al mover la imagen: ' . $e->getMessage()]);
             }
         }
 
-        // Handle gallery images
         for ($i = 1; $i <= 4; $i++) {
             $imageField = 'gig_image' . $i;
             if ($request->hasFile($imageField)) {
-                // Find existing image
                 $existingImage = GigsImages::where('gigs_ticolancers_id', $gig->id)->skip($i - 1)->first();
                 if ($existingImage) {
                     $currentPicturePath = public_path('images/gigs/' . $existingImage->image);
@@ -208,7 +204,7 @@ class GigsController extends Controller
                         'image' => $filename
                     ]);
                 } catch (\Exception $e) {
-                    return redirect()->back()->with('error', 'Error al mover la galería de imágenes: ' . $e->getMessage());
+                    return response()->json(['success' => false, 'message' => 'Error al mover la galería de imágenes: ' . $e->getMessage()]);
                 }
             }
         }
@@ -216,17 +212,30 @@ class GigsController extends Controller
         return response()->json(['success' => true, 'message' => 'Gig actualizado correctamente.']);
     }
 
+
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy(string $id)
     {
+        // Encuentra el gig con el ID proporcionado
         $gig = GigsTicolancer::findOrFail($id);
 
-        GigsImages::where('gigs_ticolancers_id', $gig->id)->delete();
+        // Si el gig tiene imágenes, puedes eliminarlas manualmente (opcional si ya usas cascade en la migración)
+        if ($gig->images) {
+            foreach ($gig->images as $image) {
+                // Eliminar la imagen físicamente del servidor (opcional)
+                $imagePath = public_path('images/gigs/' . $image->image);
+                if (file_exists($imagePath)) {
+                    unlink($imagePath);  // Elimina el archivo de imagen
+                }
+            }
+        }
 
+        // Elimina el gig (si tienes cascade en las imágenes, las imágenes se eliminarán automáticamente)
         $gig->delete();
 
+        // Redirige con un mensaje de éxito
         return redirect()->back()->with('warning', 'Gig eliminado exitosamente');
     }
 
