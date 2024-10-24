@@ -12,7 +12,7 @@ class SellerNavbarController extends Controller
     public function index()
     {
         //
-        $user = Auth::guard('sellers')->user();
+        $user = Auth::guard('buyers')->user();
         return view('sellers.navbar', compact('user'));
     }
 
