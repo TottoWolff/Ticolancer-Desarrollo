@@ -53,7 +53,9 @@ class SellerGigsProfileController extends Controller
         $sellerLinkedin = $sellerInfo ? $sellerInfo->linkedin : 'https://es.linkedin.com/#:~:text=1%20mil%20millones%20de%20miembros%20|%20Gestiona%20tu%20identidad';
         $sellerWebsite = $sellerInfo ? $sellerInfo->website : '#';
         
-        
+        $whatsappMessage = "Hola, me gustaría obtener más información sobre el servicio de";
+        $emailSubject = "Consulta sobre servicio";
+        $emailBody = "Hola,\n\nMe gustaría obtener más información sobre el servicio de";
 
 
         $username = $buyer->username;
@@ -87,7 +89,7 @@ class SellerGigsProfileController extends Controller
         ['username' => $buyer->username, 'gigs' => $gigs], 
         compact('gigs','username', 'name', 'lastname', 'email', 'phone', 'username', 'buyerId', 'userLanguages','userProvince',
         'userCity', 'profile', 'reviews','averageRating', 'seller', 'description', 'created_at', 'languages', 'sellerFacebook',
-        'sellerInstagram', 'sellerTwitter', 'sellerLinkedin','sellerWebsite'));
+        'sellerInstagram', 'sellerTwitter', 'sellerLinkedin','sellerWebsite', 'whatsappMessage', 'emailSubject', 'emailBody'));
 
         
     }
