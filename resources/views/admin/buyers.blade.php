@@ -28,7 +28,7 @@
                                 <td>{{$buyer->username}}</td>
                                 <td>+506 {{$buyer->phone}}</td>
                                 <td>{{$buyer->email}}</td>
-                                <td><button class="text-green underline text-[16px] font-light">Ver</button></td>
+                                <a href="{{ route('admin.aplicationDetails', $buyer->id) }}"><button class="text-green underline text-[16px] font-light">Ver</button></a>
                             </tr>
                             @endforeach
                         </tbody>

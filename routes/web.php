@@ -124,6 +124,9 @@ Route::get('/admin/forms', [DashboardAdmin::class, 'forms'])->name('admin.forms'
 Route::get('/admin/subscriptions', [DashboardAdmin::class, 'subscriptions'])->name('admin.subscriptions');
 Route::get('/admin/applications', [DashboardAdmin::class, 'applications'])->name('admin.applications');
 Route::get('/admin/applicationDetails/{id}', [DashboardAdmin::class, 'applicationDetails'])->name('admin.aplicationDetails');
+Route::post('/admin/applicationAccept/{id}', [DashboardAdmin::class, 'applicationAccept'])->name('admin.seller_applicationAccept');
+Route::post('/admin/applicationReject/{id}', [DashboardAdmin::class, 'applicationReject'])->name('admin.seller_applicationReject');
+
 
 
 

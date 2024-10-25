@@ -69,10 +69,84 @@ class DashboardAdminController extends Controller
         // Traemos el buyer por su ID junto con su solicitud como seller
         $buyer = Buyers::with('sellerApplication')->findOrFail($id);
        
+        $application = Applications::where('buyers_users_ticolancers_id', $id)->first();
+        
     
         // Pasamos la información del buyer y la solicitud a la vista
-        return view('admin.applicationDetails', compact('buyer'));
+        return view('admin.applicationDetails', compact('buyer', 'application'));
     }
+
+    public function applicationAccept($id)
+    {
+        $buyer = Buyers::with('sellerApplication')->findOrFail($id);
+       
+        $application = Applications::where('buyers_users_ticolancers_id', $id)->first();
+
+        $newSeller= new Sellers;
+        $newSeller->birthdate = $application->birthdate;
+        $newSeller->description = $application->description;
+        $newSeller->residence_address = $application->residence_address;
+        $newSeller->buyers_users_ticolancers_id = $buyer->id;
+        $newSeller->facebook = $application->facebook;
+        $newSeller->twitter = $application->twitter;
+        $newSeller->instagram = $application->instagram;
+        $newSeller->linkedin = $application->linkedin;
+        $newSeller->website = $application->website;
+        $newSeller->save();
+
+        $to = $buyer->email;
+        $subject = 'Tu solicitud ha sido aceptado';
+        $message = '
+        <html>
+             <head>
+                 <style>
+
+                     h2 {
+                         color: #ffffff;
+                         padding: 10px;
+                         background-color: #132D46;
+                         border-bottom: 4px solid #00C48E;
+                     }
+
+                     .container {
+                         padding: 10px;
+                         background-color: #F5F5F5;
+                     }
+
+                 </style>
+
+             </head>
+             <body>
+                 <h2> Hola ' . $buyer->name . ', tu solicitud ha sido aceptada!</h2>
+                 <div class="container">
+                     <p>Ahora podrás publicar tus servicios.</p>
+                 </div>
+             </body>
+         </html> 
+     ';
+
+        $headers = "MIME-Version: 1.0" . "\r\n";
+        $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+
+        mail ($to, $subject, $message, $headers);
+
+        $application->delete();
+
+        return redirect()->route('admin.dashboard')->with('success', 'formulario aceptado exitosamente.');
+
+
+        
+    }
+
+    public function applicationReject($id)
+    {
+        $application = Applications::where('buyers_users_ticolancers_id', $id)->first();
+        $application->delete();
+        return redirect()->back()->with('success', 'Formulario eliminado exitosamente');
+        
+    }
+
+
     
 
     
