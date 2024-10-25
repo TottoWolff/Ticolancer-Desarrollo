@@ -144,7 +144,7 @@
                     <!-- Contacto -->
                     <div
                         class="grid gap-8 w-auto place-items-center content-center h-[84px] bg-gray-200 rounded-md p-6 mt-24">
-                        <div class="absolute flex w-[90%] h-[45px] border border-gray-400 rounded-md cursor-pointer place-items-center place-content-center 
+                        <div class="absolute flex w-[90%] max-sm:w-[80%] h-[45px] border border-gray-400 rounded-md cursor-pointer place-items-center place-content-center 
                              hover:translate-y-[-5px] transition-all duration-500 ease-out hover:bg-blue hover:text-white text-blue font-semibold "
                             id="contact-button">
                             <span class=" text-xl text-center ">Contáctame</span>
