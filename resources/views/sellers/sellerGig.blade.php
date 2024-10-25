@@ -57,34 +57,32 @@
                 </div>
                 <div class="h-[1px] bg-blue bg-opacity-50 w-full mt-3"></div>
 
+
+
                 <div
-                    class="flex   justify-center mt-10 mb-10 max-sm:mt-[2rem] max-sm:flex max-sm:justify-center border-opacity-50 rounded-md">
-                    <img class="flex justify-center w-[625px] h-[320px]  rounded-md object-cover max-sm:w-[90%] max-md:w-[70%]"
+                    class="flex justify-center mt-10 mb-10 max-sm:mt-[2rem] max-sm:flex max-sm:justify-center border-opacity-50 rounded-md">
+                    <img class="flex justify-center w-[625px] h-[320px] rounded-md object-cover max-md:w-[70%]"
                         id="mainImage" src="{{ asset('images/gigs/' . $gig->gig_image) }}" alt="">
                 </div>
 
-                <div class="flex space-x-4 mt-6  justify-center">
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-6 justify-center">
                     <img onclick="changeImage(this)"
-                        class="w-full flex justify-center sm:w-1/3 md:w-28 h-24 max-sm:h-auto max-md:w-[10%] max-md:h-[10%]  object-cover rounded-md shadow cursor-pointer"
-                        src="{{ asset('images/gigs/' . $gig->gig_image) }}" alt="Imagen 1">
+                        class="w-full max-w-40 h-auto object-cover rounded-md shadow cursor-pointer"
+                        src="{{ asset('images/gigs/' . $gig->gig_image) }}" alt="Imagen principal">
 
                     @foreach ($imagesNames as $imageName)
                         @if ($imageName == null)
                             <img onclick="changeImage(this)"
-                                class="w-full sm:w-1/3 md:w-28 h-24 max-sm:h-auto max-md:w-[10%] max-md:h-[10%]  object-cover rounded-md shadow cursor-pointer"
-                                src="{{ asset('images/gigs/gig_placeholder.png') }}" alt="Imagen 1">
+                                class="w-full max-w-40 h-auto object-cover rounded-md shadow cursor-pointer"
+                                src="{{ asset('images/gigs/gig_placeholder.png') }}" alt="Imagen de Placeholder">
                         @else
-                            <div class="flex place-content-center">
-                                <img onclick="changeImage(this)"
-                                    class="w-full sm:w-1/3 md:w-28 h-24 max-sm:w-full max-sm:h-auto max-md:w-[10%] max-md:h-[10%]  object-cover rounded-md shadow cursor-pointer"
-                                    src="{{ asset('images/gigs/' . $imageName) }}" alt="Imagen 1">
-                            </div>
-
+                            <img onclick="changeImage(this)"
+                                class="w-full max-w-40 h-auto object-cover rounded-md shadow cursor-pointer"
+                                src="{{ asset('images/gigs/' . $imageName) }}" alt="Imagen secundaria">
                         @endif
                     @endforeach
-
-
                 </div>
+
 
                 <section
                     class="max-sm:text-2xl mt-10 max-sm:text-center max-sm:mt-[2rem] w-full max-w-[40rem] max-sm:max-w-[20rem] ">
@@ -95,21 +93,17 @@
                     </p>
                 </section>
 
-
-
-
             </div>
 
             <!-- Segunda columna -->
             <div>
-
                 <!-- Botón Compartir -->
                 <!-- <div class="w-[46px] h-[45px] border border-gray-300 p-3 rounded-md flex ml-auto hover:bg-gray-200">
                         <img class="cursor-pointer " src="{{ asset('images/profile/share.png') }}" alt="">
                     </div> -->
 
+                
                 <!-- Detalle de servicio -->
-
                 <div
                     class="border-[1px] border-blue border-opacity-50 rounded-[16px] h-auto max-sm:w-full max-md:justify-center p-[20px] relative">
                     <h1 class=" text-2xl font-semibold">Detalle del servicio</h1>
@@ -137,8 +131,7 @@
                                 </span>
                             </div>
                         </div>
-                        <span class="text-primary text-gray-400 text-xl max-sm:text-[14px]">Publicado en
-                            {{ $published_at }}</span>
+                        <span class="text-primary text-gray-400 text-xl max-sm:text-[14px]">Publicado en {{ $published_at }}</span>
                     </div>
 
                     <!-- Contacto -->
@@ -314,7 +307,7 @@
 
         setTimeout(() => {
             notification.classList.add('hidden');
-        }, 2000);
+        }, 1000);
     }, function(err) {
         console.error('Error al copiar al portapapeles: ', err);
     });

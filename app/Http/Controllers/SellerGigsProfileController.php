@@ -40,17 +40,19 @@ class SellerGigsProfileController extends Controller
         
         
         $buyer = BuyersUsersTicolancer::where('id', $id)->first();
+        $buyerId = $buyer->id;
         
+        $sellerInfo = \App\Models\SellersUsersTicolancer::where('buyers_users_ticolancers_id', $buyerId)->first();
         
-        // Obtener el idBuyer (FK de la tabla buyers_users_ticolancer)
         $seller = SellersUsersTicolancer::where('buyers_users_ticolancers_id', $id)->first();
         $description = $seller ? $seller->description : null;
         $created_at = Carbon::parse($seller->created_at)->translatedFormat('F Y');
-        $facebook = $seller ? $seller->facebook : null;
-        $instagram = $seller ? $seller->instagram : null;
-        $twitter = $seller ? $seller->twitter : null;
-        $linkedin = $seller ? $seller->linkedin : null;
-        $website = $seller ? $seller->website : null;
+        $sellerFacebook = $sellerInfo ? $sellerInfo->facebook : 'https://es-la.facebook.com/#:~:text=Inicia%20sesi%C3%B3n%20en%20Facebook%20para%20empezar%20a%20compartir%20y';
+        $sellerInstagram = $sellerInfo ? $sellerInfo->instagram : 'https://www.instagram.com/';
+        $sellerTwitter = $sellerInfo ? $sellerInfo->twitter : 'https://x.com/';
+        $sellerLinkedin = $sellerInfo ? $sellerInfo->linkedin : 'https://es.linkedin.com/#:~:text=1%20mil%20millones%20de%20miembros%20|%20Gestiona%20tu%20identidad';
+        $sellerWebsite = $sellerInfo ? $sellerInfo->website : '#';
+        
         
 
 
@@ -84,7 +86,8 @@ class SellerGigsProfileController extends Controller
         return view('sellers.sellerGigsProfile', 
         ['username' => $buyer->username, 'gigs' => $gigs], 
         compact('gigs','username', 'name', 'lastname', 'email', 'phone', 'username', 'buyerId', 'userLanguages','userProvince',
-        'userCity', 'profile', 'reviews','averageRating', 'seller', 'description', 'created_at', 'languages'));
+        'userCity', 'profile', 'reviews','averageRating', 'seller', 'description', 'created_at', 'languages', 'sellerFacebook',
+        'sellerInstagram', 'sellerTwitter', 'sellerLinkedin','sellerWebsite'));
 
         
     }
