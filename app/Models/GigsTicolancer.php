@@ -33,5 +33,5 @@ class GigsTicolancer extends Model
         return $this->hasMany(GigsReviewsTicolancer::class, 'gigs_ticolancers_id', 'id');
     }
 
-    
+
 }

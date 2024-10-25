@@ -2,13 +2,15 @@
 
 @section('content') 
 <div class="w-[90vw] flex items-center justify-center mt-[140px] mb-[140px] m-auto">
-    <form action="{{ route('updateGig', ['id' => $gig->id]) }}" method="POST" enctype="multipart/form-data">
+    <form id="editGigForm" action="{{ route('updateGig', ['id' => $gig->id]) }}" method="POST"
+        enctype="multipart/form-data">
         @csrf
         <div class="w-full grid md:grid-cols-2 max-sm:grid-cols-1 gap-[20px]">
             <!-- Left Column -->
             <div class="w-full flex flex-col justify-start items-start gap-[20px]">
                 <div class="flex flex-col justify-start items-start gap-[20px]">
-                    <h3 class="text-[24px] font-medium text-blue">{{$user->name}}, aquí puedes editar tus servicios!</h3>
+                    <h3 class="text-[24px] font-medium text-blue">{{$user->name}}, aquí puedes editar tus servicios!
+                    </h3>
                     <div class="w-full rounded-[16px] border-blue border-[0.5px] border-opacity-50">
                         <div class="flex items-center justify-between p-[20px]">
                             <div class="flex flex-col gap-[10px] w-[40%]">
@@ -39,10 +41,12 @@
                             <select name="gig_category"
                                 class="text-[14px] font-light outline-none bg-transparent border-[0.5px] border-solid border-blue border-opacity-50 rounded-[10px] p-[10px] w-[60%]">
                                 <option class="text-[14px] font-light" value="{{ $gig_category_id }}" selected>
-                                    {{ $gig_category_name }}</option>
+                                    {{ $gig_category_name }}
+                                </option>
                                 @foreach ($categories as $category)
                                     <option name="gig_category" class="text-[14px] font-light" value="{{ $category->id }}">
-                                        {{ $category->category }}</option>
+                                        {{ $category->category }}
+                                    </option>
                                 @endforeach
                             </select>
                         </div>
@@ -102,7 +106,7 @@
                             </div>
                             <div class="w-[60%]">
                                 <img id="image" class="w-full rounded-[10px] h-[400px] object-cover"
-                                    src="{{ asset('images/gigs/' . $gig_image) }}" alt="">
+                                    src="{{ asset('images/gigs/' . $gig_image) }}?{{ time() }}" alt="">
                             </div>
                         </div>
 
@@ -118,7 +122,7 @@
                                         <div class="items-center justify-start flex flex-col w-full gap-[5px]">
                                             <img id="image{{ $index + 1 }}"
                                                 class="w-full rounded-[10px] h-[200px] object-cover"
-                                                src="{{ asset('images/gigs/' . $imagesName) }}" alt="">
+                                                src="{{ asset('images/gigs/' . $imagesName) }}?{{ time() }}" alt="">
                                             <button type="button" onclick="showFileChooser{{ $index + 1 }}()"
                                                 class="w-full rounded-[10px] p-[10px] underline text-blue font-semibold text-[14px] hover:translate-y-[-5px] transition-all duration-500 ease-out">Subir
                                                 imagen</button>
@@ -126,6 +130,7 @@
                                                 id="image-input{{ $index + 1 }}" type="file" accept="image/*">
                                         </div>
                                     @endforeach
+
 
                                     @for ($i = count($imagesNames); $i < 4; $i++)
                                         <div class="items-center justify-start flex flex-col w-full gap-[5px]">
@@ -153,7 +158,6 @@
 </div>
 
 <script>
-
     imageInput = document.getElementById('image-input');
     image = document.getElementById('image');
 
@@ -255,14 +259,14 @@
     function handleFileChange(inputId, imgId) {
         const imageInput = document.getElementById(inputId);
         const image = document.getElementById(imgId);
-        
+
         imageInput.click();
 
         imageInput.addEventListener('change', () => {
             const file = imageInput.files[0];
             if (file) {
                 const reader = new FileReader();
-                reader.onload = function(e) {
+                reader.onload = function (e) {
                     image.src = e.target.result;
                 }
                 reader.readAsDataURL(file);
@@ -273,16 +277,33 @@
     }
 
     function init() {
-        // Main image input
         handleFileChange('image-input', 'image');
 
-        // Gallery images inputs
         @for ($i = 1; $i <= 4; $i++)
-        handleFileChange('image-input{{ $i }}', 'image{{ $i }}');
+            handleFileChange('image-input{{ $i }}', 'image{{ $i }}');
         @endfor
     }
 
     document.addEventListener('DOMContentLoaded', init);
+
+    document.getElementById('editGigForm').addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        let formData = new FormData(this);
+        fetch(this.action, {
+            method: this.method,
+            body: formData,
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    window.location.href = `{{ route('sellerProfile', ['username' => $username]) }}`;
+                } else {
+                    alert(data.message);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+    });
 
 </script>
 
