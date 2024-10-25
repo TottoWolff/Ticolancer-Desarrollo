@@ -116,8 +116,10 @@ Route::post('/admin', [LoginAdmin::class, 'login'])->name('admin.login.login');
 Route::get('/admin/logout', [LoginAdmin::class, 'logout'])->name('admin.logout');
 Route::get('/admin/dashboard', [DashboardAdmin::class, 'index'])->name('admin.dashboard');
 Route::get('/admin/buyers', [DashboardAdmin::class, 'buyers'])->name('admin.buyers');
+Route::get('/admin/sellers', [DashboardAdmin::class, 'sellers'])->name('admin.sellers');
 Route::get('/admin/forms', [DashboardAdmin::class, 'forms'])->name('admin.forms');
 Route::get('/admin/subscriptions', [DashboardAdmin::class, 'subscriptions'])->name('admin.subscriptions');
+Route::get('/admin/applications', [DashboardAdmin::class, 'applications'])->name('admin.applications');
 
 
 

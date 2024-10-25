@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use App\Models\BuyersUsersTicolancer;
+
 class SellerApplication extends Model
 {
     use HasFactory;
@@ -27,6 +29,7 @@ class SellerApplication extends Model
     // Relación con el buyer
     public function buyer()
     {
-        return $this->belongsTo(Buyer::class);
+        return $this->belongsTo(BuyersUsersTicolancer::class, 'buyers_users_ticolancers_id');
+
     }
 }

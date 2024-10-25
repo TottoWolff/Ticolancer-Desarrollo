@@ -30,7 +30,6 @@ class SellersUsersTicolancer extends Model
         'password',
         'remember_token',
     ];
-
     
     public function user()
     {
@@ -39,6 +38,6 @@ class SellersUsersTicolancer extends Model
 
     public function buyers()
     {
-        return $this->hasMany(BuyersUsers::class, 'buyers_users_ticolancers_id');
+        return $this->belongsTo(BuyersUsers::class, 'buyers_users_ticolancers_id');
     }
 }
