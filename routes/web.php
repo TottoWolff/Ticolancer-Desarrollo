@@ -17,6 +17,7 @@ use App\Http\Controllers\SellerGigsProfileAdminController as SellerGigsProfileAd
 use App\Http\Controllers\DashboardGigsController as DashboardGigs;
 use App\Http\Controllers\GigReviewController;
 use App\Http\Controllers\SellerApplicationController as SellerApplication;
+use App\Http\Controllers\CategorieController as Categorie;
 
 
 /*
@@ -100,7 +101,9 @@ Route::get('/sellers/{username}/gigsAdmin', [SellerGigsProfileAdmin::class, 'ind
 
 Route::get('/gigs/{gigId}/reviews', [GigReviewController::class, 'index'])->name('reviews.index');
 
-    Route::post('/gigs/{gig}/reviews', [GigReviewController::class, 'store'])->name('reviews.store');
+Route::post('/gigs/{gig}/reviews', [GigReviewController::class, 'store'])->name('reviews.store');
+
+Route::get('/categorie/{id}', [Categorie::class, 'index'])->name('categorie');
 
 
 
@@ -120,6 +123,7 @@ Route::get('/admin/sellers', [DashboardAdmin::class, 'sellers'])->name('admin.se
 Route::get('/admin/forms', [DashboardAdmin::class, 'forms'])->name('admin.forms');
 Route::get('/admin/subscriptions', [DashboardAdmin::class, 'subscriptions'])->name('admin.subscriptions');
 Route::get('/admin/applications', [DashboardAdmin::class, 'applications'])->name('admin.applications');
+Route::get('/admin/applicationDetails/{id}', [DashboardAdmin::class, 'applicationDetails'])->name('admin.aplicationDetails');
 
 
 

@@ -15,9 +15,11 @@
                     <tr class="text-[16px] font-medium text-blue">
                         <th class="py-[10px]">Nombre</th>
                         <th>Apellidos</th>
-                        <th>Usuario</th>
                         <th>Teléfono</th>
                         <th>Email</th>
+                        <th>Descripción</th>
+                        <th>Fecha de nacimiento</th>
+                        <th>Dirección de Residencia</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -25,16 +27,15 @@
                     <tr>
                         <!-- Información del buyer -->
                         <!--<td class="py-[5px]">{ { $seller->buyer->name }}</td> -->
-                        <td>{{ $seller->buyer->lastname }}</td>
-                        <td>{{ $seller->buyer->username }}</td>
-                        <td>+506 {{ $seller->buyer->phone }}</td>
-                        <td>{{ $seller->buyer->email }}</td>
+                        <td>{{ $seller->buyers->name }}</td>
+                        <td>{{ $seller->buyers->lastname }}</td>
+                        <td>+506 {{ $seller->buyers->phone }}</td>
+                        <td>{{ $seller->buyers->email }}</td>
 
                         <!-- Información del seller -->
                         <td>{{ $seller->description }}</td>
                         <td>{{ $seller->birthdate }}</td>
                         <td>{{ $seller->residence_address }}</td>
-                        <td>{{ $seller->phone }}</td>
 
                         <td>
                             <button class="text-green underline text-[16px] font-light">
