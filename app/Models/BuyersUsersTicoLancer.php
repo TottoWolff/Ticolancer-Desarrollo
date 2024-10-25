@@ -48,4 +48,9 @@ class BuyersUsersTicoLancer extends Authenticatable
     {
         return $this->belongsTo(SellersUsers::class, 'buyers_users_ticolancers_id');
     }
+
+    public function sellerApplication()
+    {
+        return $this->hasOne(SellerApplication::class, 'buyers_users_ticolancers_id');
+    }
 }

@@ -12,7 +12,7 @@ class SellerApplication extends Model
     use HasFactory;
 
     protected $fillable = [
-        'buyeyers_users_ticolancers_id',
+        'buyers_users_ticolancers_id',
         'picture',
         'birthdate',
         'description',

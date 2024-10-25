@@ -37,7 +37,7 @@ class DashboardAdminController extends Controller
     {
         // Obtener todos los sellers junto con su información del buyer
         $sellers = Sellers::with('buyers')->get();
-        return response()->json($sellers);
+        
         
         // Pasar los datos a la vista
         return view('admin.sellers', compact('sellers'));
@@ -52,16 +52,28 @@ class DashboardAdminController extends Controller
     {
         $subscriptions = Subscriptions::all();
         return view('admin.subscriptions', compact('subscriptions'));
+
     }
+
 
     public function applications()
     {
         // Traemos todas las aplicaciones con la información del buyer asociada
-        $applications = Applications::with('buyers')->get();
-        
+        $applications = Applications::with('buyer')->get();
         // Pasamos las aplicaciones con los buyers a la vista
         return view('admin.application', compact('applications'));
     }
+
+    public function applicationDetails($id)
+    {
+        // Traemos el buyer por su ID junto con su solicitud como seller
+        $buyer = Buyers::with('sellerApplication')->findOrFail($id);
+       
+    
+        // Pasamos la información del buyer y la solicitud a la vista
+        return view('admin.applicationDetails', compact('buyer'));
+    }
+    
 
     
 

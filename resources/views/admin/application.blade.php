@@ -31,9 +31,9 @@
                         <td>{{ $application->buyer->email }}</td>
                         <td>{{ $application->residence_address }}</td>
                         <td>
-                            <button class="text-green underline text-[16px] font-light">
+                            <a href="{{ route('admin.aplicationDetails', $application->buyer->id) }}"  class="text-green underline text-[16px] font-light">
                                 Ver
-                            </button>
+                            </a>
                         </td>
                     </tr>
                     @endforeach

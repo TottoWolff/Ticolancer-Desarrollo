@@ -120,6 +120,7 @@ Route::get('/admin/sellers', [DashboardAdmin::class, 'sellers'])->name('admin.se
 Route::get('/admin/forms', [DashboardAdmin::class, 'forms'])->name('admin.forms');
 Route::get('/admin/subscriptions', [DashboardAdmin::class, 'subscriptions'])->name('admin.subscriptions');
 Route::get('/admin/applications', [DashboardAdmin::class, 'applications'])->name('admin.applications');
+Route::get('/admin/applicationDetails/{id}', [DashboardAdmin::class, 'applicationDetails'])->name('admin.aplicationDetails');
 
 
 
