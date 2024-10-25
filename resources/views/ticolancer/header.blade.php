@@ -43,13 +43,15 @@
             
             {{-- Services bar --}}
             <ul id="services-bar" class="font-light text-[14px] flex-row justify-between items-center w-full hidden max-sm:hidden transition-all duration-500 ease-out border-green border-opacity-20 border-t-[0.5px] border-b-[0.5px] py-[10px]">
-                <li class="hover:text-green transition-all duration-500 ease-out"><a href="">Programación y tecnología</a></li>
-                <li class="hover:text-green transition-all duration-500 ease-out"><a href="">Diseño gráfico</a></li>
-                <li class="hover:text-green transition-all duration-500 ease-out"><a href="">Marketing Digital</a></li>
-                <li class="hover:text-green transition-all duration-500 ease-out"><a href="">Traducción y escritura</a></li>
-                <li class="hover:text-green transition-all duration-500 ease-out"><a href="">Servicios de IA</a></li>
-                <li class="hover:text-green transition-all duration-500 ease-out"><a href="">Video y animación</a></li>
-                <li class="hover:text-green transition-all duration-500 ease-out"><a href="">Música y audio</a></li>
+                <li class="hover:text-green transition-all duration-500 ease-out"><a href="{{ route('categorie', '1') }}">Programación y tecnología</a></li>
+                <li class="hover:text-green transition-all duration-500 ease-out"><a href="{{ route('categorie', '2') }}">Marketing Digital</a></li>
+                <li class="hover:text-green transition-all duration-500 ease-out"><a href="{{ route('categorie', '3') }}">Video y Animación</a></li>
+                <li class="hover:text-green transition-all duration-500 ease-out"><a href="{{ route('categorie', '4') }}">Arquitectura</a></li>
+                <li class="hover:text-green transition-all duration-500 ease-out"><a href="{{ route('categorie', '5') }}">Diseño Gráfico</a></li>
+                <li class="hover:text-green transition-all duration-500 ease-out"><a href="{{ route('categorie', '6') }}">Música y Audio</a></li>
+                <li class="hover:text-green transition-all duration-500 ease-out"><a href="{{ route('categorie', '7') }}">Servicios de IA</a></li>
+                <li class="hover:text-green transition-all duration-500 ease-out"><a href="{{ route('categorie', '8') }}">Traducción y Escritura</a></li>
+                <li class="hover:text-green transition-all duration-500 ease-out"><a href="{{ route('categorie', '9') }}">Fotografía</a></li>
             </ul>
             {{-- Services bar end --}}
 
