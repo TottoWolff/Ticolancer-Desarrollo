@@ -144,28 +144,73 @@
                     <!-- Contacto -->
                     <div
                         class="grid gap-8 w-auto place-items-center content-center h-[84px] bg-gray-200 rounded-md p-6 mt-24">
-                        <div class="flex w-full h-[45px] border border-gray-400 rounded-md cursor-pointer place-items-center place-content-center 
+                        <div class="absolute flex w-[90%] h-[45px] border border-gray-400 rounded-md cursor-pointer place-items-center place-content-center 
                              hover:translate-y-[-5px] transition-all duration-500 ease-out hover:bg-blue hover:text-white text-blue font-semibold "
                             id="contact-button">
                             <span class=" text-xl text-center ">Contáctame</span>
                         </div>
 
+                        
+
                         <div id="contact-container"
-                            class="hidden transition-all duration-1000 ease-in-out transform -translate-y-10">
-                            <div
-                                class="flex gap-4 border border-gray rounded-t-md p-3 hover:bg-gray-200 cursor-pointer">
-                                <img class="w-[24px] h-[24px]" src="{{ asset('images/profile/whatsapp.png') }}" alt="">
-                                <span class="font-medium text-xl">Whatsapp</span>
+                            class="mt-[10rem] absolute hidden transition-all duration-1000 ease-in-out transform translate-y-10 w-[90%] border border-gray-400 rounded-md">
+                            @if($phone == null)
+                            <div>  
                             </div>
-                            <div class="flex gap-4 border border-gray p-3 hover:bg-gray-200 cursor-pointer">
-                                <img class="w-[24px] h-[24px]" src="{{ asset('images/profile/message.png') }}" alt="">
-                                <span class="font-medium text-xl ">Correo</span>
+                            @else
+                            <div class="flex gap-4 border border-gray rounded-t-md p-3 bg-white">
+                                <img class="w-[24px] h-[24px] cursor-pointer" src="{{ asset('images/profile/whatsapp.png') }}" alt="" 
+                                onclick="window.open('https://wa.me/+506{{ $phone }}?text={{ urlencode($whatsappMessage) }} {{ $gig->gig_name }} visto en el sitio web de Ticolancer.', '_blank')">
+                                <span class="font-medium text-xl cursor-pointer hover:underline" 
+                                onclick="window.open('https://wa.me/+506{{ $phone }}?text={{ urlencode($whatsappMessage) }} {{ $gig->gig_name }} visto en el sitio web de Ticolancer.', '_blank')">Whatsapp</span>
+                                <div class="ml-auto hover:bg-gray-200 rounded-md">
+                                    <button class="ml-2 p-1 text-white bg-blue-500 rounded " 
+                                        onclick="copyToClipboard('+506{{ $phone }}'); event.stopPropagation();">
+                                        <img src="{{ asset('images/profile/copy.png') }}" alt="Copiar" class="mr-2" />
+                                    </button>
+                                </div>
+                                <div id="copy-notification" class="fixed inset-0 flex items-center justify-center hidden bg-black bg-opacity-60 rounded-sm">
+                                    <div class=" text-white text-sm p-4 rounded-lg shadow-lg border border-gray-300">¡Copiado en portapapeles!</div>
+                                </div>
                             </div>
-                            <div
-                                class="flex gap-4 border border-gray rounded-b-md p-3 hover:bg-gray-200 cursor-pointer">
-                                <img class="w-[24px] h-[24px]" src="{{ asset('images/profile/phone.png') }}" alt="">
-                                <span class="font-medium text-xl">Teléfono</span>
+                            @endif
+
+                            @if($phone == null)
+                            <div>
                             </div>
+                            @else
+                            <div class="flex gap-4 border border-gray p-3 bg-white">
+                                <img class="w-[24px] h-[24px] cursor-pointer" src="{{ asset('images/profile/message.png') }}" alt="" 
+                                onclick="window.location.href='mailto:{{ $email }}?subject={{ urlencode($emailSubject) }}&body={{ urlencode($emailBody) }} {{ $gig->gig_name }} visto en el sitio web de Ticolancer.'">
+                                <span class="font-medium text-xl cursor-pointer hover:underline" 
+                                onclick="window.location.href='mailto:{{ $email }}?subject={{ urlencode($emailSubject) }}&body={{ urlencode($emailBody) }} {{ $gig->gig_name }} visto en el sitio web de Ticolancer.'">Correo</span>
+                                <div class="ml-auto hover:bg-gray-200 rounded-md">
+                                    <button class="ml-2 p-1 text-white bg-blue-500 rounded " 
+                                        onclick="copyToClipboard('{{ $email }}'); event.stopPropagation();">
+                                        <img src="{{ asset('images/profile/copy.png') }}" alt="Copiar" class="mr-2" />
+                                    </button>
+                                </div>
+                                <div id="copy-notification" class="fixed inset-0 flex items-center justify-center hidden bg-black bg-opacity-60 rounded-sm">
+                                    <div class=" text-white text-sm p-4 rounded-lg shadow-lg border border-gray-300">¡Copiado en portapapeles!</div>
+                                </div>
+                            </div>
+                            @endif
+
+                            <div class="flex gap-4 border border-gray rounded-b-md p-3 bg-white">
+                                <img class="w-[24px] h-[24px]  cursor-pointer" src="{{ asset('images/profile/phone.png') }}" alt="" onclick="window.location.href='tel:+506{{ $phone }}'">
+                                <span class="font-medium text-xl cursor-pointer hover:underline" onclick="window.location.href='tel:+506{{ $phone }}'">Teléfono</span>   
+                                <div class="ml-auto hover:bg-gray-200 rounded-md">
+                                    <button class="ml-2 p-1 text-white bg-blue-500 rounded " 
+                                        onclick="copyToClipboard('+506{{ $phone }}'); event.stopPropagation();">
+                                        <img src="{{ asset('images/profile/copy.png') }}" alt="Copiar" class="mr-2" />
+                                    </button>
+                                </div>
+                                <div id="copy-notification" class="fixed inset-0 flex items-center justify-center hidden bg-black bg-opacity-60 rounded-sm">
+                                    <div class=" text-white text-sm p-4 rounded-lg shadow-lg border border-gray-300">¡Copiado en portapapeles!</div>
+                                </div>
+                            </div>
+                             
+
                         </div>
 
                     </div>
@@ -260,11 +305,28 @@
     }
 </script>
 
+
+<script>
+    function copyToClipboard(text) {
+    navigator.clipboard.writeText(text).then(function() {
+        const notification = document.getElementById('copy-notification');
+        notification.classList.remove('hidden');
+
+        setTimeout(() => {
+            notification.classList.add('hidden');
+        }, 2000);
+    }, function(err) {
+        console.error('Error al copiar al portapapeles: ', err);
+    });
+}
+</script>
+
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        document.getElementById('contact-button').addEventListener('click', function () {
-            const contactContainer = document.getElementById('contact-container');
+        const contactButton = document.getElementById('contact-button');
+        const contactContainer = document.getElementById('contact-container');
 
+        function toggleContactContainer() {
             contactContainer.classList.toggle('hidden');
 
             if (contactContainer.classList.contains('hidden')) {
@@ -274,11 +336,19 @@
                 contactContainer.classList.remove('opacity-0', 'translate-y-5');
                 contactContainer.classList.add('opacity-100', 'translate-y-0');
             }
-            setTimeout(() => {
-                if (contactContainer.classList.contains('hidden')) {
-                    contactContainer.classList.add('hidden');
-                }
-            }, 300);
+        }
+
+        contactButton.addEventListener('click', function (event) {
+            event.stopPropagation(); 
+            toggleContactContainer();
+        });
+
+        document.addEventListener('click', function (event) {
+            if (!contactContainer.classList.contains('hidden') && !contactButton.contains(event.target)) {
+                contactContainer.classList.add('hidden');
+                contactContainer.classList.remove('opacity-100', 'translate-y-0');
+                contactContainer.classList.add('opacity-0', 'translate-y-5');
+            }
         });
     });
 </script>

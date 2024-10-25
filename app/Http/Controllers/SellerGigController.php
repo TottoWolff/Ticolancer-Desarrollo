@@ -67,6 +67,12 @@ class SellerGigController extends Controller
             $profile = $buyer->picture;
             $buyerId = $buyer->id;
 
+            $whatsappMessage = "Hola, me gustaría obtener más información sobre el servicio de";
+            $emailSubject = "Consulta sobre servicio";
+            $emailBody = "Hola,\n\nMe gustaría obtener más información sobre el servicio de";
+
+            
+
             $userLanguages = \DB::table('buyers_lang_ticolancers')
                 ->where('buyers_users_ticolancers_id', $buyerId)
                 ->join('languages_ticolancers', 'buyers_lang_ticolancers.languages_ticolancers_id', '=', 'languages_ticolancers.id')
@@ -116,7 +122,10 @@ class SellerGigController extends Controller
                 'averageRating',
                 'imagesNames',
                 'gigId',
-                'published_at'
+                'published_at',
+                'whatsappMessage',
+                'emailSubject',
+                'emailBody'  
             ));
         } else {
             // Manejar el caso en que no se encuentre el seller
