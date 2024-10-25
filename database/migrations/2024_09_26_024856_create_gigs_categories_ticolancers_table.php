@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('gigs_categories_ticolancers', function (Blueprint $table) {
             $table->id();
             $table->string('category');
+            $table->string('image');
             $table->timestamps();
         });
     }
