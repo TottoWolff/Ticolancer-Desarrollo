@@ -1,8 +1,8 @@
 @extends('buyers.layout')
 @section('content')
-<div class="relative h-[825px] max-sm:h-[100px] flex items-center justify-center mt-[100px]">
+<div class="relative h-[70vh] max-sm:h-[100px] flex items-center justify-center mt-[100px]">
 
-    <div class="absolute inset-0 bg-cover bg-bottom brightness-50" style="background-image: url(https://traveler.marriott.com/es/wp-content/uploads/sites/2/2017/11/Costa-Rica_Animal-encounters_toucan-GettyImages-503235008.jpg);">
+    <div class="absolute inset-0 bg-cover bg-center brightness-50 " style="background-image: url(https://traveler.marriott.com/es/wp-content/uploads/sites/2/2017/11/Costa-Rica_Animal-encounters_toucan-GettyImages-503235008.jpg);">
     </div>
 
     <h1 class="relative z-10 w-fit text-[150px] max-sm:text-[48px] font-light font-secondary text-white">Bienvenido {{$user->name}}</h1>
@@ -104,7 +104,7 @@
 
                                     <!-- Nombre del gig -->
                                     <span
-                                        class="text-[16px] max-sm:text-[14px] font-light text-black">{{ $gig->gig_name }}</span>
+                                        class="text-[16px] max-sm:text-[14px] text-center font-light text-black">{{ $gig->gig_name }}</span>
 
                                     <!-- Calificación y cantidad de reseñas -->
                                     <div class="flex gap-2 mt-2 items-center">
@@ -114,7 +114,6 @@
                                             {{ $gig->reviews->isNotEmpty() ? number_format(optional($gig->reviews->first())->average_rating, 1) : 'Sin calificaciones' }}
                                             / 5
                                         </span>
-                                        <span class="text-gray-400 text-[15px] max-sm:text-[10px]">(221)</span>
                                     </div>
 
                                     <!-- Precio del gig -->
