@@ -1,4 +1,4 @@
-@extends('sellers.layout')
+@extends('buyers.layout')
 @section('content')
 <section class=" md:px-16 md:py-16 max-sm:p-5  max-sm:mt-[8rem]  mt-[120px]">
 

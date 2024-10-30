@@ -45,13 +45,17 @@
                     <a class="text-white w-full  py-[10px] border-b-[0.5px] border-opacity-50 border-white font-light text-[16px] hover:text-green transition-all duration-500 ease-out" href="{{ route('buyers.dashboard', auth()->guard('buyers')->user()->username) }}">Dashboard</a>
                 </div>
 
-                <div class="flex w-full items-end justify-center">
-                    <a class="text-white font-medium text-[16px] p-[10px] bg-green rounded-[10px] hover:text-green hover:bg-white w-full text-center hover:translate-y-[-5px] transition-all duration-500 ease-out" href="{{  route('sellerApplication', auth()->guard('buyers')->user()->username) }}">Ser vendedor</a>
-                </div>
-
                 <div class="flex h-full w-full items-end justify-center">
-                    <a class="text-white font-light text-[18px] hover:text-green transition-all duration-500 ease-out" href="{{ route('login.logout') }}">Cerrar sesión</a>
-                </div>
+                <!-- Formulario de logout -->
+                <form id="logout-form" action="{{ route('login.logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+
+                <!-- Botón de logout -->
+                <a class="text-white font-light text-[18px] hover:text-green transition-all duration-500 ease-out" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    Cerrar sesión
+                </a>
+            </div>
 
                 
             @endif
