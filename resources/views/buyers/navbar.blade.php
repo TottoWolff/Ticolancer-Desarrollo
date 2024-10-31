@@ -1,6 +1,6 @@
 <header>
     <div id="navbar" class="flex-col h-[100px] z-[999] flex fixed top-0 w-full left-[50%] -translate-x-1/2 m-auto py-[20px] max-sm:py-[20px] max-sm:px-[20px] items-center justify-between font-main font-semibold text-[18px] text-white transition-all duration-500 ease-out bg-bg">
-        <div id="navbar" class=" w-[90vw] flex flex-row justify-between items-center">
+        <div id="navbar-wrapper" class=" w-[90vw] flex flex-row justify-between items-center">
             <!-- Logo -->
             <a href="{{ route ('buyers.dashboard', auth()->guard('buyers')->user()->username) }}">
                 <img class="w-[140px]" src="{{ asset('icons/logo.svg') }}" alt="">
@@ -44,6 +44,7 @@
                 <a class="text-white w-full  py-[10px] border-b-[0.5px] border-t-[0.5px]  border-opacity-50 border-white font-light text-[16px] hover:text-green transition-all duration-500 ease-out" href="{{ route('buyerProfile', auth()->guard('buyers')->user()->username) }}">Perfil</a>
                 <a class="text-white w-full  py-[10px] border-b-[0.5px] border-opacity-50 border-white font-light text-[16px] hover:text-green transition-all duration-500 ease-out" href="{{ route('buyerProfileSettingsAccount', auth()->guard('buyers')->user()->username) }}">Configuraciones</a>
                 <a class="text-white w-full  py-[10px] border-b-[0.5px] border-opacity-50 border-white font-light text-[16px] hover:text-green transition-all duration-500 ease-out" href="{{ route('buyers.dashboard', auth()->guard('buyers')->user()->username) }}">Dashboard</a>
+                <a class="text-white w-full  py-[10px] border-b-[0.5px] border-opacity-50 border-white font-light text-[16px] hover:text-green transition-all duration-500 ease-out" href="{{ route('inicio')}}">Inicio</a>
             </div>
 
             <div class="flex w-full items-end justify-center">
@@ -65,11 +66,29 @@
 
             @endif
         </div>
+
+        {{-- Services bar --}}
+        <div  class="bg-white w-full flex flex-row items-center justify-center">
+
+            <ul id="services-bar" class="font-light text-blue text-[14px] flex-row justify-between items-center w-[90%] hidden max-sm:hidden transition-all duration-500 ease-out border-green border-opacity-20 border-b-[0.5px] py-[10px]">
+                <li class="hover:text-green transition-all duration-500 ease-out"><a href="{{ route('categorie', '1') }}">Programación y tecnología</a></li>
+                <li class="hover:text-green transition-all duration-500 ease-out"><a href="{{ route('categorie', '2') }}">Marketing Digital</a></li>
+                <li class="hover:text-green transition-all duration-500 ease-out"><a href="{{ route('categorie', '3') }}">Video y Animación</a></li>
+                <li class="hover:text-green transition-all duration-500 ease-out"><a href="{{ route('categorie', '4') }}">Arquitectura</a></li>
+                <li class="hover:text-green transition-all duration-500 ease-out"><a href="{{ route('categorie', '5') }}">Diseño Gráfico</a></li>
+                <li class="hover:text-green transition-all duration-500 ease-out"><a href="{{ route('categorie', '6') }}">Música y Audio</a></li>
+                <li class="hover:text-green transition-all duration-500 ease-out"><a href="{{ route('categorie', '7') }}">Servicios de IA</a></li>
+                <li class="hover:text-green transition-all duration-500 ease-out"><a href="{{ route('categorie', '8') }}">Traducción y Escritura</a></li>
+                <li class="hover:text-green transition-all duration-500 ease-out"><a href="{{ route('categorie', '9') }}">Fotografía</a></li>
+            </ul>
+        </div>
+            {{-- Services bar end --}}
     </div>
 </header>
 
 <script>
     account = document.getElementById('account');
+    servicesBar = document.getElementById('services-bar');
 
     function openAccount() {
         account.classList.remove('hidden');
@@ -80,4 +99,15 @@
         account.classList.add('hidden');
         account.classList.remove('flex');
     }
+
+    window.onscroll = function() {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-white');
+                servicesBar.classList.remove('hidden');
+                servicesBar.classList.add('flex');
+            } else {
+                navbar.classList.remove('bg-blue');
+                servicesBar.classList.add('hidden');
+            }
+        }
 </script>

@@ -45,9 +45,9 @@
                     <section class="max-sm:text-2xl mt-10 max-sm:text-center max-sm:mt-[2rem] w-full max-w-[40rem] max-sm:max-w-[20rem] mb-10">
                         <h1 class="text-primary font-bold text-[20px] max-sm:text-[20px]">Sobre mi</h1>
                         <p
-                        class="text-[16px] max-sm:text-[14px] font-light text-black mt-3 w-full border-[1px] border-blue border-opacity-50 rounded-[16px] p-[20px] min-h-[48px] max-h-auto">
-                        {{ $seller->sellerDescription }}
-                    </p>
+                            class="text-[16px] max-sm:text-[14px] font-light text-black mt-3 w-full border-[1px] border-blue border-opacity-50 rounded-[16px] p-[20px] min-h-[48px] max-h-auto">
+                            {{ $seller->sellerDescription }}
+                        </p>
                     </section>
 
                     <div class="h-[1px] bg-blue bg-opacity-50 w-full"></div>
@@ -60,7 +60,7 @@
                                     <span class="font-light text-[16px]">{{ $language->language_name }}
                                         ({{ $language->level_name }})</span>
                                 </div>
-                                
+
 
                                 @endforeach
                             </div>
@@ -99,66 +99,66 @@
                 </div>
 
 
-                    <div>
-                        <div class=" flex w-full mb-12 max-sm:w-[80%] h-[45px] border border-gray-400 rounded-md cursor-pointer place-items-center place-content-center 
+                <div>
+                    <div class=" flex w-full mb-12 max-sm:w-[80%] h-[45px] border border-gray-400 rounded-md cursor-pointer place-items-center place-content-center 
                              hover:translate-y-[-5px] transition-all duration-500 ease-out hover:bg-blue hover:text-white text-blue font-semibold "
-                            id="contact-button">
-                            <span class=" text-xl text-center ">Contáctame</span>
-                        </div>
-                        <div id="contact-container"
-                            class="absolute hidden transition-all duration-1000 ease-in-out transform translate-y-10 w-[35%] border border-gray-400 rounded-md">
-                           
-                            <div class="flex gap-4 border border-gray rounded-t-md p-3 bg-white">
-                                <img class="w-[24px] h-[24px] cursor-pointer" src="{{ asset('images/profile/whatsapp.png') }}" alt="" 
+                        id="contact-button">
+                        <span class=" text-xl text-center ">Contáctame</span>
+                    </div>
+                    <div id="contact-container"
+                        class="absolute hidden transition-all duration-1000 ease-in-out transform translate-y-10 w-[35%] border border-gray-400 rounded-md">
+
+                        <div class="flex gap-4 border border-gray rounded-t-md p-3 bg-white">
+                            <img class="w-[24px] h-[24px] cursor-pointer" src="{{ asset('images/profile/whatsapp.png') }}" alt=""
                                 onclick="window.open('https://wa.me/+506{{ $phone }}', '_blank')">
-                                <span class="font-medium text-xl cursor-pointer hover:underline" 
+                            <span class="font-medium text-xl cursor-pointer hover:underline"
                                 onclick="window.open('https://wa.me/+506{{ $phone }}', '_blank')">Whatsapp</span>
-                                <div class="ml-auto hover:bg-gray-200 rounded-md">
-                                    <button class="ml-2 p-1 text-white bg-blue-500 rounded " 
-                                        onclick="copyToClipboard('+506{{ $phone }}'); event.stopPropagation();">
-                                        <img src="{{ asset('images/profile/copy.png') }}" alt="Copiar" class="mr-2" />
-                                    </button>
-                                </div>
-                                <div id="copy-notification" class="fixed inset-0 flex items-center justify-center hidden bg-black bg-opacity-60 rounded-sm">
-                                    <div class=" text-white text-sm p-4 rounded-lg shadow-lg border border-gray-300">¡Copiado en portapapeles!</div>
-                                </div>
+                            <div class="ml-auto hover:bg-gray-200 rounded-md">
+                                <button class="ml-2 p-1 text-white bg-blue-500 rounded "
+                                    onclick="copyToClipboard('+506{{ $phone }}'); event.stopPropagation();">
+                                    <img src="{{ asset('images/profile/copy.png') }}" alt="Copiar" class="mr-2" />
+                                </button>
                             </div>
-
-                            <div class="flex gap-4 border border-gray p-3 bg-white">
-                                <img class="w-[24px] h-[24px] cursor-pointer" src="{{ asset('images/profile/message.png') }}" alt="" 
-                                onclick="window.location.href='mailto:{{ $email }}?subject={{ urlencode($emailSubject) }}&body={{ urlencode($emailBody) }}'">
-                                <span class="font-medium text-xl cursor-pointer hover:underline" 
-                                onclick="window.location.href='mailto:{{ $email }}?subject={{ urlencode($emailSubject) }}&body={{ urlencode($emailBody) }} '">Correo</span>
-                                <div class="ml-auto hover:bg-gray-200 rounded-md">
-                                    <button class="ml-2 p-1 text-white bg-blue-500 rounded " 
-                                        onclick="copyToClipboard('{{ $email }}'); event.stopPropagation();">
-                                        <img src="{{ asset('images/profile/copy.png') }}" alt="Copiar" class="mr-2" />
-                                    </button>
-                                </div>
-                                <div id="copy-notification" class="fixed inset-0 flex items-center justify-center hidden bg-black bg-opacity-60 rounded-sm">
-                                    <div class=" text-white text-sm p-4 rounded-lg shadow-lg border border-gray-300">¡Copiado en portapapeles!</div>
-                                </div>
+                            <div id="copy-notification" class="fixed inset-0 flex items-center justify-center hidden bg-black bg-opacity-60 rounded-sm">
+                                <div class=" text-white text-sm p-4 rounded-lg shadow-lg border border-gray-300">¡Copiado en portapapeles!</div>
                             </div>
-                         
-
-                            <div class="flex gap-4 border border-gray rounded-b-md p-3 bg-white">
-                                <img class="w-[24px] h-[24px]  cursor-pointer" src="{{ asset('images/profile/phone.png') }}" alt="" onclick="window.location.href='tel:+506{{ $phone }}'">
-                                <span class="font-medium text-xl cursor-pointer hover:underline" onclick="window.location.href='tel:+506{{ $phone }}'">Teléfono</span>   
-                                <div class="ml-auto hover:bg-gray-200 rounded-md">
-                                    <button class="ml-2 p-1 text-white bg-blue-500 rounded " 
-                                        onclick="copyToClipboard('+506{{ $phone }}'); event.stopPropagation();">
-                                        <img src="{{ asset('images/profile/copy.png') }}" alt="Copiar" class="mr-2" />
-                                    </button>
-                                </div>
-                                <div id="copy-notification" class="fixed inset-0 flex items-center justify-center hidden bg-black bg-opacity-60 rounded-sm">
-                                    <div class=" text-white text-sm p-4 rounded-lg shadow-lg border border-gray-300">¡Copiado en portapapeles!</div>
-                                </div>
-                            </div>
-                             
-
                         </div>
 
-                <div class="h-[1px] bg-blue bg-opacity-50 w-full"></div>
+                        <div class="flex gap-4 border border-gray p-3 bg-white">
+                            <img class="w-[24px] h-[24px] cursor-pointer" src="{{ asset('images/profile/message.png') }}" alt=""
+                                onclick="window.location.href='mailto:{{ $email }}?subject={{ urlencode($emailSubject) }}&body={{ urlencode($emailBody) }}'">
+                            <span class="font-medium text-xl cursor-pointer hover:underline"
+                                onclick="window.location.href='mailto:{{ $email }}?subject={{ urlencode($emailSubject) }}&body={{ urlencode($emailBody) }} '">Correo</span>
+                            <div class="ml-auto hover:bg-gray-200 rounded-md">
+                                <button class="ml-2 p-1 text-white bg-blue-500 rounded "
+                                    onclick="copyToClipboard('{{ $email }}'); event.stopPropagation();">
+                                    <img src="{{ asset('images/profile/copy.png') }}" alt="Copiar" class="mr-2" />
+                                </button>
+                            </div>
+                            <div id="copy-notification" class="fixed inset-0 flex items-center justify-center hidden bg-black bg-opacity-60 rounded-sm">
+                                <div class=" text-white text-sm p-4 rounded-lg shadow-lg border border-gray-300">¡Copiado en portapapeles!</div>
+                            </div>
+                        </div>
+
+
+                        <div class="flex gap-4 border border-gray rounded-b-md p-3 bg-white">
+                            <img class="w-[24px] h-[24px]  cursor-pointer" src="{{ asset('images/profile/phone.png') }}" alt="" onclick="window.location.href='tel:+506{{ $phone }}'">
+                            <span class="font-medium text-xl cursor-pointer hover:underline" onclick="window.location.href='tel:+506{{ $phone }}'">Teléfono</span>
+                            <div class="ml-auto hover:bg-gray-200 rounded-md">
+                                <button class="ml-2 p-1 text-white bg-blue-500 rounded "
+                                    onclick="copyToClipboard('+506{{ $phone }}'); event.stopPropagation();">
+                                    <img src="{{ asset('images/profile/copy.png') }}" alt="Copiar" class="mr-2" />
+                                </button>
+                            </div>
+                            <div id="copy-notification" class="fixed inset-0 flex items-center justify-center hidden bg-black bg-opacity-60 rounded-sm">
+                                <div class=" text-white text-sm p-4 rounded-lg shadow-lg border border-gray-300">¡Copiado en portapapeles!</div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <div class="h-[1px] bg-blue bg-opacity-50 w-full"></div>
                     <section class="py-10 max-sm:text-center">
                         <h2 class="text-primary font-bold text-[20px] max-sm:text-[20px] ">Redes Sociales</h2>
 
@@ -182,40 +182,44 @@
                         </div>
 
                     </section>
-            </div>
+                </div>
         </section>
 
 
 
 
 
-        <section class="py-[140px]">
+        <section class="py-[60px]">
             <h1 class="text-primary font-bold text-[30px] max-sm:text-[20px]">Mis Servicios</h1>
 
             <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 ">
                 @if ($gigs && count($gigs) > 0)
                 @foreach ($gigs as $gig)
-                <div class="flex-wrap">
-                    <a href="{{ route('sellerGig', ['id' => $gig->id, 'username' => $username]) }}" class="block w-full cursor-pointer ">
-                        <div class="mt-5 gap-2 ">
-                            <img class="cursor-pointer w-full h-[15rem] border-2 rounded-md" src="{{ asset('images/gigs/' . $gig->gig_image) }}" alt="{{ $gig->gig_name }}">
+                <div class="border border-gray-300 rounded-lg p-4 shadow-md">
+                    <a href="{{ route('sellerGig', ['id' => $gig->id, 'username' => $username]) }}"
+                        class="block w-full cursor-pointer">
+                        <div class="flex flex-col items-center">
+                            <!-- Imagen del gig -->
+                            <img class="w-full h-40 object-cover rounded-md cursor-pointer mb-4"
+                                src="{{ asset('images/gigs/' . $gig->gig_image) }}" alt="{{ $gig->gig_name }}">
 
-                            <span class="text-[16px] font-light text-black">{{ $gig->gig_name }}</span>
+                            <!-- Nombre del gig -->
+                            <span
+                                class="text-[16px] max-sm:text-[14px] text-center font-light text-black">{{ $gig->gig_name }}</span>
 
-                            <div class="grid gap-2">
-                                <div class="flex gap-2 mt-6">
-                                    <div>
-                                        <img class="mt-0.5" src="{{ asset('images/profile/star.png') }}" alt="">
-                                    </div>
-                                    <div class="flex gap-1">
-                                        <span class="text-primary font-semibold text-[15px]">
-                                            {{ $gig->reviews->isNotEmpty() ? number_format(optional($gig->reviews->first())->average_rating, 1) : 'Sin calificaciones' }} / 5
-                                        </span>
-                                        <span class="text-primary font-medium text-gray-400 text-[15px] ">(221)</span>
-                                    </div>
-                                </div>
-                                <div class="text-primary font-semibold text-[16px]">Desde ₡ {{ $gig->gig_price }}</div>
+                            <!-- Calificación y cantidad de reseñas -->
+                            <div class="flex gap-2 mt-2 items-center">
+                                <img class="w-5 h-5" src="{{ asset('images/profile/star.png') }}"
+                                    alt="Calificación">
+                                <span class="text-primary font-semibold text-[15px] max-sm:text-[12px]">
+                                    {{ $gig->reviews->isNotEmpty() ? number_format(optional($gig->reviews->first())->average_rating, 1) : 'Sin calificaciones' }}
+                                    / 5
+                                </span>
                             </div>
+
+                            <!-- Precio del gig -->
+                            <div class="text-primary font-semibold text-[16px] max-sm:text-[12px] mt-2">Desde
+                                ₡{{ $gig->gig_price }}</div>
                         </div>
                     </a>
                 </div>
@@ -242,21 +246,21 @@
 
 <script>
     function copyToClipboard(text) {
-    navigator.clipboard.writeText(text).then(function() {
-        const notification = document.getElementById('copy-notification');
-        notification.classList.remove('hidden');
+        navigator.clipboard.writeText(text).then(function() {
+            const notification = document.getElementById('copy-notification');
+            notification.classList.remove('hidden');
 
-        setTimeout(() => {
-            notification.classList.add('hidden');
-        }, 1000);
-    }, function(err) {
-        console.error('Error al copiar al portapapeles: ', err);
-    });
-}
+            setTimeout(() => {
+                notification.classList.add('hidden');
+            }, 1000);
+        }, function(err) {
+            console.error('Error al copiar al portapapeles: ', err);
+        });
+    }
 </script>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function() {
         const contactButton = document.getElementById('contact-button');
         const contactContainer = document.getElementById('contact-container');
 
@@ -272,12 +276,12 @@
             }
         }
 
-        contactButton.addEventListener('click', function (event) {
-            event.stopPropagation(); 
+        contactButton.addEventListener('click', function(event) {
+            event.stopPropagation();
             toggleContactContainer();
         });
 
-        document.addEventListener('click', function (event) {
+        document.addEventListener('click', function(event) {
             if (!contactContainer.classList.contains('hidden') && !contactButton.contains(event.target)) {
                 contactContainer.classList.add('hidden');
                 contactContainer.classList.remove('opacity-100', 'translate-y-0');

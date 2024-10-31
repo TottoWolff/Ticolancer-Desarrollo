@@ -231,7 +231,6 @@
                                 <span class="text-primary font-semibold text-[15px] max-sm:text-[12px]">
                                     {{ $gig->reviews->isNotEmpty() ? number_format(optional($gig->reviews->first())->average_rating, 1) : 'Sin calificaciones' }} / 5
                                 </span>
-                                <span class="text-gray-400 text-[15px] max-sm:text-[10px]">(221)</span>
                             </div>
 
                             <!-- Precio del gig -->

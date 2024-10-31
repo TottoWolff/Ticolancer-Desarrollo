@@ -19,9 +19,6 @@
     <div class="flex flex-col justify-center items-center bg-bg py-[40px] gap-[60px] m-auto max-sm:w-[90vw]">
         <h2 class="text-blue text-[36px] max-sm:text-[28px] font-light">Servicios <span
                 class="text-green font-secondary">populares</span></h2>
-        @if(auth('buyers')->check())
-        ID Usuario: {{ auth('buyers')->user()->id }}
-        @endif
 
         <div class="grid grid-cols-6 gap-[20px] max-sm:grid-cols-2">
             {{-- Desarrollo web --}}

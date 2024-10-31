@@ -14,12 +14,26 @@
 </head>
 
 <body class="bg-bg font-main">
+
+    @if(auth('buyers')->check())
+    @if(auth('buyers')->check() && \App\Models\SellersUsersTicolancer::where('buyers_users_ticolancers_id', auth('buyers')->user()->id)->exists())
+    <!-- Navbar para vendedores -->
+    @include('sellers.navbar')
+    @else
+    <!-- Navbar para compradores o usuarios no vendedores -->
+    @include('buyers.navbar')
+    @endif
+    @else
+    <!-- Navbar para visitantes -->
     @include('ticolancer.header')
+    @endif
+
+   
 
     @yield('content')
 
     @include('ticolancer.footer')
-    
+
 </body>
 
-</html> 
+</html>
