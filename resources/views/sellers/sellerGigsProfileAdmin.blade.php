@@ -1,5 +1,5 @@
 {{-- sellers/sellerGigs.blade.php --}}
-@extends('sellers.layout')
+@extends('buyers.layout')
 
 @section('content')
 

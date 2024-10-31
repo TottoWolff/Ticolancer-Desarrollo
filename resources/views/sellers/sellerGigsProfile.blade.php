@@ -1,4 +1,4 @@
-@extends('sellers.layout')
+@extends('buyers.layout')
 
 @section('content')
 

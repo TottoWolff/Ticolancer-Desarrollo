@@ -1,4 +1,4 @@
-@extends('sellers.layout')
+@extends('buyers.layout')
 
 @section('content') 
 <div class="w-[90vw] flex items-center justify-center mt-[140px] mb-[140px] m-auto">

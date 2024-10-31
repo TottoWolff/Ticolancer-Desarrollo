@@ -36,6 +36,10 @@ return [
     */
 
     'guards' => [
+        'web' => [
+            'driver' => 'session',
+            'provider' => 'buyers',
+        ],
         'buyers' => [
             'driver' => 'session',
             'provider' => 'buyers',
@@ -76,7 +80,7 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\SellersUsersTicolancer::class,
         ],
-        
+
         'admins' => [
             'driver' => 'eloquent',
             'model' => App\Models\AdminUsersTicolancer::class,
