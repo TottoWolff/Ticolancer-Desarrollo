@@ -8,7 +8,7 @@
 
             <!-- Search -->
             <div class="relative ">
-                <form action="" >
+                <form action="">
                     <div class="relative">
                         <input type="text" placeholder="¿Cuál servicio buscas hoy?" class="w-[600px] placeholder:text-[18px] placeholder:font-light bg-transparent border-blue border-[0.5px] border-opacity-50 rounded-[16px] p-[10px] outline-none text-[18px] text-black font-light">
                         <button class="bg-blue absolute rounded-[8px] p-[8px] right-[10px] top-[50%] translate-y-[-50%] items-center"><img class="w-[18px]" src="{{ asset('icons/search.svg') }}" alt=""></button>
@@ -41,7 +41,15 @@
             </div>
 
             <div class="flex flex-col w-full items-start justify-center">
+
+                @if(auth('buyers')->check() && \App\Models\SellersUsersTicolancer::where('buyers_users_ticolancers_id', auth('buyers')->user()->id)->exists())
+                <!-- Profile para sellers -->
+                <a class="text-white w-full  py-[10px] border-b-[0.5px] border-t-[0.5px]  border-opacity-50 border-white font-light text-[16px] hover:text-green transition-all duration-500 ease-out" href="{{ route('sellerProfile', auth()->guard('buyers')->user()->username) }}">Perfil</a>
+
+                @else
+                <!-- Profile para buyers -->
                 <a class="text-white w-full  py-[10px] border-b-[0.5px] border-t-[0.5px]  border-opacity-50 border-white font-light text-[16px] hover:text-green transition-all duration-500 ease-out" href="{{ route('buyerProfile', auth()->guard('buyers')->user()->username) }}">Perfil</a>
+                @endif
                 <a class="text-white w-full  py-[10px] border-b-[0.5px] border-opacity-50 border-white font-light text-[16px] hover:text-green transition-all duration-500 ease-out" href="{{ route('buyerProfileSettingsAccount', auth()->guard('buyers')->user()->username) }}">Configuraciones</a>
                 <a class="text-white w-full  py-[10px] border-b-[0.5px] border-opacity-50 border-white font-light text-[16px] hover:text-green transition-all duration-500 ease-out" href="{{ route('buyers.dashboard', auth()->guard('buyers')->user()->username) }}">Dashboard</a>
                 <a class="text-white w-full  py-[10px] border-b-[0.5px] border-opacity-50 border-white font-light text-[16px] hover:text-green transition-all duration-500 ease-out" href="{{ route('inicio')}}">Inicio</a>
@@ -68,7 +76,7 @@
         </div>
 
         {{-- Services bar --}}
-        <div  class="bg-white w-full flex flex-row items-center justify-center">
+        <div class="bg-white w-full flex flex-row items-center justify-center">
 
             <ul id="services-bar" class="font-light text-blue text-[14px] flex-row justify-between items-center w-[90%] hidden max-sm:hidden transition-all duration-500 ease-out border-green border-opacity-20 border-b-[0.5px] py-[10px]">
                 <li class="hover:text-green transition-all duration-500 ease-out"><a href="{{ route('categorie', '1') }}">Programación y tecnología</a></li>
@@ -82,7 +90,7 @@
                 <li class="hover:text-green transition-all duration-500 ease-out"><a href="{{ route('categorie', '9') }}">Fotografía</a></li>
             </ul>
         </div>
-            {{-- Services bar end --}}
+        {{-- Services bar end --}}
     </div>
 </header>
 
@@ -101,13 +109,13 @@
     }
 
     window.onscroll = function() {
-            if (window.scrollY > 50) {
-                navbar.classList.add('bg-white');
-                servicesBar.classList.remove('hidden');
-                servicesBar.classList.add('flex');
-            } else {
-                navbar.classList.remove('bg-blue');
-                servicesBar.classList.add('hidden');
-            }
+        if (window.scrollY > 50) {
+            navbar.classList.add('bg-white');
+            servicesBar.classList.remove('hidden');
+            servicesBar.classList.add('flex');
+        } else {
+            navbar.classList.remove('bg-blue');
+            servicesBar.classList.add('hidden');
         }
+    }
 </script>
