@@ -158,7 +158,7 @@
 
             <!-- Note -->
             <p class="text-[16px] text-gray-500">
-                Actualmente estás en tu perfil de comprador. Para acceder a tu perfil de vendedor, <a href="{{ route('sellerProfile', ['username' => $username]) }}" class="underline hover:text-green"> cambia a modo vendedor</a>
+                Actualmente estás en tu perfil de comprador. Para acceder a tu perfil de vendedor, <a href="{{ route('sellerApplication', auth()->guard('buyers')->user()->username)}}" class="underline hover:text-green"> cambia a modo vendedor</a>
             </p>
             <!-- Note end -->
 
