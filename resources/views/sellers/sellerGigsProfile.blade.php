@@ -28,7 +28,7 @@
                         </div>
                         <div class="flex">
                             <img class="w-[14px] h-[15px] mr-2 mt-1" src="{{ asset('images/profile/star.png') }}" alt="">
-                            <span class="text-[16px] font-light text-black">4.8</span>
+                            <span class="text-[16px] font-light text-black"> {{ number_format($userRating, 1) }} </span>
                         </div>
                         <div class="flex">
                             <img class="w-[14px] h-[19px] mr-2" src="{{ asset('icons/location.svg') }}" alt="">
@@ -91,11 +91,29 @@
             <div class="flex flex-col gap-4 max-sm:justify-centery border-[1px] border-blue rounded-[16px] p-[30px]">
                 <div class="flex gap-3 py-8">
                     <div class="w-full h-[45px] bg-white border border-gray-300 rounded-lg shadow-sm text-center">
-                        <button class="text-primary font-medium text-[20px] py-2">Más sobre mi</button>
+                        <button id="openModalBtn" class="text-primary font-medium text-[20px] py-2">Más sobre mi</button>
                     </div>
-                    <button class="w-[50px] h-[45px] bg-white border border-gray-300 rounded-lg shadow-sm text-center items-center justify-center p-2">
-                        <img class="w-[34px] max-sm:w-[28px]" src="{{ asset('icons/liked.svg') }}" alt="">
+                    <button id="likeButton" class="w-[50px] h-[45px] bg-white border border-gray-300 rounded-lg shadow-sm text-center items-center justify-center p-2">
+                        <img  id="likeIcon" class="w-[34px] max-sm:w-[28px] hover:translate-y-[-2px]" src="{{ asset('images/profile/heart-like-empty.png') }}" alt="">
                     </button>
+                </div>
+
+                <div id="userModal" class="fixed inset-0 bg-gray-300 bg-opacity-50 flex items-center justify-center hidden">
+                    <div class="bg-white w-[90%] max-w-md rounded-lg p-6 shadow-lg relative">
+                        <button id="closeModalBtn" class="absolute top-3 right-3 text-gray-500 font-bold text-xl">&times;</button>
+
+                        <h2 class="text-2xl font-semibold text-center mb-4">Información del Usuario</h2>
+
+                        <div class="w-40">
+                            <span class="font-semibold text-[18px] text-center">{{ $name }} {{ $lastname }}</span>
+                        </div>
+
+                        <p
+                            class="text-[16px] max-sm:text-[14px] font-light text-black mt-3 w-full border-[1px] border-blue border-opacity-50 rounded-[16px] p-[20px] min-h-[48px] max-h-auto">
+                            {{ $seller->sellerDescription }}
+                        </p>
+                        
+                    </div>
                 </div>
 
 
@@ -209,17 +227,16 @@
 
                             <!-- Calificación y cantidad de reseñas -->
                             <div class="flex gap-2 mt-2 items-center">
-                                <img class="w-5 h-5" src="{{ asset('images/profile/star.png') }}"
+                                <img class="w-3 h-3" src="{{ asset('images/profile/star.png') }}"
                                     alt="Calificación">
                                 <span class="text-primary font-semibold text-[15px] max-sm:text-[12px]">
                                     {{ $gig->reviews->isNotEmpty() ? number_format(optional($gig->reviews->first())->average_rating, 1) : 'Sin calificaciones' }}
-                                    / 5
                                 </span>
                             </div>
 
                             <!-- Precio del gig -->
                             <div class="text-primary font-semibold text-[16px] max-sm:text-[12px] mt-2">Desde
-                                ₡{{ $gig->gig_price }}</div>
+                                ₡{{ number_format($gig->gig_price) }}</div>
                         </div>
                     </a>
                 </div>
@@ -287,6 +304,60 @@
                 contactContainer.classList.remove('opacity-100', 'translate-y-0');
                 contactContainer.classList.add('opacity-0', 'translate-y-5');
             }
+        });
+    });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const openModalBtn = document.getElementById('openModalBtn');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const userModal = document.getElementById('userModal');
+
+        openModalBtn.addEventListener('click', function() {
+            userModal.classList.remove('hidden');
+        });
+
+        closeModalBtn.addEventListener('click', function() {
+            userModal.classList.add('hidden');
+        });
+        window.addEventListener('click', function(event) {
+            if (event.target === userModal) {
+                userModal.classList.add('hidden');
+            }
+        });
+    });
+</script>
+
+<style>
+    #userModal .bg-opacity-50 {
+        animation: fadeIn 0.3s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+</style>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const likeButton = document.getElementById('likeButton');
+        const likeIcon = document.getElementById('likeIcon');
+        let liked = false;
+
+        likeButton.addEventListener('click', function() {
+            if (liked) {
+                likeIcon.src = "{{ asset('images/profile/heart-like-empty.png') }}";
+            } else {
+                likeIcon.src = "{{ asset('images/profile/heart-like-fill.png') }}";
+            }
+            liked = !liked; 
         });
     });
 </script>

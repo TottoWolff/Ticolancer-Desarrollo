@@ -23,6 +23,7 @@ class SellerGigController extends Controller
         // Buscar el gig con el id dado
         $gig = GigsTicolancer::findOrFail($id);
 
+
         // Obtener el idSeller (FK de la tabla sellers_users_ticolancers)
         $idSeller = $gig->sellers_users_ticolancers_id;
 
@@ -52,11 +53,11 @@ class SellerGigController extends Controller
             $ratings = $reviews->pluck('rating');
             $averageRating = $ratings->avg();
 
+
+
+
             $images = GigsImagesTicolancer::where('gigs_ticolancers_id', $id)->get();
-
             $imagesNames = $images->pluck('image');
-
-
 
             $gigId = $id;
             $username = $buyer->username;

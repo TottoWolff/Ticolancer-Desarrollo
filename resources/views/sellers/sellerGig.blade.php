@@ -14,8 +14,19 @@
             <div class="border-[1px] border-blue border-opacity-50 rounded-[16px] p-[20px] h-auto">
 
                 <div class="grid gap-2 max-sm:text-center">
-                    <h1 class="text-3xl font-semibold">{{ $gig->gig_name }}</h1>
-                    <h2 class="text-xl">Servicio de {{ $gig->gig_name }}</h2>
+                    <div class="flex justify-between items-center max-sm:flex-col">
+                        <div>
+                            <h1 class="text-3xl font-semibold">{{ $gig->gig_name }}</h1>
+                            <h2 class="text-xl">Servicio de {{ $gig->gig_name }}</h2>
+                        </div>
+                        <div class="flex gap-3 py-8">
+                        <button id="likeButton" class="w-[50px] h-[45px] bg-white border border-gray-300 rounded-lg shadow-sm text-center items-center justify-center p-2">
+                            <img  id="likeIcon" class="w-[30px] max-sm:w-[28px] hover:translate-y-[-2px] ml-[1.5px]" src="{{ asset('images/profile/heart-like-empty.png') }}" alt="">
+                        </button>
+                </div>
+                        
+                    </div>
+                    
                     <div class="h-[1px] bg-blue bg-opacity-50 w-full"></div>
                 </div>
 
@@ -42,11 +53,7 @@
                             </div>
                             <span class="text-[16px]  font-light text-gray-400">@ {{ $username }} </span>
                         </div>
-                        <div class="flex max-sm:justify-center">
-                            <img class="w-[14px] h-[15px] mr-2 mb-2" src="{{ asset('images/profile/star.png') }}"
-                                alt="">
-                            <span class="text-[16px] font-light text-black">4.8</span>
-                        </div>
+                        
                         <div class="flex max-sm:justify-center">
                             <img class="w-[14px] h-[19px] mr-2" src="{{ asset('icons/location.svg') }}" alt="">
                             <span class="text-[16px] font-light text-black">{{ $sellerCity }} , {{ $sellerProvince }},
@@ -67,7 +74,7 @@
 
                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-6 justify-center">
                     <img onclick="changeImage(this)"
-                        class="w-full max-w-40 h-auto object-cover rounded-md shadow cursor-pointer"
+                        class="w-full max-w-40 max-h-20 h-auto object-cover rounded-md shadow cursor-pointer"
                         src="{{ asset('images/gigs/' . $gig->gig_image) }}" alt="Imagen principal">
 
                     @foreach ($imagesNames as $imageName)
@@ -77,7 +84,7 @@
                                 src="{{ asset('images/gigs/gig_placeholder.png') }}" alt="Imagen de Placeholder">
                         @else
                             <img onclick="changeImage(this)"
-                                class="w-full max-w-40 h-auto object-cover rounded-md shadow cursor-pointer"
+                                class="w-full max-w-40 max-h-20 h-auto object-cover rounded-md shadow cursor-pointer"
                                 src="{{ asset('images/gigs/' . $imageName) }}" alt="Imagen secundaria">
                         @endif
                     @endforeach
@@ -112,7 +119,7 @@
                         <div class="flex mt-5">
                             <img class="w-[14px] h-[15px] mr-2 mt-1" src="{{ asset('images/profile/star.png') }}">
                             <span class="text-primary font-medium text-xl max-sm:text-[14px]">Desde  ₡
-                                {{ $gig->gig_price }}</span>
+                                {{ number_format($gig->gig_price) }}</span>
                         </div>
                         <div class="flex">
                             <img class="w-[14px] h-[15px] mr-2 mt-1" src="{{ asset('images/profile/star.png') }}"
@@ -123,7 +130,7 @@
                                     </span>
                                 @else
                                     <span
-                                        class="text-primary font-semibold text-[18px] max-sm:text-[14px]">{{ $averageRating }}
+                                        class="text-primary font-semibold text-[18px] max-sm:text-[14px]">{{ number_format($averageRating), 1 }}
                                     </span>
                                 @endif
                                 <span class="text-primary text-gray-400 font-semibold text-[18px] max-sm:text-[14px]">
@@ -342,6 +349,23 @@
                 contactContainer.classList.remove('opacity-100', 'translate-y-0');
                 contactContainer.classList.add('opacity-0', 'translate-y-5');
             }
+        });
+    });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const likeButton = document.getElementById('likeButton');
+        const likeIcon = document.getElementById('likeIcon');
+        let liked = false;
+
+        likeButton.addEventListener('click', function() {
+            if (liked) {
+                likeIcon.src = "{{ asset('images/profile/heart-like-empty.png') }}";
+            } else {
+                likeIcon.src = "{{ asset('images/profile/heart-like-fill.png') }}";
+            }
+            liked = !liked; 
         });
     });
 </script>

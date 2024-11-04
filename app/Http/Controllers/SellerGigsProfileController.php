@@ -37,6 +37,15 @@ class SellerGigsProfileController extends Controller
         
         $ratings = $reviews->pluck('rating');
         $averageRating = number_format($ratings->avg(), 1); 
+
+
+        
+        $averageRatings = $gigs->map(function ($gig) {
+            $reviews = GigsReviewsTicolancer::where('gigs_ticolancers_id', $gig->id)->pluck('rating');
+            return $reviews->avg();
+        });
+        
+        $userRating = $averageRatings->filter()->avg();
         
         
         $buyer = BuyersUsersTicolancer::where('id', $id)->first();
@@ -56,6 +65,7 @@ class SellerGigsProfileController extends Controller
         $whatsappMessage = "Hola, me gustaría obtener más información sobre el servicio de";
         $emailSubject = "Consulta sobre servicio";
         $emailBody = "Hola,\n\nMe gustaría obtener más información sobre el servicio de";
+        
 
 
         $username = $buyer->username;
@@ -88,7 +98,7 @@ class SellerGigsProfileController extends Controller
         return view('sellers.sellerGigsProfile', 
         ['username' => $buyer->username, 'gigs' => $gigs], 
         compact('gigs','username', 'name', 'lastname', 'email', 'phone', 'username', 'buyerId', 'userLanguages','userProvince',
-        'userCity', 'profile', 'reviews','averageRating', 'seller', 'description', 'created_at', 'languages', 'sellerFacebook',
+        'userCity', 'profile', 'reviews','averageRating', 'userRating', 'averageRatings', 'seller', 'description', 'created_at', 'languages', 'sellerFacebook',
         'sellerInstagram', 'sellerTwitter', 'sellerLinkedin','sellerWebsite', 'whatsappMessage', 'emailSubject', 'emailBody'));
 
         

@@ -18,6 +18,8 @@ use App\Http\Controllers\DashboardGigsController as DashboardGigs;
 use App\Http\Controllers\GigReviewController;
 use App\Http\Controllers\SellerApplicationController as SellerApplication;
 use App\Http\Controllers\CategorieController as Categorie;
+use App\Http\Controllers\PaymentController as Payment;
+
 
 
 /*
@@ -83,6 +85,9 @@ Route::post('/{username}/update/languages', [SellerProfile::class, 'updateLangua
 Route::post('/{username}/update/password', [SellerProfile::class, 'updatePassword'])->name('sellers.updatePassword');
 Route::post('/{username}/update/address', [SellerProfile::class, 'updateAddress'])->name('sellers.updateAddress');
 Route::post('/{username}/update/socialMedia', [SellerProfile::class, 'updateSocialMedia'])->name('sellers.updateSocialMedia');
+Route::post('/{username}/update/socialMedia', [SellerProfile::class, 'updateSocialMedia'])->name('sellers.updateSocialMedia');
+
+Route::get('/payment', [Payment::class, 'index'])->name('payment');
 
 
 Route::get('/sellers/{username}/gigCreation', [Gigs::class, 'index'])->name('gigCreation');
