@@ -52,7 +52,6 @@ Route::post('/recover', [Login::class, 'recover'])->name('login.recover');
 
 //ROUTES FOR BUYERS
 Route::get('/buyers/{username}/dashboard', [DashboardGigs::class, 'index'])->name('buyers.dashboard');
-
 Route::get('buyers/{username}', [BuyerProfile::class, 'index'])->name('buyerProfile');
 Route::get('buyers/{username}/settings/account', [BuyerProfile::class, 'settingsAccount'])->name('buyerProfileSettingsAccount');
 Route::get('buyers/{username}/settings/security', [BuyerProfile::class, 'settingsSecurity'])->name('buyerProfileSettingsSecurity');
@@ -65,6 +64,7 @@ Route::post('/{username}/buyers/update/location', [BuyerProfile::class, 'updateL
 Route::post('/{username}/buyers/update/languages', [BuyerProfile::class, 'updateLanguages'])->name('buyers.updateLanguages');
 Route::post('/{username}/buyers/update/password', [BuyerProfile::class, 'updatePassword'])->name('buyers.updatePassword');
 
+//ROUTES FOR SELLER APPLICATION
 Route::get('/buyers/{username}/sellerApplication', [SellerApplication::class, 'index'])->name('sellerApplication');
 Route::post('/buyers/{username}/sellerApplication', [SellerApplication::class, 'store'])->name('sellerApplication.store');
 
@@ -84,7 +84,7 @@ Route::post('/{username}/update/password', [SellerProfile::class, 'updatePasswor
 Route::post('/{username}/update/address', [SellerProfile::class, 'updateAddress'])->name('sellers.updateAddress');
 Route::post('/{username}/update/socialMedia', [SellerProfile::class, 'updateSocialMedia'])->name('sellers.updateSocialMedia');
 
-
+//ROUTES FOR GIGS CRUD
 Route::get('/sellers/{username}/gigCreation', [Gigs::class, 'index'])->name('gigCreation');
 Route::post('/sellers/{username}/gigstore', [Gigs::class, 'store'])->name('sellers.gigStore');
 Route::delete('/gig/delete/{id}', [Gigs::class, 'destroy'])->name('deleteGig');
@@ -92,18 +92,18 @@ Route::get('/gig/edit/{id}', [Gigs::class, 'edit'])->name('editGig');
 Route::post('/gig/update/{id}', [Gigs::class, 'update'])->name('updateGig');
 
 
-
+//ROUTES FOR SELLER Profile and gig details
 Route::get('/sellers/{username}/gigs', [SellerGigsProfile::class, 'index'])->name('sellerGigsProfile');
 Route::get('/sellers/gig/{id}', [SellerGig::class, 'index'])->name('sellerGig');
-
 Route::get('/sellers/{username}/gigsAdmin', [SellerGigsProfileAdmin::class, 'index'])->name('sellerGigsProfileAdmin');
 
-
+//ROUTES FOR REVIEWS
 Route::get('/gigs/{gigId}/reviews', [GigReviewController::class, 'index'])->name('reviews.index');
-
 Route::post('/gigs/{gig}/reviews', [GigReviewController::class, 'store'])->name('reviews.store');
 
+//ROUTES FOR CATEGORIES AND SEARCH TEXT
 Route::get('/categorie/{id}', [Categorie::class, 'index'])->name('categorie');
+Route::get('/search', [Categorie::class, 'search'])->name('searchGigs');
 
 
 

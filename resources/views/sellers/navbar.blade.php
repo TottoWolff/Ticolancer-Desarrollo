@@ -8,11 +8,11 @@
             </a>
 
             <!-- Search -->
-            <div class="relative">
-                <form action="">
+            <div class="relative ">
+                <form action="{{ route('searchGigs', 'search') }}" method="GET">
                     <div class="relative">
-                        <input type="text" placeholder="¿Cuál servicio buscas hoy?" class="w-[600px] placeholder:text-[18px] placeholder:font-light bg-transparent border-blue border-[0.5px] border-opacity-50 rounded-[16px] p-[10px] outline-none text-[18px] text-black font-light">
-                        <button class="bg-blue absolute rounded-[8px] p-[8px] right-[10px] top-[50%] translate-y-[-50%] items-center"><img class="w-[18px]" src="{{ asset('icons/search.svg') }}" alt=""></button>
+                        <input type="text" name="search" placeholder="¿Cuál servicio buscas hoy?" class="w-[600px] placeholder:text-[18px] placeholder:font-light bg-transparent border-blue border-[0.5px] border-opacity-50 rounded-[16px] p-[10px] outline-none text-[18px] text-black font-light">
+                        <button type="submit" class="bg-blue absolute rounded-[8px] p-[8px] right-[10px] top-[50%] translate-y-[-50%] items-center"><img class="w-[18px]" src="{{ asset('icons/search.svg') }}" alt=""></button>
                     </div>
                 </form>
             </div>
