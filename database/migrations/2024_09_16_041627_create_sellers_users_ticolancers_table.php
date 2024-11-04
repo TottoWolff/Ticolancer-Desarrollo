@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('description');
             $table->char('user_Type')->default('S');
             $table->string('residence_address');
-            $table->foreignId('buyers_users_ticolancers_id')->constrained();
+            $table->foreignId('buyers_users_ticolancers_id')->constrained()->onDelete('cascade');
             $table->string('facebook')->nullable();
             $table->string('instagram')->nullable();
             $table->string('twitter')->nullable();

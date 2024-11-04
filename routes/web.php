@@ -19,6 +19,7 @@ use App\Http\Controllers\GigReviewController;
 use App\Http\Controllers\SellerApplicationController as SellerApplication;
 use App\Http\Controllers\CategorieController as Categorie;
 use App\Http\Controllers\PaymentController as Payment;
+use App\Http\Controllers\MembershipController as Membership;
 
 
 
@@ -87,7 +88,11 @@ Route::post('/{username}/update/address', [SellerProfile::class, 'updateAddress'
 Route::post('/{username}/update/socialMedia', [SellerProfile::class, 'updateSocialMedia'])->name('sellers.updateSocialMedia');
 Route::post('/{username}/update/socialMedia', [SellerProfile::class, 'updateSocialMedia'])->name('sellers.updateSocialMedia');
 
-Route::get('/payment', [Payment::class, 'index'])->name('payment');
+// Route::get('/payment', [Payment::class, 'index'])->name('payment');
+
+Route::get('/membership', [Membership::class, 'index'])->name('membership');
+Route::get('/payment', [Membership::class, 'paymentIndex'])->name('payment');
+
 
 //ROUTES FOR GIGS CRUD
 Route::get('/sellers/{username}/gigCreation', [Gigs::class, 'index'])->name('gigCreation');

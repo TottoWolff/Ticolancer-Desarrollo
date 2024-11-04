@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('gigs_reviews_ticolancers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('gigs_ticolancers_id')->constrained();
-            $table->foreignId('buyers_users_ticolancers_id')->constrained();
+            $table->foreignId('gigs_ticolancers_id')->constrained()->onDelete('cascade');
+            $table->foreignId('buyers_users_ticolancers_id')->constrained()->onDelete('cascade');
             $table->text('comment');
             $table->integer('rating');
             $table->date('published_at');

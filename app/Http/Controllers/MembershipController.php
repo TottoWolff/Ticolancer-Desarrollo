@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class PaymentController extends Controller
+class MembershipController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -12,12 +12,23 @@ class PaymentController extends Controller
     public function index()
     {
         //
+        return view('ticolancer.membership');
+    }
+
+
+
+    public function paymentIndex()
+    {
+        //
         return view('ticolancer.payment');
     }
+
 
     /**
      * Show the form for creating a new resource.
      */
+    
+
     public function create()
     {
         //
