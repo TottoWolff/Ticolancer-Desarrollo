@@ -8,6 +8,7 @@ use App\Models\ContactFormsTicolancer as ContactForms;
 use App\Models\SubscriptionsTicolancer as Subscriptions;
 use App\Models\SellersUsersTicolancer as Sellers;
 use App\Models\SellerApplication as Applications;
+use App\Models\MembershipsTicolancer as Memberships;
 use Illuminate\Support\Facades\Auth;
 
 class DashboardAdminController extends Controller
@@ -93,7 +94,17 @@ class DashboardAdminController extends Controller
         $newSeller->linkedin = $application->linkedin;
         $newSeller->website = $application->website;
         $newSeller->save();
-
+ 
+        $seller = Sellers::where('buyers_users_ticolancers_id', $id)->first();
+        $idSeller = $seller->id;
+        $membership = new Memberships;
+        $membership->sellers_users_ticolancers_id = $idSeller;
+        $membership->membership_categories_ticolancers_id = 1;
+        $membership->status = 1;
+        $membership->paymentDate = now();
+        $membership->trialExpirationDate = now()->addDays(30); 
+        $membership->save();
+        
         $to = $buyer->email;
         $subject = 'Tu solicitud ha sido aceptado';
         $message = '

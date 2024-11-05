@@ -11,7 +11,7 @@ class MembershipsTicolancer extends Model
 
     protected $fillable = [
         'sellers_users_ticolancers_id',
-        'membership_cateogries_ticolancers_id',
+        'membership_categories_ticolancers_id',
         'status',
         'paymentDate',
         'trialExpirationDate',

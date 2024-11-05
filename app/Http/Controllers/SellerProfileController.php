@@ -46,6 +46,20 @@ class SellerProfileController extends Controller
 
             $sellerInfo = \App\Models\SellersUsersTicolancer::where('buyers_users_ticolancers_id', $buyerId)->first();
 
+            $sellerId = $sellerInfo ? $sellerInfo->id : null;
+            $memberships = \App\Models\MembershipsTicolancer::where('sellers_users_ticolancers_id', $sellerId)->first();
+            // return response()->json([
+            //     $memberships
+            // ]);
+            $paymentDate = $memberships->paymentDate;
+            $paymentDate = Carbon::parse($paymentDate)->format('j M, Y');
+            $trialExpirationDate = $memberships->trialExpirationDate;
+            $trialExpirationDate = Carbon::parse($trialExpirationDate)->format('j M, Y');
+            $status = $memberships->status; 
+
+            
+
+
             $sellerDescription = $sellerInfo ? $sellerInfo->description : 'Agrega una descripción';
             $sellerBirthdate = $sellerInfo ? $sellerInfo->birthdate : 'Agrega tu fecha de nacimiento';
             $sellerAddress = $sellerInfo ? $sellerInfo->residence_address : 'Agrega tu dirección de residencia';
@@ -90,6 +104,9 @@ class SellerProfileController extends Controller
                     'sellerLinkedin' => $sellerLinkedin,
                     'sellerWebsite' => $sellerWebsite,
                     'gigs' => $sellerGigs,
+                    'paymentDate' => $paymentDate,
+                    'trialExpirationDate' => $trialExpirationDate,
+                    'status' => $status
                 ]);
         }
     }

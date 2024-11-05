@@ -17,7 +17,6 @@
             <span>Paypal</span>
         </div>
         
-
         <div id="credit-card-option"  class="w-[50%] md:w-[20%] text-center grid gap-3 cursor-pointer">
             <div class="border-[1px] border-blue border-opacity-50 rounded-[16px] flex items-center justify-center hover:border-blue hover:border-2">
                 <img src="{{ asset('images/payment/creditCard.jpg') }}" alt="" class="w-full h-auto p-2">

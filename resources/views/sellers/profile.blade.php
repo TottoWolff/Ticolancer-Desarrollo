@@ -303,6 +303,7 @@
             </div>
 
 
+
             <!-- Favorite Services -->
             <div class="border-[0.5px] border-blue border-opacity-50 rounded-[16px] p-6">
                 <h3 class="font-semibold text-[22px] mb-4 text-blue">Servicios favoritos</h3>
@@ -323,11 +324,6 @@
                                 negocio</p>
                         </div>
                     </div>
-
-
-
-
-
                 </div>
 
                 <div class=" flex justify-end ">
@@ -400,6 +396,26 @@
                 </a>
 
             </ul>
+
+            @if($status == 0)
+            <a href="{{ route('membership') }}" class="list-none border-[0.5px] hover:border-red-600 hover:border-2   border-blue border-opacity-50 rounded-[16px] p-6 cursor-pointer">
+                <span  class="font-semibold text-[22px] mb-4 text-blue">Membresía</span>
+                <ul class="grid">
+                    <span>Fecha de inicio: {{ $paymentDate }}</span>
+                    <span>Fecha de expiración: {{ $trialExpirationDate }}</span>
+                    <span>Estado: Expirado</span>
+                </ul>
+            </a>
+            @else
+            <div class="list-none border-[0.5px] border-blue hover:bg-green hover:translate-y-[-5px] transition-all duration-500 ease-out border-opacity-50 rounded-[16px] p-6 cursor-pointer">
+                <span  class="font-semibold text-[22px] mb-4 text-blue">Membresía</span>
+                <ul class="grid">
+                    <span>Fecha de inicio: {{ $paymentDate }}</span>
+                    <span>Fecha de expiración: {{ $trialExpirationDate }}</span>
+                    <span >Estado: Activo</span>
+                </ul>
+            </div>
+            @endif
 
         </div>
 

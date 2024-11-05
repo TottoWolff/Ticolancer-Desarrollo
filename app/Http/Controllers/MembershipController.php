@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MembershipsTicolancer;
+
 use Illuminate\Http\Request;
 
 class MembershipController extends Controller
@@ -12,6 +14,7 @@ class MembershipController extends Controller
     public function index()
     {
         //
+
         return view('ticolancer.membership');
     }
 

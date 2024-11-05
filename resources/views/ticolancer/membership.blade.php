@@ -19,7 +19,7 @@
 
         <div class="grid md:grid-cols-3 gap-6 w-full">
             <div class="bg-white rounded-lg shadow border hover:border-blue-500 p-6 gap-5 grid">
-                <h2 class="text-xl font-semibold">Semestral</h2>
+                <h2 class="text-xl font-semibold">Mensual</h2>
                 <div class="flex items-baseline">
                     <span class="text-3xl font-bold">₡5,000</span>
                     <span class="text-sm text-gray-500 ml-1">/mes</span>
