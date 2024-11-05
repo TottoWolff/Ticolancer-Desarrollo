@@ -23,11 +23,11 @@
                             </button>
                         </div>
                         @if ($picture == null)
-                            <img class="w-[120px] h-[120px] rounded-full bg-center object-cover"
-                                src="{{ asset('images/buyers_profiles/profile_placeholder.png') }}" alt="">
+                        <img class="w-[120px] h-[120px] rounded-full bg-center object-cover"
+                            src="{{ asset('images/buyers_profiles/profile_placeholder.png') }}" alt="">
                         @else
-                            <img class="w-[120px] h-[120px] rounded-full bg-center object-cover"
-                                src="{{ asset('images/buyers_profiles/' . $picture) }}" alt="">
+                        <img class="w-[120px] h-[120px] rounded-full bg-center object-cover"
+                            src="{{ asset('images/buyers_profiles/' . $picture) }}" alt="">
                         @endif
                     </div>
                     <h2 class="mt-4 text-[22px] font-semibold text-blue">{{ $name }} {{ $lastname }}</h2>
@@ -101,11 +101,11 @@
                     <!-- Icono de Tranducción -->
                     <div class="flex flex-col gap-[20px]">
                         @foreach ($languages as $language)
-                            <div class="flex gap-[10px]">
-                                <img src="{{ asset('icons/translate_2.svg') }}" alt="">
-                                <span class="font-light text-[16px]">{{ $language->language_name }}
-                                    ({{ $language->level_name }})</span>
-                            </div>
+                        <div class="flex gap-[10px]">
+                            <img src="{{ asset('icons/translate_2.svg') }}" alt="">
+                            <span class="font-light text-[16px]">{{ $language->language_name }}
+                                ({{ $language->level_name }})</span>
+                        </div>
                         @endforeach
                     </div>
 
@@ -172,8 +172,8 @@
                             <button onclick="showFileChooser()" type="button" id="change-button"
                                 class="button px-[20px] py-[10px] rounded-[10px] text-blue font-semibold border-solid border-[1px] border-blue hover:translate-y-[-5px] transition-all duration-500 ease-out hover:bg-blue hover:text-white ">Cambiar</button>
                             @if ($picture != 'profile_placeholder.png')
-                                <button onclick="openDeleteModal()" type="button"
-                                    class="button px-[20px] py-[10px] rounded-[10px] text-blue font-semibold border-solid border-[1px] border-blue hover:translate-y-[-5px] transition-all duration-500 ease-out hover:bg-blue hover:text-white ">Eliminar</button>
+                            <button onclick="openDeleteModal()" type="button"
+                                class="button px-[20px] py-[10px] rounded-[10px] text-blue font-semibold border-solid border-[1px] border-blue hover:translate-y-[-5px] transition-all duration-500 ease-out hover:bg-blue hover:text-white ">Eliminar</button>
                             @endif
                         </div>
                     </div>
@@ -231,6 +231,19 @@
                 </div>
             </div>
             <!-- Modal end -->
+
+            <!-- modal membership -->
+            <div id="successModal" class="hidden fixed inset-0 bg-blue bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-50">
+                <div class="bg-white rounded-lg p-8 max-w-sm w-full shadow-lg text-center">
+                    <h2 class="text-xl font-semibold">{{ session('success') }}</p>
+                        <div class="flex justify-center gap-5 mt-2">
+                            <button id="closeModal" class="button px-[20px] py-[10px] rounded-[10px] text-blue font-semibold border-solid border-[1px] border-blue hover:translate-y-[-5px] transition-all duration-500 ease-out hover:bg-blue hover:text-white ">
+                                Aceptar
+                            </button>
+                        </div>
+                </div>
+            </div>
+            <!-- modal membership end -->
 
             <!-- Settings -->
             <a class="flex w-full items-center gap-[10px] justify-center border-[1px] border-blue border-opacity-50 rounded-[12px] p-[10px] text-blue hover:text-white hover:bg-blue hover:border-blue transition-all duration-500 "
@@ -338,7 +351,7 @@
                 <h3 class="font-semibold text-[22px] mb-4 text-blue">Mis Servicios</h3>
 
                 @foreach ($gigs as $gig)
-                    <li class="flex items-center justify-between p-4 ">
+                <li class="flex items-center justify-between p-4 ">
                     <a href="{{ route('sellerGig', ['id' => $gig->id, 'username' => $username]) }}" class="block w-full cursor-pointer">
                         <div class="flex items-center gap-4">
                             <img class="w-16 h-16 object-cover rounded-md"
@@ -358,30 +371,30 @@
                             </div>
                         </div>
 
-                    </a> 
+                    </a>
 
-                        <!-- Botones de editar y eliminar -->
-                        <div class="flex gap-4">
+                    <!-- Botones de editar y eliminar -->
+                    <div class="flex gap-4">
 
-                            <a href="{{ route('editGig', ['id' => $gig->id]) }}"
-                                class="bg-blue-500 py-1 px-3 rounded hover:bg-blue-600 border-[1px] border-blue border-opacity-50 p-[10px] text-blue hover:text-white hover:bg-blue hover:border-blue transition-all duration-500">
-                                Editar
-                            </a>
+                        <a href="{{ route('editGig', ['id' => $gig->id]) }}"
+                            class="bg-blue-500 py-1 px-3 rounded hover:bg-blue-600 border-[1px] border-blue border-opacity-50 p-[10px] text-blue hover:text-white hover:bg-blue hover:border-blue transition-all duration-500">
+                            Editar
+                        </a>
 
 
-                            <form action="{{ route('deleteGig', ['id' => $gig->id]) }}" method="POST"
-                                onsubmit="return confirm('¿Estás seguro de que deseas eliminar este gig?');">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit"
-                                    class="bg-blue-500 py-1 px-3 rounded hover:bg-blue-600  border-[1px] border-blue border-opacity-50  p-[10px] text-blue hover:text-white hover:bg-red-600 hover:border-red-600 transition-all duration-500 ">
-                                    Eliminar
-                                </button>
-                            </form>
-                        </div>
+                        <form action="{{ route('deleteGig', ['id' => $gig->id]) }}" method="POST"
+                            onsubmit="return confirm('¿Estás seguro de que deseas eliminar este gig?');">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit"
+                                class="bg-blue-500 py-1 px-3 rounded hover:bg-blue-600  border-[1px] border-blue border-opacity-50  p-[10px] text-blue hover:text-white hover:bg-red-600 hover:border-red-600 transition-all duration-500 ">
+                                Eliminar
+                            </button>
+                        </form>
+                    </div>
 
-                    </li>
-                    <div class="h-[1px] bg-blue bg-opacity-50 w-full"></div>
+                </li>
+                <div class="h-[1px] bg-blue bg-opacity-50 w-full"></div>
                 @endforeach
                 <a href="{{ route('gigCreation', ['username' => $username]) }}" class="block w-full cursor-pointer">
                     <div class="flex wrap ">
@@ -399,7 +412,7 @@
 
             @if($status == 0)
             <a href="{{ route('membership') }}" class="list-none border-[0.5px] hover:border-red-600 hover:border-2   border-blue border-opacity-50 rounded-[16px] p-6 cursor-pointer">
-                <span  class="font-semibold text-[22px] mb-4 text-blue">Membresía</span>
+                <span class="font-semibold text-[22px] mb-4 text-blue">Membresía</span>
                 <ul class="grid">
                     <span>Fecha de inicio: {{ $paymentDate }}</span>
                     <span>Fecha de expiración: {{ $trialExpirationDate }}</span>
@@ -408,11 +421,11 @@
             </a>
             @else
             <div class="list-none border-[0.5px] border-blue hover:bg-green hover:translate-y-[-5px] transition-all duration-500 ease-out border-opacity-50 rounded-[16px] p-6 cursor-pointer">
-                <span  class="font-semibold text-[22px] mb-4 text-blue">Membresía</span>
+                <span class="font-semibold text-[22px] mb-4 text-blue">Membresía</span>
                 <ul class="grid">
                     <span>Fecha de inicio: {{ $paymentDate }}</span>
                     <span>Fecha de expiración: {{ $trialExpirationDate }}</span>
-                    <span >Estado: Activo</span>
+                    <span>Estado: Activo</span>
                 </ul>
             </div>
             @endif
@@ -479,11 +492,32 @@
         if (file) {
             const reader = new FileReader();
             console.log(imageInput.files[0]);
-            reader.onload = function (e) {
+            reader.onload = function(e) {
                 modalChangesImage.src = e.target.result;
             }
             reader.readAsDataURL(file);
         }
     })
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // Verificar si hay un mensaje de éxito en la sesión
+        @if(session('success'))
+        // Mostrar el modal
+        const modal = document.getElementById('successModal');
+        modal.classList.remove('hidden');
+
+        // Cerrar el modal al hacer clic en el botón
+        document.getElementById('closeModal').addEventListener('click', function() {
+            modal.classList.add('hidden');
+        });
+
+        // Cerrar el modal si se hace clic en el fondo
+        modal.addEventListener('click', function(event) {
+            if (event.target === modal) {
+                modal.classList.add('hidden');
+            }
+        });
+        @endif
+    });
 </script>
 @endsection

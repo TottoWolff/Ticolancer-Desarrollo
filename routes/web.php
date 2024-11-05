@@ -91,7 +91,8 @@ Route::post('/{username}/update/socialMedia', [SellerProfile::class, 'updateSoci
 // Route::get('/payment', [Payment::class, 'index'])->name('payment');
 
 Route::get('/membership', [Membership::class, 'index'])->name('membership');
-Route::get('/payment', [Membership::class, 'paymentIndex'])->name('payment');
+Route::get('/paymentPlan/{category}', [Membership::class, 'paymentIndex'])->name('payment');
+Route::post('/payment', [Membership::class, 'store'])->name('paymentMembership');
 
 
 //ROUTES FOR GIGS CRUD

@@ -25,7 +25,7 @@
                     <span class="text-sm text-gray-500 ml-1">/mes</span>
                 </div>
                 <p class="text-sm text-gray-500">Aumenta tu productividad con un acceso extendido</p>
-                <a href="{{ route('payment') }}" class="w-full bg-green hover:bg-blue text-white py-2 rounded mt-4 text-center">Elegir plan</a>
+                <a href="{{ route('payment', 1) }}" class="w-full bg-green hover:bg-blue text-white py-2 rounded mt-4 text-center">Elegir plan</a>
                 
             </div>
 
@@ -36,7 +36,7 @@
                     <span class="text-sm text-gray-500 ml-1">/mes</span>
                 </div>
                 <p class="text-sm text-gray-500">Aumenta tu productividad con un acceso extendido</p>
-                <a href="{{ route('payment') }}" class="w-full bg-green hover:bg-blue text-white py-2 rounded mt-4 text-center">Elegir plan</a>
+                <a href="{{ route('payment', 2) }}" class="w-full bg-green hover:bg-blue text-white py-2 rounded mt-4 text-center">Elegir plan</a>
                 
             </div>
 
@@ -47,7 +47,7 @@
                     <span class="text-sm text-gray-500 ml-1">/mes</span>
                 </div>
                 <p class="text-sm text-gray-500">Aumenta tu productividad con un acceso extendido</p>
-                <a href="{{ route('payment') }}" class="w-full bg-green hover:bg-blue text-white py-2 rounded mt-4 text-center">Elegir plan</a>
+                <a href="{{ route('payment', 3) }}" class="w-full bg-green hover:bg-blue text-white py-2 rounded mt-4 text-center">Elegir plan</a>
             </div>
         </div>
     </div>
