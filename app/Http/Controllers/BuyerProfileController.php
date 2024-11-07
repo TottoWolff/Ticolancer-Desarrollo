@@ -24,35 +24,43 @@ class BuyerProfileController extends Controller
 
         if (!$sessionActive) {
             return redirect()->route('login');
-        } 
-        else{
-
-            $buyer = Auth::guard('buyers')->user(); 
-            $city = $buyer->city;
-            $province = $city->province;
-            $joinDate =  $city->created_at = Carbon::parse($city->created_at)->format('j M, Y');
+        } else {
+            $buyer = Auth::guard('buyers')->user();
             $buyerId = $buyer->id;
-            $username = $buyer->username;
+    
+            // Verificar si el usuario es también un vendedor
+            $sellerInfo = \App\Models\SellersUsersTicolancer::where('buyers_users_ticolancers_id', $buyerId)->first();
+    
+            // Redirigir al perfil de vendedor si ya es un vendedor
+            if ($sellerInfo) {
+                return redirect()->route('sellerProfile', ['username' => $buyer->username]);
+            }
+    
+            // Obtener la ciudad, provincia, y fecha de ingreso del comprador
+            $city = $buyer->city;
+            $province = $city ? $city->province : null;
+            $joinDate = $city ? Carbon::parse($city->created_at)->format('j M, Y') : null;
+    
+            // Obtener los idiomas del comprador
             $languages = \DB::table('buyers_lang_ticolancers')
-            ->where('buyers_users_ticolancers_id', $buyerId)
-            ->join('languages_ticolancers', 'buyers_lang_ticolancers.languages_ticolancers_id', '=', 'languages_ticolancers.id')
-            ->join('language_levels_ticolancers', 'buyers_lang_ticolancers.language_levels_ticolancers_id', '=', 'language_levels_ticolancers.id')
-            ->select('languages_ticolancers.language as language_name', 'language_levels_ticolancers.level as level_name')
-            ->get();
-            $profile = $buyer->picture;
-
-
+                ->where('buyers_users_ticolancers_id', $buyerId)
+                ->join('languages_ticolancers', 'buyers_lang_ticolancers.languages_ticolancers_id', '=', 'languages_ticolancers.id')
+                ->join('language_levels_ticolancers', 'buyers_lang_ticolancers.language_levels_ticolancers_id', '=', 'language_levels_ticolancers.id')
+                ->select('languages_ticolancers.language as language_name', 'language_levels_ticolancers.level as level_name')
+                ->get();
+    
+            // Devolver la vista de perfil del comprador si no es vendedor
             return view('buyers.profile', [
                 'id' => $buyer->id,
-                'name' => $buyer->name, 
-                'lastname' => $buyer->lastname, 
+                'name' => $buyer->name,
+                'lastname' => $buyer->lastname,
                 'username' => $buyer->username,
                 'email' => $buyer->email,
                 'phone' => $buyer->phone,
                 'joinDate' => $joinDate,
-                'picture' => $profile,
+                'picture' => $buyer->picture,
                 'cityName' => $city ? $city->city : null,
-                'provinceName' => $province ? $province->province : null, 
+                'provinceName' => $province ? $province->province : null,
                 'languages' => $languages
             ]);
         }
