@@ -30,84 +30,78 @@ class SellerProfileController extends Controller
         if (!$sessionActive) {
             return redirect()->route('login');
         } else {
-
             $buyer = Auth::guard('buyers')->user();
-            $city = $buyer->city;
-            $province = $city->province;
-            $joinDate =  $city->created_at = Carbon::parse($city->created_at)->format('j M, Y');
             $buyerId = $buyer->id;
-            $username = $buyer->username;
+        
+            // Verifica si el usuario es también un vendedor
+            $sellerInfo = \App\Models\SellersUsersTicolancer::where('buyers_users_ticolancers_id', $buyerId)->first();
+        
+            // Redirige si no es vendedor
+            if (!$sellerInfo) {
+                return redirect()->route('buyerProfile', ['username' => $buyer->username])
+                    ->with('error', 'No tienes acceso al perfil de vendedor, conviértete en uno para poder acceder a estas funciones');
+            }
+        
+            // Información de ciudad y provincia
+            $city = $buyer->city;
+            $province = $city->province ?? null;
+            $joinDate = $city ? Carbon::parse($city->created_at)->format('j M, Y') : null;
+        
+            // Idiomas del comprador
             $languages = \DB::table('buyers_lang_ticolancers')
                 ->where('buyers_users_ticolancers_id', $buyerId)
                 ->join('languages_ticolancers', 'buyers_lang_ticolancers.languages_ticolancers_id', '=', 'languages_ticolancers.id')
                 ->join('language_levels_ticolancers', 'buyers_lang_ticolancers.language_levels_ticolancers_id', '=', 'language_levels_ticolancers.id')
                 ->select('languages_ticolancers.language as language_name', 'language_levels_ticolancers.level as level_name')
                 ->get();
-
-            $sellerInfo = \App\Models\SellersUsersTicolancer::where('buyers_users_ticolancers_id', $buyerId)->first();
-
-            $sellerId = $sellerInfo ? $sellerInfo->id : null;
-            $memberships = \App\Models\MembershipsTicolancer::where('sellers_users_ticolancers_id', $sellerId)->first();
-            // return response()->json([
-            //     $memberships
-            // ]);
-            $paymentDate = $memberships->paymentDate;
-            $paymentDate = Carbon::parse($paymentDate)->format('j M, Y');
-            $trialExpirationDate = $memberships->trialExpirationDate;
-            $trialExpirationDate = Carbon::parse($trialExpirationDate)->format('j M, Y');
-            $status = $memberships->status; 
-
-            
-
-
-            $sellerDescription = $sellerInfo ? $sellerInfo->description : 'Agrega una descripción';
-            $sellerBirthdate = $sellerInfo ? $sellerInfo->birthdate : 'Agrega tu fecha de nacimiento';
-            $sellerAddress = $sellerInfo ? $sellerInfo->residence_address : 'Agrega tu dirección de residencia';
-            $sellerFacebook = $sellerInfo ? $sellerInfo->facebook : 'https://es-la.facebook.com/#:~:text=Inicia%20sesi%C3%B3n%20en%20Facebook%20para%20empezar%20a%20compartir%20y';
-            $sellerInstagram = $sellerInfo ? $sellerInfo->instagram : 'https://www.instagram.com/';
-            $sellerTwitter = $sellerInfo ? $sellerInfo->twitter : 'https://x.com/';
-            $sellerLinkedin = $sellerInfo ? $sellerInfo->linkedin : 'https://es.linkedin.com/#:~:text=1%20mil%20millones%20de%20miembros%20|%20Gestiona%20tu%20identidad';
-            $sellerWebsite = $sellerInfo ? $sellerInfo->website : '#';
-
-            $profile = $buyer->picture;
-
-            // $sellerGigs = GigsTicolancer::all();
-
-            //id buyer = id fk seller get 1pk find gigs
-
+        
+            // Información de la membresía del vendedor
+            $memberships = \App\Models\MembershipsTicolancer::where('sellers_users_ticolancers_id', $sellerInfo->id)->first();
+            $paymentDate = $memberships ? Carbon::parse($memberships->paymentDate)->format('j M, Y') : null;
+            $trialExpirationDate = $memberships ? Carbon::parse($memberships->trialExpirationDate)->format('j M, Y') : null;
+            $status = $memberships->status ?? 'Sin membresía';
+        
+            // Información del vendedor
+            $sellerDescription = $sellerInfo->description ?? 'Agrega una descripción';
+            $sellerBirthdate = $sellerInfo->birthdate ?? 'Agrega tu fecha de nacimiento';
+            $sellerAddress = $sellerInfo->residence_address ?? 'Agrega tu dirección de residencia';
+            $sellerFacebook = $sellerInfo->facebook ?? 'https://es-la.facebook.com/';
+            $sellerInstagram = $sellerInfo->instagram ?? 'https://www.instagram.com/';
+            $sellerTwitter = $sellerInfo->twitter ?? 'https://x.com/';
+            $sellerLinkedin = $sellerInfo->linkedin ?? 'https://es.linkedin.com/';
+            $sellerWebsite = $sellerInfo->website ?? '#';
+        
+            // Gigs del vendedor
             $sellerGigs = \DB::table('sellers_users_ticolancers')
-                ->where('buyers_users_ticolancers_id', '=', $buyerId) // Aquí obtienes el seller relacionado al buyer autenticado
-                ->join('gigs_ticolancers', 'gigs_ticolancers.sellers_users_ticolancers_id', '=', 'sellers_users_ticolancers.id') // Aquí haces el join por el id de seller
-                ->select('gigs_ticolancers.*') // Selecciona solo las columnas de gigs
+                ->where('buyers_users_ticolancers_id', $buyerId)
+                ->join('gigs_ticolancers', 'gigs_ticolancers.sellers_users_ticolancers_id', '=', 'sellers_users_ticolancers.id')
+                ->select('gigs_ticolancers.*')
                 ->get();
-
-
-
-            return
-                view('sellers.profile', [
-                    'name' => $buyer->name,
-                    'lastname' => $buyer->lastname,
-                    'username' => $buyer->username,
-                    'email' => $buyer->email,
-                    'phone' => $buyer->phone,
-                    'joinDate' => $joinDate,
-                    'picture' => $profile,
-                    'cityName' => $city ? $city->city : null,
-                    'provinceName' => $province ? $province->province : null,
-                    'languages' => $languages,
-                    'sellerDescription' => $sellerDescription,
-                    'sellerBirthdate' => $sellerBirthdate,
-                    'sellerAddress' => $sellerAddress,
-                    'sellerFacebook' => $sellerFacebook,
-                    'sellerInstagram' => $sellerInstagram,
-                    'sellerTwitter' => $sellerTwitter,
-                    'sellerLinkedin' => $sellerLinkedin,
-                    'sellerWebsite' => $sellerWebsite,
-                    'gigs' => $sellerGigs,
-                    'paymentDate' => $paymentDate,
-                    'trialExpirationDate' => $trialExpirationDate,
-                    'status' => $status
-                ]);
+        
+            return view('sellers.profile', [
+                'name' => $buyer->name,
+                'lastname' => $buyer->lastname,
+                'username' => $buyer->username,
+                'email' => $buyer->email,
+                'phone' => $buyer->phone,
+                'joinDate' => $joinDate,
+                'picture' => $buyer->picture,
+                'cityName' => $city ? $city->city : null,
+                'provinceName' => $province ? $province->province : null,
+                'languages' => $languages,
+                'sellerDescription' => $sellerDescription,
+                'sellerBirthdate' => $sellerBirthdate,
+                'sellerAddress' => $sellerAddress,
+                'sellerFacebook' => $sellerFacebook,
+                'sellerInstagram' => $sellerInstagram,
+                'sellerTwitter' => $sellerTwitter,
+                'sellerLinkedin' => $sellerLinkedin,
+                'sellerWebsite' => $sellerWebsite,
+                'gigs' => $sellerGigs,
+                'paymentDate' => $paymentDate,
+                'trialExpirationDate' => $trialExpirationDate,
+                'status' => $status
+            ]);
         }
     }
 

@@ -29,15 +29,18 @@ class GigsController extends Controller
             $user = Auth::guard('buyers')->user();
             $username = $user->username;
 
-            $categories = GigsCategories::all();
+                  
+         $seller = SellersUsers::where('buyers_users_ticolancers_id', $user->id)->first();
 
+         if (!$seller) {
+            
+            return redirect()->route('buyerProfile', ['username' => $username])
+                ->with('error', 'No tienes acceso a la página de gigs. Conviértete en vendedor para acceder a estas funciones.');
+        }
 
-            if ($user) {
-                $username = $user->username;
-                return view('sellers.sellerGigs', ['username' => $username], compact('user', 'categories'));
-            } else {
-                return redirect()->route('login');
-            }
+        $categories = GigsCategories::all();
+
+        return view('sellers.sellerGigs', ['username' => $username], compact('user', 'categories'));
         }
     }
 
