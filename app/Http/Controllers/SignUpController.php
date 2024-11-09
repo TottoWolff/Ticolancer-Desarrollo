@@ -11,6 +11,7 @@ use App\Models\CitiesTicolancer as Cities;
 use App\Models\BuyersLangTicolancer as BuyersLanguages;
 use App\Models\LanguagesTicolancer as Languages;
 use App\Models\LanguageLevelsTicolancer as LanguageLevels;
+use App\Services\PHPMailerService;
 
 
 
@@ -123,45 +124,52 @@ class SignUpController extends Controller
                 'language_levels_ticolancers_id' => $request->level
             ]);
 
-        $to = $request->email;
-        $subject = 'Bienvenido a Ticolancer';
-        $message = '
-           <html>
-                <head>
-                    <style>
-                        
-                        h2 {
-                            color: #ffffff;
-                            padding: 10px;
-                            background-color: #132D46;
-                            border-bottom: 4px solid #00C48E;
-                        }
-                        
-                        .container {
-                            padding: 10px;
-                            background-color: #F5F5F5;
-                        }
-                        
-                    </style>
+            //PHP MAILER
+            $mailer = new PHPMailerService();
+            $to = $request->email;
+            $subject = 'Bienvenido a Ticolancer';
+            $body = 'Es un placer que te unas a la familia de Ticolancer, ' . $request->name . '!';
 
-                </head>
-                <body>
-                    <h2> Hola ' . $request->name . ', gracias por registrarte!</h2>
-                    <div class="container">
-                        <p>Es un placer que te unas a la familia de Ticolancer.</p>
-                    </div>
-                </body>
-            </html> 
-        ';
-        
-        $headers = 'MIME-Version: 1.0' . "\r\n";
-        $headers = 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-    
-        
+            $mailer->sendEmail($to, $subject, $body);
+            //END OF PHP MAILER
+            
+            //LARAGON MAIL SENDER
+            $to = $request->email;
+            $subject = 'Bienvenido a Ticolancer';
+            $message = '
+            <html>
+                    <head>
+                        <style>
+                            
+                            h2 {
+                                color: #ffffff;
+                                padding: 10px;
+                                background-color: #132D46;
+                                border-bottom: 4px solid #00C48E;
+                            }
+                            
+                            .container {
+                                padding: 10px;
+                                background-color: #F5F5F5;
+                            }
+                            
+                        </style>
 
+                    </head>
+                    <body>
+                        <h2> Hola ' . $request->name . ', gracias por registrarte!</h2>
+                        <div class="container">
+                            <p>Es un placer que te unas a la familia de Ticolancer.</p>
+                        </div>
+                    </body>
+                </html> 
+            ';
+            
+            $headers = 'MIME-Version: 1.0' . "\r\n";
+            $headers = 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
         // Envia un correo de bienvenida
         mail ($to, $subject, $message, $headers);
-            
+        //END OF LARAGON MAIL SENDER
 
             return redirect()->route('login')->with('success', 'Registro exitoso, inicia sesión');
         } catch (\Exception $e) {

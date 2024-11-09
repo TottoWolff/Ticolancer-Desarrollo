@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Hash;
 use App\Mail\RecoverPasswordMail; 
+use App\Services\PHPMailerService;
 
 class LoginController extends Controller
 {
@@ -35,6 +36,16 @@ class LoginController extends Controller
     if (Auth::guard('buyers')->attempt($credentials)) {
         // Autenticación exitosa
         $user = Auth::guard('buyers')->user();
+
+        //PHP MAILER
+        $mailer = new PHPMailerService();
+            $to = $request->email;
+            $subject = 'Nuevo inicio de sesión';
+            $body = 'Bienvenido de nuevo a Ticolancer, ' . $user->name . '!';
+
+            $mailer->sendEmail($to, $subject, $body);
+        //END OF PHP MAILER
+
         return redirect()->route('buyers.dashboard', ['username' => $user->username]);
     } else {
         // Autenticación fallida
