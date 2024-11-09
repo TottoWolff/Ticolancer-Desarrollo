@@ -37,13 +37,14 @@ class LoginController extends Controller
         // Autenticación exitosa
         $user = Auth::guard('buyers')->user();
 
+        //COMENTADO EN ENTORNO LOCAL
         //PHP MAILER
-        $mailer = new PHPMailerService();
-            $to = $request->email;
-            $subject = 'Nuevo inicio de sesión';
-            $body = 'Bienvenido de nuevo a Ticolancer, ' . $user->name . '!';
+        // $mailer = new PHPMailerService();
+        //     $to = $request->email;
+        //     $subject = 'Nuevo inicio de sesión';
+        //     $body = 'Bienvenido de nuevo a Ticolancer, ' . $user->name . '!';
 
-            $mailer->sendEmail($to, $subject, $body);
+        //     $mailer->sendEmail($to, $subject, $body);
         //END OF PHP MAILER
 
         return redirect()->route('buyers.dashboard', ['username' => $user->username]);

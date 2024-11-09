@@ -124,13 +124,41 @@ class SignUpController extends Controller
                 'language_levels_ticolancers_id' => $request->level
             ]);
 
+            //COMENTADO EN ENTORNO LOCAL
             //PHP MAILER
-            $mailer = new PHPMailerService();
-            $to = $request->email;
-            $subject = 'Bienvenido a Ticolancer';
-            $body = 'Es un placer que te unas a la familia de Ticolancer, ' . $request->name . '!';
+            // $mailer = new PHPMailerService();
+            // $to = $request->email;
+            // $subject = 'Bienvenido a Ticolancer';
+            // $body = '
+            // <html>
+            //         <head>
+            //             <style>
+                            
+            //                 h2 {
+            //                     color: #ffffff;
+            //                     padding: 10px;
+            //                     background-color: #132D46;
+            //                     border-bottom: 4px solid #00C48E;
+            //                 }
+                            
+            //                 .container {
+            //                     padding: 10px;
+            //                     background-color: #F5F5F5;
+            //                 }
+                            
+            //             </style>
 
-            $mailer->sendEmail($to, $subject, $body);
+            //         </head>
+            //         <body>
+            //             <h2> Hola ' . $request->name . ', gracias por registrarte!</h2>
+            //             <div class="container">
+            //                 <p>Es un placer que te unas a la familia de Ticolancer.</p>
+            //             </div>
+            //         </body>
+            //     </html> 
+            // ';
+
+            // $mailer->sendEmail($to, $subject, $body);
             //END OF PHP MAILER
             
             //LARAGON MAIL SENDER
