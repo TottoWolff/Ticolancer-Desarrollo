@@ -94,7 +94,7 @@
 
                         <select name="city" id="city"
                             class="placeholder:text-slate-400 flex w-full border-b-[1px] border-solid border-white bg-transparent border-opacity-50 px-[20px] py-[10px] text-[16px] font-regular outline-none text-white">
-                            <option selected disabled value="">Ciudad</option>
+                            <option selected disabled value="">Cantón</option>
                         </select>
 
                     </div>
@@ -139,7 +139,7 @@
                 {{-- Step 5 --}}
                 <div id="step-5" class="hidden flex-col items-center w-full gap-[20px]">
                     <img class="w-[200px]" src="{{ asset('images/signup/location.png') }}" alt="">
-                    <h2 class="text-white text-[24px] font-light">5. Tus idiomas</h2>
+                    <h2 class="text-white text-[24px] font-light">5. Tu idioma</h2>
                     <div class="flex flex-row w-full gap-[20px]">
 
                         <select name="language" id="language"

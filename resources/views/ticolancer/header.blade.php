@@ -1,5 +1,5 @@
 <header>
-        <div id="navbar" class="flex-col gap-[20px] z-[999] flex fixed top-0 w-full left-[50%] -translate-x-1/2 m-auto py-[20px] max-sm:py-[20px] px-[120px] max-sm:px-[20px] items-center justify-between font-main font-semibold text-[18px] text-white transition-all duration-500 ease-out">
+        <div id="navbar" class="flex-col gap-[20px] z-[999] flex fixed top-0 w-full left-[50%] -translate-x-1/2 m-auto pt-[15px]  max-sm:py-[20px] px-[120px] max-sm:px-[20px] items-center justify-between font-main font-semibold text-[18px] text-white transition-all duration-500 ease-out">
 
             {{-- Desktop navbar --}}
             <div id="navbar" class=" w-full flex flex-row justify-between items-center bg-transparent">
@@ -14,9 +14,9 @@
 
                     <ul class="flex flex-row gap-[10px] max-sm:hidden">
                         <li class="p-[10px] hover:text-blue rounded-[10px] hover:bg-white transition-all duration-500 hover:translate-y-[-5px] ease-out"><a href="{{ route('inicio') }}">Inicio</a></li>
-                        <li class="p-[10px] hover:text-blue rounded-[10px] hover:bg-white transition-all duration-500 hover:translate-y-[-5px] ease-out"><a href="#">Servicios</a></li>
+                        <li class="p-[10px] hover:text-blue rounded-[10px] hover:bg-white transition-all duration-500 hover:translate-y-[-5px] ease-out"><button  onclick="scrollToServicios()">Servicios</button></li>
                         <li class="p-[10px] hover:text-blue rounded-[10px] hover:bg-white transition-all duration-500 hover:translate-y-[-5px] ease-out"><a href="{{ route('nosotros') }}">Nosotros</a></li>
-                        <li class="p-[10px] hover:text-blue rounded-[10px] hover:bg-white transition-all duration-500 hover:translate-y-[-5px] ease-out"><a href="#">Contacto</a></li>
+                        <li class="p-[10px] hover:text-blue rounded-[10px] hover:bg-white transition-all duration-500 hover:translate-y-[-5px] ease-out"><a href="{{ route('contacto') }}">Contacto</a></li>
                         <li class="p-[10px] hover:text-blue rounded-[10px] hover:bg-white transition-all duration-500 hover:translate-y-[-5px] ease-out"><a href="{{ route('login') }}">Iniciar sesión</a></li>
                         <li class="py-[10px] px-[20px] border-[1px] border-white hover:text-blue rounded-[10px] hover:bg-white transition-all duration-500 hover:translate-y-[-5px] ease-out"><a href="{{ route('signup') }}">Unirse</a></li>
                     </ul>
@@ -29,9 +29,9 @@
 
                         <ul class="flex flex-col gap-[20px]">
                             <li class="text-white hover:text-green transition-all duration-500 translate-y-[-5px] ease-out"><a href="{{ route('inicio') }}">Inicio</a></li>
-                            <li class="text-white hover:text-green transition-all duration-500 translate-y-[-5px] ease-out"><a href="#">Servicios</a></li>
-                            <li class="text-white hover:text-green transition-all duration-500 translate-y-[-5px] ease-out"><a href="#">Nosotros</a></li>
-                            <li class="text-white hover:text-green transition-all duration-500 translate-y-[-5px] ease-out"><a href="#">Contacto</a></li>
+                            <li class="text-white hover:text-green transition-all duration-500 translate-y-[-5px] ease-out"><a href="#" onclick="scrollToServicios()">Servicios</a></li>
+                            <li class="text-white hover:text-green transition-all duration-500 translate-y-[-5px] ease-out"><a href="{{ route('nosotros') }}">Nosotros</a></li>
+                            <li class="text-white hover:text-green transition-all duration-500 translate-y-[-5px] ease-out"><a href="{{ route('contacto') }}">Contacto</a></li>
                             <li class="text-white hover:text-green transition-all duration-500 translate-y-[-5px] ease-out"><a href="{{ route('login') }}">Iniciar sesión</a></li>
                             <li class="text-green hover:text-white hover:bg-green p-[10px] border-[1px] border-solid border-green rounded-[10px] transition-all duration-500 translate-y-[-5px] ease-out"><a href="{{ route('signup') }}">Únete</a></li>
                         </ul>
@@ -81,4 +81,9 @@
                 servicesBar.classList.add('hidden');
             }
         }
+
+        function scrollToServicios() {
+        const serviciosSection = document.getElementById('services');
+        serviciosSection.scrollIntoView({ behavior: 'smooth' });
+    }
     </script>

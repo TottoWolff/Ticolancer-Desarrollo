@@ -8,9 +8,9 @@
             <!-- Profile Card -->
             <div class="border-[1px] border-blue border-opacity-50 rounded-[16px] p-[20px] relative">
                 <!-- Edit button -->
-                <button class="absolute top-4 right-4 text-gray-400">
+                <a href="{{ route('buyerProfileSettingsAccount', ['username' => $username]) }}" class="absolute top-4 right-4 text-gray-400">
                     <img src="{{ asset('icons/edit.svg') }}" alt="">
-                </button>
+                </a>
                 <!-- Edit button end -->
 
                 <div class="flex flex-col items-center gap-[20px]">

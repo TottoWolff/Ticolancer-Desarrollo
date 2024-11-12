@@ -56,6 +56,11 @@
 
             </div>
 
+            <div class="flex w-full items-end justify-center">
+                <a class="text-white font-medium text-[16px] p-[10px] bg-green rounded-[10px] hover:text-green hover:bg-white w-full text-center hover:translate-y-[-5px] transition-all duration-500 ease-out" href="{{  route('gigCreation', auth()->guard('buyers')->user()->username) }}">Crear Servicio</a>
+            </div>
+
+
             <div class="flex h-full w-full items-end justify-center">
                 <!-- Formulario de logout -->
                 <form id="logout-form" action="{{ route('login.logout') }}" method="POST" style="display: none;">

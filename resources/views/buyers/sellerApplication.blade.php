@@ -2,48 +2,49 @@
 
 @section('content')
 <div class=" mx-auto ">
-    
+
     @if (session('success'))
-        <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-4">
-            {{ session('success') }}
-        </div>
+    <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-4">
+        {{ session('success') }}
+    </div>
     @endif
 
     <form action="{{ route('sellerApplication.store', auth()->guard('buyers')->user()->username) }}" method="POST" enctype="multipart/form-data" class="space-y-4 bg-white rounded-lg  mt-32 border border-gray-300 p-8 w-[60%] mx-auto">
         @csrf
         <h1 class="text-[22px] text-blue font-semibold">Formulario de Aplicación para Convertirse en Vendedor</h1>
         <div>
-            <label for="birthdate" class="text-[14px] font-light text-blue">Fecha de Nacimiento</label>
+            <label for="birthdate" class="text-[14px] font-light text-blue">Fecha de Nacimiento *</label>
             <input type="date" name="birthdate" id="birthdate" class="mt-1 block w-[30%] border border-gray-300 rounded-lg p-2 text-[14px] font-light text-blue" required>
             @error('birthdate') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
         </div>
 
         <div>
-            <label for="description" class="text-[14px] font-light text-blue">Descripción</label>
+            <label for="description" class="text-[14px] font-light text-blue">Descripción *</label>
             <textarea name="description" id="description" rows="4" class="mt-1 block w-full border border-gray-300 rounded-lg p-2 text-[14px] font-light text-blue" required></textarea>
             @error('description') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
         </div>
 
         <div>
-            <label for="phone" class="text-[14px] font-light text-blue">Teléfono</label>
+            <label for="phone" class="text-[14px] font-light text-blue">Teléfono *</label>
             <input type="text" name="phone" id="phone" class="mt-1 block w-full border border-gray-300 rounded-lg p-2 text-[14px] font-light text-blue" required>
             @error('phone') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
         </div>
 
         <div>
-            <label for="residence_address" class="text-[14px] font-light text-blue">Dirección de Residencia</label>
+            <label for="residence_address" class="text-[14px] font-light text-blue">Dirección de Residencia *</label>
             <input type="text" name="residence_address" id="residence_address" class="mt-1 block w-full border border-gray-300 rounded-lg p-2 text-[14px] font-light text-blue" required>
             @error('residence_address') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
         </div>
 
         <div>
-            <label for="picture" class="text-[14px] font-light text-blue">Documento de Identidad</label>
+            <label for="picture" class="text-[14px] font-light text-blue">Documento de Identidad *</label>
             <div class="flex items-center gap-4">
                 <label class="cursor-pointer bg-green rounded-[10px] p-[10px] text-white font-semibold text-[14px] hover:translate-y-[-5px] transition-all duration-500 ease-out my-3">
-                Agrega una idetificación gubernamental
+                    Agrega una identificación gubernamental
                     <input type="file" name="picture" id="picture" class="hidden" accept="image/*" onchange="previewImage(event)">
                 </label>
-            @error('picture') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+                <span id="pictureError" class="flex text-red-500 text-sm ">Es obligatorio subir una imagen.</span>
+            </div>
         </div>
 
         <!-- Previsualización de la imagen -->
@@ -83,13 +84,16 @@
             @error('website') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
         </div>
 
-        <div class="items-center justify-center flex w-full">
-            <button type="submit" class="w-[30%] bg-green rounded-[10px] p-[10px] text-white font-semibold text-[14px] hover:translate-y-[-5px] transition-all duration-500 ease-out mt-6">
+        <div class="items-center justify-center flex w-full flex-col">
+            <button id="submit-button" type="submit" disabled  class=" w-[30%] bg-green rounded-[10px] p-[10px] text-white font-semibold text-[14px] hover:translate-y-[-5px] transition-all duration-500 ease-out mt-6">
                 Enviar Solicitud
             </button>
+            <span id="pictureError2" class="flex text-red-500 text-sm mt-2">Es obligatorio llenar los campos *.</span>
+
         </div>
     </form>
 </div>
+
 
 <script>
     // Previsualización de la imagen seleccionada
@@ -98,16 +102,22 @@
         const reader = new FileReader();
         const preview = document.getElementById('preview');
         const previewContainer = document.getElementById('image-preview');
-        const fileNameDisplay = document.getElementById('file-name');
+        const pictureError = document.getElementById('pictureError');
+        const pictureError2 = document.getElementById('pictureError2');
+        const submitButton = document.getElementById('submit-button');
 
         if (file) {
             reader.onload = function(e) {
                 preview.src = e.target.result;
                 previewContainer.classList.remove('hidden');
-                fileNameDisplay.textContent = file.name;
+                pictureError.classList.add('hidden');
+                pictureError2.classList.add('hidden');
+                submitButton.disabled = false;
             };
             reader.readAsDataURL(file);
         }
     }
+
+    
 </script>
 @endsection

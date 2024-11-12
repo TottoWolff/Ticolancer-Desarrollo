@@ -19,15 +19,15 @@
 {{-- Find service --}}
 <div class="flex justify-center items-center bg-blue p-[40px] gap-[40px] flex-col">
     <h2 class="text-white font-light text-[48px] max-sm:text-[32px] text-center">Encuentra el servicio <br> <span class="font-secondary text-green">freelance</span> adecuado de <br> inmediato</h2>
-    <form action="">
+    <form action="{{ route('searchGigs', 'search') }}" >
         <div class="relative">
             <input class="outline-none rounded-[10px] text-[18px] max-sm:text-[14px] px-[20px] py-[16px] border-solid border-[1px] border-white w-[50vw] max-sm:w-[90vw]" type="text" placeholder="Buscar un servicio">
             <div class="bg-blue w-[40px] h-[40px] absolute flex justify-center items-center right-[10px] top-[50%] translate-y-[-50%] rounded-[8px]">
-                <a href="">
+                <button type="submit">
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M16.2244 7.93021C16.2626 9.76881 15.774 11.4456 14.6675 12.923C14.5131 13.1289 14.5395 13.2372 14.7073 13.4043C16.3018 14.9915 17.8914 16.5834 19.475 18.1814C19.6527 18.3607 19.8149 18.5707 19.9283 18.7947C20.0864 19.1074 19.969 19.5362 19.7145 19.7661C19.4496 20.0057 18.9957 20.0785 18.6959 19.9024C18.5229 19.8007 18.3611 19.67 18.2185 19.5278C16.6326 17.9459 15.0468 16.3637 13.4743 14.7684C13.2469 14.5378 13.1003 14.5304 12.8403 14.7236C11.3088 15.8606 9.56173 16.3519 7.67984 16.2252C4.84023 16.0342 2.6185 14.7143 1.14449 12.2646C-1.03717 8.6387 -0.00738242 3.88461 3.4473 1.45264C4.65509 0.602258 6.00608 0.126817 7.4804 0.0238252C9.80279 -0.138285 11.8443 0.531004 13.5824 2.10201C15.3528 3.70227 16.1642 5.78948 16.2241 7.93021H16.2244ZM8.12437 1.81513C4.67497 1.77779 1.83878 4.58843 1.81704 8.05094C1.79529 11.5455 4.50629 14.4255 8.13027 14.4255C11.6865 14.4255 14.418 11.5819 14.4205 8.1281C14.4233 4.60866 11.6365 1.81513 8.12406 1.81513H8.12437Z" fill="#F8FBFF" />
                     </svg>
-                </a>
+                </button>
             </div>
         </div>
     </form>
@@ -167,7 +167,7 @@
         {{-- Diseño de logo end --}}
 
         {{-- Marketing --}}
-        <a href="">
+        <a   href="">
             <div class="flex flex-col justify-center items-start bg-[#687200] gap-[20px] max-sm:gap-[10px] p-[10px] rounded-[16px] hover:bg-opacity-85 transition-all duration-500 ease-out">
                 <h5 class="h-[60px] text-white font-semibold text-[20px] max-sm:text-[16px] p-[5px]">Marketing</h5>
                 <img class="rounded-[16px]" src="{{ asset('images/homepage/marketing.jpg') }}" alt="">
@@ -194,7 +194,7 @@
         {{-- desarrollo de software end --}}
 
         {{-- video --}}
-        <a href="">
+        <a id="services" href="">
             <div class="flex flex-col justify-center items-start bg-[#C66783] gap-[20px] max-sm:gap-[10px] p-[10px] rounded-[16px] hover:bg-opacity-85 transition-all duration-500 ease-out">
                 <h5 class="w-[180px] h-[60px] text-white font-semibold text-[20px] max-sm:text-[16px] p-[5px]">Edición de Video</h5>
                 <img class="rounded-[16px]" src="{{ asset('images/homepage/video.jpg') }}" alt="">
@@ -206,7 +206,7 @@
 {{-- Popular services end --}}
 
 {{-- Servicios --}}
-    <div class="flex flex-col justify-center items-center bg-bg py-[40px] gap-[60px] m-auto max-sm:w-[90vw] mx-16">
+    <div  class="flex flex-col justify-center items-center bg-bg py-[40px] gap-[60px] m-auto max-sm:w-[90vw] mx-16">
         <h2 class="text-blue text-[36px] max-sm:text-[28px] font-light">Todos los <span class="text-green font-secondary">Servicios</span></h2>
 
         <div class="grid grid-cols-6 gap-[30px] max-sm:grid-cols-2">
