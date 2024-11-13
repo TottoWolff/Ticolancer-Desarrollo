@@ -207,10 +207,10 @@
 {{-- Popular services end --}}
 
 {{-- Servicios --}}
-    <div  class="flex flex-col justify-center items-center bg-bg py-[40px] gap-[60px] m-auto max-sm:w-[90vw] mx-16">
+    <div  class="flex flex-col justify-center items-center bg-bg py-[40px] gap-[60px] m-auto max-sm:w-[90vw] p-7">
         <h2 class="text-blue text-[36px] max-sm:text-[28px] font-light">Todos los <span class="text-green font-secondary">Servicios</span></h2>
 
-        <div class="grid grid-cols-6 gap-[30px] max-sm:grid-cols-2">
+        <div class="grid grid-cols-4 gap-[30px] max-sm:grid-cols-1">
             @if ($gigs && count($gigs) > 0)
             @foreach ($gigs as $gig)
             <div class="border border-gray-300 rounded-lg p-4 shadow-md">
@@ -228,9 +228,9 @@
 
                             <!-- Calificación y cantidad de reseñas -->
                             <div class="flex gap-2 mt-2 items-center">
-                                <img class="w-5 h-5" src="{{ asset('images/profile/star.png') }}" alt="Calificación">
-                                <span class="text-primary font-semibold text-[15px] max-sm:text-[12px]">
-                                    {{ $gig->reviews->isNotEmpty() ? number_format(optional($gig->reviews->first())->average_rating, 1) : 'Sin calificaciones' }} / 5
+                                <img class="w-4 h-4" src="{{ asset('images/profile/star.png') }}" alt="Calificación">
+                                <span class="text-primary text-[15px] max-sm:text-[12px]">
+                                    {{ $gig->reviews->isNotEmpty() ? number_format(optional($gig->reviews->first())->average_rating, 1) : 'Sin calificaciones' }}
                                 </span>
                             </div>
 

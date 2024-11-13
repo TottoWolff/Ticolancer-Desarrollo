@@ -7,7 +7,7 @@
                         <img class="w-[40px] max-sm:w-[20px]" src="{{ asset('icons/icon.svg') }}" alt="">
                     </a>
 
-                    <button class="lg:hidden" onclick="openMenu()">
+                    <button class="lg:hidden md:hidden" onclick="openMenu()">
                         <img src="{{ asset('icons/bars.svg') }}" alt="">
                     </button>
 

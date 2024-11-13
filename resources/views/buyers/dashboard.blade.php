@@ -6,7 +6,7 @@
     <div class="absolute inset-0 bg-cover bg-center brightness-50 " style="background-image: url(https://traveler.marriott.com/es/wp-content/uploads/sites/2/2017/11/Costa-Rica_Animal-encounters_toucan-GettyImages-503235008.jpg);">
     </div>
 
-    <h1 class="relative z-10 w-fit text-[150px] max-sm:text-[48px] font-light font-secondary text-white">Bienvenido {{$user->name}}</h1>
+    <h1 class="relative z-10 w-fit text-[150px] max-sm:text-[40px]  font-light font-secondary text-white ">Bienvenido {{$user->name}}</h1>
 </div>
 
 
@@ -89,13 +89,17 @@
     </div>
     {{-- Popular services end --}}
 
-    <div class="flex flex-col justify-center items-center bg-bg py-[40px] gap-[60px] m-auto max-sm:w-[90vw] mx-16">
+    <div class="flex flex-col justify-center items-center bg-bg py-[40px] gap-[60px] m-auto max-sm:w-[90vw] p-7">
         <h2 class="text-blue text-[36px] max-sm:text-[28px] font-light">Todos los <span
                 class="text-green font-secondary">Servicios</span></h2>
 
+<<<<<<< HEAD
         
 
         <div class="grid grid-cols-6 gap-[30px] max-sm:grid-cols-2">
+=======
+        <div class="grid grid-cols-4 gap-[30px] max-sm:grid-cols-1">
+>>>>>>> 636d6e22973f0e143df78089fee3ea3201254abb
             @if ($gigs && count($gigs) > 0)
             @foreach ($gigs as $gig)
             <div class="border relative border-gray-300 rounded-lg p-4 shadow-md">
