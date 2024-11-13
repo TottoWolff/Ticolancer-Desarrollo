@@ -9,7 +9,7 @@
         <h1 class="w-fit text-[72px] max-sm:text-[48px] font-light font-main text-white">Bienvenido a, <span class="font-secondary text-white">Ticolancer</span></h1>
         <p class="text-[18px] max-sm:text-[14px] font-light text-white w-[800px] max-sm:w-[90vw] ">Conecta con los mejores freelancers de Costa Rica en Ticolancer. Encuentra talento local para llevar tu proyecto al siguiente nivel o ofrece tus servicios y destaca en la comunidad. ¡Es momento de crecer juntos!</p>
         <div class="flex flex-row gap-[20px]">
-            <a class="rounded-[10px] text-blue px-[20px] py-[10px] bg-white font-semibold hover:translate-y-[-5px] transition-all duration-500 ease-out hover:text-green" href="#">Ver servicios</a>
+            <a class="rounded-[10px] text-blue px-[20px] py-[10px] bg-white font-semibold hover:translate-y-[-5px] transition-all duration-500 ease-out hover:text-green" href="{{ route('searchGigs') }}">Ver servicios</a>
             <a class="rounded-[10px] px-[20px] py-[10px] text-white font-semibold border-solid border-[1px] border-white hover:translate-y-[-5px] transition-all duration-500 ease-out hover:bg-white hover:text-green" href="{{ route('nosotros') }}">Leer más</a>
         </div>
     </div>
@@ -19,9 +19,10 @@
 {{-- Find service --}}
 <div class="flex justify-center items-center bg-blue p-[40px] gap-[40px] flex-col">
     <h2 class="text-white font-light text-[48px] max-sm:text-[32px] text-center">Encuentra el servicio <br> <span class="font-secondary text-green">freelance</span> adecuado de <br> inmediato</h2>
-    <form action="{{ route('searchGigs', 'search') }}" >
+    <form action="{{ route('searchGigs') }}" method="GET" >
+        @csrf
         <div class="relative">
-            <input class="outline-none rounded-[10px] text-[18px] max-sm:text-[14px] px-[20px] py-[16px] border-solid border-[1px] border-white w-[50vw] max-sm:w-[90vw]" type="text" placeholder="Buscar un servicio">
+            <input name="search" class="outline-none rounded-[10px] text-[18px] max-sm:text-[14px] px-[20px] py-[16px] border-solid border-[1px] border-white w-[50vw] max-sm:w-[90vw]" type="text" placeholder="Buscar un servicio">
             <div class="bg-blue w-[40px] h-[40px] absolute flex justify-center items-center right-[10px] top-[50%] translate-y-[-50%] rounded-[8px]">
                 <button type="submit">
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
