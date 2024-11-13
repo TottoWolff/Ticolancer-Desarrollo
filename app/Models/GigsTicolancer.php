@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\BuyersUsersTicolancer as BuyersUsers;
+use App\Models\SellersUsersTicolancer as SellerUser;
 
 use App\Models\GigsCategoriesTicolancer;
 
@@ -39,5 +40,8 @@ class GigsTicolancer extends Model
         return $this->belongsTo(BuyersUsers::class, 'buyers_users_ticolancers_id');
     }
 
-
+    public function seller()
+    {
+        return $this->belongsTo(SellerUser::class, 'sellers_users_ticolancers_id');
+    }
 }

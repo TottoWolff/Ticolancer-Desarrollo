@@ -28,67 +28,102 @@ class SellerProfileController extends Controller
     {
         $sessionActive = Auth::guard('buyers')->check();
 
-        
+
 
         if (!$sessionActive) {
             return redirect()->route('login');
         } else {
-            $favoritesGigsIds = FavoritesGigs::where('buyers_users_ticolancers_id', Auth::guard('buyers')->user()->id)
-            ->pluck('gigs_ticolancers_id');
+            // $favoritesGigsIds = FavoritesGigs::where('buyers_users_ticolancers_id', Auth::guard('buyers')->user()->id)
+            // ->pluck('gigs_ticolancers_id');
 
+            // $favoritesGigs = GigsTicolancer::whereIn('id', $favoritesGigsIds)->get();
+            // return response()->json($favoritesGigs);
+
+            // $user = Auth::guard('buyers')->user();
+
+            // $favoritesData = [
+            //     'user' => [
+            //         'id' => $user->id,
+            //         'name' => $user->name,
+            //         'username' => $user->username,
+            //         'email' => $user->email,
+            //         'picture' => $user->picture
+            //     ],
+            //     'gigs' => $favoritesGigs->map(function($gig) {
+            //         return [
+            //             'id' => $gig->id,
+            //             'name' => $gig->gig_name,
+            //             'description' => $gig->gig_description,
+            //             'price' => $gig->gig_price,
+            //             'image' => $gig->gig_image,
+            //             // Información del propietario del gig
+            //             'owner' => [
+            //                 'id' => $gig->user->id,
+            //                 'name' => $gig->buyer->name,
+            //                 'username' => $gig->buyer->username,
+            //                 'email' => $gig->buyer->email,
+            //                 'picture' => $gig->buyer->picture,
+            //             ]
+            //         ];
+            //     }),
+            // ];
+
+
+            // Obtenemos los IDs de los gigs favoritos del buyer autenticado
+            $favoritesGigsIds = FavoritesGigs::where('buyers_users_ticolancers_id', Auth::guard('buyers')->user()->id)
+                ->pluck('gigs_ticolancers_id');
+
+            // Consultamos los gigs favoritos, obteniendo la relación con el seller (pero no el buyer aún)
             $favoritesGigs = GigsTicolancer::whereIn('id', $favoritesGigsIds)->get();
 
-            $user = Auth::guard('buyers')->user();
+            $favoritesData = $favoritesGigs->map(function ($gig) {
+                // Hacemos una consulta adicional para obtener al buyer relacionado con el seller
+                $seller = $gig->seller;
 
-            $favoritesData = [
-                'user' => [
-                    'id' => $user->id,
-                    'name' => $user->name,
-                    'username' => $user->username,
-                    'email' => $user->email,
-                    'picture' => $user->picture
-                ],
-                'gigs' => $favoritesGigs->map(function($gig) {
-                    return [
+                // Verificamos si el seller tiene un buyer asociado
+                $buyer = $seller ? $seller->buyers : null;
+
+                return [
+                    'gig' => [
                         'id' => $gig->id,
-                        'name' => $gig->gig_name,
-                        'description' => $gig->gig_description,
-                        'price' => $gig->gig_price,
-                        'image' => $gig->gig_image,
-                        // Información del propietario del gig
-                        'owner' => [
-                            'id' => $gig->buyer->id,
-                            'name' => $gig->buyer->name,
-                            'username' => $gig->buyer->username,
-                            'email' => $gig->buyer->email,
-                            'picture' => $gig->buyer->picture,
-                        ]
-                    ];
-                }),
-            ];
+                        'gigs_categories_ticolancers_id' => $gig->gigs_categories_ticolancers_id,
+                        'sellers_users_ticolancers_id' => $gig->sellers_users_ticolancers_id,
+                        'gig_name' => $gig->gig_name,
+                        'gig_image' => $gig->gig_image,
+                        'gig_description' => $gig->gig_description,
+                        'gig_price' => $gig->gig_price,
+                        'published_at' => $gig->published_at,
+                        'created_at' => $gig->created_at,
+                        'updated_at' => $gig->updated_at,
+                        'buyer' => $buyer ? $buyer->toArray() : null,  // Aquí incluimos la información del buyer, si existe
+                    ]
+                ];
+            });
 
+            // Retornamos la información en formato JSON
             //return response()->json($favoritesData);
 
 
-            
-           
+
+
+
             $buyer = Auth::guard('buyers')->user();
             $buyerId = $buyer->id;
-        
+
             // Verifica si el usuario es también un vendedor
             $sellerInfo = \App\Models\SellersUsersTicolancer::where('buyers_users_ticolancers_id', $buyerId)->first();
-        
+
             // Redirige si no es vendedor
             if (!$sellerInfo) {
                 return redirect()->route('buyerProfile', ['username' => $buyer->username])
                     ->with('error', 'No tienes acceso al perfil de vendedor, conviértete en uno para poder acceder a estas funciones');
             }
-        
+
             // Información de ciudad y provincia
             $city = $buyer->city;
             $province = $city->province ?? null;
             $joinDate = $city ? Carbon::parse($city->created_at)->format('j M, Y') : null;
-        
+
             // Idiomas del comprador
             $languages = \DB::table('buyers_lang_ticolancers')
                 ->where('buyers_users_ticolancers_id', $buyerId)
@@ -96,13 +131,13 @@ class SellerProfileController extends Controller
                 ->join('language_levels_ticolancers', 'buyers_lang_ticolancers.language_levels_ticolancers_id', '=', 'language_levels_ticolancers.id')
                 ->select('languages_ticolancers.language as language_name', 'language_levels_ticolancers.level as level_name')
                 ->get();
-        
+
             // Información de la membresía del vendedor
             $memberships = \App\Models\MembershipsTicolancer::where('sellers_users_ticolancers_id', $sellerInfo->id)->first();
             $paymentDate = $memberships ? Carbon::parse($memberships->paymentDate)->format('j M, Y') : null;
             $trialExpirationDate = $memberships ? Carbon::parse($memberships->trialExpirationDate)->format('j M, Y') : null;
             $status = $memberships->status ?? 'Sin membresía';
-        
+
             // Información del vendedor
             $sellerDescription = $sellerInfo->description ?? 'Agrega una descripción';
             $sellerBirthdate = $sellerInfo->birthdate ?? 'Agrega tu fecha de nacimiento';
@@ -112,14 +147,14 @@ class SellerProfileController extends Controller
             $sellerTwitter = $sellerInfo->twitter ?? 'https://x.com/';
             $sellerLinkedin = $sellerInfo->linkedin ?? 'https://es.linkedin.com/';
             $sellerWebsite = $sellerInfo->website ?? '#';
-        
+
             // Gigs del vendedor
             $sellerGigs = \DB::table('sellers_users_ticolancers')
                 ->where('buyers_users_ticolancers_id', $buyerId)
                 ->join('gigs_ticolancers', 'gigs_ticolancers.sellers_users_ticolancers_id', '=', 'sellers_users_ticolancers.id')
                 ->select('gigs_ticolancers.*')
                 ->get();
-        
+
             return view('sellers.profile', [
                 'name' => $buyer->name,
                 'lastname' => $buyer->lastname,

@@ -320,28 +320,31 @@
                 <div class="space-y-4">
 
 
-                    @foreach ($favoritesData['gigs'] as $gig)
+                    @foreach ($favoritesData as $favorite)
+
                     <div class="flex items-start gap-[20px]">
-                        <a href="{{ route('sellerGig', ['id' => $gig['id'], 'username' => $username]) }}">
-                            <img src="{{ asset('images/gigs/' . $gig['image']) }}"
-                            alt="Service"
-                            class="w-[80px] h-[60px] rounded-[10px] border-[0.5px] border-blue border-opacity-50 bg-cover object-cover">
+                        <a href="{{ route('sellerGig', ['id' => $favorite['gig']['id'], 'username' => $favorite['gig']['buyer']['username'] ?? '']) }}">
+                            <img src="{{ asset('images/gigs/' . $favorite['gig']['gig_image']) }}"
+                                alt="Service"
+                                class="w-[80px] h-[60px] rounded-[10px] border-[0.5px] border-blue border-opacity-50 bg-cover object-cover">
                         </a>
                         <div class="flex flex-col gap-[5px]">
                             <div class="flex items-center gap-[5px]">
-                                <a href="{{ route('sellerGigsProfile', auth()->guard('buyers')->user()->id) }}">
-                                <img class="w-[30px] h-[30px] rounded-full object-cover"
-                                    src="{{ asset('images/buyers_profiles/' . $favoritesData['user']['picture']) }}"
-                                    alt="">
+                                <a href="{{ route('sellerGigsProfile', $favorite['gig']['buyer']['id'] ?? '') }}">
+                                    <img class="w-[30px] h-[30px] rounded-full object-cover"
+                                        src="{{ asset('images/buyers_profiles/' . ($favorite['gig']['buyer']['picture'] ?? 'default.jpg')) }}"
+                                        alt="">
                                 </a>
-                                <a href="{{ route('sellerGigsProfile', auth()->guard('buyers')->user()->id) }}">
-                                    <p class="font-light text-blue text-[16px]">@ {{ $favoritesData['user']['username'] }}</p>
+                                <a href="{{ route('sellerGigsProfile', $favorite['gig']['buyer']['id'] ?? '') }}">
+                                    <p class="font-light text-blue text-[16px]">@ {{ $favorite['gig']['buyer']['username'] ?? 'N/A' }}</p>
                                 </a>
                             </div>
-                            <p class="text-[14px] text-gray-500 font-light">{{ $gig['name'] }}</p>
+                            <p class="text-[14px] text-gray-500 font-light">{{ $favorite['gig']['gig_name'] }}</p>
                         </div>
                     </div>
                     @endforeach
+
+
 
 
 
