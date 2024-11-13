@@ -67,24 +67,6 @@
                         </div>
                     </section>
 
-                    <!-- <div class="h-[1px] bg-blue bg-opacity-50 w-full"></div>
-                    <section class="py-14 max-sm:text-center">
-                        <h2 class="text-primary font-bold text-[20px] max-sm:text-[20px]">Habilidades</h2>
-                        <div>
-                            <div class="flex flex-col flex-wrap gap-5 mt-5 md:flex-row">
-                                <div class="border border-gray-400 rounded-full px-3 py-1">
-                                    <span">Diseñador para redes sociales</span>
-                                </div>
-                                <div class="border border-gray-400 rounded-full px-3 py-1">
-                                    <span">Diseñador gráfico</span>
-                                </div>
-                                <div class="border border-gray-400 rounded-full px-3 py-1">
-                                    <span">Diseñador de logos</span>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </section> -->
                 </div>
             </div>
 
@@ -93,9 +75,31 @@
                     <div class="w-full h-[45px] bg-white border border-gray-300 rounded-lg shadow-sm text-center">
                         <button id="openModalBtn" class="text-primary font-medium text-[20px] py-2">Más sobre mi</button>
                     </div>
-                    <button id="likeButton" class="w-[50px] h-[45px] bg-white border border-gray-300 rounded-lg shadow-sm text-center items-center justify-center p-2">
-                        <img  id="likeIcon" class="w-[34px] max-sm:w-[28px] hover:translate-y-[-2px]" src="{{ asset('images/profile/heart-like-empty.png') }}" alt="">
+                    @if (auth('buyers')->user()->hasLikedSeller($buyerId))
+                <form action="{{ route('unlike.seller', ['username' => $username, 'buyerId']) }}" method="POST">
+                    @csrf
+                    <button class="relative top-2 right-2 bg-white text-blue px-3 py-2 rounded shadow-md ">
+                        <svg width="26" height="26" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path class="fill-red-500 hover:fill-red-500 transition-all duration-500 ease-out" d="M3.91337 0.216696C5.01251 0.195629 5.94832 0.58572 6.69974 1.38176C6.9342 1.63027 7.06853 1.62732 7.30594 1.38221C8.35705 0.296889 9.65872 -0.0426845 11.0929 0.330416C12.5509 0.709633 13.5159 1.68124 13.8673 3.15778C14.2718 4.85724 13.7381 6.27148 12.451 7.44538C10.9325 8.83041 9.44442 10.2487 7.9468 11.6566C7.26018 12.302 6.74617 12.3032 6.06114 11.6582C4.48809 10.1771 2.90666 8.70491 1.33769 7.2193C0.12324 6.06942 -0.257563 4.65018 0.167867 3.05856C0.582423 1.50658 1.66027 0.599085 3.21588 0.246372C3.26141 0.236178 3.30672 0.218735 3.35248 0.218056C3.53937 0.214884 3.72648 0.216696 3.91337 0.216696Z" fill="red" />
+                        </svg>
+                        <input type="hidden" name="sellerId" value="{{ $buyerId }}">
+                        <input type="hidden" name="usernameId" value="{{ auth('buyers')->user()->id }}">
                     </button>
+                </form>
+                @else
+                <form id="likeSellerForm" action="{{ route('like.seller', ['username' => $username, 'buyerId']) }}" method="POST">
+                    @csrf
+                    <button type="submit" class="relative top-2 right-2 bg-white text-blue px-3 py-2 rounded shadow-md ">
+                        <svg width="26" height="26" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path class="fill-slate-300 hover:fill-red-500 transition-all duration-500 ease-out"
+                                d="M3.91337 0.216696C5.01251 0.195629 5.94832 0.58572 6.69974 1.38176C6.9342 1.63027 7.06853 1.62732 7.30594 1.38221C8.35705 0.296889 9.65872 -0.0426845 11.0929 0.330416C12.5509 0.709633 13.5159 1.68124 13.8673 3.15778C14.2718 4.85724 13.7381 6.27148 12.451 7.44538C10.9325 8.83041 9.44442 10.2487 7.9468 11.6566C7.26018 12.302 6.74617 12.3032 6.06114 11.6582C4.48809 10.1771 2.90666 8.70491 1.33769 7.2193C0.12324 6.06942 -0.257563 4.65018 0.167867 3.05856C0.582423 1.50658 1.66027 0.599085 3.21588 0.246372C3.26141 0.236178 3.30672 0.218735 3.35248 0.218056C3.53937 0.214884 3.72648 0.216696 3.91337 0.216696Z"
+                                  />
+                        </svg>
+                        <input type="hidden" name="sellerId" value="{{ $buyerId }}">
+                        <input type="hidden" name="usernameId" value="{{ auth('buyers')->user()->id }}">
+                    </button>
+                </form>
+                @endif
                 </div>
 
                 <div id="userModal" class="fixed inset-0 bg-gray-300 bg-opacity-50 flex items-center justify-center hidden">

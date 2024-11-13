@@ -122,6 +122,10 @@ Route::get('/search', [Categorie::class, 'search'])->name('searchGigs');
 Route::get('/buyers/{username}/favorites/gigs', [Favorites::class, 'index'])->name('favorites.gigs');
 Route::post('/buyers/{username}/like/{gigId}', [Favorites::class, 'likeGig'])->name('like.gig');
 Route::post('/buyers/{username}/unlike/{gigId}', [Favorites::class, 'unlikeGig'])->name('unlike.gig');
+//ROUTES FOR FAVORITES SELLERS
+Route::get('/buyers/{username}/favorites/sellers', [Favorites::class, 'favoritesSellers'])->name('favorites.sellers');
+Route::post('/sellerLike/{username}/like/{sellerId}', [Favorites::class, 'likeSeller'])->name('like.seller');
+Route::post('/sellerUnlike/{username}/unlike/{sellerId}', [Favorites::class, 'unlikeSeller'])->name('unlike.seller');
 
 
 

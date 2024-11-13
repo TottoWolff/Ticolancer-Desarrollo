@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\FavoritesGigsTicolancer as FavoritesGigs;
 use App\Models\GigsTicolancer as Gigs;
+use App\Models\FavSellersTicolancer as FavoritesSellers;
 
 class FavoritesController extends Controller
 {
@@ -58,6 +59,32 @@ class FavoritesController extends Controller
         FavoritesGigs::where('buyers_users_ticolancers_id', $usernameId)->where('gigs_ticolancers_id', $gigId)->delete();
 
         return redirect()->back()->with('success', 'Gig eliminado de favoritos exitosamente');
+    }
+
+
+    public function likeSeller(Request $request)
+    {
+        //
+        $usernameId = request('usernameId');
+        $sellerId = request('sellerId');
+
+        $favorites = FavoritesSellers::create([
+            'buyers_users_ticolancers_id' => $usernameId,
+            'sellers_users_ticolancers_id' => $sellerId,
+        ]);
+
+        return redirect()->back()->with('success', 'Freelancer agregado a favoritos exitosamente');
+
+    }
+
+    public function unlikeSeller(Request $request)
+    {
+        $usernameId = $request->input('usernameId');
+        $sellerId = $request->input('sellerId');
+
+        FavoritesSellers::where('buyers_users_ticolancers_id', $usernameId)->where('sellers_users_ticolancers_id', $sellerId)->delete();
+
+        return redirect()->back()->with('success', 'Freelancer eliminado de favoritos exitosamente');
     }
 
 

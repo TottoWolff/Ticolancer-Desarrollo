@@ -68,6 +68,7 @@ class SellerGigsProfileController extends Controller
         
 
 
+       
         $username = $buyer->username;
         $name = $buyer->name;
         $lastname = $buyer->lastname;
