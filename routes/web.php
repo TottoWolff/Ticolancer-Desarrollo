@@ -20,6 +20,7 @@ use App\Http\Controllers\SellerApplicationController as SellerApplication;
 use App\Http\Controllers\CategorieController as Categorie;
 use App\Http\Controllers\PaymentController as Payment;
 use App\Http\Controllers\MembershipController as Membership;
+use App\Http\Controllers\FavoritesController as Favorites;
 
 
 
@@ -117,7 +118,10 @@ Route::get('/categorie/{id}', [Categorie::class, 'index'])->name('categorie');
 Route::get('/search', [Categorie::class, 'search'])->name('searchGigs');
 
 
-
+//ROUTES FOR FAVORITES
+Route::get('/buyers/{username}/favorites', [Favorites::class, 'index'])->name('favorites');
+Route::post('/buyers/{username}/like/{gigId}', [Favorites::class, 'likeGig'])->name('like.gig');
+Route::post('/buyers/{username}/unlike/{gigId}', [Favorites::class, 'unlikeGig'])->name('unlike.gig');
 
 
 

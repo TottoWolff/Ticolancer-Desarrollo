@@ -19,7 +19,9 @@
 
             <!-- Account -->
             <div class="flex items-center gap-[20px]">
-                <img src="{{ asset('icons/like.svg') }}" alt="">
+                <a href="{{ route('favorites', auth()->guard('buyers')->user()->username) }}">
+                    <img src="{{ asset('icons/like.svg') }}" alt="">
+                </a>
                 <div class="relative">
                     @if (auth()->guard('buyers')->check())
                     <button onclick="openAccount()">
