@@ -314,32 +314,41 @@
                 </div>
             </div>
 
-
-
             <!-- Favorite Services -->
             <div class="border-[0.5px] border-blue border-opacity-50 rounded-[16px] p-6">
                 <h3 class="font-semibold text-[22px] mb-4 text-blue">Servicios favoritos</h3>
                 <div class="space-y-4">
 
+
+                    @foreach ($favoritesData['gigs'] as $gig)
                     <div class="flex items-start gap-[20px]">
-                        <img src="https://fiverr-res.cloudinary.com/t_gig_cards_web,q_auto,f_auto/gigs/312842484/original/3d1263366a69d9b04cd979b7697966eff112122f.jpg"
+                        <a href="{{ route('sellerGig', ['id' => $gig['id'], 'username' => $username]) }}">
+                            <img src="{{ asset('images/gigs/' . $gig['image']) }}"
                             alt="Service"
                             class="w-[80px] h-[60px] rounded-[10px] border-[0.5px] border-blue border-opacity-50 bg-cover object-cover">
+                        </a>
                         <div class="flex flex-col gap-[5px]">
                             <div class="flex items-center gap-[5px]">
-                                <img class="w-[30px] h-[30px] rounded-full bg-cover object-fill"
-                                    src="https://i0.wp.com/lamiradafotografia.es/wp-content/uploads/2014/07/foto-perfil-psicologo-180x180.jpg?resize=180%2C180"
+                                <a href="{{ route('sellerGigsProfile', auth()->guard('buyers')->user()->id) }}">
+                                <img class="w-[30px] h-[30px] rounded-full object-cover"
+                                    src="{{ asset('images/buyers_profiles/' . $favoritesData['user']['picture']) }}"
                                     alt="">
-                                <p class="font-light text-blue text-[16px]">@michael_vargas</p>
+                                </a>
+                                <a href="{{ route('sellerGigsProfile', auth()->guard('buyers')->user()->id) }}">
+                                    <p class="font-light text-blue text-[16px]">@ {{ $favoritesData['user']['username'] }}</p>
+                                </a>
                             </div>
-                            <p class="text-[14px] text-gray-500 font-light">Crearé un logo de marca profesional para tu
-                                negocio</p>
+                            <p class="text-[14px] text-gray-500 font-light">{{ $gig['name'] }}</p>
                         </div>
                     </div>
+                    @endforeach
+
+
+
                 </div>
 
                 <div class=" flex justify-end ">
-                    <a class="hover:text-green text-gray-500 underline text-[16px] font-light" href="">Ver todos</a>
+                    <a class="hover:text-green text-gray-500 underline text-[16px] font-light" href="{{ route('favorites.gigs', ['username' => $username]) }}">Ver todos</a>
                 </div>
 
             </div>

@@ -18,7 +18,7 @@
 
             <!-- Account -->
             <div class="flex items-center gap-[20px]">
-                <a href="{{ route('favorites', auth()->guard('buyers')->user()->username) }}">
+                <a href="{{ route('favorites.gigs', auth()->guard('buyers')->user()->username) }}">
                     <img src="{{ asset('icons/like.svg') }}" alt="">
                 </a>
                 <div class="relative">

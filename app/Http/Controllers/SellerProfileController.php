@@ -15,6 +15,7 @@ use Carbon\Carbon;
 use App\Models\ProvincesTicolancer as Provinces;
 use Illuminate\Support\Facades\Hash;
 use App\Models\GigsTicolancer;
+use App\Models\FavoritesGigsTicolancer as FavoritesGigs;
 
 use function Laravel\Prompts\select;
 
@@ -27,9 +28,44 @@ class SellerProfileController extends Controller
     {
         $sessionActive = Auth::guard('buyers')->check();
 
+        
+
         if (!$sessionActive) {
             return redirect()->route('login');
         } else {
+            $favoritesGigsIds = FavoritesGigs::where('buyers_users_ticolancers_id', Auth::guard('buyers')->user()->id)
+            ->pluck('gigs_ticolancers_id');
+
+            $favoritesGigs = GigsTicolancer::whereIn('id', $favoritesGigsIds)->get();
+
+            $user = Auth::guard('buyers')->user();
+
+            $favoritesData = [
+                'user' => [
+                    'id' => $user->id,
+                    'name' => $user->name,
+                    'username' => $user->username,
+                    'email' => $user->email,
+                    'picture' => $user->picture
+                    
+                ],
+                'gigs' => $favoritesGigs->map(function($gig) {
+                    return [
+                        'id' => $gig->id,
+                        'name' => $gig->gig_name,
+                        'description' => $gig->gig_description,
+                        'price' => $gig->gig_price,
+                        'image' => $gig->gig_image
+                        
+                    ];
+                }),
+            ];
+
+            //return response()->json($favoritesData);
+
+
+            
+           
             $buyer = Auth::guard('buyers')->user();
             $buyerId = $buyer->id;
         
@@ -100,7 +136,8 @@ class SellerProfileController extends Controller
                 'gigs' => $sellerGigs,
                 'paymentDate' => $paymentDate,
                 'trialExpirationDate' => $trialExpirationDate,
-                'status' => $status
+                'status' => $status,
+                'favoritesData' => $favoritesData
             ]);
         }
     }

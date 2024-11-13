@@ -21,7 +21,7 @@ class FavoritesController extends Controller
         $gigId = FavoritesGigs::where('buyers_users_ticolancers_id', $user->id)->get('gigs_ticolancers_id');
         $gigs = Gigs::whereIn('id', $gigId)->get();
         //return response()->json($gigs);
-        return view('buyers.favorites', compact('gigs', 'user', 'username'));
+        return view('buyers.favoritesGigs', compact('gigs', 'user', 'username'));
     }
 
     /**
