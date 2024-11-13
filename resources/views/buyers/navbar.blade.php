@@ -1,15 +1,15 @@
 <header>
     <div id="navbar" class="flex-col h-[100px] z-[999] flex fixed top-0 w-full left-[50%] -translate-x-1/2 m-auto py-[20px] max-sm:py-[20px] max-sm:px-[20px] items-center justify-between font-main font-semibold text-[18px] text-white transition-all duration-500 ease-out bg-bg">
-        <div id="navbar-wrapper" class=" w-[90vw] flex flex-row justify-between items-center">
+        <div id="navbar-wrapper" class="w-[90vw] flex flex-row lg:justify-between max-sm:gap-3 md:gap-3 items-center">
             <!-- Logo -->
             <a href="{{ route ('buyers.dashboard', auth()->guard('buyers')->user()->username) }}">
                 <img class="w-[140px]" src="{{ asset('icons/logo.svg') }}" alt="">
             </a>
 
             <!-- Search -->
-            <div class="relative ">
+            <div class="relative max-sm:hidden">
                 <form action="{{ route('searchGigs', 'search') }}" method="GET">
-                    <div class="relative">
+                    <div class="relative max-sm:mt-3">
                         <input type="text" name="search" placeholder="¿Cuál servicio buscas hoy?" class="w-[600px] placeholder:text-[18px] placeholder:font-light bg-transparent border-blue border-[0.5px] border-opacity-50 rounded-[16px] p-[10px] outline-none text-[18px] text-black font-light">
                         <button type="submit" class="bg-blue absolute rounded-[8px] p-[8px] right-[10px] top-[50%] translate-y-[-50%] items-center"><img class="w-[18px]" src="{{ asset('icons/search.svg') }}" alt=""></button>
                     </div>

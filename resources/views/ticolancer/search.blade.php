@@ -13,10 +13,10 @@
 
 {{-- Servicios --}}
 
-    <div class="flex flex-col justify-center items-center bg-bg py-[40px] gap-[60px] m-auto max-sm:w-[90vw] mx-16">
+    <div class="flex flex-col justify-center items-center bg-bg py-[40px] gap-[60px] m-auto max-sm:w-[90vw] p-7">
         <h2 class="text-blue text-[36px] max-sm:text-[28px] font-light">Se encontraron <span class="text-green font-secondary">{{ $gigs->count() }}</span> servicios</h2>
 
-        <div class="grid grid-cols-6 gap-[30px] max-sm:grid-cols-2">
+        <div class="grid grid-cols-4 gap-[30px] max-sm:grid-cols-1">
             @if ($gigs && count($gigs) > 0)
             @foreach ($gigs as $gig)
             <div class="border border-gray-300 rounded-lg p-4 shadow-md">

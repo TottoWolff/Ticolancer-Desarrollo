@@ -120,25 +120,24 @@
                             <span class="font-light text-[16px]">Redes Sociales</span>
                         </div>
 
-                        <div class="flex w-[50%] justify-between">
+                        <div class="flex w-[50%] justify-between max-sm:gap-3">
                             <a href="{{$sellerFacebook}}" class="flex gap-[10px] items-center">
-                                <img src="{{ asset('icons/facebook.svg') }}" alt="Facebook" class="w-[34px] h-[34px]" />
+                                <img src="{{ asset('icons/Facebook.svg') }}" alt="Facebook" class="w-[34px] h-[34px]" />
                             </a>
                             <a href="{{$sellerLinkedin}}" class="flex gap-[10px] items-center">
-                                <img src="{{ asset('icons/linkedin.svg') }}" alt="Facebook" class="w-[34px] h-[34px]" />
+                                <img src="{{ asset('icons/Linkedin.svg') }}" alt="Facebook" class="w-[34px] h-[34px]" />
                             </a>
                             <a href="{{$sellerInstagram}}" class="flex gap-[10px] items-center">
-                                <img src="{{ asset('icons/instagram.svg') }}" alt="Facebook"
+                                <img src="{{ asset('icons/Instagram.svg') }}" alt="Facebook"
                                     class="w-[34px] h-[34px]" />
                             </a>
                             <a href="{{$sellerTwitter}}" class="flex gap-[10px] items-center">
-                                <img src="{{ asset('icons/twitter.svg') }}" alt="Facebook" class="w-[34px] h-[34px]" />
+                                <img src="{{ asset('icons/Twitter.svg') }}" alt="Facebook" class="w-[34px] h-[34px]" />
                             </a>
                             <a href="{{$sellerWebsite}}" class="flex gap-[10px] items-center">
-                                <img src="{{ asset('icons/internet.svg') }}" alt="Facebook" class="w-[34px] h-[34px]" />
+                                <img src="{{ asset('icons/Internet.svg') }}" alt="Facebook" class="w-[34px] h-[34px]" />
                             </a>
                         </div>
-
                     </div>
                 </div>
             </div>
