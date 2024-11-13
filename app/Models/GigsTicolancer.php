@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\BuyersUsersTicolancer as BuyersUsers;
 
 use App\Models\GigsCategoriesTicolancer;
 
@@ -31,6 +32,11 @@ class GigsTicolancer extends Model
     public function reviews()
     {
         return $this->hasMany(GigsReviewsTicolancer::class, 'gigs_ticolancers_id', 'id');
+    }
+
+    public function buyer()
+    {
+        return $this->belongsTo(BuyersUsers::class, 'buyers_users_ticolancers_id');
     }
 
 

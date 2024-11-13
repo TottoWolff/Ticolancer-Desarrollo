@@ -47,7 +47,6 @@ class SellerProfileController extends Controller
                     'username' => $user->username,
                     'email' => $user->email,
                     'picture' => $user->picture
-                    
                 ],
                 'gigs' => $favoritesGigs->map(function($gig) {
                     return [
@@ -55,8 +54,15 @@ class SellerProfileController extends Controller
                         'name' => $gig->gig_name,
                         'description' => $gig->gig_description,
                         'price' => $gig->gig_price,
-                        'image' => $gig->gig_image
-                        
+                        'image' => $gig->gig_image,
+                        // Información del propietario del gig
+                        'owner' => [
+                            'id' => $gig->buyer->id,
+                            'name' => $gig->buyer->name,
+                            'username' => $gig->buyer->username,
+                            'email' => $gig->buyer->email,
+                            'picture' => $gig->buyer->picture,
+                        ]
                     ];
                 }),
             ];
