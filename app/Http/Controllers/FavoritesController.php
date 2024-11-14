@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\FavoritesGigsTicolancer as FavoritesGigs;
 use App\Models\GigsTicolancer as Gigs;
 use App\Models\FavSellersTicolancer as FavoritesSellers;
+use App\Models\SellersUsersTicolancer as Sellers;
+use App\Models\BuyersUsersTicolancer as Buyers;
 
 class FavoritesController extends Controller
 {
@@ -18,11 +20,32 @@ class FavoritesController extends Controller
         //
         $user = Auth::guard('buyers')->user();
         $username = $user->username;
-        //$gigs = Gigs::all(); 
         $gigId = FavoritesGigs::where('buyers_users_ticolancers_id', $user->id)->get('gigs_ticolancers_id');
         $gigs = Gigs::whereIn('id', $gigId)->get();
-        //return response()->json($gigs);
-        return view('buyers.favoritesGigs', compact('gigs', 'user', 'username'));
+        $sellerIds = FavoritesSellers::where('buyers_users_ticolancers_id', $user->id)
+                    ->pluck('sellers_users_ticolancers_id');
+        
+        $favoritesSellers = Sellers::with('buyers')
+                                        ->whereIn('id', $sellerIds)
+                                        ->get();
+        return view('buyers.favoritesGigs', compact('gigs', 'user', 'username', 'favoritesSellers'));
+    }
+
+    public function favoritesSellers(){
+        $user = Auth::guard('buyers')->user();
+        $username = $user->username;
+        $sellerIds = FavoritesSellers::where('buyers_users_ticolancers_id', $user->id)
+                    ->pluck('sellers_users_ticolancers_id');
+        
+        $favoritesSellers = Sellers::with('buyers')
+                                        ->whereIn('id', $sellerIds)
+                                        ->get();
+
+        //return response()->json($favoritesSellers);
+
+        $gigId = FavoritesGigs::where('buyers_users_ticolancers_id', $user->id)->get('gigs_ticolancers_id');
+        $gigs = Gigs::whereIn('id', $gigId)->get();
+        return view('buyers.favoritesSellers', compact('gigs', 'user', 'username', 'favoritesSellers'));
     }
 
     /**
@@ -50,6 +73,8 @@ class FavoritesController extends Controller
         return redirect()->back()->with('success', 'Gig agregado a favoritos exitosamente');
 
     }
+
+   
 
     public function unlikeGig(Request $request)
     {

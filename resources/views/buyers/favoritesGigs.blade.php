@@ -17,8 +17,8 @@
         <h2 class="text-blue text-[32px] max-sm:text-[28px] font-medium">Mi lista de favoritos</h2>
         
         <div class="flex flex-row gap-[20px] border-b-[0.5px] border-blue border-opacity-50">
-            <a href="" class=" p-[5px]  text-green text-[18px] max-sm:text-[14px] font-regular  transition-all duration-500 ease-out hover:text-green hover:translate-y-[-5px] ">Sercivios ({{ count($gigs) }})</a>
-            <a href="" class=" p-[5px]  text-blue text-[18px] max-sm:text-[14px] font-regular  transition-all duration-500 ease-out hover:text-green hover:translate-y-[-5px] ">Freelancers (1)</a>
+            <a href="{{  route('favorites.gigs', ['username' => $username]) }}" class=" p-[5px]  text-green text-[18px] max-sm:text-[14px] font-regular  transition-all duration-500 ease-out hover:text-green hover:translate-y-[-5px] ">Sercivios ({{ count($gigs) }})</a>
+            <a href="{{  route('favorites.sellers', ['username' => $username]) }}" class=" p-[5px]  text-blue text-[18px] max-sm:text-[14px] font-regular  transition-all duration-500 ease-out hover:text-green hover:translate-y-[-5px] ">Freelancers ({{ count($favoritesSellers) }})</a>
         </div>
         
         <div class="grid grid-cols-6 gap-[30px] max-sm:grid-cols-2">
