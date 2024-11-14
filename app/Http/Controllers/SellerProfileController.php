@@ -16,6 +16,7 @@ use App\Models\ProvincesTicolancer as Provinces;
 use Illuminate\Support\Facades\Hash;
 use App\Models\GigsTicolancer;
 use App\Models\FavoritesGigsTicolancer as FavoritesGigs;
+use App\Models\FavSellersTicolancer as FavoritesSellers;
 
 use function Laravel\Prompts\select;
 
@@ -33,42 +34,7 @@ class SellerProfileController extends Controller
         if (!$sessionActive) {
             return redirect()->route('login');
         } else {
-            // $favoritesGigsIds = FavoritesGigs::where('buyers_users_ticolancers_id', Auth::guard('buyers')->user()->id)
-            // ->pluck('gigs_ticolancers_id');
-
-            // $favoritesGigs = GigsTicolancer::whereIn('id', $favoritesGigsIds)->get();
-            // return response()->json($favoritesGigs);
-
-            // $user = Auth::guard('buyers')->user();
-
-            // $favoritesData = [
-            //     'user' => [
-            //         'id' => $user->id,
-            //         'name' => $user->name,
-            //         'username' => $user->username,
-            //         'email' => $user->email,
-            //         'picture' => $user->picture
-            //     ],
-            //     'gigs' => $favoritesGigs->map(function($gig) {
-            //         return [
-            //             'id' => $gig->id,
-            //             'name' => $gig->gig_name,
-            //             'description' => $gig->gig_description,
-            //             'price' => $gig->gig_price,
-            //             'image' => $gig->gig_image,
-            //             // Información del propietario del gig
-            //             'owner' => [
-            //                 'id' => $gig->user->id,
-            //                 'name' => $gig->buyer->name,
-            //                 'username' => $gig->buyer->username,
-            //                 'email' => $gig->buyer->email,
-            //                 'picture' => $gig->buyer->picture,
-            //             ]
-            //         ];
-            //     }),
-            // ];
-
-
+            
             // Obtenemos los IDs de los gigs favoritos del buyer autenticado
             $favoritesGigsIds = FavoritesGigs::where('buyers_users_ticolancers_id', Auth::guard('buyers')->user()->id)
                 ->pluck('gigs_ticolancers_id');
@@ -100,8 +66,22 @@ class SellerProfileController extends Controller
                 ];
             });
 
-            // Retornamos la información en formato JSON
-            //return response()->json($favoritesData);
+
+            // Obtenemos los IDs de los vendedores favoritos del buyer autenticado
+            $favoritesBuyers = BuyersUsers::whereIn(
+                'id', 
+                function($query) {
+                    $query->select('buyers_users_ticolancers_id')
+                          ->from('sellers_users_ticolancers')
+                          ->whereIn('id', function($subQuery) {
+                              $subQuery->select('sellers_users_ticolancers_id')
+                                       ->from('fav_sellers_ticolancers')
+                                       ->where('buyers_users_ticolancers_id', Auth::guard('buyers')->user()->id);
+                          });
+                }
+            )->get();
+
+            
 
 
 
@@ -178,7 +158,8 @@ class SellerProfileController extends Controller
                 'paymentDate' => $paymentDate,
                 'trialExpirationDate' => $trialExpirationDate,
                 'status' => $status,
-                'favoritesData' => $favoritesData
+                'favoritesData' => $favoritesData,
+                'favoritesBuyers' => $favoritesBuyers
             ]);
         }
     }

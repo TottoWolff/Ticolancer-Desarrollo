@@ -280,37 +280,19 @@
             <div class="border-[0.5px] border-blue border-opacity-50 rounded-[16px] p-6">
                 <h3 class="font-semibold text-[22px] mb-4 text-blue">Freelancers favoritos</h3>
                 <div class="flex flex-col gap-[10px]">
+                    @foreach ($favoritesBuyers as $favoriteBuyer)
                     <div class="flex gap-[10px] items-center">
-                        <img src="https://i0.wp.com/lamiradafotografia.es/wp-content/uploads/2014/07/foto-perfil-psicologo-180x180.jpg?resize=180%2C180"
-                            alt="" class="rounded-full w-[30px] h-[30px] bg-cover object-fill">
+                    <a href="{{ route('sellerGigsProfile', $favoriteBuyer['id'] ?? '') }}"><img src="{{ asset('images/buyers_profiles/'.$favoriteBuyer['picture']) }}"
+                            alt="" class="rounded-full w-[30px] h-[30px] bg-cover object-fill"> </a>
                         <div class="flex gap-[10px]">
-                            <span class=" font-light text-[#132D46]">@corralesjonathan</span>
-                            <img src="{{ asset('icons/liked.svg') }}" alt="">
+                        <a href="{{ route('sellerGigsProfile', $favoriteBuyer['id'] ?? '') }}"><span class=" font-light text-[#132D46]"> {{ '@'.$favoriteBuyer['username'] }}</span> </a>
                         </div>
                     </div>
-
-                    <div class="flex gap-[10px] items-center">
-                        <img src="https://media.istockphoto.com/id/1326417862/es/foto/mujer-joven-riendo-mientras-se-relaja-en-casa.jpg?s=612x612&w=0&k=20&c=BQHE9M8b6hixE_TB1XzuvxobnyD4ylKMTprVbrhPxOU="
-                            alt="" class="rounded-full w-[30px] h-[30px] bg-cover object-fill">
-                        <div class="flex gap-[10px]">
-                            <span class=" font-light text-[#132D46]">@lucia_rodrigueza</span>
-                            <img src="{{ asset('icons/liked.svg') }}" alt="">
-                        </div>
-                    </div>
-
-                    <div class="flex gap-[10px] items-center">
-                        <img src="https://media.istockphoto.com/id/1200677760/es/foto/retrato-de-apuesto-joven-sonriente-con-los-brazos-cruzados.jpg?s=612x612&w=0&k=20&c=RhKR8pxX3y_YVe5CjrRnTcNFEGDryD2FVOcUT_w3m4w="
-                            alt="" class="rounded-full w-[30px] h-[30px] bg-cover object-fill">
-                        <div class="flex gap-[10px]">
-                            <span class=" font-light text-[#132D46]">@felipe_vargas.rg</span>
-                            <img src="{{ asset('icons/liked.svg') }}" alt="">
-                        </div>
-                    </div>
-
+                    @endforeach
                 </div>
 
                 <div class=" flex justify-end ">
-                    <a class="hover:text-green text-gray-500 underline text-[16px] font-light" href="">Ver todos</a>
+                    <a class="hover:text-green text-gray-500 underline text-[16px] font-light" href="{{ route('favorites.sellers', ['username' => $username]) }}">Ver todos</a>
                 </div>
             </div>
 
@@ -343,10 +325,6 @@
                         </div>
                     </div>
                     @endforeach
-
-
-
-
 
                 </div>
 
