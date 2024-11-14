@@ -34,7 +34,7 @@ class SellerProfileController extends Controller
         if (!$sessionActive) {
             return redirect()->route('login');
         } else {
-            
+
             // Obtenemos los IDs de los gigs favoritos del buyer autenticado
             $favoritesGigsIds = FavoritesGigs::where('buyers_users_ticolancers_id', Auth::guard('buyers')->user()->id)
                 ->pluck('gigs_ticolancers_id');
@@ -69,19 +69,19 @@ class SellerProfileController extends Controller
 
             // Obtenemos los IDs de los vendedores favoritos del buyer autenticado
             $favoritesBuyers = BuyersUsers::whereIn(
-                'id', 
-                function($query) {
+                'id',
+                function ($query) {
                     $query->select('buyers_users_ticolancers_id')
-                          ->from('sellers_users_ticolancers')
-                          ->whereIn('id', function($subQuery) {
-                              $subQuery->select('sellers_users_ticolancers_id')
-                                       ->from('fav_sellers_ticolancers')
-                                       ->where('buyers_users_ticolancers_id', Auth::guard('buyers')->user()->id);
-                          });
+                        ->from('sellers_users_ticolancers')
+                        ->whereIn('id', function ($subQuery) {
+                            $subQuery->select('sellers_users_ticolancers_id')
+                                ->from('fav_sellers_ticolancers')
+                                ->where('buyers_users_ticolancers_id', Auth::guard('buyers')->user()->id);
+                        });
                 }
             )->get();
 
-            
+
 
 
 
@@ -293,15 +293,27 @@ class SellerProfileController extends Controller
         $languageIds = $request->input('language_ids');
         $levelIds = $request->input('level');
 
+        // Verifica que el mismo idioma no se agregue dos veces
+        if (count($languageIds) !== count(array_unique($languageIds))) {
+            return redirect()->back()->withErrors(['message' => 'No puedes agregar el mismo idioma más de una vez.']);
+        }
 
+        // Verifies que solo haya un idioma nativo
+        $nativeLanguages = array_filter($levelIds, function ($levelId) {
+            return $levelId == 1;
+        });
+        if (count($nativeLanguages) > 1) {
+            return redirect()->back()->withErrors(['message' => 'Solo puedes tener un idioma nativo.']);
+        }
+
+        // Borra idiomas existentes
         $user->languages()->delete();
 
-
+        // Crea nuevos idiomas
         if (is_array($languageIds) && is_array($levelIds) && count($languageIds) === count($levelIds)) {
             foreach ($languageIds as $index => $languageId) {
                 $levelId = $levelIds[$index];
 
-                // Crear la nueva relación de lenguaje y nivel
                 $user->languages()->create([
                     'languages_ticolancers_id' => $languageId,
                     'language_levels_ticolancers_id' => $levelId,
