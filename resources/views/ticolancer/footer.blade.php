@@ -7,7 +7,12 @@
                 <div class="grid grid-cols-2 max-sm:grid-cols-1 max-sm:gap-[20px]">
                     <div class="flex justify-start flex-col gap-[20px]">
                         <p class="text-black font-light text-[16px]">En Ticolancer damos oportunidades a todos aquellos <br> freelacers ticos que desde su hogar u oficina quieren <br> vender su talento!</p>
+                        @if(auth('buyers')->check())
+                        <a class="w-fit px-[20px] py-[10px] rounded-[10px] text-blue font-semibold border-solid border-[1px] border-blue hover:translate-y-[-5px] transition-all duration-500 ease-out hover:bg-blue hover:text-white " href="{{ route('buyers.dashboard', auth()->guard('buyers')->user()->username) }}">Dashboard</a>
+                        @else
                         <a class="w-fit px-[20px] py-[10px] rounded-[10px] text-blue font-semibold border-solid border-[1px] border-blue hover:translate-y-[-5px] transition-all duration-500 ease-out hover:bg-blue hover:text-white " href="{{ route('signup') }}">Registrarse</a>
+
+                        @endif
                     </div>
                     
                     <div class="grid grid-cols-3 max-sm:grid-cols-1 max-sm:gap-[20px]">
