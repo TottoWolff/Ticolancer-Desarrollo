@@ -3,7 +3,7 @@
 @section('content')
 
     {{-- Hero --}}
-    <div style="background-image: url(https://i.postimg.cc/FKf3877p/20201222135502-rana-cr.webp);" class=" bg-cover h-[600px] max-sm:h-[600px] bg-buttom flex items-center justify-center relative">
+    <div style="background-image: url(https://i.postimg.cc/FKf3877p/20201222135502-rana-cr.webp);" class=" bg-cover max-sm:h-[400px] h-[600px] max-sm:bg-center  bg-buttom flex items-center justify-center relative">
         <div class="absolute inset-0 bg-blue opacity-50"></div>
         <div class="absolute inset-0 bg-black opacity-50"></div>
         <div class=" flex flex-col w-[90vw] gap-[20px] rad z-10 items-center justify-center">
@@ -21,7 +21,7 @@
             <a href="{{  route('favorites.sellers', ['username' => $username]) }}" class=" p-[5px]  text-blue text-[18px] max-sm:text-[14px] font-regular  transition-all duration-500 ease-out hover:text-green hover:translate-y-[-5px] ">Freelancers ({{ count($favoritesSellers) }})</a>
         </div>
         
-        <div class="grid grid-cols-6 gap-[30px] max-sm:grid-cols-2">
+        <div class="grid grid-cols-6 gap-[30px] max-sm:gap-[20px] max-sm:grid-cols-1 w-[90vw] m-auto">
             @if ($gigs && count($gigs) > 0)
             @foreach ($gigs as $gig)
             <div class="border relative border-gray-300 rounded-lg p-4 shadow-md">
