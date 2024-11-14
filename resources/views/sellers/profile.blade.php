@@ -31,15 +31,13 @@
                         @endif
                     </div>
                     <h2 class="mt-4 text-[22px] font-semibold text-blue">{{ $name }} {{ $lastname }}</h2>
-                    <p class="text-blue text-[18px] font-light">{{ $username }}</p>
+                    <p class="text-blue text-[18px] font-light">{{ '@' . $username }}</p>
                     <div class="h-[1px] bg-blue bg-opacity-50 w-full"></div>
                 </div>
 
                 <div class="mt-6 space-y-2">
                     <div class="flex flex-col gap-[20px] items-center">
-                        <div class="flex gap-[10px] w-full items-center justify-center">
-                            <span class="font-light text-[16px]">Description</span>
-                        </div>
+                    
 
                         <div class="flex w-[85%] gap-[10px] items-center text-center">
                             <span class="font-light text-[16px]">{{ $sellerDescription }}</span>
@@ -331,7 +329,7 @@
 
             <!-- Favorite Freelancers -->
             <div class="border-[0.5px] border-blue border-opacity-50 rounded-[16px] p-6">
-                <h3 class="font-semibold text-[22px] mb-4 text-blue">Freelancers favoritos</h3>
+                <h3 class="font-semibold text-[22px] mb-4 text-blue">Freelancers favoritos <span class="text-blue font-regular">({{ count($favoritesBuyers) }})</span></h3>
                 <div class="flex flex-col gap-[10px]">
                     @foreach ($favoritesBuyers as $favoriteBuyer)
                     <div class="flex gap-[10px] items-center">
@@ -342,16 +340,24 @@
                         </div>
                     </div>
                     @endforeach
+                    @if (count($favoritesBuyers) == 0)
+                    <div class="flex gap-[10px] items-center">
+                        <span class=" font-light text-[#132D46]">Aun no tienes freelancers favoritos.</span>
+                    </div>
+                    @endif
                 </div>
 
+                @if (count($favoritesBuyers) > 0)
                 <div class=" flex justify-end ">
                     <a class="hover:text-green text-gray-500 underline text-[16px] font-light" href="{{ route('favorites.sellers', ['username' => $username]) }}">Ver todos</a>
                 </div>
+                @endif
+
             </div>
 
             <!-- Favorite Services -->
             <div class="border-[0.5px] border-blue border-opacity-50 rounded-[16px] p-6">
-                <h3 class="font-semibold text-[22px] mb-4 text-blue">Servicios favoritos</h3>
+                <h3 class="font-semibold text-[22px] mb-4 text-blue">Servicios favoritos <span class="text-blue">({{ count($favoritesData) }})</span></h3>
                 <div class="space-y-4">
 
 
@@ -371,7 +377,7 @@
                                         alt="">
                                 </a>
                                 <a href="{{ route('sellerGigsProfile', $favorite['gig']['buyer']['id'] ?? '') }}">
-                                    <p class="font-light text-blue text-[16px]">@ {{ $favorite['gig']['buyer']['username'] ?? 'N/A' }}</p>
+                                    <p class="font-light text-blue text-[16px]"> {{ '@'. $favorite['gig']['buyer']['username'] ?? 'N/A' }}</p>
                                 </a>
                             </div>
                             <p class="text-[14px] text-gray-500 font-light">{{ $favorite['gig']['gig_name'] }}</p>
@@ -379,18 +385,26 @@
                     </div>
                     @endforeach
 
+                    @if (count($favoritesData) == 0)
+                    <div class="flex gap-[10px] items-center">
+                        <span class=" font-light text-[#132D46]">Aun no tienes servicios favoritos.</span>
+                    </div>
+                    @endif
+
                 </div>
 
+                @if (count($favoritesData) > 0)
                 <div class=" flex justify-end ">
                     <a class="hover:text-green text-gray-500 underline text-[16px] font-light" href="{{ route('favorites.gigs', ['username' => $username]) }}">Ver todos</a>
                 </div>
+                @endif
 
             </div>
 
             <!-- My Services -->
             <ul class="list-none border-[0.5px] border-blue border-opacity-50 rounded-[16px] p-6">
 
-                <h3 class="font-semibold text-[22px] mb-4 text-blue">Mis Servicios</h3>
+                <h3 class="font-semibold text-[22px] mb-4 text-blue">Mis Servicios <span class="text-blue">({{ count($gigs) }})</span></h3>
 
                 @foreach ($gigs as $gig)
                 <li class="flex items-center justify-between p-4 ">
@@ -450,6 +464,11 @@
                     </div>
                 </a>
 
+                @if (count($gigs) == 0)
+                    <div class="flex gap-[10px] items-center">
+                        <span class=" font-light text-[#132D46]">Aun no tienes servicios.</span>
+                    </div>
+                @endif
             </ul>
 
             @if($status == 0)

@@ -30,7 +30,7 @@
                 <div class="relative">
                     @if (auth()->guard('buyers')->check())
                     <button onclick="openAccount()">
-                        <img class="w-[40px] h-[40px] rounded-full bg-center object-cover" src="{{ asset('images/buyers_profiles/'.auth()->guard('buyers')->user()->picture) }}" alt="">
+                        <img class="w-[40px] h-[40px] rounded-full bg-cover object-cover" src="{{ asset('images/buyers_profiles/'.auth()->guard('buyers')->user()->picture) }}" alt="">
                     </button>
                     @endif
                     <div class="w-[10px] h-[10px] bg-green border-[1px] border-bg rounded-full absolute right-1 top-8"></div>
@@ -64,7 +64,7 @@
                 <button onclick="closeAccount()"><img class="w-[20px] h-[20px]" src="{{ asset('icons/close.svg') }}" alt=""></button>
             </div>
             <div class="flex gap-[20px] items-center">
-                <img class="w-[50px] h-[50px] rounded-full" src="{{ asset('images/buyers_profiles/'.auth()->guard('buyers')->user()->picture) }}" alt="">
+                <img class="w-[50px] h-[50px] rounded-full bg-cover object-cover" src="{{ asset('images/buyers_profiles/'.auth()->guard('buyers')->user()->picture) }}" alt="">
                 <h2 class="text-white font-light text-[24px]">Hola, {{ auth()->guard('buyers')->user()->name }}!</h2>
             </div>
 
