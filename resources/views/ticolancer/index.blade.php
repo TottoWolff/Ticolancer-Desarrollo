@@ -226,13 +226,17 @@
                             <!-- Nombre del gig -->
                             <span class="text-[16px] max-sm:text-[14px] font-light text-black">{{ $gig->gig_name }}</span>
 
-                            <!-- Calificación y cantidad de reseñas -->
-                            <div class="flex gap-2 mt-2 items-center">
-                                <img class="w-4 h-4" src="{{ asset('images/profile/star.png') }}" alt="Calificación">
-                                <span class="text-primary text-[15px] max-sm:text-[12px]">
-                                    {{ $gig->reviews->isNotEmpty() ? number_format(optional($gig->reviews->first())->average_rating, 1) : 'Sin calificaciones' }}
-                                </span>
-                            </div>
+                         <!-- Calificación y cantidad de reseñas -->
+                        <div class="flex gap-2 mt-2 items-center">
+                            <img class="w-5 h-5" src="{{ asset('images/profile/star.png') }}" alt="Calificación">
+                            <span class="text-primary font-semibold text-[15px] max-sm:text-[12px]">
+                                @if ($gig->reviews->isNotEmpty())
+                                    {{ number_format($gig->reviews->avg('rating'), 1) }} / 5
+                                @else
+                                    Sin calificaciones
+                                @endif
+                            </span>
+                        </div>
 
                             <!-- Precio del gig -->
                             <div class="text-primary font-semibold text-[16px] max-sm:text-[12px] mt-2">Desde ₡{{ $gig->gig_price }}</div>

@@ -293,6 +293,7 @@
                 <h2 class="text-2xl font-semibold text-gray-800 mb-4">Reseñas</h2>
                 @forelse($reviews as $review)
                     <div class="border border-gray-300 p-4 mb-4 rounded-lg">
+                        <strong>{{ $review->buyer->name }}</strong> 
                         <p class="text-blue font-semibold">Calificación: {{ $review->rating }} / 5</p>
                         <p class="text-blue">{{ $review->comment }}</p>
                         <p class="text-sm text-blue">{{ $review->created_at->format('d M Y') }}</p>
