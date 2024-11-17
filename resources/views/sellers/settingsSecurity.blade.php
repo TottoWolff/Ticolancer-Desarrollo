@@ -1,7 +1,7 @@
-@extends('sellers.Layout')    
+@extends('buyers.Layout')    
 
 @section('content')
-<div class="w-[90vw] bg-bg flex justify-center mt-[100px] m-auto">
+<div class="w-[90vw] bg-bg flex justify-center mt-[140px] m-auto">
     <div class="bg-bg rounded-lg w-full grid grid-cols-2 gap-[20px] max-sm:grid-cols-1">
 
         <!-- column left-->

@@ -20,9 +20,31 @@
                             <h2 class="text-xl">Servicio de {{ $gig->gig_name }}</h2>
                         </div>
                         <div class="flex gap-3 py-8">
-                        <button id="likeButton" class="w-[50px] h-[45px] bg-white border border-gray-300 rounded-lg shadow-sm text-center items-center justify-center p-2">
-                            <img  id="likeIcon" class="w-[30px] max-sm:w-[28px] hover:translate-y-[-2px] ml-[1.5px]" src="{{ asset('images/profile/heart-like-empty.png') }}" alt="">
-                        </button>
+                        @if (auth('buyers')->user()->hasLikedGigs($gig->id))
+                        <form action="{{ route('unlike.gig', ['username' => $username, 'gigId' => $gig->id]) }}" method="POST">
+                            @csrf
+                            <button class=" top-2 right-2  text-blue px-3 py-2 rounded  ">
+                                <svg width="30" height="30" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path class="fill-red-500 hover:fill-red-500 transition-all duration-500 ease-out" d="M3.91337 0.216696C5.01251 0.195629 5.94832 0.58572 6.69974 1.38176C6.9342 1.63027 7.06853 1.62732 7.30594 1.38221C8.35705 0.296889 9.65872 -0.0426845 11.0929 0.330416C12.5509 0.709633 13.5159 1.68124 13.8673 3.15778C14.2718 4.85724 13.7381 6.27148 12.451 7.44538C10.9325 8.83041 9.44442 10.2487 7.9468 11.6566C7.26018 12.302 6.74617 12.3032 6.06114 11.6582C4.48809 10.1771 2.90666 8.70491 1.33769 7.2193C0.12324 6.06942 -0.257563 4.65018 0.167867 3.05856C0.582423 1.50658 1.66027 0.599085 3.21588 0.246372C3.26141 0.236178 3.30672 0.218735 3.35248 0.218056C3.53937 0.214884 3.72648 0.216696 3.91337 0.216696Z" fill="red" />
+                                </svg>
+                                <input type="hidden" name="gigId" value="{{ $gig->id }}">
+                                <input type="hidden" name="usernameId" value="{{ auth('buyers')->user()->id }}">
+                            </button>
+                        </form>
+                        @else
+                        <form id="likeGigForm" action="{{ route('like.gig', ['username' => $username, 'gigId' => $gig->id]) }}" method="POST">
+                            @csrf
+                            <button type="submit" class=" top-2 right-2  text-blue px-3 py-2 rounded ">
+                                <svg width="30" height="30" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path class="fill-slate-300 hover:fill-red-500 transition-all duration-500 ease-out"
+                                        d="M3.91337 0.216696C5.01251 0.195629 5.94832 0.58572 6.69974 1.38176C6.9342 1.63027 7.06853 1.62732 7.30594 1.38221C8.35705 0.296889 9.65872 -0.0426845 11.0929 0.330416C12.5509 0.709633 13.5159 1.68124 13.8673 3.15778C14.2718 4.85724 13.7381 6.27148 12.451 7.44538C10.9325 8.83041 9.44442 10.2487 7.9468 11.6566C7.26018 12.302 6.74617 12.3032 6.06114 11.6582C4.48809 10.1771 2.90666 8.70491 1.33769 7.2193C0.12324 6.06942 -0.257563 4.65018 0.167867 3.05856C0.582423 1.50658 1.66027 0.599085 3.21588 0.246372C3.26141 0.236178 3.30672 0.218735 3.35248 0.218056C3.53937 0.214884 3.72648 0.216696 3.91337 0.216696Z"
+                                        />
+                                </svg>
+                                <input type="hidden" name="gigId" value="{{ $gig->id }}">
+                                <input type="hidden" name="usernameId" value="{{ auth('buyers')->user()->id }}">
+                            </button>
+                        </form>
+                        @endif
                 </div>
                         
                     </div>
@@ -271,6 +293,7 @@
                 <h2 class="text-2xl font-semibold text-gray-800 mb-4">Reseñas</h2>
                 @forelse($reviews as $review)
                     <div class="border border-gray-300 p-4 mb-4 rounded-lg">
+                        <strong>{{ $review->buyer->name }}</strong> 
                         <p class="text-blue font-semibold">Calificación: {{ $review->rating }} / 5</p>
                         <p class="text-blue">{{ $review->comment }}</p>
                         <p class="text-sm text-blue">{{ $review->created_at->format('d M Y') }}</p>

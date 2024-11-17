@@ -11,14 +11,19 @@ use Illuminate\Support\Facades\Auth;
 
 class GigReviewController extends Controller
 {
-    
     public function index($gigId)
     {
+        // Encuentra el gig por ID
         $gig = GigsTicolancer::findOrFail($gigId);
-        $reviews = GigsReviewsTicolancer::where('gigs_ticolancers_id', $gigId)->get();
-
+    
+        // Obtén las reviews con la relación `buyer`
+        $reviews = GigsReviewsTicolancer::where('gigs_ticolancers_id', $gigId)
+                    ->with('buyer') // Carga la relación del comprador
+                    ->get();
+    
         return view('sellers.sellerGig', compact('gig', 'reviews'));
     }
+    
 
 
     public function store(Request $request, $gigId)

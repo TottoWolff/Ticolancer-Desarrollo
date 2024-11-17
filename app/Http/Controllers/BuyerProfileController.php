@@ -9,6 +9,8 @@ use App\Models\BuyersLangTicolancer as BuyersLanguages;
 use App\Models\LanguagesTicolancer as Languages;
 use App\Models\LanguageLevelsTicolancer as LanguageLevels;
 use App\Models\BuyersUsersTicolancer as BuyersUsers;
+use App\Models\FavoritesGigsTicolancer as FavoritesGigs;
+use App\Models\GigsTicolancer;
 use Carbon\Carbon;
 use App\Models\ProvincesTicolancer as Provinces;
 use Illuminate\Support\Facades\Hash;
@@ -25,6 +27,56 @@ class BuyerProfileController extends Controller
         if (!$sessionActive) {
             return redirect()->route('login');
         } else {
+
+            // Obtenemos los IDs de los gigs favoritos del buyer autenticado
+            $favoritesGigsIds = FavoritesGigs::where('buyers_users_ticolancers_id', Auth::guard('buyers')->user()->id)
+                ->pluck('gigs_ticolancers_id');
+
+            // Consultamos los gigs favoritos, obteniendo la relación con el seller (pero no el buyer aún)
+            $favoritesGigs = GigsTicolancer::whereIn('id', $favoritesGigsIds)->get();
+
+            $favoritesData = $favoritesGigs->map(function ($gig) {
+                // Hacemos una consulta adicional para obtener al buyer relacionado con el seller
+                $seller = $gig->seller;
+
+                // Verificamos si el seller tiene un buyer asociado
+                $buyer = $seller ? $seller->buyers : null;
+
+                return [
+                    'gig' => [
+                        'id' => $gig->id,
+                        'gigs_categories_ticolancers_id' => $gig->gigs_categories_ticolancers_id,
+                        'sellers_users_ticolancers_id' => $gig->sellers_users_ticolancers_id,
+                        'gig_name' => $gig->gig_name,
+                        'gig_image' => $gig->gig_image,
+                        'gig_description' => $gig->gig_description,
+                        'gig_price' => $gig->gig_price,
+                        'published_at' => $gig->published_at,
+                        'created_at' => $gig->created_at,
+                        'updated_at' => $gig->updated_at,
+                        'buyer' => $buyer ? $buyer->toArray() : null,  // Aquí incluimos la información del buyer, si existe
+                    ]
+                ];
+            });
+
+
+            // Obtenemos los IDs de los vendedores favoritos del buyer autenticado
+            $favoritesBuyers = BuyersUsers::whereIn(
+                'id', 
+                function($query) {
+                    $query->select('buyers_users_ticolancers_id')
+                          ->from('sellers_users_ticolancers')
+                          ->whereIn('id', function($subQuery) {
+                              $subQuery->select('sellers_users_ticolancers_id')
+                                       ->from('fav_sellers_ticolancers')
+                                       ->where('buyers_users_ticolancers_id', Auth::guard('buyers')->user()->id);
+                          });
+                }
+            )->get();
+
+
+
+
             $buyer = Auth::guard('buyers')->user();
             $buyerId = $buyer->id;
     
@@ -61,7 +113,9 @@ class BuyerProfileController extends Controller
                 'picture' => $buyer->picture,
                 'cityName' => $city ? $city->city : null,
                 'provinceName' => $province ? $province->province : null,
-                'languages' => $languages
+                'languages' => $languages,
+                'favoritesData' => $favoritesData,
+                'favoritesBuyers' => $favoritesBuyers
             ]);
         }
 

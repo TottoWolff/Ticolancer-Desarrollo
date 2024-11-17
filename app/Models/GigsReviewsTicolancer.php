@@ -15,4 +15,11 @@ class GigsReviewsTicolancer extends Model
         'rating',
         'published_at'
     ];
+
+        // Relación con el comprador
+        public function buyer()
+        {
+            return $this->belongsTo(BuyersUsersTicolancer::class, 'buyers_users_ticolancers_id');
+        }
+    
 }

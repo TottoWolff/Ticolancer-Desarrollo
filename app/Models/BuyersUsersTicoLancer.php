@@ -10,6 +10,8 @@ use App\Models\CitiesTicolancer as Cities;
 use App\Models\BuyersLangTicolancer as BuyersLanguages;
 use App\Models\BuyersUsersTicolancer as BuyersUsers;
 use App\Models\SellersUsersTicolancer as SellersUsers;
+use App\Models\FavoritesGigsTicolancer as FavoritesGigs;
+use App\Models\FavSellersTicolancer as FavoritesSellers;
 
 class BuyersUsersTicoLancer extends Authenticatable
 {
@@ -53,4 +55,33 @@ class BuyersUsersTicoLancer extends Authenticatable
     {
         return $this->hasOne(SellerApplication::class, 'buyers_users_ticolancers_id');
     }
+
+
+    public function hasLikedGigs($gigId)
+    {
+        return $this->favoritesGigs()->where('gigs_ticolancers_id', $gigId)->exists();
+    }
+
+    
+    // Relación con los favoritos de gigs
+    public function favoritesGigs()
+    {
+        return $this->hasMany(FavoritesGigs::class, 'buyers_users_ticolancers_id');
+    }
+
+
+
+
+    public function hasLikedSeller($sellerId)
+    {
+        return $this->favoritesSellers()->where('sellers_users_ticolancers_id', $sellerId)->exists();
+    }
+
+    
+    // Relación con los favoritos de freelancers
+    public function favoritesSellers()
+    {
+        return $this->hasMany(FavoritesSellers::class, 'buyers_users_ticolancers_id');
+    }
+    
 }
