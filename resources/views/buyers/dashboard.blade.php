@@ -110,11 +110,10 @@
 
                         <!-- Calificación y cantidad de reseñas -->
                         <div class="flex gap-2 mt-2 items-center">
-                            <img class="w-5 h-5" src="{{ asset('images/profile/star.png') }}"
+                            <img class="w-3 h-3" src="{{ asset('images/profile/star.png') }}"
                                 alt="Calificación">
-                            <span class="text-primary font-semibold text-[15px] max-sm:text-[12px]">
+                            <span class="text-primary text-[15px] max-sm:text-[12px] mt-1">
                                 {{ $gig->reviews->isNotEmpty() ? number_format(optional($gig->reviews->first())->average_rating, 1) : 'Sin calificaciones' }}
-                                / 5
                             </span>
                         </div>
 
