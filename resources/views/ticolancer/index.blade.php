@@ -210,7 +210,7 @@
     <div  class="flex flex-col justify-center items-center bg-bg py-[40px] gap-[60px] m-auto max-sm:w-[110vw] p-7">
         <h2 class="text-blue text-[36px] max-sm:text-[28px] font-light">Todos los <span class="text-green font-secondary">Servicios</span></h2>
 
-        <div class="grid grid-cols-6 gap-[40px] max-sm:grid-cols-1">
+        <div class="grid grid-cols-4 py-8 gap-[20px] max-sm:grid-cols-1">
             @if ($gigs && count($gigs) > 0)
             @foreach ($gigs as $gig)
             <div class="w-full max-w-[320px] sm:max-w-[400px] lg:max-w-[500px] border border-gray-300 rounded-lg p-4 shadow-md">
@@ -221,13 +221,13 @@
                         @endif
                         <div class="flex flex-col items-center">
                             <!-- Imagen del gig -->
-                            <img class="w-full h-40 object-cover rounded-md cursor-pointer mb-4" src="{{ asset('images/gigs/' . $gig->gig_image) }}" alt="{{ $gig->gig_name }}">
+                            <img class="w-full h-40 object-cover rounded-md" src="{{ asset('images/gigs/' . $gig->gig_image) }}" alt="{{ $gig->gig_name }}">
 
                             <!-- Nombre del gig -->
-                            <span class="text-[16px] max-sm:text-[14px] font-light text-black">{{ $gig->gig_name }}</span>
+                            <span class="text-[16px] pt-6 max-sm:text-[15px] text-center font-light text-black">{{ $gig->gig_name }}</span>
 
                          <!-- Calificación y cantidad de reseñas -->
-                        <div class="flex gap-2 mt-2 items-center">
+                        <div class="flex gap-2 mt-2 pt-1 items-center">
                             <img class="w-5 h-5" src="{{ asset('images/profile/star.png') }}" alt="Calificación">
                             <span class="text-primary font-semibold text-[15px] max-sm:text-[12px]">
                                 @if ($gig->reviews->isNotEmpty())
@@ -239,7 +239,7 @@
                         </div>
 
                             <!-- Precio del gig -->
-                            <div class="text-primary font-semibold text-[16px] max-sm:text-[12px] mt-2">Desde ₡{{ $gig->gig_price }}</div>
+                            <div class="text-primary font-semibold text-[16px] max-sm:text-[13px] pt-2 pb-4 mt-2">Desde ₡{{ $gig->gig_price }}</div>
                         </div>
                     </a>
             </div>
