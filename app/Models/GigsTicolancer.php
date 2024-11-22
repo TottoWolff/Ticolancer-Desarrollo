@@ -44,4 +44,9 @@ class GigsTicolancer extends Model
     {
         return $this->belongsTo(SellerUser::class, 'sellers_users_ticolancers_id');
     }
+
+        public function getAverageRatingAttribute()
+    {
+        return $this->reviews()->avg('rating') ?? 0; // Retorna 0 si no hay calificaciones
+    }
 }

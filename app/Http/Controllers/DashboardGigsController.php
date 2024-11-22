@@ -14,9 +14,12 @@ class DashboardGigsController extends Controller
      */
     public function index()
     {
-        $user = Auth::guard('buyers')->user();
+        $user = Auth::guard('buyers')->user(); // Obtenemos al usuario autenticado
         $username = $user->username;
-        $gigs = GigsTicolancer::all();
+
+        // Obtenemos todos los gigs con sus calificaciones promedio utilizando el accesor en el modelo
+        $gigs = GigsTicolancer::with('reviews')->get();
+
         return view('buyers.dashboard', compact('gigs', 'user', 'username'));
     }
 

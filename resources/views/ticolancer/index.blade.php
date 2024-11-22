@@ -207,13 +207,13 @@
 {{-- Popular services end --}}
 
 {{-- Servicios --}}
-    <div  class="flex flex-col justify-center items-center bg-bg py-[40px] gap-[60px] m-auto max-sm:w-[90vw] p-7">
+    <div  class="flex flex-col justify-center items-center bg-bg py-[40px] gap-[60px] m-auto max-sm:w-[110vw] p-7">
         <h2 class="text-blue text-[36px] max-sm:text-[28px] font-light">Todos los <span class="text-green font-secondary">Servicios</span></h2>
 
-        <div class="grid grid-cols-4 gap-[30px] max-sm:grid-cols-1">
+        <div class="grid grid-cols-6 gap-[40px] max-sm:grid-cols-1">
             @if ($gigs && count($gigs) > 0)
             @foreach ($gigs as $gig)
-            <div class="border border-gray-300 rounded-lg p-4 shadow-md">
+            <div class="w-full max-w-[320px] sm:max-w-[400px] lg:max-w-[500px] border border-gray-300 rounded-lg p-4 shadow-md">
                 @if (Auth::guard('buyers')->check())
                 <a href="{{ route('sellerGig', ['id' => $gig->id, 'username' => $username]) }}" class="block w-full cursor-pointer service-link" data-authenticated="true">
                     @else
