@@ -309,7 +309,7 @@
             </form>
 
 
-            <!-- Desactive account -->
+            <!-- Deactive account -->
             <form action="{{ route('sellers.desactivateAccount', ['username' => $username]) }}" method="POST"
                 class="w-full flex flex-col p-[20px] gap-[20px] border-[0.5px] border-solid border-blue border-opacity-50 rounded-[16px]">
                 @csrf

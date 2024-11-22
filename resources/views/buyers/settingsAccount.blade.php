@@ -80,48 +80,63 @@
             </form>
             <!-- Contact information end -->
 
-            <!-- Languages -->
-            <form action="{{ route('buyers.updateLanguages', ['username' => $username]) }}" method="POST" id="languages-form" class="w-full flex flex-col p-[20px] gap-[20px] border-[0.5px] border-solid border-blue border-opacity-50 rounded-[16px]">
+<!-- Languages -->
+<form action="{{ route('sellers.updateLanguages', ['username' => $username]) }}" method="POST"
+                id="languages-form"
+                class="w-full flex flex-col p-[20px] gap-[20px] border-[0.5px] border-solid border-blue border-opacity-50 rounded-[16px]">
                 @csrf
                 <h4 class="text-[22px] text-blue font-semibold">Idiomas</h4>
 
                 <!-- Languages from User (User's registered languages) -->
                 <div id="user-languages-container">
                     @foreach ($userLanguages as $userLanguage)
-                    <div class="language-item flex items-center gap-[20px] my-[20px]">
-                        <select name="language_ids[]" class="text-[14px] font-light uppercase outline-none bg-transparent border-[0.5px] border-solid border-blue border-opacity-50 rounded-[10px] p-[10px] w-full">
-                            <option class="text-[14px] font-light uppercase" value="{{ $userLanguage->language_id }}" selected>{{ $userLanguage->language_name }}</option>
-                            @foreach ($languages as $optionLanguage)
-                            <option class="text-[14px] font-light uppercase" value="{{ $optionLanguage->id }}">{{ $optionLanguage->language }}</option>
-                            @endforeach
-                        </select>
+                        <div class="language-item flex items-center gap-[20px] my-[20px]">
+                            <select name="language_ids[]"
+                                class="text-[14px] font-light uppercase outline-none bg-transparent border-[0.5px] border-solid border-blue border-opacity-50 rounded-[10px] p-[10px] w-full">
+                                <option class="text-[14px] font-light uppercase" value="{{ $userLanguage->language_id }}"
+                                    selected>{{ $userLanguage->language_name }}</option>
+                                @foreach ($languages as $optionLanguage)
+                                    <option class="text-[14px] font-light uppercase" value="{{ $optionLanguage->id }}">
+                                        {{ $optionLanguage->language }}</option>
+                                @endforeach
+                            </select>
 
-                        <select name="level[]" class="text-[14px] font-light uppercase outline-none bg-transparent border-[0.5px] border-solid border-blue border-opacity-50 rounded-[10px] p-[10px] w-full">
-                            <option class="text-[14px] font-light uppercase" value="{{ $userLanguage->level_id }}" selected>{{ $userLanguage->level_name }}</option>
-                            @foreach ($levels as $level)
-                            <option class="text-[14px] font-light uppercase" value="{{ $level->id }}">{{ $level->level }}</option>
-                            @endforeach
-                        </select>
+                            <select name="level[]"
+                                class="text-[14px] font-light uppercase outline-none bg-transparent border-[0.5px] border-solid border-blue border-opacity-50 rounded-[10px] p-[10px] w-full">
+                                <option class="text-[14px] font-light uppercase" value="{{ $userLanguage->level_id }}"
+                                    selected>{{ $userLanguage->level_name }}</option>
+                                @foreach ($levels as $level)
+                                    <option class="text-[14px] font-light uppercase" value="{{ $level->id }}">
+                                        {{ $level->level }}</option>
+                                @endforeach
+                            </select>
 
-                        <button type="button" class="remove-language"><img class="w-[26px]" src="{{ asset('icons/close-blue.svg') }}" alt="Eliminar idioma"></button>
-                    </div>
+                            <button type="button" class="remove-language"><img class="w-[26px]"
+                                    src="{{ asset('icons/close-blue.svg') }}" alt="Eliminar idioma"></button>
+                        </div>
                     @endforeach
                 </div>
 
                 <!-- Dynamic Languages (Newly added languages) -->
                 <div id="new-languages-container">
                     <div class="language-item flex items-center gap-[20px] my-[20px]">
-                        <select name="language_ids[]" class="text-[14px] font-light uppercase outline-none bg-transparent border-[0.5px] border-solid border-blue border-opacity-50 rounded-[10px] p-[10px] w-full">
-                            <option class="text-[14px] font-light uppercase" value="" disabled selected>Nuevo idioma</option>
+                        <select name="language_ids[]"
+                            class="text-[14px] font-light uppercase outline-none bg-transparent border-[0.5px] border-solid border-blue border-opacity-50 rounded-[10px] p-[10px] w-full">
+                            <option class="text-[14px] font-light uppercase" value="" disabled selected>Nuevo idioma
+                            </option>
                             @foreach ($languages as $language)
-                            <option class="text-[14px] font-light uppercase" value="{{ $language->id }}">{{ $language->language }}</option>
+                                <option class="text-[14px] font-light uppercase" value="{{ $language->id }}">
+                                    {{ $language->language }}</option>
                             @endforeach
                         </select>
 
-                        <select name="level[]" class="text-[14px] font-light uppercase outline-none bg-transparent border-[0.5px] border-solid border-blue border-opacity-50 rounded-[10px] p-[10px] w-full">
-                            <option class="text-[14px] font-light uppercase" value="" disabled selected>Selecciona el nivel</option>
+                        <select name="level[]"
+                            class="text-[14px] font-light uppercase outline-none bg-transparent border-[0.5px] border-solid border-blue border-opacity-50 rounded-[10px] p-[10px] w-full">
+                            <option class="text-[14px] font-light uppercase" value="" disabled selected>Selecciona el
+                                nivel</option>
                             @foreach ($levels as $level)
-                            <option class="text-[14px] font-light uppercase" value="{{ $level->id }}">{{ $level->level }}</option>
+                                <option class="text-[14px] font-light uppercase" value="{{ $level->id }}">
+                                    {{ $level->level }}</option>
                             @endforeach
                         </select>
 
@@ -130,8 +145,12 @@
 
                 <!-- Add new language button -->
                 <div class="items-end justify-center flex flex-col w-full gap-[10px]">
-                    <button type="button" id="add-language" class="text-[14px] p-[10px] font-light underline hover:text-green transition-all duration-500 ease-out">Agregar nuevo</button>
-                    <button type="submit" class="w-fit bg-green rounded-[10px] p-[10px] text-white font-semibold text-[14px] hover:translate-y-[-5px] transition-all duration-500 ease-out">Guardar cambios</button>
+                    <button type="button" id="add-language"
+                        class="text-[14px] p-[10px] font-light underline hover:text-green transition-all duration-500 ease-out">Agregar
+                        nuevo</button>
+                    <button type="submit"
+                        class="w-fit bg-green rounded-[10px] p-[10px] text-white font-semibold text-[14px] hover:translate-y-[-5px] transition-all duration-500 ease-out">Guardar
+                        cambios</button>
                 </div>
             </form>
 
@@ -207,32 +226,79 @@
 </div>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const languagesContainer = document.getElementById('new-languages-container');
-    const addLanguageButton = document.getElementById('add-language');
+    document.addEventListener("DOMContentLoaded", function () {
+        const languagesContainer = document.getElementById('new-languages-container');
+        const addLanguageButton = document.getElementById('add-language');
+        const form = document.getElementById('languages-form');
 
-    // Evento para agregar nuevo idioma
-    addLanguageButton.addEventListener('click', function() {
-        const languageItem = document.querySelector('.language-item').cloneNode(true);
+        // Crea un container con mensaje de validacion
+        const validationMessageContainer = document.createElement('div');
+        validationMessageContainer.id = 'validation-messages';
+        validationMessageContainer.className = 'text-red-500 p-2';
+        form.insertBefore(validationMessageContainer, form.firstChild);
 
-        // Resetear valores de selects para que el usuario seleccione nuevos valores
-        languageItem.querySelector('select[name="language_ids[]"]').value = '';
-        languageItem.querySelector('select[name="level[]"]').value = '';
+        // Crea un nuevo idoma
+        addLanguageButton.addEventListener('click', function () {
+            const languageItem = document.querySelector('.language-item').cloneNode(true);
 
-        // Agregar evento para remover el idioma agregado
-        languageItem.querySelector('.remove-language').addEventListener('click', function() {
-            languageItem.remove();
+            // Resetea valores para un agregar un idioma nuevo
+            languageItem.querySelector('select[name="language_ids[]"]').value = '';
+            languageItem.querySelector('select[name="level[]"]').value = '';
+
+            // Borra idioma agregado
+            languageItem.querySelector('.remove-language').addEventListener('click', function () {
+                languageItem.remove();
+            });
+
+            // Append de nuevo idioma
+            languagesContainer.appendChild(languageItem);
         });
 
-        languagesContainer.appendChild(languageItem);
-    });
+        // Borra idioma existente
+        document.querySelectorAll('.remove-language').forEach(function (button) {
+            button.addEventListener('click', function () {
+                this.parentElement.remove();
+            });
+        });
 
-    // Remover idioma existente
-    document.querySelectorAll('.remove-language').forEach(function(button) {
-        button.addEventListener('click', function() {
-            this.parentElement.remove();
+        // Previene idiomas duplicados y un idioma nativo
+        form.addEventListener('submit', function (e) {
+            e.preventDefault(); // Prevent form submission for validation
+            validationMessageContainer.innerHTML = ''; // Clear previous messages
+
+            var languageIds = [];
+            var levelIds = [];
+            var nativeLanguageCount = 0;
+
+            var languageSelects = document.querySelectorAll('select[name="language_ids[]"]');
+            var levelSelects = document.querySelectorAll('select[name="level[]"]');
+
+            // Colecta idiomas y niveles
+            languageSelects.forEach(function (select) {
+                languageIds.push(select.value);
+            });
+
+            levelSelects.forEach(function (select) {
+                var level = select.value;
+                levelIds.push(level);
+                if (level == 1) { // Assuming '1' is the ID for native language level
+                    nativeLanguageCount++;
+                }
+            });
+
+            // Check de idiomas duplicados
+            if (new Set(languageIds).size !== languageIds.length) {
+                validationMessageContainer.innerHTML = 'No puedes agregar el mismo idioma más de una vez.';
+                return;
+            }
+
+            // Check de varios idiomas nativos
+            if (nativeLanguageCount > 1) {
+                validationMessageContainer.innerHTML = 'Solo puedes tener un idioma nativo.';
+                return;
+            }
+
+            form.submit();
         });
     });
-});
-
 </script>

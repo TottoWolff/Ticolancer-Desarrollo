@@ -224,28 +224,41 @@ class BuyerProfileController extends Controller
     }
 
 
-    public function updateLanguages(Request $request) {
+    public function updateLanguages(Request $request)
+    {
         $user = Auth::guard('buyers')->user();
-    
+
         $languageIds = $request->input('language_ids');
         $levelIds = $request->input('level');
-        
-      
+
+        // Verifica que el mismo idioma no se agregue dos veces
+        if (count($languageIds) !== count(array_unique($languageIds))) {
+            return redirect()->back()->withErrors(['message' => 'No puedes agregar el mismo idioma más de una vez.']);
+        }
+
+        // Verifies que solo haya un idioma nativo
+        $nativeLanguages = array_filter($levelIds, function ($levelId) {
+            return $levelId == 1;
+        });
+        if (count($nativeLanguages) > 1) {
+            return redirect()->back()->withErrors(['message' => 'Solo puedes tener un idioma nativo.']);
+        }
+
+        // Borra idiomas existentes
         $user->languages()->delete();
-    
-       
+
+        // Crea nuevos idiomas
         if (is_array($languageIds) && is_array($levelIds) && count($languageIds) === count($levelIds)) {
             foreach ($languageIds as $index => $languageId) {
                 $levelId = $levelIds[$index];
-    
-                // Crear la nueva relación de lenguaje y nivel
+
                 $user->languages()->create([
                     'languages_ticolancers_id' => $languageId,
                     'language_levels_ticolancers_id' => $levelId,
                 ]);
             }
         }
-    
+
         return redirect()->back()->with('success', 'Idiomas actualizados exitosamente');
     }
 
