@@ -89,48 +89,54 @@
     </div>
     {{-- Popular services end --}}
 
-    <div class="flex flex-col justify-center items-center bg-bg py-[30px] gap-[0px] m-auto max-sm:w-[110vw] p-">
+    <div class="flex flex-col justify-center items-center bg-bg py-[40px] gap-[60px] m-auto max-sm:w-[90vw] p-7">
         <h2 class="text-blue text-[36px] max-sm:text-[28px] font-light">Todos los <span
                 class="text-green font-secondary">Servicios</span></h2>
 
-        <div class="grid grid-cols-4 py-8 gap-[20px] max-sm:grid-cols-1">
-    @if ($gigs && count($gigs) > 0)
-        @foreach ($gigs as $gig)
-            <div class="w-full max-w-[320px] sm:max-w-[00px] lg:max-w-[500px] border border-gray-300 rounded-lg p-4 shadow-md">
-                <a href="{{ route('sellerGig', ['id' => $gig->id, 'username' => $username]) }}">
-                    <div class="flex flex-col items-center h-72">
+        <div class="grid grid-cols-4 gap-[30px] max-sm:grid-cols-1">
+            @if ($gigs && count($gigs) > 0)
+            @foreach ($gigs as $gig)
+            <div class="border border-gray-300 rounded-lg p-4 shadow-md">
+                <a href="{{ route('sellerGig', ['id' => $gig->id, 'username' => $username]) }}"
+                    class="block w-full cursor-pointer">
+                    <div class="flex flex-col items-center">
                         <!-- Imagen del gig -->
-                        <img class="w-full h-40 object-cover rounded-md" src="{{ asset('images/gigs/' . $gig->gig_image) }}" alt="{{ $gig->gig_name }}">
-                        
-                        <!-- Nombre del gig -->
-                        <span class="text-[16px] pt-6 max-sm:text-[15px] text-center font-light text-black">{{ $gig->gig_name }}</span>
+                        <img class="w-full h-40 object-cover rounded-md cursor-pointer mb-4"
+                            src="{{ asset('images/gigs/' . $gig->gig_image) }}" alt="{{ $gig->gig_name }}">
 
-                        <!-- Calificación actualizada -->
-                        <div class="flex gap-2 mt-2 pt-1 items-center ">
-                            <img class="w-3 h-3" src="{{ asset('images/profile/star.png') }}" alt="Calificación">
-                            <span class="text-primary text-[15px] max-sm:text-[14px] mt-1">
-                                {{ number_format($gig->average_rating, 1) }} / 5
+                        <!-- Nombre del gig -->
+                        <span
+                            class="text-[16px] max-sm:text-[14px] text-center font-light text-black">{{ $gig->gig_name }}</span>
+
+                        <!-- Calificación y cantidad de reseñas -->
+                        <div class="flex gap-2 mt-2 items-center">
+                            <img class="w-3 h-3" src="{{ asset('images/profile/star.png') }}"
+                                alt="Calificación">
+                            <span class="text-primary text-[15px] max-sm:text-[12px] mt-1">
+                                {{ $gig->reviews->isNotEmpty() ? number_format(optional($gig->reviews->first())->average_rating, 1) : 'Sin calificaciones' }}
                             </span>
                         </div>
 
                         <!-- Precio del gig -->
-                        <div class="text-primary font-semibold text-[16px] max-sm:text-[13px] pt-2 pb-4 mt-2">
-                            Desde ₡{{ $gig->gig_price }}
-                        </div>
+                        <div class="text-primary font-semibold text-[16px] max-sm:text-[12px] mt-2">Desde
+                            ₡{{ $gig->gig_price }}</div>
                     </div>
                 </a>
             </div>
-        @endforeach
-    @else
-        <div class="flex flex-col items-center justify-center place-content-center text-center p-10 bg-blue-50 border border-blue-200 rounded-lg shadow-md mt-10">
-            <h2 class="text-2xl font-bold text-blue-600">¡Lo sentimos!</h2>
-            <p class="text-lg text-blue-500 mt-2">Actualmente no hay servicios disponibles.</p>
-            <a href="{{ url('/sellers/{username}/dashboardgigs') }}" class="mt-5 inline-block bg-blue-600 text-white py-2 px-4 rounded-full">
-                Explorar más servicios
-            </a>
+            @endforeach
+            @else
+            <div
+                class="flex flex-col items-center justify-center place-content-center text-center p-10 bg-blue-50 border border-blue-200 rounded-lg shadow-md mt-10">
+                <h2 class="text-2xl font-bold text-blue-600">¡Lo sentimos!</h2>
+                <p class="text-lg text-blue-500 mt-2">Actualmente no hay servicios disponibles.</p>
+                <p class="text-gray-600 mt-2">Vuelve más tarde o explora otros perfiles.</p>
+                <a href="{{ url('/sellers/{username}/dashboardgigs') }}"
+                    class="mt-5 inline-block bg-blue-600 text-white py-2 px-4 rounded-full shadow-lg hover:bg-blue-700 transition duration-300 ease-in-out">
+                    Explorar más servicios
+                </a>
+            </div>
+            @endif
         </div>
-    @endif
-</div>
     </div>
 </div>
 
