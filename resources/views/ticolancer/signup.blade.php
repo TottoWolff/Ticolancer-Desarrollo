@@ -9,11 +9,11 @@
         </div>
         <div
             class="flex flex-col justify-center items-center px-[120px] gap-[20px] max-sm:px-0 max-sm:w-[90vw] max-sm:m-auto">
-            <form class="w-full flex flex-col gap-[20px]" action="{{ route('signup.store') }} " method="POST">
+            <form class="w-full flex flex-col gap-[20px] mt-[100px]" action="{{ route('signup.store') }} " method="POST">
                 @csrf
                 {{-- Step 1 --}}
-                <div id="step-1" class="flex flex-col items-start w-full gap-[20px]">
-                    <img class="w-[200px]" src="{{ asset('images/signup/account.png') }}" alt="">
+                <div id="step-1" class="flex flex-col items-start  max-sm:items-center w-full gap-[20px]">
+                    <img class="w-[200px] max-sm:w-[100px]" src="{{ asset('images/signup/account.png') }}" alt="">
                     <h2 class="text-white text-[24px] font-light">1. Crea una cuenta</h2>
                     <input id="email" name="email" type="text" placeholder="Email"
                         class="placeholder:text-slate-400 flex w-full border-b-[1px] border-solid border-white bg-transparent border-opacity-50 px-[20px] py-[10px] text-white text-[16px] font-regular  outline-none">
@@ -23,10 +23,7 @@
                     <input oninput="checkPasswordMatch()" id="password_confirmation" name="password_confirmation"
                         type="password" placeholder="Confirmar contraseña"
                         class="placeholder:text-slate-400 flex w-full border-b-[1px] border-solid border-white bg-transparent border-opacity-50 px-[20px] py-[10px] text-white text-[16px] font-regular  outline-none">
-                    <div id="alert"
-                        class="hidden w-full p-[10px] justify-between bg-red-100 border-[1px] border-red-300 rounded-[10px]">
-                        <p id="alert-text" class="text-red-600">Las contraseñas no coinciden</p>
-                    </div>
+                    
                     <input onclick="nextStep(1)" type="button" value="Siguiente "
                         class="rounded-[10px] cursor-pointer transition-all duration-500 ease-out hover:translate-y-[-5px] hover:bg-green hover:text-white w-full bg-white px-[20px] py-[10px] text-blue text-[16px] font-semibold  outline-none">
                     <div id="check-password" class="text-red-600 text-[12px] flex flex-col p-[10px] justify-between">
@@ -41,7 +38,7 @@
 
                 {{-- Step 2 --}}
                 <div id="step-2" class="hidden flex-col w-full gap-[20px] items-center">
-                    <img class="w-[200px]" src="{{ asset('images/signup/account.png') }}" alt="">
+                    <img class="w-[200px] max-sm:w-[100px]" src="{{ asset('images/signup/account.png') }}" alt="">
                     <h2 class="text-white text-[24px] font-light">2. Crea tu perfil</h2>
                     <input id="username" name="username" type="text" placeholder="Username"
                         class="placeholder:text-slate-400 flex w-full border-b-[1px] border-solid border-white bg-transparent border-opacity-50 px-[20px] py-[10px] text-white text-[16px] font-regular  outline-none">
@@ -56,12 +53,11 @@
                             class="rounded-[10px] cursor-pointer transition-all duration-500 ease-out hover:translate-y-[-5px] hover:bg-green hover:text-white w-full bg-white px-[20px] py-[10px] text-blue text-[16px] font-semibold  outline-none">
                     </div>
                 </div>
-
                 {{-- Step 2 end --}}
 
                 {{-- Step 3 --}}
                 <div id="step-3" class="hidden flex-col w-full gap-[20px] items-center">
-                    <img class="w-[200px]" src="{{ asset('images/signup/contact.png') }}" alt="">
+                    <img class="w-[200px] max-sm:w-[100px]" src="{{ asset('images/signup/contact.png') }}" alt="">
                     <h2 class="text-white text-[24px] font-light">3. Informacion de contacto</h2>
                     <div class="flex flex-row w-full gap-[20px]">
                         <input value="+506" readonly
@@ -80,7 +76,7 @@
 
                 {{-- Step 4 --}}
                 <div id="step-4" class="hidden flex-col items-center w-full gap-[20px]">
-                    <img class="w-[200px]" src="{{ asset('images/signup/location.png') }}" alt="">
+                    <img class="w-[200px] max-sm:w-[100px]" src="{{ asset('images/signup/location.png') }}" alt="">
                     <h2 class="text-white text-[24px] font-light">4. Donde te encuentras</h2>
                     <div class="flex flex-row w-full gap-[20px]">
                         <select name="province" id="province"
@@ -138,7 +134,7 @@
 
                 {{-- Step 5 --}}
                 <div id="step-5" class="hidden flex-col items-center w-full gap-[20px]">
-                    <img class="w-[200px]" src="{{ asset('images/signup/location.png') }}" alt="">
+                    <img class="w-[200px] max-sm:w-[100px]" src="{{ asset('images/signup/location.png') }}" alt="">
                     <h2 class="text-white text-[24px] font-light">5. Tu idioma</h2>
                     <div class="flex flex-row w-full gap-[20px]">
 
@@ -188,6 +184,11 @@
                         <p>{{ $message }}</p>
                     </div>
                 @endif
+                
+                <div id="alert"
+                        class="hidden w-full p-[10px] justify-between bg-red-100 border-[1px] border-red-300 rounded-[10px]">
+                        <p id="alert-text" class="text-red-600">Las contraseñas no coinciden</p>
+                </div>
 
                 <p class="text-center text-[14px] text-white">¿Ya tienes cuenta? <a href="{{ route('login') }}"
                         class="text-white underline">Inicia sesión</a></p>
@@ -200,6 +201,7 @@
     const password = document.getElementById('password');
     const password_confirmation = document.getElementById('password_confirmation');
     const alert = document.getElementById('alert');
+    const alertText = document.getElementById('alert-text');
 
     const checkPassword = document.getElementById('check-password');
     const passwordLength = document.getElementById('password-length');
@@ -207,6 +209,13 @@
     const passwordLowercase = document.getElementById('password-lowercase');
     const passwordNumber = document.getElementById('password-number');
     const passwordSpecial = document.getElementById('password-special');
+
+    //INPUTS
+    const email = document.getElementById('email');
+    const username = document.getElementById('username');
+    const name = document.getElementById('name');
+    const lastname = document.getElementById('lastname');
+    const phone = document.getElementById('phone');
 
     let currentStep = 1;
 
@@ -238,11 +247,40 @@
         if (step === 1) {
             const isPasswordValid = checkPasswordCharacters();
             checkPasswordMatch();
+            
 
             if (!isPasswordValid || alert.classList.contains('flex')) {
                 return; // No avanzar si no es válido o hay error
             }
+
+            if (email.value === '') {  
+                alert.classList.add('flex');
+                alert.classList.remove('hidden');
+                alertText.innerHTML = 'El correo electr&oacute;nico es obligatorio';
+                return; // No avanzar si no hay correo
+            }   
         }
+
+        if(step === 2) {
+              if (username.value === '' || name.value === '' || lastname.value === '') {
+                alert.classList.add('hidden');
+                alert.classList.add('flex');
+                alert.classList.remove('hidden');
+                alertText.innerHTML = 'Todos los campos son obligatorios';
+                return; 
+              }  
+        }
+
+        if(step === 3) {
+              if (phone.value === '') {
+                alert.classList.add('hidden');
+                alert.classList.add('flex');
+                alert.classList.remove('hidden');
+                alertText.innerHTML = 'Todos los campos son obligatorios';
+                return; 
+              }  
+        }
+
 
         // Avanza al siguiente paso
         document.getElementById(`step-${step}`).classList.add('hidden');
@@ -257,6 +295,8 @@
         document.getElementById(`step-${step - 1}`).classList.remove('hidden', 'flex', 'flex-col', 'w-full', 'gap-[20px]');
         document.getElementById(`step-${step - 1}`).classList.add('flex', 'flex-col', 'w-full', 'gap-[20px]');
     };
+
+    
 
     function checkPasswordMatch() {
         if (password.value !== password_confirmation.value) {

@@ -2,22 +2,22 @@
     <div id="navbar" class="flex-col  z-[999] flex fixed top-0 w-full left-[50%] -translate-x-1/2 m-auto py-[20px] max-sm:py-[20px] max-sm:px-[20px] items-center justify-between font-main font-semibold text-[18px] text-white transition-all duration-500 ease-out bg-bg">
         <div id="navbar-wrapper" class="w-[90vw] flex flex-row justify-between  max-sm:gap-3 md:gap-3 items-center">
             <!-- Logo -->
-            <a href="{{ route ('inicio') }}">
+            <a class="w-[25%] " href="{{ route ('inicio') }}">
                 <img class="w-[200px] max-sm:w-[80px] md:w-[120px] lg:w-[150px]" src="{{ asset('icons/logo.svg') }}" alt="">
             </a>
 
             <!-- Search for desktop -->
-            <div class="relative max-sm:hidden">
+            <div class="relative max-sm:hidden w-[50%] ">
                 <form action="{{ route('searchGigs', 'search') }}" method="GET">
                     <div class="relative mt-3 max-sm:mt-3">
-                        <input type="text" name="search" placeholder="¿Cuál servicio buscas hoy?" class="w-[600px] max-sm:w-[200px]  placeholder:text-[18px] placeholder:font-light bg-transparent border-blue border-[0.5px] border-opacity-50 rounded-[16px] p-[10px] outline-none text-[18px] text-black font-light">
+                        <input type="text" name="search" placeholder="¿Cuál servicio buscas hoy?" class="w-full placeholder:text-[18px] placeholder:font-light bg-transparent border-blue border-[0.5px] border-opacity-50 rounded-[16px] p-[10px] outline-none text-[18px] text-black font-light">
                         <button type="submit" class="bg-blue absolute rounded-[8px] p-[8px] right-[10px] top-[50%] translate-y-[-50%] items-center"><img class="w-[18px]" src="{{ asset('icons/search.svg') }}" alt=""></button>
                     </div>
                 </form>
             </div>
 
             <!-- Account buttons -->
-            <div class="flex items-center gap-[20px] max-sm:gap-[10px]">
+            <div class="flex items-center justify-end gap-[20px] max-sm:gap-[10px] w-[25%]">
                 <!-- Search button for mobile -->
                 <button onclick="openSearch()"><img class="w-[20px] max-sm:w-[20px] hidden max-sm:flex " src="{{ asset('icons/search_blue.svg') }}" alt=""></button>
 

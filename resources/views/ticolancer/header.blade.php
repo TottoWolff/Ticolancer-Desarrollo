@@ -14,7 +14,7 @@
 
                     <ul class="flex flex-row gap-[10px] max-sm:hidden">
                         <li class="p-[10px] hover:text-blue rounded-[10px] hover:bg-white transition-all duration-500 hover:translate-y-[-5px] ease-out"><a href="{{ route('inicio') }}">Inicio</a></li>
-                        <li class="p-[10px] hover:text-blue rounded-[10px] hover:bg-white transition-all duration-500 hover:translate-y-[-5px] ease-out"><button  onclick="scrollToServicios()">Servicios</button></li>
+                        <li class="p-[10px] hover:text-blue rounded-[10px] hover:bg-white transition-all duration-500 hover:translate-y-[-5px] ease-out"><a href="{{ route('inicio') }}#services">Servicios</a></li>
                         <li class="p-[10px] hover:text-blue rounded-[10px] hover:bg-white transition-all duration-500 hover:translate-y-[-5px] ease-out"><a href="{{ route('nosotros') }}">Nosotros</a></li>
                         <li class="p-[10px] hover:text-blue rounded-[10px] hover:bg-white transition-all duration-500 hover:translate-y-[-5px] ease-out"><a href="{{ route('contacto') }}">Contacto</a></li>
                         <li class="p-[10px] hover:text-blue rounded-[10px] hover:bg-white transition-all duration-500 hover:translate-y-[-5px] ease-out"><a href="{{ route('login') }}">Iniciar sesión</a></li>
@@ -29,7 +29,7 @@
 
                         <ul class="flex flex-col gap-[20px]">
                             <li class="text-white hover:text-green transition-all duration-500 translate-y-[-5px] ease-out"><a href="{{ route('inicio') }}">Inicio</a></li>
-                            <li class="text-white hover:text-green transition-all duration-500 translate-y-[-5px] ease-out"><a href="#" onclick="scrollToServicios()">Servicios</a></li>
+                            <li class="text-white hover:text-green transition-all duration-500 translate-y-[-5px] ease-out"><a href="{{ route('inicio') }}#services">Servicios</a></li>
                             <li class="text-white hover:text-green transition-all duration-500 translate-y-[-5px] ease-out"><a href="{{ route('nosotros') }}">Nosotros</a></li>
                             <li class="text-white hover:text-green transition-all duration-500 translate-y-[-5px] ease-out"><a href="{{ route('contacto') }}">Contacto</a></li>
                             <li class="text-white hover:text-green transition-all duration-500 translate-y-[-5px] ease-out"><a href="{{ route('login') }}">Iniciar sesión</a></li>

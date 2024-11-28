@@ -4,7 +4,7 @@
                     <img class="w-[150px] max-sm:w-[120px]" src="{{ asset('icons/logo.svg') }}" alt="">
                 </div>
 
-                <div class="grid grid-cols-2 max-sm:grid-cols-1 max-sm:gap-[20px]">
+                <div class="grid grid-cols-2 max-sm:grid-cols-1 max-lg:grid-cols-1 max-lg:gap-[40px] max-sm:gap-[20px]">
                     <div class="flex justify-start flex-col gap-[20px]">
                         <p class="text-black font-light text-[16px]">En Ticolancer damos oportunidades a todos aquellos <br> freelacers ticos que desde su hogar u oficina quieren <br> vender su talento!</p>
                         @if(auth('buyers')->check())

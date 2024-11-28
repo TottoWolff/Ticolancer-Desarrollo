@@ -1,23 +1,26 @@
 <header>
-    <div id="navbar" class="flex-col h-[100px] z-[999] flex fixed top-0 w-full left-[50%] -translate-x-1/2 m-auto py-[20px] max-sm:py-[20px] max-sm:px-[20px] items-center justify-between font-main font-semibold text-[18px] text-white transition-all duration-500 ease-out bg-bg">
-        <div id="navbar-wrapper" class="w-[90vw] flex flex-row lg:justify-between max-sm:gap-3 md:gap-3 items-center">
+    <div id="navbar" class="flex-col h-[100px] z-[999] flex fixed top-0 w-full left-[50%] -translate-x-1/2 m-auto py-[20px] max-sm:py-[20px] max-sm:px-[20px] items-center  justify-between font-main font-semibold text-[18px] text-white transition-all duration-500 ease-out bg-bg">
+        <div id="navbar-wrapper" class="w-[90vw] flex flex-row  max-sm:gap-3 md:gap-3 items-center justify-between ">
             <!-- Logo -->
-            <a href="{{ route ('buyers.dashboard', auth()->guard('buyers')->user()->username) }}">
+            <a class="w-[25%]" href="{{ route ('buyers.dashboard', auth()->guard('buyers')->user()->username) }}">
                 <img class="w-[140px]" src="{{ asset('icons/logo.svg') }}" alt="">
             </a>
 
             <!-- Search -->
-            <div class="relative max-sm:hidden">
-                <form action="{{ route('searchGigs', 'search') }}" method="GET">
+            <div class="flex max-sm:hidden items-center justify-center w-[50%]">
+                <form class="w-full" action="{{ route('searchGigs', 'search') }}" method="GET">
                     <div class="relative max-sm:mt-3">
-                        <input type="text" name="search" placeholder="¿Cuál servicio buscas hoy?" class="w-[600px] placeholder:text-[18px] placeholder:font-light bg-transparent border-blue border-[0.5px] border-opacity-50 rounded-[16px] p-[10px] outline-none text-[18px] text-black font-light">
+                        <input type="text" name="search" placeholder="¿Cuál servicio buscas hoy?" class="w-full placeholder:text-[18px] placeholder:font-light bg-transparent border-blue border-[0.5px] border-opacity-50 rounded-[16px] p-[10px] outline-none text-[18px] text-black font-light">
                         <button type="submit" class="bg-blue absolute rounded-[8px] p-[8px] right-[10px] top-[50%] translate-y-[-50%] items-center"><img class="w-[18px]" src="{{ asset('icons/search.svg') }}" alt=""></button>
                     </div>
                 </form>
             </div>
 
             <!-- Account -->
-            <div class="flex items-center gap-[20px]">
+            <div class="flex items-center justify-end gap-[20px] max-sm:gap-[10px] w-[25%]">
+                <!-- Search button for mobile -->
+                <button onclick="openSearch()"><img class="w-[20px] max-sm:w-[20px] hidden max-sm:flex " src="{{ asset('icons/search_blue.svg') }}" alt=""></button>
+
                 <a href="{{ route('favorites.gigs', auth()->guard('buyers')->user()->username) }}">
                     <img src="{{ asset('icons/like.svg') }}" alt="">
                 </a>
@@ -31,7 +34,26 @@
                 </div>
             </div>
         </div>
+        
+        <!-- Search modal for mobile -->
+        <div id="search" class="w-full bg-bg absolute top-0 left-0 z-[999] hidden items-center flex-col gap-[20px] p-[40px] transition-all duration-500 ease-out rounded-bl-[20px] rounded-br-[20px]">
+            
+            <div class="w-full items-end justify-center flex flex-col gap-[20px]">
+                <button onclick="closeSearch()"><img class="w-[20px] h-[20px]" src="{{ asset('icons/close-blue.svg') }}" alt=""></button>
+            </div>
+            
+            <div class="flex flex-col w-full items-start justify-center">
+                <form class="w-full" action="{{ route('searchGigs', 'search') }}" method="GET">
+                    <div class="relative">
+                        <input type="text" name="search" placeholder="¿Cuál servicio buscas hoy?" class="flex w-full placeholder:text-[18px] placeholder:font-light bg-transparent border-blue border-[0.5px] border-opacity-50 rounded-[16px] p-[10px] outline-none text-[18px] text-black font-light">
+                        <button type="submit" class="bg-blue absolute rounded-[8px] p-[8px] right-[10px] top-[50%] translate-y-[-50%] items-center"><img class="w-[18px]" src="{{ asset('icons/search.svg') }}" alt=""></button>
+                    </div>
+                </form>
+            </div>
 
+        </div>
+
+        <!-- Account mobile -->
         <div id="account" class="w-[400px] h-[100vh] bg-blue absolute top-0 right-0 z-[999] hidden items-start flex-col gap-[40px] p-[40px] transition-all duration-500 ease-out">
             @if (auth()->guard('buyers')->check())
             <div class="w-full items-end justify-center flex flex-col gap-[20px]">
@@ -98,9 +120,11 @@
 
 <script>
     account = document.getElementById('account');
+    search = document.getElementById('search');
     servicesBar = document.getElementById('services-bar');
 
     function openAccount() {
+        console.log("Abriendo cuenta");
         account.classList.remove('hidden');
         account.classList.add('flex');
     }
@@ -110,9 +134,18 @@
         account.classList.remove('flex');
     }
 
+    function openSearch() {
+        search.classList.remove('hidden');
+        search.classList.add('flex');
+    }
+
+    function closeSearch() {
+        search.classList.add('hidden');
+        search.classList.remove('flex');
+    }
+
     window.onscroll = function() {
         if (window.scrollY > 50) {
-            navbar.classList.add('bg-white');
             servicesBar.classList.remove('hidden');
             servicesBar.classList.add('flex');
         } else {
