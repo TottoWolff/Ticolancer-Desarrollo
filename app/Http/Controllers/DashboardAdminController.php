@@ -105,6 +105,44 @@ class DashboardAdminController extends Controller
         $membership->trialExpirationDate = now()->addDays(30); 
         $membership->save();
         
+
+        // COMENTADO EN ENTORNO LOCAL
+        //PHP MAILER
+        // $mailer = new PHPMailerService();
+        // $to = $buyer->email;
+        // $subject = 'Tu solicitud ha sido aceptada';
+        // $body ='
+    //         <html>
+    //         <head>
+    //             <style>
+
+    //                 h2 {
+    //                     color: #ffffff;
+    //                     padding: 10px;
+    //                     background-color: #132D46;
+    //                     border-bottom: 4px solid #00C48E;
+    //                 }
+
+    //                 .container {
+    //                     padding: 10px;
+    //                     background-color: #F5F5F5;
+    //                 }
+
+    //             </style>
+
+    //         </head>
+    //         <body>
+    //             <h2> Hola ' . $buyer->name . ', tu solicitud ha sido aceptada!</h2>
+    //             <div class="container">
+    //                 <p>Ahora podrás publicar tus servicios.</p>
+    //             </div>
+    //         </body>
+    //     </html> 
+    // ';
+    
+        // $mailer->send($to, $subject, $body);
+
+
         $to = $buyer->email;
         $subject = 'Tu solicitud ha sido aceptado';
         $message = '
