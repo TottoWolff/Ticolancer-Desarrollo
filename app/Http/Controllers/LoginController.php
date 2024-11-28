@@ -79,6 +79,44 @@ class LoginController extends Controller
         $user->password = bcrypt($newPassword); 
         $user->save();
 
+        //COMENTADO EN ENTORNO LOCAL
+        //PHP MAILER
+        // $mailer = new PHPMailerService();
+        // $to = $request->email;
+        // $subject = 'Tu nueva contraseña';
+        // $body = ''
+    //        <html>
+    //        <head>
+    //            <style>
+                   
+    //                h2 {
+    //                    color: #ffffff;
+    //                    padding: 10px;
+    //                    background-color: #132D46;
+    //                    border-bottom: 4px solid #00C48E;
+    //                }
+                   
+    //                .container {
+    //                    padding: 10px;
+    //                    background-color: #F5F5F5;
+    //                }
+                   
+    //            </style>
+
+    //        </head>
+    //        <body>
+    //            <h2> Hola ' . $user->name . ', tu nueva contraseña es: <strong>' . $newPassword . '</strong> </h2>
+    //            <div class="container">
+    //                <p>Te recomendamos que cambies esta contraseña en tu perfil.</p>
+    //                <p>Saludos, el equipo de Ticolancer!</p>
+    //            </div>
+    //        </body>
+    //    </html> 
+    //    ';
+
+        // $mailer->sendEmail($to, $subject, $body);
+        //END OF PHP MAILER
+
         $to = $request->email;
         $subject = 'Tu nueva contraseña';
         $message = '
