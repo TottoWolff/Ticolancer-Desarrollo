@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\GigsCategoriesTicolancer as GigsCategories;
 use App\Models\GigsImagesTicolancer as GigsImages;
 use App\Models\SellersUsersTicolancer as SellersUsers;
+use App\Models\FavoritesGigsTicolancer as FavoritesGigs;
 use Carbon\Carbon;
 
 class GigsController extends Controller
@@ -221,6 +222,8 @@ class GigsController extends Controller
      */
     public function destroy(string $id)
     {
+        $favoritesGigs = FavoritesGigs::where('gigs_ticolancers_id', $id)->delete();
+
         // Encuentra el gig con el ID proporcionado
         $gig = GigsTicolancer::findOrFail($id);
 

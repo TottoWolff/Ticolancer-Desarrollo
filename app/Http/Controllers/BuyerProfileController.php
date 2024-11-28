@@ -216,6 +216,7 @@ class BuyerProfileController extends Controller
 
     public function desactivateAccount(){
         $user = Auth::guard('buyers')->user();
+        $userFavoritesGigs = \App\Models\FavoritesGigsTicolancer::where('buyers_users_ticolancers_id', $user->id)->delete();
         $user->languages()->delete();
         $user ->delete();
         Auth::guard('buyers')->logout();

@@ -416,14 +416,9 @@
 
                             <div class="flex flex-col">
                                 <span class="text-[16px] font-light text-black">{{ $gig->gig_name }}</span>
-                                <div class="flex gap-2">
+                                
 
-                                    <img class="w-4 h-4 mt-0.5" src="{{ asset('images/profile/star.png') }}" alt="Rating">
-                                    <span class="text-primary font-semibold text-[15px]">4.9</span>
-                                    <span class="text-gray-400 text-[15px]">(221)</span>
-                                </div>
-
-                                <div class="text-primary font-semibold text-[16px]">Desde ₡15,000</div>
+                                <div class="text-primary font-semibold text-[16px]">Desde ₡{{ $gig->gig_price }}</div>
                             </div>
                         </div>
 

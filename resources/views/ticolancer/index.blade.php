@@ -45,7 +45,7 @@
 {{-- Popular services --}}
 <div id="services" class="flex flex-col justify-center items-center bg-bg py-[40px] gap-[40px] m-auto max-sm:w-[90vw]">
     <h2 class="text-blue text-[36px] max-sm:text-[28px] font-light">Servicios <span class="text-green font-secondary">Populares</span></h2>
-    <div class="grid grid-cols-6 gap-[20px] max-sm:grid-cols-2 md:grid-cols-4">
+    <div class="grid grid-cols-6 gap-[20px] max-sm:grid-cols-2 ">
     {{-- Marketing digital --}}
     <a href="{{ route('categorie', '2') }}">
         <div class="flex flex-col gap-[20px] p-[20px] w-[160px] h-[160px] shadow-[0_10px_15px_0px_rgba(17,17,26,0.05)] border-solid border-[0.5px] border-blue border-opacity-10 rounded-[16px] hover:bg-[radial-gradient(ellipse_at_center,_rgba(0,196,142,0.2)_0%,_#F8FBFF_75%)] transition-all duration-500 ease-out">
@@ -170,7 +170,7 @@
     <div  class="flex flex-col justify-center items-center bg-bg py-[40px] gap-[60px] m-auto w-[90vw]  p-7">
         <h2 class="text-blue text-[36px] max-sm:text-[28px] font-light">Todos los <span class="text-green font-secondary">Servicios</span></h2>
 
-        <div class="w-[90vw] grid grid-cols-4 py-8 gap-[20px] max-sm:grid-cols-1 md:grid-cols-3">
+        <div class="w-[90vw] grid grid-cols-4 py-8 gap-[20px] max-sm:grid-cols-1 md:grid-cols-4">
             @if ($gigs && count($gigs) > 0)
             @foreach ($gigs as $gig)
             <div class="w-full border border-gray-300 rounded-lg p-4 shadow-md">

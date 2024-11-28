@@ -134,6 +134,8 @@ class SellerProfileController extends Controller
                 ->join('gigs_ticolancers', 'gigs_ticolancers.sellers_users_ticolancers_id', '=', 'sellers_users_ticolancers.id')
                 ->select('gigs_ticolancers.*')
                 ->get();
+        
+        
 
             return view('sellers.profile', [
                 'name' => $buyer->name,
@@ -278,6 +280,7 @@ class SellerProfileController extends Controller
     public function desactivateAccount()
     {
         $user = Auth::guard('buyers')->user();
+        $userFavoritesGigs = \App\Models\FavoritesGigsTicolancer::where('buyers_users_ticolancers_id', $user->id)->delete();
         $user->languages()->delete();
         $user->delete();
         Auth::guard('buyers')->logout();

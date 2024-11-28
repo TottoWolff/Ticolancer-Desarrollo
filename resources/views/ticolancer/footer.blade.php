@@ -19,29 +19,29 @@
                         <div class="flex justify-start items-start flex-col gap-[20px]">
                             <h2 class="text-primary font-semibold text-[18px]">ENLACES</h2>
                             <div class="flex flex-col">
-                                <a class="text-[16px] font-light text-black" href="#">Inicio</a>
-                                <a class="text-[16px] font-light text-black" href="#">Servicios</a>
-                                <a class="text-[16px] font-light text-black" href="#">Nosotros</a>
-                                <a class="text-[16px] font-light text-black" href="#">Contacto</a>
+                                <a class="text-[16px] font-light text-black" href="{{ route('inicio') }}">Inicio</a>
+                                <a class="text-[16px] font-light text-black" href="{{ route('inicio') }}#services">Servicios</a>
+                                <a class="text-[16px] font-light text-black" href="{{ route('nosotros') }}">Nosotros</a>
+                                <a class="text-[16px] font-light text-black" href="{{ route('contacto') }}">Contacto</a>
                             </div>
                         </div>
 
                         <div class="flex justify-start items-start flex-col gap-[20px]">
                             <h2 class="text-primary font-semibold text-[18px]">CATEGORIAS</h2>
                             <div class="flex flex-col">
-                                <a class="text-[16px] font-light text-black" href="">Diseño gráfico</a>
-                                <a class="text-[16px] font-light text-black" href="">Desarrollo web</a>
-                                <a class="text-[16px] font-light text-black" href="">Arquitectura</a>
-                                <a class="text-[16px] font-light text-black" href="">Edición de video</a>
+                                <a class="text-[16px] font-light text-black" href="{{ route('categorie', '5') }}">Diseño gráfico</a>
+                                <a class="text-[16px] font-light text-black" href="{{ route('categorie', '1') }}">Programación y tecnología</a>
+                                <a class="text-[16px] font-light text-black" href="{{ route('categorie', '4') }}">Arquitectura</a>
+                                <a class="text-[16px] font-light text-black" href="{{ route('categorie', '3') }}">Video y Animación</a>
                             </div>
                         </div>
 
                         <div class="flex justify-start items-start flex-col gap-[20px]">
                             <h2 class="text-primary font-semibold text-[18px]">CONTACTO</h2>
                             <div class="flex flex-col">
-                                <a class="text-[16px] font-light text-black" href="">Paseo de los turistas, Puntarenas</a>
+                                <a class="text-[16px] font-light text-black" href="">San Ramón, Alajuela</a>
                                 <a class="text-[16px] font-light text-black" href="tel:+50622334455">+506 2233 - 4455</a>
-                                <a class="text-[16px] font-light text-black" href="mailto:info@elfarostartups.com">info@elfarostartups.com</a>
+                                <a class="text-[16px] font-light text-black" href="mailto:info@test.ticolancer.site">info@test.ticolancer.site</a>
                             </div>
                         </div>
                     </div>
